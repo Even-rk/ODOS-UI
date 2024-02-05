@@ -27,7 +27,7 @@ const sourceCode = ref('')
 const codeVisible = ref(false)
 
 const previewSourceCode = computed(() => {
-  const str = sourceCode.value.replace(/'\.\.\/\.\.\/index'/g, `'@tencent/orange-odos'`)
+  const str = sourceCode.value.replace(/'\.\.\/\.\.\/index'/g, `'@tencent/odos-ui'`)
   const startIndex = str.indexOf('<template>') + '<template>'.length
   const endIndex = str.indexOf('</template>')
   const content = str.substring(startIndex, endIndex)
@@ -42,7 +42,7 @@ onMounted(async () => {
       ).default
     } else {
       sourceCode.value = await fetch(
-        `${isDev ? '' : '/Orange-ODOS'}/packages/${compName}/docs/${demoName}.vue`
+        `${isDev ? '' : '/'}/packages/${compName}/docs/${demoName}.vue`
       ).then((res) => res.text())
     }
   }
