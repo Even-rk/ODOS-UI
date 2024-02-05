@@ -1,63 +1,32 @@
 <template>
-  <div class="odos-ui">
-    <aside>
-      <router-link v-for="(link, index) in data.links" :key="index" :to="link.path">
-        {{ link.name }}
-      </router-link>
-    </aside>
-    <main>
-      <router-view></router-view>
-    </main>
-  </div>
+  <header class="header">
+    <div class="logo">
+      <img src="./assets/imgs/logo.png" />
+    </div>
+    <div class="components">
+      <odos-button type="text" size="large" @click="$router.push('/home')">首页</odos-button>
+      <odos-button type="text" size="large" @click="$router.push('/layout')">组件</odos-button>
+    </div>
+  </header>
+  <router-view></router-view>
 </template>
 
-<script setup lang="ts">
-import ComponentList from 'packages/list.json'
-import { onMounted, reactive, ref } from 'vue'
-
-const data = reactive({
-  links: ComponentList.map((item) => ({
-    path: `/components/${item.compName}`,
-    name: item.compZhName
-  }))
-})
-
-const linkName = ref('')
-onMounted(() => {
-  linkName.value = location.hash
-})
-</script>
-
-<style lang="scss">
-@import '../styles/icon.scss';
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-.odos-ui {
+<script setup lang="ts"></script>
+<style lang="scss" scoped>
+.header {
   display: flex;
-  min-height: 100vh;
-  aside {
-    box-sizing: border-box;
-    width: 20vw;
-    padding: 50px 50px 50px 100px;
-    display: flex;
-    flex-direction: column;
-    a {
-      padding: 8px;
-      margin-bottom: 8px;
-    }
-    .router-link-exact-active {
-      border-radius: 10px;
-      background-color: #eef5fe;
-      color: #2e6ce4;
+  align-items: center;
+  height: 55px;
+  padding: 0 100px;
+  border-bottom: 1px solid #dddfe5;
+  .logo {
+    height: 80%;
+    img {
+      height: 100%;
     }
   }
-  main {
-    width: 80vw;
-    flex: 1;
-    padding: 15px;
+  .components {
+    margin-left: 150px;
   }
 }
 </style>
