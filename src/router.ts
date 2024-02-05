@@ -1,0 +1,42 @@
+import { createRouter, createWebHashHistory } from 'vue-router'
+import type {
+  RouteRecordRaw,
+  RouteLocationNormalized,
+  RouteLocationNormalizedLoaded
+} from 'vue-router'
+
+const routes: Readonly<RouteRecordRaw[]> = [
+  {
+    path: '/',
+    redirect: '/components/useComp'
+  },
+  {
+    name: 'useCopm',
+    path: '/components/useComp',
+    component: () => import('packages/README.md')
+  },
+  {
+    name: 'Button',
+    path: '/components/Button',
+    component: () => import('packages/Button/docs/README.md')
+  },
+  {
+    name: 'Icon',
+    path: '/components/Icon',
+    component: () => import('packages/Icon/docs/README.md')
+  }
+]
+
+const routerConfig = {
+  history: createWebHashHistory(),
+  routes,
+  scrollBehavior(to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded) {
+    if (to.path !== from.path) {
+      return { top: 0 }
+    }
+  }
+}
+
+const router = createRouter(routerConfig)
+
+export default router

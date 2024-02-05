@@ -1,0 +1,17 @@
+[
+  {
+    "compName": "useComp",
+    "compZhName": "使用上手",
+    "compClassName": "useComp"
+  },
+  {
+    "compName": "Button",
+    "compZhName": "按钮",
+    "compClassName": "button"
+  },
+  {
+    "compName": "Icon",
+    "compZhName": "icon",
+    "compClassName": "icon"
+  }
+]
