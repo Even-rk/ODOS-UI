@@ -1,3 +1,3 @@
 <template>
-  <odos-icon name="FullScreen" />
+  <odos-icon name="check"/>
 </template>

@@ -6,15 +6,23 @@
 
 <script setup lang="ts">
 import './iconfont'
-import { computed } from 'vue'
-const { name, size } = defineProps<{
+import { computed, ref } from 'vue'
+const { name, size, color } = defineProps<{
   name?: string
-  size?: number
+  size?: number | string
   color?: string
 }>()
 
 const IconName = computed(() => `#icon-${name}`)
-const IconSize = computed(() => `${size}px`)
+const IconSize = computed(() => {
+  const iconSize = ref('')
+  if( typeof size === 'number') {
+    iconSize.value = `${size}px`
+  } else if (typeof size === 'string') {
+    iconSize.value = size
+  } 
+  return iconSize.value
+})
 </script>
 
 <style lang="scss">
