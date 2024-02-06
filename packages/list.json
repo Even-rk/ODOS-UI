@@ -6,12 +6,12 @@
   },
   {
     "compName": "Button",
-    "compZhName": "按钮",
+    "compZhName": "Button按钮",
     "compClassName": "button"
   },
   {
     "compName": "Icon",
-    "compZhName": "icon",
+    "compZhName": "Icon图标",
     "compClassName": "icon"
   }
 ]

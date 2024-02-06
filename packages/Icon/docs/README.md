@@ -2,7 +2,7 @@
 import demo from './demo.vue'
 </script>
 
-# Icon组件
+# Icon图标
 
 <Preview comp-name="Icon" demo-name="demo">
   <demo />
