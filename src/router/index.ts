@@ -35,6 +35,11 @@ const routes: Readonly<RouteRecordRaw[]> = [
         name: 'Icon',
         path: '/components/Icon',
         component: () => import('packages/Icon/docs/README.md')
+      },
+      {
+        name: 'Input',
+        path: '/components/Input',
+        component: () => import('packages/Input/docs/README.md')
       }
     ]
   }

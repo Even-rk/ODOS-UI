@@ -13,5 +13,10 @@
     "compName": "Icon",
     "compZhName": "Icon图标",
     "compClassName": "icon"
+  },
+  {
+    "compName": "Input",
+    "compZhName": "Input输入框",
+    "compClassName": "input"
   }
 ]

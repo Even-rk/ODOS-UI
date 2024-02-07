@@ -2,8 +2,8 @@
 import demo from './demo.vue'
 </script>
 
-# Icon组件
+# Input输入框
 
-<Preview comp-name="Icon" demo-name="demo">
+<Preview comp-name="Input" demo-name="demo">
   <demo />
 </Preview>

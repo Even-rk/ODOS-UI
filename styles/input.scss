@@ -1,0 +1,20 @@
+.odos-input {
+  position: relative;
+  min-width: none;
+  height: 40px;
+  input {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px 16px;
+    background: #f2f3f5;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #f2f3f5;
+    outline: none;
+    &:focus-within {
+      border: 1px solid #2e6ce4;
+    }
+  }
+}

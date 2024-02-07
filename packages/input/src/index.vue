@@ -1,9 +1,33 @@
 <template>
-  <div class="odos-input">
-    <input type="text" />
+  <div class="odos-input" :style="{ width: WidthSize }">
+    <input
+      type="text"
+      :value="value"
+      @input="$emit('update:value', ($event.target as HTMLInputElement).value)"
+      placeholder="请输入"
+    />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed, ref } from 'vue'
 
-<style scoped></style>
+const { value, width } = defineProps<{
+  value?: string
+  width?: string | number
+}>()
+
+const WidthSize = computed(() => {
+  const widthSize = ref('')
+  if (typeof width === 'number') {
+    widthSize.value = `${width}px`
+  } else if (typeof width === 'string') {
+    widthSize.value = width
+  }
+  return widthSize.value
+})
+</script>
+
+<style lang="scss">
+@import '/styles/input.scss';
+</style>
