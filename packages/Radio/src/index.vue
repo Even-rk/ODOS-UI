@@ -31,7 +31,6 @@ const randerContent = () => {
             active: it.props.value == value.value
           }}
           onClick={() => {
-            console.log(it.props.alarm)
             emit('update:value', it.props.value)
           }}
         >
@@ -44,7 +43,7 @@ const randerContent = () => {
 
 const styleClass = computed(() => {
   return {
-    [`odos-radio-size--${size}`]: size
+    [`odos-radio-size--${size.value}`]: size.value
   }
 })
 </script>
