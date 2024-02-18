@@ -9,8 +9,9 @@ import type { App, Plugin } from 'vue'
 import { ButtonPlugin } from './Button'
 import { IconPlugin } from './Icon'
 import { InputPlugin } from './input'
+import { InputNumberPlugin } from './inputNumber'
 
-const Packages = [ButtonPlugin, IconPlugin, InputPlugin]
+const Packages = [ButtonPlugin, IconPlugin, InputPlugin, InputNumberPlugin]
 
 const OdosPlugin: Plugin = {
   install(app: App) {
