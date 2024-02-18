@@ -10,8 +10,9 @@ import { ButtonPlugin } from './Button'
 import { IconPlugin } from './Icon'
 import { InputPlugin } from './input'
 import { InputNumberPlugin } from './inputNumber'
+import { RadioPlugin } from './Radio'
 
-const Packages = [ButtonPlugin, IconPlugin, InputPlugin, InputNumberPlugin]
+const Packages = [ButtonPlugin, IconPlugin, InputPlugin, InputNumberPlugin, RadioPlugin]
 
 const OdosPlugin: Plugin = {
   install(app: App) {
