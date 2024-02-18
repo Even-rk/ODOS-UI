@@ -37,8 +37,8 @@ onMounted(() => {
   min-height: 100vh;
   aside {
     box-sizing: border-box;
-    width: 23vw;
-    padding: 48px 48px 96px 90px;
+    width: 330px;
+    padding: 48px 48px 96px 60px;
     display: flex;
     flex-direction: column;
     a {
@@ -55,7 +55,7 @@ onMounted(() => {
   main {
     width: 80vw;
     flex: 1;
-    padding: 64px 96px 42px 96px;
+    padding: 64px 96px 42px 70px;
   }
 }
 </style>
