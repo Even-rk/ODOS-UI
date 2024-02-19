@@ -4,14 +4,16 @@
       <img src="./assets/imgs/logo.png" />
     </div>
     <div class="components">
-      <odos-button type="text" size="large" @click="$router.push('/home')">首页</odos-button>
-      <odos-button type="text" size="large" @click="$router.push('/layout')">组件</odos-button>
+      <odos-button type="text" size="large" @click="$router.push('/home')">
+        <b :class="{ active: $route.fullPath === '/home' }">首页</b>
+      </odos-button>
+      <odos-button type="text" size="large" @click="$router.push('/layout')">
+        <b :class="{ active: $route.fullPath.includes('components') }">组件</b>
+      </odos-button>
     </div>
   </header>
   <router-view></router-view>
 </template>
-
-<script setup lang="ts"></script>
 <style lang="scss" scoped>
 .header {
   display: flex;
@@ -27,6 +29,13 @@
   }
   .components {
     margin-left: 150px;
+    button {
+      color: #38485c;
+      font-weight: bold;
+      .active {
+        color: #3f6bdc;
+      }
+    }
   }
 }
 </style>
