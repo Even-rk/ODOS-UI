@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="tsx">
-import { computed, ref, toRefs, useSlots } from 'vue'
+import { computed, toRefs, useSlots } from 'vue'
 
 const props = defineProps<{
   size?: 'small' | 'medium' | 'large'

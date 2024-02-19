@@ -28,10 +28,5 @@
     "compName": "Radio",
     "compZhName": "Radio单选框",
     "compClassName": "radio"
-  },
-  {
-    "compName": "Checkbox",
-    "compZhName": "Checkbox复选框",
-    "compClassName": "checkbox"
   }
 ]

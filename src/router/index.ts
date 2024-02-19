@@ -50,11 +50,6 @@ const routes: Readonly<RouteRecordRaw[]> = [
         name: 'Radio',
         path: '/components/Radio',
         component: () => import('packages/Radio/docs/README.md')
-      },
-      {
-        name: 'Checkbox',
-        path: '/components/Checkbox',
-        component: () => import('packages/Checkbox/docs/README.md')
       }
     ]
   }

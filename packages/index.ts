@@ -11,16 +11,8 @@ import { IconPlugin } from './Icon'
 import { InputPlugin } from './Input'
 import { InputNumberPlugin } from './InputNumber'
 import { RadioPlugin } from './Radio'
-import { CheckboxPlugin } from './Checkbox'
 
-const Packages = [
-  ButtonPlugin,
-  IconPlugin,
-  InputPlugin,
-  InputNumberPlugin,
-  RadioPlugin,
-  CheckboxPlugin
-]
+const Packages = [ButtonPlugin, IconPlugin, InputPlugin, InputNumberPlugin, RadioPlugin]
 
 const OdosPlugin: Plugin = {
   install(app: App) {
@@ -31,9 +23,8 @@ const OdosPlugin: Plugin = {
 }
 
 export default OdosPlugin
-
+// 统一导出
 export * from './Button'
-export * from './Checkbox'
 export * from './Icon'
 export * from './Input'
 export * from './InputNumber'
