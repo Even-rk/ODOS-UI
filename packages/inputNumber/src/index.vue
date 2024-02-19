@@ -5,7 +5,7 @@
       :value.prop="value"
       onkeypress="return(/[\d\.]/.test(String.fromCharCode(event.keyCode)))"
       @input="$emit('update:value', +($event.target as HTMLInputElement).value)"
-      placeholder="请输入"
+      :placeholder="placeholder || '请输入'"
     />
   </div>
 </template>
@@ -13,9 +13,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-const { value, width } = defineProps<{
+const { value, width, placeholder } = defineProps<{
   value?: number
   width?: string | number
+  placeholder?: string
 }>()
 
 const WidthSize = computed(() => {

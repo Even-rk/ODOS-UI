@@ -8,11 +8,19 @@
 import type { App, Plugin } from 'vue'
 import { ButtonPlugin } from './Button'
 import { IconPlugin } from './Icon'
-import { InputPlugin } from './input'
-import { InputNumberPlugin } from './inputNumber'
+import { InputPlugin } from './Input'
+import { InputNumberPlugin } from './InputNumber'
 import { RadioPlugin } from './Radio'
+import { CheckboxPlugin } from './Checkbox'
 
-const Packages = [ButtonPlugin, IconPlugin, InputPlugin, InputNumberPlugin, RadioPlugin]
+const Packages = [
+  ButtonPlugin,
+  IconPlugin,
+  InputPlugin,
+  InputNumberPlugin,
+  RadioPlugin,
+  CheckboxPlugin
+]
 
 const OdosPlugin: Plugin = {
   install(app: App) {
@@ -25,5 +33,8 @@ const OdosPlugin: Plugin = {
 export default OdosPlugin
 
 export * from './Button'
+export * from './Checkbox'
 export * from './Icon'
-export * from './input'
+export * from './Input'
+export * from './InputNumber'
+export * from './Radio'

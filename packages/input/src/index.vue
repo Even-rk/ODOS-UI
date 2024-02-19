@@ -4,7 +4,7 @@
       type="text"
       :value="value"
       @input="$emit('update:value', ($event.target as HTMLInputElement).value)"
-      placeholder="请输入"
+      :placeholder="placeholder || '请输入'"
     />
   </div>
 </template>
@@ -15,6 +15,7 @@ import { computed, ref } from 'vue'
 const { value, width } = defineProps<{
   value?: string
   width?: string | number
+  placeholder?: string
 }>()
 
 const WidthSize = computed(() => {
