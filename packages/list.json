@@ -15,6 +15,16 @@
     "compClassName": "icon"
   },
   {
+    "compName": "Input",
+    "compZhName": "Input输入框",
+    "compClassName": "input"
+  },
+  {
+    "compName": "InputNumber",
+    "compZhName": "InputNumber数字输入框",
+    "compClassName": "inputNumber"
+  },
+  {
     "compName": "Radio",
     "compZhName": "Radio单选框",
     "compClassName": "radio"
