@@ -6,6 +6,11 @@
         v-for="(column, index) in columns"
         :key="index"
         :style="{ width: column.width }"
+        :class="{
+          'odos-table-title-fixed': column.fixed,
+          'odos-table-title-fixed-left': column.fixed === 'left',
+          'odos-table-title-fixed-right': column.fixed === 'right'
+        }"
       >
         {{ column.title }}
       </div>
@@ -16,6 +21,11 @@
         v-for="(column, index) in columns"
         :key="index"
         :style="{ width: column.width }"
+        :class="{
+          'odos-table-content-fixed': column.fixed,
+          'odos-table-content-fixed-left': column.fixed === 'left',
+          'odos-table-content-fixed-right': column.fixed === 'right'
+        }"
       >
         {{ content[column.prop] }}
       </div>
