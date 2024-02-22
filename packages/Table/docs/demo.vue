@@ -49,25 +49,19 @@ const columns = [
   {
     title: 'Name',
     prop: 'name',
-    slotName: 'name',
-    width: '500px',
-    fixed: true
+    slotName: 'name'
   },
   {
     title: 'Salary',
-    prop: 'salary',
-    width: '500px'
+    prop: 'salary'
   },
   {
     title: 'Address',
-    prop: 'address',
-    width: '500px'
+    prop: 'address'
   },
   {
     title: 'Email',
-    prop: 'email',
-    width: '100px',
-    fixed: 'right'
+    prop: 'email'
   }
 ]
 </script>
