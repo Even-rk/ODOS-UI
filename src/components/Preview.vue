@@ -31,7 +31,8 @@ const previewSourceCode = computed(() => {
   const startIndex = str.indexOf('<template>') + '<template>'.length
   const endIndex = str.indexOf('</template>')
   const content = str.substring(startIndex, endIndex)
-  return '<template>' + content + '<template>'
+  // return '<template>' + content + '<template>'
+  return str
 })
 
 onMounted(async () => {
@@ -76,6 +77,7 @@ pre {
 .preview-bottom {
   height: 40px;
   display: flex;
+  background-color: #fff;
   justify-content: center;
   align-items: center;
   border-top: 1px solid #dddfe5;

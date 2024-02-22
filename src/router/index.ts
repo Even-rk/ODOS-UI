@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import route from './route'
 import type {
   RouteRecordRaw,
   RouteLocationNormalized,
@@ -20,38 +21,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
     path: '/layout',
     redirect: '/components/useComp',
     component: () => import('@/layout/index.vue'),
-    children: [
-      {
-        name: 'useCopm',
-        path: '/components/useComp',
-        component: () => import('packages/README.md')
-      },
-      {
-        name: 'Button',
-        path: '/components/Button',
-        component: () => import('packages/Button/docs/README.md')
-      },
-      {
-        name: 'Icon',
-        path: '/components/Icon',
-        component: () => import('packages/Icon/docs/README.md')
-      },
-      {
-        name: 'Input',
-        path: '/components/Input',
-        component: () => import('packages/Input/docs/README.md')
-      },
-      {
-        name: 'InputNumber',
-        path: '/components/InputNumber',
-        component: () => import('packages/InputNumber/docs/README.md')
-      },
-      {
-        name: 'Radio',
-        path: '/components/Radio',
-        component: () => import('packages/Radio/docs/README.md')
-      }
-    ]
+    children: route
   }
 ]
 

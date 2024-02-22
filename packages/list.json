@@ -28,5 +28,10 @@
     "compName": "Radio",
     "compZhName": "Radio单选框",
     "compClassName": "radio"
+  },
+  {
+    "compName": "Table",
+    "compZhName": "Table表格",
+    "compClassName": "table"
   }
 ]

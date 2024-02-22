@@ -11,8 +11,16 @@ import { IconPlugin } from './Icon'
 import { InputPlugin } from './Input'
 import { InputNumberPlugin } from './InputNumber'
 import { RadioPlugin } from './Radio'
+import { TablePlugin } from './Table'
 
-const Packages = [ButtonPlugin, IconPlugin, InputPlugin, InputNumberPlugin, RadioPlugin]
+const Packages = [
+  ButtonPlugin,
+  IconPlugin,
+  InputPlugin,
+  InputNumberPlugin,
+  RadioPlugin,
+  TablePlugin
+]
 
 const OdosPlugin: Plugin = {
   install(app: App) {
@@ -29,3 +37,4 @@ export * from './Icon'
 export * from './Input'
 export * from './InputNumber'
 export * from './Radio'
+export * from './Table'
