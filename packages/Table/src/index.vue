@@ -26,7 +26,13 @@
 <script setup lang="ts">
 const { data, columns } = defineProps<{
   data: { [key: string]: any }[]
-  columns: { title: string; prop: string; width: string | number; slotName: string }[]
+  columns: {
+    title: string
+    prop: string
+    width: string | number
+    slotName: string
+    fixed: true | 'left' | 'right'
+  }[]
 }>()
 </script>
 

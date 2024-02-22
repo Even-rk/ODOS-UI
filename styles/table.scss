@@ -1,11 +1,13 @@
 .odos-table {
   width: 100%;
+  overflow-x: scroll;
   height: auto;
   .odos-table-title-cell {
+    position: relative;
     display: inline-flex;
-    align-items: center;
     justify-content: space-between;
-    width: 100%;
+    align-items: center;
+    min-width: 100%;
     height: 48px;
     background: #f1f5ff;
     box-sizing: border-box;
@@ -19,10 +21,11 @@
     }
   }
   .odos-table-content-cell {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    min-width: 100%;
     height: 48px;
     box-sizing: border-box;
     &:nth-child(2n-1) {
