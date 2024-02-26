@@ -1,85 +1,123 @@
-@mixin item {
-  display: inline-flex;
-  align-items: center;
-  padding-left: 14px;
+.odos-table-container {
+  overflow: scroll;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
 
-@mixin cell {
-  position: relative;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
-  min-width: 100%;
-  height: 48px;
-  box-sizing: border-box;
-}
+  .odos-table {
+    min-width: 100%;
+    border: 0;
+    border-spacing: 0;
+    overflow: scroll;
+    .odos-table-thead {
+      .odos-table-tr {
+        height: 48px;
+        background: #f1f5ff;
+        .odos-table-th {
+          border: none;
+          .odos-table-span {
+            display: block;
+          }
+        }
+        .odos-table-title-fixed,
+        .odos-table-title-fixed-left {
+          background: #f1f5ff;
+          position: sticky;
+          left: 0;
+          z-index: 10;
+        }
+        .odos-table-title-fixed-right {
+          background: #f1f5ff;
+          position: sticky;
+          right: 0;
+          z-index: 10;
+        }
 
-.odos-table {
-  width: 100%;
-  overflow-x: scroll;
-  height: auto;
-  .odos-table-title-cell {
-    @include cell;
-    background: #f1f5ff;
-    .odos-table-title {
-      @include item;
-    }
-    .odos-table-title-fixed,
-    .odos-table-title-fixed-left {
-      background: #f1f5ff;
-      position: sticky;
-      left: 0;
-      z-index: 10;
-    }
-    .odos-table-title-fixed-right {
-      background: #f1f5ff;
-      position: sticky;
-      right: 0;
-      z-index: 10;
-    }
-  }
-  .odos-table-content-cell {
-    @include cell;
-    &:nth-child(2n-1) {
-      background-color: #f8faff;
-      .odos-table-content-fixed,
-      .odos-table-content-fixed-left {
-        background: #f8faff;
-      }
-      .odos-table-content-fixed-right {
-        background: #f8faff;
+        .shadow-left::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          width: 10px;
+          height: 100%;
+          right: -10px;
+          box-shadow: inset 6px 0 8px -3px #00000026;
+        }
+
+        /* 滚动阴影右边 */
+        .shadow-right::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          width: 10px;
+          height: 100%;
+          left: -10px;
+          // background: linear-gradient(to left, #505050, transparent);
+          box-shadow: inset -6px 0 8px -3px #00000026;
+        }
       }
     }
-    &:hover {
-      background: #f2f3f5;
-      .odos-table-content-fixed,
-      .odos-table-content-fixed-left {
-        background: #f2f3f5;
+    .odos-table-tbody {
+      .odos-table-tr {
+        height: 48px;
+        &:nth-child(2n) {
+          background: #f8faff;
+          .odos-table-content-fixed,
+          .odos-table-content-fixed-left {
+            background: #f8faff;
+          }
+          .odos-table-content-fixed-right {
+            background: #f8faff;
+          }
+        }
+        .odos-table-td {
+          border: none;
+        }
+
+        &:hover {
+          background: #f2f3f5;
+          .odos-table-content-fixed,
+          .odos-table-content-fixed-left {
+            background: #f2f3f5;
+          }
+          .odos-table-content-fixed-right {
+            background: #f2f3f5;
+          }
+        }
+
+        .odos-table-content-fixed,
+        .odos-table-content-fixed-left {
+          position: sticky;
+          left: 0;
+          z-index: 10;
+          background: #fff;
+        }
+        .odos-table-content-fixed-right {
+          position: sticky;
+          right: 0;
+          z-index: 10;
+          background: #fff;
+        }
+
+        /* 滚动阴影左边 */
+        .shadow-left::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          width: 10px;
+          height: 100%;
+          right: -10px;
+          box-shadow: inset 6px 0 8px -3px #00000026;
+        }
+
+        /* 滚动阴影右边 */
+        .shadow-right::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          width: 10px;
+          height: 100%;
+          left: -10px;
+          box-shadow: inset -6px 0 8px -3px #00000026;
+        }
       }
-      .odos-table-content-fixed-right {
-        background: #f2f3f5;
-      }
-    }
-    .odos-table-content {
-      @include item;
-    }
-    .odos-table-content-fixed,
-    .odos-table-content-fixed-left {
-      position: sticky;
-      left: 0;
-      z-index: 10;
-      background: #fff;
-    }
-    .odos-table-content-fixed-right {
-      position: sticky;
-      right: 0;
-      z-index: 10;
-      background: #fff;
     }
   }
 }

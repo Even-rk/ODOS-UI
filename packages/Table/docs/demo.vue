@@ -49,7 +49,8 @@ const columns = [
   {
     title: 'Name',
     prop: 'name',
-    slotName: 'name'
+    slotName: 'name',
+    fixed: 'left'
   },
   {
     title: 'Salary',
@@ -61,7 +62,8 @@ const columns = [
   },
   {
     title: 'Email',
-    prop: 'email'
+    prop: 'email',
+    fixed: 'right'
   }
 ]
 </script>
