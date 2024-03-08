@@ -30,6 +30,11 @@
     "compClassName": "radio"
   },
   {
+    "compName": "CheckBox",
+    "compZhName": "CheckBox多选框",
+    "compClassName": "checkBox"
+  },
+  {
     "compName": "Table",
     "compZhName": "Table表格",
     "compClassName": "table"

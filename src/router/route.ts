@@ -32,6 +32,11 @@ const route: RouteRecordRaw[] = [
     component: () => import('packages/Radio/docs/README.md')
   },
   {
+    name: 'CheckBox',
+    path: '/components/CheckBox',
+    component: () => import('packages/CheckBox/docs/README.md')
+  },
+  {
     name: 'Table',
     path: '/components/Table',
     component: () => import('packages/Table/docs/README.md')

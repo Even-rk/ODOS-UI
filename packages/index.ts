@@ -11,6 +11,7 @@ import { IconPlugin } from './Icon'
 import { InputPlugin } from './Input'
 import { InputNumberPlugin } from './InputNumber'
 import { RadioPlugin } from './Radio'
+import { CheckBoxPlugin } from './CheckBox'
 import { TablePlugin } from './Table'
 
 const Packages = [
@@ -19,6 +20,7 @@ const Packages = [
   InputPlugin,
   InputNumberPlugin,
   RadioPlugin,
+  CheckBoxPlugin,
   TablePlugin
 ]
 
@@ -38,3 +40,4 @@ export * from './Input'
 export * from './InputNumber'
 export * from './Radio'
 export * from './Table'
+export * from './CheckBox'
