@@ -1,3 +1,3 @@
 <template>
-  <odos-icon name="check"/>
+  <odos-icon name="check" />
 </template>

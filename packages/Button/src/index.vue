@@ -1,11 +1,5 @@
 <template>
-  <button
-    ref="btnRef"
-    @click="$emit('click', $event)"
-    class="odos-btn"
-    :class="styleClass"
-    :disabled="disabled"
-  >
+  <button ref="btnRef" @click="$emit('click', $event)" class="odos-btn" :class="styleClass" :disabled="disabled">
     <slot name="icon">
       <div :class="styleIconClass" v-if="icon">
         <Icon :name="icon" :color="iconColor" />

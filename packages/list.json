@@ -25,6 +25,11 @@
     "compClassName": "inputNumber"
   },
   {
+    "compName": "Popover",
+    "compZhName": "Popover气泡框",
+    "compClassName": "popover"
+  },
+  {
     "compName": "Radio",
     "compZhName": "Radio单选框",
     "compClassName": "radio"

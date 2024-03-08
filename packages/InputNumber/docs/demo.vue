@@ -1,5 +1,5 @@
 <template>
-  <odos-input-number v-model:value="inputNumberValue"/>
+  <odos-input-number v-model:value="inputNumberValue" />
 </template>
 
 <script setup>

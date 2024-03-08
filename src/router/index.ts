@@ -1,10 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import route from './route'
-import type {
-  RouteRecordRaw,
-  RouteLocationNormalized,
-  RouteLocationNormalizedLoaded
-} from 'vue-router'
+import type { RouteRecordRaw, RouteLocationNormalized, RouteLocationNormalizedLoaded } from 'vue-router'
 
 const routes: Readonly<RouteRecordRaw[]> = [
   {

@@ -38,13 +38,9 @@ const previewSourceCode = computed(() => {
 onMounted(async () => {
   if (compName && demoName) {
     if (isDev) {
-      sourceCode.value = (
-        await import(/* @vite-ignore */ `../../packages/${compName}/docs/${demoName}.vue?raw`)
-      ).default
+      sourceCode.value = (await import(/* @vite-ignore */ `../../packages/${compName}/docs/${demoName}.vue?raw`)).default
     } else {
-      sourceCode.value = await fetch(
-        `${isDev ? '' : './'}/packages/${compName}/docs/${demoName}.vue`
-      ).then((res) => res.text())
+      sourceCode.value = await fetch(`${isDev ? '' : './'}/packages/${compName}/docs/${demoName}.vue`).then((res) => res.text())
     }
   }
   await nextTick()

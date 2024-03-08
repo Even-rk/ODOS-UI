@@ -1,11 +1,6 @@
 <template>
   <div class="odos-input" :style="{ width: WidthSize }">
-    <input
-      type="text"
-      :value="value"
-      @input="$emit('update:value', ($event.target as HTMLInputElement).value)"
-      :placeholder="placeholder || '请输入'"
-    />
+    <input type="text" :value="value" @input="$emit('update:value', ($event.target as HTMLInputElement).value)" :placeholder="placeholder || '请输入'" />
   </div>
 </template>
 

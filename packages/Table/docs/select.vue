@@ -1,10 +1,5 @@
 <template>
-  <odos-table
-    :columns="columns"
-    :data="data"
-    :isSelection="true"
-    @selectChange="selectChange"
-  ></odos-table>
+  <odos-table :columns="columns" :data="data" :isSelection="true" @selectChange="selectChange"></odos-table>
 </template>
 
 <script setup lang="tsx">

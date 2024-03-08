@@ -16,11 +16,11 @@ const { name, size, color } = defineProps<{
 const IconName = computed(() => `#icon-${name}`)
 const IconSize = computed(() => {
   const iconSize = ref('')
-  if( typeof size === 'number') {
+  if (typeof size === 'number') {
     iconSize.value = `${size}px`
   } else if (typeof size === 'string') {
     iconSize.value = size
-  } 
+  }
   return iconSize.value
 })
 </script>

@@ -27,6 +27,11 @@ const route: RouteRecordRaw[] = [
     component: () => import('packages/InputNumber/docs/README.md')
   },
   {
+    name: 'Popover',
+    path: '/components/Popover',
+    component: () => import('packages/Popover/docs/README.md')
+  },
+  {
     name: 'Radio',
     path: '/components/Radio',
     component: () => import('packages/Radio/docs/README.md')
