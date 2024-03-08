@@ -49,6 +49,14 @@
             background-color: #f1f5ff;
           }
         }
+        .ant-table-tbody > tr.ant-table-row-selected {
+          & > td {
+            background: #fff;
+          }
+          &:nth-child(2n) > td {
+            background: #f1f5ff;
+          }
+        }
       }
     }
   }
