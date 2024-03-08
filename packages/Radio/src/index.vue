@@ -15,7 +15,7 @@ const props = defineProps<{
 const { size, value } = toRefs(props)
 
 const emit = defineEmits<{
-  (e: 'update:value', data: string | number): void
+  (e: 'update:value', data?: string | number): void
 }>()
 
 const slots = useSlots()
@@ -31,7 +31,11 @@ const randerContent = () => {
             active: it.props.value == value.value
           }}
           onClick={() => {
-            emit('update:value', it.props.value)
+            if (it.props.value === value.value) {
+              emit('update:value', undefined)
+            } else {
+              emit('update:value', it.props.value)
+            }
           }}
         >
           {it.props.label}

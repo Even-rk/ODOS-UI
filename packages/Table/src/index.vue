@@ -4,6 +4,7 @@
       class="odos-table"
       :loading="loading"
       :data-source="data"
+      :pagination="false"
       :row-selection="isSelection ? (rowSelection as any) : null"
       :columns="columns as any"
       bordered
