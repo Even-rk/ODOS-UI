@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref } from 'vue'
 
 const checkBox1 = ref()
 const checkBox2 = ref()
