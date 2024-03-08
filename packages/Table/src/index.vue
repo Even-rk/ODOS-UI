@@ -4,7 +4,7 @@
       class="odos-table"
       :loading="loading"
       :data-source="data"
-      :row-selection="rowSelection"
+      :row-selection="isSelection ? (rowSelection as any) : null"
       :columns="columns as any"
       bordered
       :scroll="scroll"
@@ -32,13 +32,21 @@ type Column = {
   headerSlotName: string
   sorter?: (a: any, b: any) => void
 }
-const { data, columns, loading, rowSelection } = defineProps<{
+const { data, columns, loading, isSelection } = defineProps<{
   data: { [key: string]: any }[]
   columns: Column[]
   loading?: boolean
   scroll?: { x: number; y: number }
-  rowSelection?: TableRowSelection
+  isSelection?: boolean
 }>()
+const emit = defineEmits<{
+  (e: 'selectChange', row: any[]): void
+}>()
+const rowSelection: TableRowSelection = {
+  onChange: (_, row) => {
+    emit('selectChange', row)
+  }
+}
 </script>
 
 <style lang="scss">

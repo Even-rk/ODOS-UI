@@ -1,15 +1,15 @@
 <template>
-  <odos-table :columns="columns" :data="data" :rowSelection="rowSelection"></odos-table>
+  <odos-table
+    :columns="columns"
+    :data="data"
+    :isSelection="true"
+    @selectChange="selectChange"
+  ></odos-table>
 </template>
 
 <script setup lang="tsx">
-import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
-
-const rowSelection: TableRowSelection = {
-  onChange: (_, row) => {
-    console.log();
-    
-  }
+const selectChange = (row: any[]) => {
+  console.log(row)
 }
 const data = [
   {
