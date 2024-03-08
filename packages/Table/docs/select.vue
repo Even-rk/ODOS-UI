@@ -1,12 +1,16 @@
 <template>
-  <odos-table :columns="columns" :data="data">
-    <template #name="{ row }">
-      {{ row.name }}
-    </template>
-  </odos-table>
+  <odos-table :columns="columns" :data="data" :rowSelection="rowSelection"></odos-table>
 </template>
 
-<script setup lang="ts">
+<script setup lang="tsx">
+import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
+
+const rowSelection: TableRowSelection = {
+  onChange: (_, row) => {
+    console.log();
+    
+  }
+}
 const data = [
   {
     key: '1',
@@ -48,22 +52,25 @@ const data = [
 const columns = [
   {
     title: 'Name',
-    prop: 'name',
-    slotName: 'name',
+    dataIndex: 'name',
+    width: '200px',
     fixed: 'left'
   },
   {
     title: 'Salary',
-    prop: 'salary'
+    dataIndex: 'salary',
+    width: '200px'
   },
   {
     title: 'Address',
-    prop: 'address'
+    dataIndex: 'address',
+    width: '200px'
   },
   {
     title: 'Email',
-    prop: 'email',
-    fixed: 'right'
+    dataIndex: 'email',
+    fixed: 'right',
+    width: '200px'
   }
 ]
 </script>
