@@ -1,8 +1,8 @@
 <template>
-  <odos-popover>
-    <template #content> aa </template>
-    aaa
+  <odos-popover position="rightTop" trigger="click">
+    <template #content>
+      <div>Content</div>
+    </template>
+    rightTop
   </odos-popover>
 </template>
-
-<script setup></script>
