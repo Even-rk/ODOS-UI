@@ -12,7 +12,19 @@
 <script setup lang="ts">
 import { Popover } from 'ant-design-vue'
 const { position, trigger } = defineProps<{
-  position?: 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom'
+  position?:
+    | 'top'
+    | 'left'
+    | 'right'
+    | 'bottom'
+    | 'topLeft'
+    | 'topRight'
+    | 'bottomLeft'
+    | 'bottomRight'
+    | 'leftTop'
+    | 'leftBottom'
+    | 'rightTop'
+    | 'rightBottom'
   trigger?: 'hover' | 'click'
 }>()
 </script>

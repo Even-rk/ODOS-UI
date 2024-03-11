@@ -15,7 +15,16 @@ import { RadioPlugin } from './Radio'
 import { CheckBoxPlugin } from './CheckBox'
 import { TablePlugin } from './Table'
 
-const Packages = [ButtonPlugin, IconPlugin, InputPlugin, InputNumberPlugin, PopoverPlugin, RadioPlugin, CheckBoxPlugin, TablePlugin]
+const Packages = [
+  ButtonPlugin,
+  IconPlugin,
+  InputPlugin,
+  InputNumberPlugin,
+  PopoverPlugin,
+  RadioPlugin,
+  CheckBoxPlugin,
+  TablePlugin
+]
 
 const OdosPlugin: Plugin = {
   install(app: App) {
