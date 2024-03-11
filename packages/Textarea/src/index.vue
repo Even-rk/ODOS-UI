@@ -8,7 +8,7 @@
 import { Textarea } from 'ant-design-vue'
 import type { ChangeEvent } from 'ant-design-vue/es/_util/EventInterface'
 const { value } = defineProps<{
-  value: string
+  value?: string
 }>()
 
 const emit = defineEmits<{

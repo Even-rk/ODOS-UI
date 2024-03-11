@@ -1,7 +1,15 @@
 <template>
-  <odos-textarea></odos-textarea>
+  <odos-textarea v-model:value="textarea"></odos-textarea>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import { ref, watch } from 'vue'
 
-<style lang="scss" scoped></style>
+const textarea = ref()
+watch(
+  () => textarea.value,
+  () => {
+    console.log(textarea.value)
+  }
+)
+</script>
