@@ -43,5 +43,10 @@
     "compName": "Table",
     "compZhName": "Table表格",
     "compClassName": "table"
+  },
+  {
+    "compName": "Textarea",
+    "compZhName": "Textarea文本域",
+    "compClassName": "textarea"
   }
 ]

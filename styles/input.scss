@@ -13,8 +13,12 @@
     height: 100%;
     border: 1px solid #f2f3f5;
     outline: none;
+    &:hover {
+      background: #e5e6eb;
+    }
     &:focus-within {
       border: 1px solid #2e6ce4;
+      background: #fff;
     }
   }
 }

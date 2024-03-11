@@ -45,6 +45,11 @@ const route: RouteRecordRaw[] = [
     name: 'Table',
     path: '/components/Table',
     component: () => import('packages/Table/docs/README.md')
+  },
+  {
+    name: 'Textarea',
+    path: '/components/Textarea',
+    component: () => import('packages/Textarea/docs/README.md')
   }
 ]
 

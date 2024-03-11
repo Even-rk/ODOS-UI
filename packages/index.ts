@@ -14,6 +14,7 @@ import { PopoverPlugin } from './Popover'
 import { RadioPlugin } from './Radio'
 import { CheckBoxPlugin } from './CheckBox'
 import { TablePlugin } from './Table'
+import { TextareaPlugin } from './Textarea'
 
 const Packages = [
   ButtonPlugin,
@@ -23,7 +24,8 @@ const Packages = [
   PopoverPlugin,
   RadioPlugin,
   CheckBoxPlugin,
-  TablePlugin
+  TablePlugin,
+  TextareaPlugin
 ]
 
 const OdosPlugin: Plugin = {
@@ -44,3 +46,4 @@ export * from './Popover'
 export * from './Radio'
 export * from './CheckBox'
 export * from './Table'
+export * from './Textarea'
