@@ -13,7 +13,8 @@
   }
 }
 
-.odos-info-msg {
+.odos-info-msg,
+.odos-loading-msg {
   @include color(#eaf0fc, #96b5f1, #2e6ce4);
 }
 

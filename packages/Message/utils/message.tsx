@@ -81,3 +81,21 @@ export const useWarningMessage = (data?: { content: string; time?: number } | st
     throw Error('内容不能为空')
   }
 }
+
+// success
+export const useLoadingMessage = (data?: { content: string; time?: number } | string) => {
+  if (typeof data === 'string') {
+    message.loading({
+      content: data,
+      class: 'odos-loading-msg'
+    })
+  } else if (typeof data === 'object') {
+    message.loading({
+      content: data.content,
+      duration: data.time,
+      class: 'odos-loading-msg'
+    })
+  } else {
+    throw Error('内容不能为空')
+  }
+}
