@@ -15,6 +15,7 @@ import { RadioPlugin } from './Radio'
 import { CheckBoxPlugin } from './CheckBox'
 import { TablePlugin } from './Table'
 import { TextareaPlugin } from './Textarea'
+import { StepsPlugin } from './Steps'
 
 const Packages = [
   ButtonPlugin,
@@ -25,7 +26,8 @@ const Packages = [
   RadioPlugin,
   CheckBoxPlugin,
   TablePlugin,
-  TextareaPlugin
+  TextareaPlugin,
+  StepsPlugin
 ]
 
 const OdosPlugin: Plugin = {
@@ -49,3 +51,4 @@ export * from './Radio'
 export * from './CheckBox'
 export * from './Table'
 export * from './Textarea'
+export * from './Steps'
