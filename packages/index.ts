@@ -37,6 +37,8 @@ const OdosPlugin: Plugin = {
 }
 
 export default OdosPlugin
+// message
+export * from './Message'
 // 统一导出
 export * from './Button'
 export * from './Icon'

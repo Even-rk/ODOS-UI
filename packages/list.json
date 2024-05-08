@@ -48,5 +48,10 @@
     "compName": "Textarea",
     "compZhName": "Textarea文本域",
     "compClassName": "textarea"
+  },
+  {
+    "compName": "Message",
+    "compZhName": "Message提示框",
+    "compClassName": "message"
   }
 ]

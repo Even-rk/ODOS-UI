@@ -1,0 +1,30 @@
+@mixin color($bgc, $bdC, $tc) {
+  .ant-message-notice-content {
+    background: $bgc;
+    border: 1px solid $bdC;
+    .ant-message-custom-content {
+      display: flex;
+      align-items: center;
+      color: $tc;
+      .icon {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.odos-info-msg {
+  @include color(#eaf0fc, #96b5f1, #2e6ce4);
+}
+
+.odos-error-msg {
+  @include color(#feefef, #ffd9d9, #f65b56);
+}
+
+.odos-success-msg {
+  @include color(#e9f9ec, #aff0b5, #23c343);
+}
+
+.odos-warning-msg {
+  @include color(#fff4ea, #ffe9d1, #ff9a2e);
+}

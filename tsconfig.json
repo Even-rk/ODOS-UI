@@ -6,6 +6,7 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "packages/**/*.md",
     "packages/**/*.js",
     "packages/**/*.ts",
     "packages/**/*.d.ts",
