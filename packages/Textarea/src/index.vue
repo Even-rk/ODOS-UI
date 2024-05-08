@@ -1,14 +1,16 @@
 <template>
   <div class="odos-textarea">
-    <Textarea :value="value" @input="$input($event)" show-count :maxlength="100"></Textarea>
+    <Textarea :value="value" @input="$input($event)" :show-count="showCount" :maxlength="maxlength" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { Textarea } from 'ant-design-vue'
 import type { ChangeEvent } from 'ant-design-vue/es/_util/EventInterface'
-const { value } = defineProps<{
+const { value, maxlength } = defineProps<{
   value?: string
+  maxlength?: number
+  showCount?: boolean
 }>()
 
 const emit = defineEmits<{
