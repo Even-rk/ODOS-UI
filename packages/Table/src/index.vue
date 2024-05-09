@@ -23,14 +23,14 @@ import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { Table, ConfigProvider } from 'ant-design-vue'
 import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
 type Column = {
-  align: 'left' | 'right' | 'center'
-  title: string
-  dataIndex: string
-  width: string | number
-  fixed: true | 'left' | 'right'
-  maxWidth: number
-  minWidth: number
-  headerSlotName: string
+  align?: 'left' | 'right' | 'center'
+  title?: string
+  dataIndex?: string
+  width?: string | number
+  fixed?: true | 'left' | 'right'
+  maxWidth?: number
+  minWidth?: number
+  headerSlotName?: string
   sorter?: (a: any, b: any) => void
 }
 const { data, columns, loading, isSelection } = defineProps<{
