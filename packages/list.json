@@ -53,10 +53,5 @@
     "compName": "Message",
     "compZhName": "Message提示框",
     "compClassName": "message"
-  },
-  {
-    "compName": "Steps",
-    "compZhName": "Steps步骤条",
-    "compClassName": "steps"
   }
 ]

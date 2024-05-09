@@ -4,8 +4,9 @@ import success from './../icon/success.svg'
 import warning from './../icon/warning.svg'
 import error from './../icon/error.svg'
 import '../../../styles/message.scss'
+import type { VNode } from 'vue'
 // info
-export const useInfoMessage = (data?: { content: string; time?: number } | string) => {
+export const useInfoMessage = (data?: { content: string | VNode; time?: number } | string) => {
   if (typeof data === 'string') {
     message.info({
       content: data,
@@ -24,7 +25,7 @@ export const useInfoMessage = (data?: { content: string; time?: number } | strin
   }
 }
 // error
-export const useErrorMessage = (data?: { content: string; time?: number } | string) => {
+export const useErrorMessage = (data?: { content: string | VNode; time?: number } | string) => {
   if (typeof data === 'string') {
     message.error({
       content: data,
@@ -43,7 +44,7 @@ export const useErrorMessage = (data?: { content: string; time?: number } | stri
   }
 }
 // success
-export const useSuccessMessage = (data?: { content: string; time?: number } | string) => {
+export const useSuccessMessage = (data?: { content: string | VNode; time?: number } | string) => {
   if (typeof data === 'string') {
     message.success({
       content: data,
@@ -63,7 +64,7 @@ export const useSuccessMessage = (data?: { content: string; time?: number } | st
 }
 
 // success
-export const useWarningMessage = (data?: { content: string; time?: number } | string) => {
+export const useWarningMessage = (data?: { content: string | VNode; time?: number } | string) => {
   if (typeof data === 'string') {
     message.warning({
       content: data,
@@ -83,7 +84,7 @@ export const useWarningMessage = (data?: { content: string; time?: number } | st
 }
 
 // success
-export const useLoadingMessage = (data?: { content: string; time?: number } | string) => {
+export const useLoadingMessage = (data?: { content: string | VNode; time?: number } | string) => {
   if (typeof data === 'string') {
     message.loading({
       content: data,

@@ -55,11 +55,6 @@ const route: RouteRecordRaw[] = [
     name: 'Message',
     path: '/components/Message',
     component: () => import('packages/Message/docs/README.md')
-  },
-  {
-    name: 'Steps',
-    path: '/components/Steps',
-    component: () => import('packages/Steps/docs/README.md')
   }
 ]
 
