@@ -27,6 +27,16 @@ const route: RouteRecordRaw[] = [
     component: () => import('packages/InputNumber/docs/README.md')
   },
   {
+    name: 'Message',
+    path: '/components/Message',
+    component: () => import('packages/Message/docs/README.md')
+  },
+  {
+    name: 'Pagination',
+    path: '/components/Pagination',
+    component: () => import('packages/Pagination/docs/README.md')
+  },
+  {
     name: 'Popover',
     path: '/components/Popover',
     component: () => import('packages/Popover/docs/README.md')
@@ -55,11 +65,6 @@ const route: RouteRecordRaw[] = [
     name: 'Textarea',
     path: '/components/Textarea',
     component: () => import('packages/Textarea/docs/README.md')
-  },
-  {
-    name: 'Message',
-    path: '/components/Message',
-    component: () => import('packages/Message/docs/README.md')
   }
 ]
 

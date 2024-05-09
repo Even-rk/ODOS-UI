@@ -1,0 +1,13 @@
+.odos-pagination {
+  .ant-pagination-prev,
+  .ant-pagination-next,
+  .ant-pagination-item {
+    background: #f2f3f5;
+  }
+  .ant-pagination-item-active {
+    background: #2e6ce4;
+    a {
+      color: #ffffff !important;
+    }
+  }
+}

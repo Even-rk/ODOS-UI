@@ -18,5 +18,6 @@ declare module 'vue' {
     OdosCheckBox: (typeof import('../packages/CheckBox/src/index.vue'))['default']
     OdosTable: (typeof import('../packages/Table/src/index.vue'))['default']
     OdosTextarea: (typeof import('../packages/Textarea/src/index.vue'))['default']
+    OdosPagination: (typeof import('../packages/Pagination/src/index.vue'))['default']
   }
 }

@@ -16,6 +16,7 @@ import { SelectPlugin } from './Select'
 import { CheckBoxPlugin } from './CheckBox'
 import { TablePlugin } from './Table'
 import { TextareaPlugin } from './Textarea'
+import { PaginationPlugin } from './Pagination'
 
 const Packages = [
   ButtonPlugin,
@@ -27,7 +28,8 @@ const Packages = [
   SelectPlugin,
   CheckBoxPlugin,
   TablePlugin,
-  TextareaPlugin
+  TextareaPlugin,
+  PaginationPlugin
 ]
 
 const OdosPlugin: Plugin = {
@@ -52,3 +54,4 @@ export * from './Select'
 export * from './CheckBox'
 export * from './Table'
 export * from './Textarea'
+export * from './Pagination'

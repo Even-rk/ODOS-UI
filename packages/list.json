@@ -25,6 +25,16 @@
     "compClassName": "inputNumber"
   },
   {
+    "compName": "Message",
+    "compZhName": "Message提示框",
+    "compClassName": "message"
+  },
+  {
+    "compName": "Pagination",
+    "compZhName": "Pagination分页器",
+    "compClassName": "pagination"
+  },
+  {
     "compName": "Popover",
     "compZhName": "Popover气泡框",
     "compClassName": "popover"
@@ -53,10 +63,5 @@
     "compName": "Textarea",
     "compZhName": "Textarea文本域",
     "compClassName": "textarea"
-  },
-  {
-    "compName": "Message",
-    "compZhName": "Message提示框",
-    "compClassName": "message"
   }
 ]
