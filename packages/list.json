@@ -35,6 +35,11 @@
     "compClassName": "radio"
   },
   {
+    "compName": "Select",
+    "compZhName": "Select选择器",
+    "compClassName": "select"
+  },
+  {
     "compName": "CheckBox",
     "compZhName": "CheckBox多选框",
     "compClassName": "checkBox"

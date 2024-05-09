@@ -2,6 +2,7 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
     "*.ts",
+    "*.md",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
@@ -12,7 +13,6 @@
     "packages/**/*.d.ts",
     "packages/**/*.tsx",
     "packages/**/*.vue",
-
     "vite.config.*",
     "vitest.config.*",
     "cypress.config.*",

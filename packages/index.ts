@@ -12,6 +12,7 @@ import { InputPlugin } from './Input'
 import { InputNumberPlugin } from './InputNumber'
 import { PopoverPlugin } from './Popover'
 import { RadioPlugin } from './Radio'
+import { SelectPlugin } from './Select'
 import { CheckBoxPlugin } from './CheckBox'
 import { TablePlugin } from './Table'
 import { TextareaPlugin } from './Textarea'
@@ -23,6 +24,7 @@ const Packages = [
   InputNumberPlugin,
   PopoverPlugin,
   RadioPlugin,
+  SelectPlugin,
   CheckBoxPlugin,
   TablePlugin,
   TextareaPlugin
@@ -46,6 +48,7 @@ export * from './Input'
 export * from './InputNumber'
 export * from './Popover'
 export * from './Radio'
+export * from './Select'
 export * from './CheckBox'
 export * from './Table'
 export * from './Textarea'
