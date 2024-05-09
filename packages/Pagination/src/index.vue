@@ -25,5 +25,5 @@ const changePage = (page: number, pageSize: number) => {
 </script>
 
 <style lang="scss">
-@import '/styles/p';
+@import '/styles/pagination.scss';
 </style>
