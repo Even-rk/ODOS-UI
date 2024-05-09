@@ -45,6 +45,7 @@
   },
   "files": [
     "lib",
-    "styles"
+    "styles",
+    "types"
   ]
 }
