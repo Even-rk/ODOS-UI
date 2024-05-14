@@ -27,11 +27,11 @@ type Column = {
   title?: string
   dataIndex?: string
   width?: string | number
-  fixed?: true | 'left' | 'right'
   maxWidth?: number
   minWidth?: number
   headerSlotName?: string
   sorter?: (a: any, b: any) => void
+  fixed?: boolean | string
 }
 const { data, columns, loading, isSelection } = defineProps<{
   data: { [key: string]: any }[]
