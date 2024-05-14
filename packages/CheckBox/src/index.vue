@@ -17,16 +17,24 @@ const emit = defineEmits<{
   (e: 'update:value', data?: string[] | number[]): void
 }>()
 
+type Item = {
+  props: {
+    label?: string | number
+    value?: string | number
+    alarm?: boolean
+  }
+}
+
 const slots = useSlots()
 const randerContent = () => {
-  const list = slots.default && slots.default()
+  const list = slots.default && (slots.default() as Item[])
   return (
     <>
-      {list?.map((it: any) => (
+      {list?.map((it: Item, index: number) => (
         <div
           class={{
             'odos-check-box-item': true,
-            'active-alarm': it.props.alarm === '' || it.props.alarm,
+            'active-alarm': it.props.alarm,
             active: props.value?.includes(it.props.value as never)
           }}
           onClick={() => {
@@ -39,6 +47,7 @@ const randerContent = () => {
           }}
         >
           {it.props.label}
+          {list[index]}
         </div>
       ))}
     </>

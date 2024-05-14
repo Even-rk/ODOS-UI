@@ -1,5 +1,7 @@
 <template>
-  <div class="odos-check_box-item-content" />
+  <div class="odos-check_box-item-content">
+    <slot></slot>
+  </div>
 </template>
 
 <script setup lang="ts">
