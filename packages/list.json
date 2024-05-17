@@ -60,6 +60,11 @@
     "compClassName": "table"
   },
   {
+    "compName": "Tag",
+    "compZhName": "Tag标签",
+    "compClassName": "tag"
+  },
+  {
     "compName": "Textarea",
     "compZhName": "Textarea文本域",
     "compClassName": "textarea"

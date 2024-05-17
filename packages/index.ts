@@ -10,13 +10,14 @@ import { ButtonPlugin } from './Button'
 import { IconPlugin } from './Icon'
 import { InputPlugin } from './Input'
 import { InputNumberPlugin } from './InputNumber'
+import { PaginationPlugin } from './Pagination'
 import { PopoverPlugin } from './Popover'
 import { RadioPlugin } from './Radio'
 import { SelectPlugin } from './Select'
 import { CheckBoxPlugin } from './CheckBox'
 import { TablePlugin } from './Table'
+import { TagPlugin } from './Tag'
 import { TextareaPlugin } from './Textarea'
-import { PaginationPlugin } from './Pagination'
 
 const Packages = [
   ButtonPlugin,
@@ -28,6 +29,7 @@ const Packages = [
   SelectPlugin,
   CheckBoxPlugin,
   TablePlugin,
+  TagPlugin,
   TextareaPlugin,
   PaginationPlugin
 ]

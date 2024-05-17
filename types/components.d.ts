@@ -17,6 +17,7 @@ declare module 'vue' {
     OdosSelect: (typeof import('../packages/Select/src/index.vue'))['default']
     OdosCheckBox: (typeof import('../packages/CheckBox/src/index.vue'))['default']
     OdosTable: (typeof import('../packages/Table/src/index.vue'))['default']
+    OdosTag: (typeof import('../packages/Tag/src/index.vue'))['default']
     OdosTextarea: (typeof import('../packages/Textarea/src/index.vue'))['default']
     OdosPagination: (typeof import('../packages/Pagination/src/index.vue'))['default']
   }
