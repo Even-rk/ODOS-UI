@@ -1,5 +1,5 @@
 <template>
-  <div class="odos-input" :class="{ disabled }" :style="{ width: WidthSize }">
+  <div class="odos-input" :class="{ 'odos-input-disabled': disabled }" :style="{ width: WidthSize }">
     <input
       type="text"
       :value="value"

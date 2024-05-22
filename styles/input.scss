@@ -21,10 +21,11 @@
       background: #fff;
     }
   }
-  &.disabled {
+  &.odos-input-disabled {
     background: #f2f3f5;
     border-radius: 8px;
     input:hover {
+      cursor: not-allowed;
       background: #f2f3f5;
     }
   }

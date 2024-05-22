@@ -1,9 +1,30 @@
 <script setup>
 import demo from './demo.vue'
+import Disabled from './disabled.vue'
+import API from './api.vue'
+import Event from './event.vue'
 </script>
 
 # InputNumber数字输入框
 
-<Preview comp-name="inputNumber" demo-name="demo">
+## 基础使用
+
+<Preview comp-name="Input" demo-name="demo">
   <demo />
 </Preview>
+
+## 禁用
+
+<Preview comp-name="Input" demo-name="disabled">
+  <Disabled />
+</Preview>
+
+## InputNumber API
+
+### InputNumber 属性
+
+<API />
+
+### InputNumber 事件
+
+<Event />

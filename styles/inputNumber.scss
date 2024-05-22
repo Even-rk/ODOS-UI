@@ -17,4 +17,13 @@
       border: 1px solid #2e6ce4;
     }
   }
+
+  &.odos-input-number-disabled {
+    background: #f2f3f5;
+    border-radius: 8px;
+    input:hover {
+      cursor: not-allowed;
+      background: #f2f3f5;
+    }
+  }
 }
