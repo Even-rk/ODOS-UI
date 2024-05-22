@@ -1,4 +1,5 @@
 <template>
+  <odos-button type="primary">default</odos-button>
   <odos-button type="primary" size="large">large</odos-button>
   <odos-button type="primary" size="medium">medium</odos-button>
   <odos-button type="primary" size="small">small</odos-button>

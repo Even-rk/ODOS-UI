@@ -8,7 +8,7 @@
 
 main.ts
 
-```js
+```ts
 import { createApp } from 'vue'
 import App from './App.vue'
 // 引入样式和组件

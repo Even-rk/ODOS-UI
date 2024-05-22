@@ -3,6 +3,8 @@ import Type from './type.vue'
 import Size from './size.vue'
 import Icon from './icon.vue'
 import Disabled from './disabled.vue'
+import API from './api.vue'
+import SLOT from './slot.vue'
 </script>
 
 # Button 按钮
@@ -29,4 +31,18 @@ import Disabled from './disabled.vue'
 
 <Preview comp-name="Button" demo-name="icon">
   <Icon />
+</Preview>
+
+## Button API
+
+### Button 属性
+
+<Preview comp-name="Button" demo-name="api">
+  <API />
+</Preview>
+
+### Button 插槽
+
+<Preview comp-name="Button" demo-name="slot">
+  <SLOT />
 </Preview>
