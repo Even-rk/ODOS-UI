@@ -6,9 +6,11 @@
       :disabled="disabled"
       @change="emit('change', $event)"
       @focus="emit('focus', $event)"
+      @blur="emit('blur', $event)"
       @input="handleInput"
       :placeholder="placeholder || '请输入'"
     />
+    <div class="odos-input-text-number"></div>
   </div>
 </template>
 
@@ -17,7 +19,7 @@ import { computed, ref } from 'vue'
 
 const emit = defineEmits<{
   (e: 'update:value', data: string): void
-  (e: 'input' | 'focus' | 'change', data: Event): void
+  (e: 'input' | 'focus' | 'change' | 'blur', data: Event): void
 }>()
 
 const { value, width, placeholder, disabled } = defineProps<{
