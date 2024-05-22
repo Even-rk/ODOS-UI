@@ -1,9 +1,12 @@
 <template>
-  <div class="odos-input" :style="{ width: WidthSize }">
+  <div class="odos-input" :class="{ disabled }" :style="{ width: WidthSize }">
     <input
       type="text"
       :value="value"
-      @input="$emit('update:value', ($event.target as HTMLInputElement).value)"
+      :disabled="disabled"
+      @change="emit('change', $event)"
+      @focus="emit('focus', $event)"
+      @input="handleInput"
       :placeholder="placeholder || '请输入'"
     />
   </div>
@@ -12,10 +15,16 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-const { value, width } = defineProps<{
+const emit = defineEmits<{
+  (e: 'update:value', data: string): void
+  (e: 'input' | 'focus' | 'change', data: Event): void
+}>()
+
+const { value, width, placeholder, disabled } = defineProps<{
   value?: string
   width?: string | number
   placeholder?: string
+  disabled?: boolean
 }>()
 
 const WidthSize = computed(() => {
@@ -27,6 +36,11 @@ const WidthSize = computed(() => {
   }
   return widthSize.value
 })
+
+const handleInput = (e: Event) => {
+  emit('input', e)
+  emit('update:value', (e.target as HTMLInputElement).value)
+}
 </script>
 
 <style lang="scss">

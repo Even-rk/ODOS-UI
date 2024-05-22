@@ -3,13 +3,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
 const inputValue = ref('')
-watch(
-  () => inputValue.value,
-  () => {
-    console.log(inputValue.value)
-  }
-)
 </script>
