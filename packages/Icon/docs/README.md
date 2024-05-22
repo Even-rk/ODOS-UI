@@ -4,6 +4,4 @@ import demo from './demo.vue'
 
 # Icon图标
 
-<Preview comp-name="Icon" demo-name="demo">
-  <demo />
-</Preview>
+<demo />
