@@ -1,12 +1,11 @@
 .odos-table {
   width: 100%;
   .ant-table {
+    * {
+      border: none !important;
+    }
     .ant-table-container {
       table {
-        * {
-          border: none !important;
-          border-inline-end: none !important;
-        }
         tr {
           .ant-table-cell-fix-left::after,
           .ant-table-cell-fix-right::after {

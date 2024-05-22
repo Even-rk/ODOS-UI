@@ -37,12 +37,8 @@ import SLOT from './slot.vue'
 
 ### Button 属性
 
-<Preview comp-name="Button" demo-name="api">
-  <API />
-</Preview>
+<API />
 
 ### Button 插槽
 
-<Preview comp-name="Button" demo-name="slot">
-  <SLOT />
-</Preview>
+<SLOT />
