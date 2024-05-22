@@ -4,6 +4,19 @@
 
 ## 用法
 
+### 安装
+
+```shell
+# npm
+npm install odos-ui
+# yarn 
+yarn add odos-ui
+# pnpm 
+pnpm install odos-ui
+# bun
+bun install odos-ui
+```
+
 ### 完整引入
 
 main.ts
@@ -34,7 +47,7 @@ main.ts
 import '@/utils/odos-ui.ts'
 ```
 
-xx.vue
+**.vue
 
 ```vue
 <template>
