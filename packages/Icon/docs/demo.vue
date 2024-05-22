@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { useSuccessMessage, useErrorMessage } from '../../Message/index'
+import { useSuccessMessage } from '../../Message/index'
 
 const copy = async (name: string) => {
   await navigator.clipboard.writeText(`<odos-icon name="${name}" />`)
@@ -78,11 +78,13 @@ const list: string[] = [
     .icon {
       width: 30px;
       height: 30px;
+      transition: all 0.5s;
     }
     .value {
       margin-top: 10px;
       color: rgba(0, 0, 0, 0.88);
       font-size: 14px;
+      transition: all 0.5s;
     }
     &:hover {
       background: #3f6bdc;
