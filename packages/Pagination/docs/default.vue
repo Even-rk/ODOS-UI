@@ -3,6 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-const current = ref(1)
+import { ref } from 'vue'
+const current = ref(3)
 </script>

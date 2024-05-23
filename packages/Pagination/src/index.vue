@@ -15,12 +15,12 @@ const { current, pageSize, total } = defineProps<{
 const emit = defineEmits<{
   (e: 'update:current', data: number): void
   (e: 'update:pageSize', data: number): void
-  (e: 'chage', page: number, pageSize: number): void
+  (e: 'change', page: number, pageSize: number): void
 }>()
 const changePage = (page: number, pageSize: number) => {
   emit('update:current', page)
   emit('update:pageSize', pageSize)
-  emit('chage', page, pageSize)
+  emit('change', page, pageSize)
 }
 </script>
 
