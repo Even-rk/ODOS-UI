@@ -1,4 +1,11 @@
 <template>
+  <div class="radio">
+    <h1>Icon图标</h1>
+    <odos-radio v-model:value="radio">
+      <odos-radio-item :value="1" label="完整引入" />
+      <odos-radio-item :value="2" label="按需导入" />
+    </odos-radio>
+  </div>
   <div class="demo-icon">
     <template v-for="item in list" :key="item">
       <div class="copy-icon" @click="copy(item)">
@@ -10,11 +17,19 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useSuccessMessage } from '../../Message/index'
 
+const radio = ref(1)
+
 const copy = async (name: string) => {
-  await navigator.clipboard.writeText(`<odos-icon name="${name}" />`)
-  useSuccessMessage(`<odos-icon name="${name}" /> copied`)
+  if (radio.value === 1) {
+    await navigator.clipboard.writeText(`<odos-icon name="${name}" />`)
+    useSuccessMessage(`<odos-icon name="${name}" /> copied`)
+  } else if (radio.value === 2) {
+    await navigator.clipboard.writeText(`<Icon name="${name}" />`)
+    useSuccessMessage(`<Icon name="${name}" /> copied`)
+  }
 }
 const list: string[] = [
   'check',
@@ -60,7 +75,14 @@ const list: string[] = [
 ]
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.radio {
+  display: flex;
+  align-items: center;
+  h1 {
+    margin-right: 50px;
+  }
+}
 .demo-icon {
   display: flex;
   flex-wrap: wrap;
