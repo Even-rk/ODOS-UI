@@ -33,25 +33,4 @@ const { position, trigger } = defineProps<{
 .odos-popover {
   cursor: pointer;
 }
-:where(.css-dev-only-do-not-override-1hsjdkk).ant-popover-placement-topRight .ant-popover-arrow,
-:where(.css-dev-only-do-not-override-1hsjdkk).ant-popover-placement-bottomRight .ant-popover-arrow {
-  right: 16px;
-}
-:where(.css-dev-only-do-not-override-1hsjdkk)[class^='ant-popover-placement-topRight'],
-:where(.css-dev-only-do-not-override-1hsjdkk)[class*=' ant-popover-placement-topRight'],
-:where(.css-dev-only-do-not-override-1hsjdkk)[class^='ant-popover-placement-bottomRight'],
-:where(.css-dev-only-do-not-override-1hsjdkk)[class*=' ant-popover-placement-bottomRight'] {
-  left: 260px !important;
-}
-
-:where(.css-dev-only-do-not-override-1hsjdkk).ant-popover-placement-topLeft .ant-popover-arrow,
-:where(.css-dev-only-do-not-override-1hsjdkk).ant-popover-placement-bottomLeft .ant-popover-arrow {
-  left: 16px;
-}
-:where(.css-dev-only-do-not-override-1hsjdkk)[class^='ant-popover-placement-topLeft'],
-:where(.css-dev-only-do-not-override-1hsjdkk)[class*=' ant-popover-placement-topLeft'],
-:where(.css-dev-only-do-not-override-1hsjdkk)[class^='ant-popover-placement-bottomLeft'],
-:where(.css-dev-only-do-not-override-1hsjdkk)[class*=' ant-popover-placement-bottomLeft'] {
-  left: 406px !important;
-}
 </style>
