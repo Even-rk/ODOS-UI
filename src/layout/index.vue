@@ -34,11 +34,14 @@ onMounted(() => {
 }
 .odos-ui {
   display: flex;
-  min-height: 100vh;
+  max-height: calc(100vh - 55px);
+  overflow: hidden;
   aside {
     box-sizing: border-box;
     width: 330px;
+    height: calc(100vh - 55px);
     padding: 48px 48px 96px 60px;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     a {
@@ -54,6 +57,8 @@ onMounted(() => {
   }
   main {
     width: 80vw;
+    overflow-y: scroll;
+    height: calc(100vh - 55px);
     flex: 1;
     padding: 64px 96px 42px 70px;
   }

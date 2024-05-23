@@ -7,6 +7,8 @@ import './assets/markdown.css'
 import OrangeODOS from '../packages'
 // 源码组件
 import Preview from './components/Preview.vue'
+// global.scss
+import './global.scss'
 const app = createApp(App)
 app.component('Preview', Preview)
 app.use(OrangeODOS)
