@@ -1,13 +1,6 @@
 <template>
   <div class="odos-select" :style="{ width }">
-    <Select
-      @change="selectChange"
-      showArrow
-      :style="{ width }"
-      :placeholder="placeholder || '请选择'"
-      :options="options"
-    >
-    </Select>
+    <Select @change="selectChange" showArrow :style="{ width }" :placeholder="placeholder" :options="options"> </Select>
   </div>
 </template>
 

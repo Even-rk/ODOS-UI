@@ -1,6 +1,27 @@
+@mixin wh($h) {
+  width: 100%;
+  height: $h !important;
+}
+
 .odos-select {
-  width: 150px;
+  @include wh(40px);
   .ant-select {
-    width: 150px;
+    &.ant-select-focused .ant-select-selector {
+      box-shadow: none !important;
+      border-color: #2e6ce4 !important;
+    }
+    &:hover .ant-select-selector {
+      border-color: #2e6ce4 !important;
+    }
+    @include wh(40px);
+    .ant-select-selector {
+      display: flex;
+      align-items: center;
+      box-shadow: none;
+      @include wh(40px);
+    }
+    .ant-select-selection-search-input {
+      @include wh(100%);
+    }
   }
 }
