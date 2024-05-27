@@ -6,7 +6,12 @@
       { value: '2', label: '2' },
       { value: '3', label: '3' }
     ]"
+    v-model:value="selectValue"
   />
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const selectValue = ref('')
+</script>
