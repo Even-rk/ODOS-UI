@@ -15,6 +15,7 @@ import { PopoverPlugin } from './Popover'
 import { RadioPlugin } from './Radio'
 import { SelectPlugin } from './Select'
 import { CheckBoxPlugin } from './CheckBox'
+import { DatePickerPlugin } from './DatePicker'
 import { TablePlugin } from './Table'
 import { TagPlugin } from './Tag'
 import { TextareaPlugin } from './Textarea'
@@ -28,6 +29,7 @@ const Packages = [
   RadioPlugin,
   SelectPlugin,
   CheckBoxPlugin,
+  DatePickerPlugin,
   TablePlugin,
   TagPlugin,
   TextareaPlugin,
@@ -54,6 +56,7 @@ export * from './Popover'
 export * from './Radio'
 export * from './Select'
 export * from './CheckBox'
+export * from './DatePicker'
 export * from './Table'
 export * from './Textarea'
 export * from './Pagination'

@@ -38,9 +38,13 @@ const previewSourceCode = computed(() => {
 onMounted(async () => {
   if (compName && demoName) {
     if (isDev) {
-      sourceCode.value = (await import(/* @vite-ignore */ `../../packages/${compName}/docs/${demoName}.vue?raw`)).default
+      sourceCode.value = (
+        await import(/* @vite-ignore */ `../../packages/${compName}/docs/${demoName}.vue?raw`)
+      ).default
     } else {
-      sourceCode.value = await fetch(`${isDev ? '' : './'}/packages/${compName}/docs/${demoName}.vue`).then((res) => res.text())
+      sourceCode.value = await fetch(`${isDev ? '' : './'}/packages/${compName}/docs/${demoName}.vue`).then((res) =>
+        res.text()
+      )
     }
   }
   await nextTick()
@@ -56,7 +60,6 @@ pre {
   border: 4px;
   border: 1px solid #dddfe5;
   border-radius: 8px;
-  overflow: hidden;
   .section {
     display: flex;
     margin: 15px;
@@ -78,6 +81,7 @@ pre {
   align-items: center;
   border-top: 1px solid #dddfe5;
   cursor: pointer;
+  border-radius: 0 0 8px 8px;
   &:hover {
     background-color: #dddfe5;
   }

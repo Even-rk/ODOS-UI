@@ -55,6 +55,11 @@
     "compClassName": "checkBox"
   },
   {
+    "compName": "DatePicker",
+    "compZhName": "DatePicker多选框",
+    "compClassName": "datePicker"
+  },
+  {
     "compName": "Table",
     "compZhName": "Table表格",
     "compClassName": "table"

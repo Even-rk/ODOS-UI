@@ -57,6 +57,11 @@ const route: RouteRecordRaw[] = [
     component: () => import('packages/CheckBox/docs/README.md')
   },
   {
+    name: 'DatePicker',
+    path: '/components/DatePicker',
+    component: () => import('packages/DatePicker/docs/README.md')
+  },
+  {
     name: 'Table',
     path: '/components/Table',
     component: () => import('packages/Table/docs/README.md')

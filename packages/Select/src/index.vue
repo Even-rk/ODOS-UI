@@ -18,7 +18,6 @@
 
 <script setup lang="ts">
 import { Select } from 'ant-design-vue'
-import type { SelectValue } from 'ant-design-vue/es/select'
 import { ref } from 'vue'
 const selectValue = ref()
 const { value, width, placeholder, options, title, allowClear } = defineProps<{
