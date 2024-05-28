@@ -20,12 +20,12 @@
 import { Select } from 'ant-design-vue'
 import { ref } from 'vue'
 const selectValue = ref()
-const { value, width, placeholder, options, title, allowClear } = defineProps<{
-  value: string | number
+const { width, placeholder, options, title, allowClear } = defineProps<{
+  value?: string | number
   title?: string
   width?: string
   placeholder?: string
-  options: { value: string; label: string }[]
+  options?: { value: string; label: string }[]
   allowClear?: boolean
 }>()
 
