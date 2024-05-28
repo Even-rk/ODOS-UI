@@ -32,7 +32,6 @@ const emit = defineEmits<{
 }>()
 
 const selectChange = (value?: string | number) => {
-  console.log(value)
   emit('update:value', value)
 }
 </script>
