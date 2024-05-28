@@ -3,7 +3,7 @@
     <div class="title" v-if="title">{{ title }}</div>
     <Select
       :class="{ 'odos-select-isTitle': title }"
-      @change="selectChange"
+      @change="selectChange($event as string | number)"
       showArrow
       :value="value"
       :style="{ width }"
@@ -18,9 +18,8 @@
 
 <script setup lang="ts">
 import { Select } from 'ant-design-vue'
-import type { SelectValue } from 'ant-design-vue/es/select'
 const { value, width, placeholder, options, title, allowClear } = defineProps<{
-  value?: SelectValue
+  value?: string | number
   title?: string
   width?: string
   placeholder?: string
@@ -29,10 +28,11 @@ const { value, width, placeholder, options, title, allowClear } = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:value', data: SelectValue): void
+  (e: 'update:value', data: string | number | undefined): void
 }>()
 
-const selectChange = (value: SelectValue) => {
+const selectChange = (value?: string | number) => {
+  console.log(value)
   emit('update:value', value)
 }
 </script>
