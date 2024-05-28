@@ -5,7 +5,7 @@
       :class="{ 'odos-select-isTitle': title }"
       @change="selectChange"
       showArrow
-      v-model:value="selectValue"
+      :value="value"
       :style="{ width }"
       :placeholder="placeholder || '请选择'"
       :options="options"
@@ -18,10 +18,9 @@
 
 <script setup lang="ts">
 import { Select } from 'ant-design-vue'
-import { ref } from 'vue'
-const selectValue = ref()
-const { width, placeholder, options, title, allowClear } = defineProps<{
-  value?: string | number
+import type { SelectValue } from 'ant-design-vue/es/select'
+const { value, width, placeholder, options, title, allowClear } = defineProps<{
+  value?: SelectValue
   title?: string
   width?: string
   placeholder?: string
@@ -30,11 +29,11 @@ const { width, placeholder, options, title, allowClear } = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:value', data: string | number): void
+  (e: 'update:value', data: SelectValue): void
 }>()
 
-const selectChange = () => {
-  emit('update:value', selectValue.value)
+const selectChange = (value: SelectValue) => {
+  emit('update:value', value)
 }
 </script>
 
