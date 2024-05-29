@@ -16,6 +16,9 @@
     &:focus-within {
       border: 1px solid #2e6ce4;
     }
+    &::placeholder {
+      color: #86909c;
+    }
   }
 
   &.odos-input-number-disabled {

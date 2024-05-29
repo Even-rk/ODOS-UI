@@ -19,6 +19,10 @@
     background: #fff;
     border-radius: 8px;
   }
+
+  &.odos-select-disabled:hover {
+    background: #fff;
+  }
   .title {
     position: absolute;
     width: 80px;
@@ -46,11 +50,37 @@
       align-items: center;
       box-shadow: none;
       background: transparent;
+      padding-left: 8px;
       @include wh(40px);
+      .ant-select-selection-placeholder {
+        color: #86909c;
+      }
     }
     .ant-select-selection-search-input {
       @include wh(100%);
       background: transparent;
+    }
+  }
+  .ant-select-multiple {
+    .ant-select-selection-item {
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      box-sizing: border-box;
+      border: 1px solid #e5e6eb;
+    }
+  }
+}
+.ant-select-dropdown {
+  .ant-select-item-option-selected {
+    background: transparent !important;
+    color: #2e6ce4 !important;
+  }
+  .ant-select-item {
+    &:hover {
+      background: #f7f8fa !important;
     }
   }
 }

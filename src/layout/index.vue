@@ -57,8 +57,9 @@ onMounted(() => {
   }
   main {
     width: 80vw;
+    overflow: hidden;
     overflow-y: scroll;
-    height: calc(100vh - 55px);
+    height: calc(100vh - 155px);
     flex: 1;
     padding: 64px 96px 42px 70px;
   }

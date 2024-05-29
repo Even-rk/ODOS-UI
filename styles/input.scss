@@ -20,6 +20,9 @@
       border: 1px solid #2e6ce4;
       background: #fff;
     }
+    &::placeholder {
+      color: #86909c;
+    }
   }
   &.odos-input-disabled {
     background: #f2f3f5;

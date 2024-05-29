@@ -7,6 +7,7 @@
       { value: '3', label: '3' }
     ]"
     v-model:value="selectValue"
+    multiple
   />
 </template>
 
