@@ -27,6 +27,12 @@ const data = [
     default: 'false',
     type: 'boolean',
     describe: '是否禁用'
+  },
+  {
+    attribute: 'isFocus',
+    default: 'false',
+    type: 'boolean',
+    describe: '初始化获取焦点'
   }
 ]
 

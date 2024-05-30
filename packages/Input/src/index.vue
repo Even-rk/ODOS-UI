@@ -6,27 +6,34 @@
       :disabled="disabled"
       @change="emit('change', $event)"
       @focus="emit('focus', $event)"
-      @blur="emit('blur', $event)"
+      @blur="handelBlur"
       @input="handleInput"
       :placeholder="placeholder || '请输入'"
     />
-    <div class="odos-input-text-number"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onUpdated, ref } from 'vue'
 
 const emit = defineEmits<{
   (e: 'update:value', data: string): void
   (e: 'input' | 'focus' | 'change' | 'blur', data: Event): void
 }>()
 
-const { value, width, placeholder, disabled } = defineProps<{
+const focusRef = ref()
+onUpdated(() => {
+  if (isFocus) {
+    focusRef.value.focus()
+  }
+})
+
+const { value, width, placeholder, disabled, isFocus } = defineProps<{
   value?: string
   width?: string | number
   placeholder?: string
   disabled?: boolean
+  isFocus?: boolean
 }>()
 
 const WidthSize = computed(() => {
@@ -42,6 +49,10 @@ const WidthSize = computed(() => {
 const handleInput = (e: Event) => {
   emit('input', e)
   emit('update:value', (e.target as HTMLInputElement).value)
+}
+
+const handelBlur = ($event: Event) => {
+  emit('blur', $event)
 }
 </script>
 

@@ -56,7 +56,7 @@
   },
   {
     "compName": "DatePicker",
-    "compZhName": "DatePicker多选框",
+    "compZhName": "DatePicker日期选择器",
     "compClassName": "datePicker"
   },
   {
