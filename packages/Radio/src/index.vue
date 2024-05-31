@@ -10,6 +10,7 @@ import { computed, useSlots } from 'vue'
 const props = defineProps<{
   size?: 'small' | 'medium' | 'large'
   value?: string | number
+  itemWidth?: string
 }>()
 
 const emit = defineEmits<{
@@ -36,6 +37,7 @@ const randerContent = () => {
             'active-alarm': it.props.alarm,
             active: it.props.value == props.value
           }}
+          style={{ width: props.itemWidth }}
           onClick={() => {
             if (it.props.value === props.value) {
               emit('update:value', undefined)

@@ -2,6 +2,7 @@
 import Default from './default.vue'
 import Size from './size.vue'
 import Alarm from './alarm.vue'
+import ItemWidth from './itemWidth.vue'
 </script>
 
 # CheckBox 单选框
@@ -22,4 +23,10 @@ import Alarm from './alarm.vue'
 
 <Preview comp-name="CheckBox" demo-name="alarm">
   <Alarm />
+</Preview>
+
+## 固定宽
+
+<Preview comp-name="Radio" demo-name="itemWidth">
+  <ItemWidth />
 </Preview>
