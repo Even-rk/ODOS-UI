@@ -55,7 +55,7 @@ const rowSelection: TableRowSelection = {
   }
 }
 const sorter = (_: any, __: any, sorter: any) => {
-  emit('selectChange', sorter)
+  emit('sorter', sorter)
 }
 </script>
 
