@@ -7,6 +7,7 @@
       :pagination="false"
       :row-selection="isSelection ? (rowSelection as any) : null"
       :columns="columns as any"
+      @change="sorter"
       bordered
       :scroll="scroll"
     >
@@ -34,7 +35,7 @@ export type Column = {
   minWidth?: number
   headerSlotName?: string
   slotName?: string
-  sorter?: (a: any, b: any) => void
+  sorter?: Function | boolean
   fixed?: boolean | string
 }
 const { data, columns, loading, isSelection } = defineProps<{
@@ -46,11 +47,15 @@ const { data, columns, loading, isSelection } = defineProps<{
 }>()
 const emit = defineEmits<{
   (e: 'selectChange', row: any[]): void
+  (e: 'sorter', row: { field: string; order: string }): void
 }>()
 const rowSelection: TableRowSelection = {
   onChange: (_, row) => {
     emit('selectChange', row)
   }
+}
+const sorter = (_: any, __: any, sorter: any) => {
+  emit('selectChange', sorter)
 }
 </script>
 

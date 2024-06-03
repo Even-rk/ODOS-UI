@@ -1,5 +1,5 @@
 <template>
-  <odos-table :columns="columns" :data="data"></odos-table>
+  <odos-table :columns="columns" :data="data"> </odos-table>
 </template>
 
 <script setup lang="tsx">
@@ -44,11 +44,13 @@ const data = [
 const columns = [
   {
     title: 'Name',
-    dataIndex: 'name'
+    dataIndex: 'name',
+    sorter: true
   },
   {
     title: 'Salary',
-    dataIndex: 'salary'
+    dataIndex: 'salary',
+    slotName: 'Salary'
   },
   {
     title: 'Address',
