@@ -14,6 +14,9 @@
       <template #headerCell="{ column }">
         <slot :name="(column as Column).headerSlotName" />
       </template>
+      <template #bodyCell="{ column, record }">
+        <slot :name="(column as Column).slotName" :record="record" />
+      </template>
     </Table>
   </ConfigProvider>
 </template>
@@ -22,7 +25,7 @@
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { Table, ConfigProvider } from 'ant-design-vue'
 import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
-type Column = {
+export type Column = {
   align?: 'left' | 'right' | 'center'
   title?: string
   dataIndex?: string
@@ -30,6 +33,7 @@ type Column = {
   maxWidth?: number
   minWidth?: number
   headerSlotName?: string
+  slotName?: string
   sorter?: (a: any, b: any) => void
   fixed?: boolean | string
 }
