@@ -45,6 +45,7 @@ const { data, columns, loading, isSelection } = defineProps<{
   scroll?: { x: number; y: number }
   isSelection?: boolean
 }>()
+
 const emit = defineEmits<{
   (e: 'selectChange', row: any[]): void
   (e: 'sorter', row: { field: string; order: string }): void

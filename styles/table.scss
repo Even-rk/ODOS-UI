@@ -49,10 +49,12 @@
           }
         }
         .ant-table-tbody > tr.ant-table-row-selected {
-          & > td {
+          & > td,
+          & > td.ant-table-column-sort {
             background: #fff;
           }
-          &:nth-child(2n) > td {
+          &:nth-child(2n) > td,
+          & > td.ant-table-column-sort {
             background: #f1f5ff;
           }
         }

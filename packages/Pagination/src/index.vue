@@ -1,6 +1,13 @@
 <template>
   <div class="odos-pagination">
-    <pagination @change="changePage" :current="current" :total="total" :page-size="pageSize" />
+    <pagination
+      :hideOnSinglePage="true"
+      :showSizeChanger="false"
+      @change="changePage"
+      :current="current"
+      :total="total"
+      :page-size="pageSize"
+    />
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <odos-pagination v-model:current="current" :total="50" />
+  <odos-pagination v-model:current="current" :total="150" />
 </template>
 
 <script setup lang="ts">
