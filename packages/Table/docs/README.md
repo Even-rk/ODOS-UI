@@ -1,6 +1,7 @@
 <script setup>
 import Default from './default.vue'
 import Selection from './select.vue'
+import Fixed from './fixed.vue'
 </script>
 
 # Table表格
@@ -19,6 +20,6 @@ import Selection from './select.vue'
 
 ## 固定列
 
-<Preview comp-name="Table" demo-name="select">
-  <Selection />
+<Preview comp-name="Table" demo-name="fixed">
+  <Fixed />
 </Preview>

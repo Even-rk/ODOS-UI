@@ -42,7 +42,7 @@ const { data, columns, loading, isSelection } = defineProps<{
   data: { [key: string]: any }[]
   columns: Column[]
   loading?: boolean
-  scroll?: { x: number; y: number }
+  scroll?: { x?: number; y?: number }
   isSelection?: boolean
 }>()
 

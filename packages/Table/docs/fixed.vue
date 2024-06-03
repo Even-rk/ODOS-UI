@@ -1,5 +1,5 @@
 <template>
-  <odos-table :columns="columns" :data="data"> </odos-table>
+  <odos-table :columns="columns" :data="data" :scroll="{ x: 1300 }"> </odos-table>
 </template>
 
 <script setup lang="tsx">

@@ -49,13 +49,19 @@
           }
         }
         .ant-table-tbody > tr.ant-table-row-selected {
-          & > td,
+          & > td {
+            background: #fff;
+          }
+          &:nth-child(2n) > td {
+            background: #f1f5ff;
+          }
+        }
+        .ant-table-tbody tr {
           & > td.ant-table-column-sort {
             background: #fff;
           }
-          &:nth-child(2n) > td,
-          & > td.ant-table-column-sort {
-            background: #f1f5ff;
+          &:nth-child(2n) > td.ant-table-column-sort {
+            background: #f8faff;
           }
         }
       }

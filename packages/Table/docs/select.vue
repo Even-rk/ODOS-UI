@@ -48,7 +48,7 @@ const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    width: '200px',
+    width: '500px',
     fixed: 'left'
   },
   {
