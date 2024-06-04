@@ -44,6 +44,16 @@ onMounted(() => {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 1em;
+      background-color: transparent;
+    }
+
     a {
       padding: 8px 16px;
       margin-bottom: 8px;

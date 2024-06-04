@@ -36,9 +36,7 @@
     border-right: 1px solid #c9cdd4;
     z-index: 1;
   }
-  .odos-select-isTitle {
-    padding-left: 80px;
-  }
+
   :deep .ant-select {
     &.ant-select-focused .ant-select-selector {
       box-shadow: none !important;
@@ -55,6 +53,9 @@
       .ant-select-selection-placeholder {
         color: #86909c;
       }
+    }
+    &.odos-select-isTitle .ant-select-selector {
+      padding-left: 88px !important;
     }
     .ant-select-selection-search-input {
       @include wh(100%);

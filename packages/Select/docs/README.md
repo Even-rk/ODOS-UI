@@ -4,6 +4,7 @@ import Disabled from './disabled.vue'
 import API from './api.vue'
 import SLOT from './slot.vue'
 import Multiple from './multiple.vue'
+import TitleDemo from './title.vue'
 </script>
 
 # Select选择框
@@ -24,6 +25,12 @@ import Multiple from './multiple.vue'
 
 <Preview comp-name="Select" demo-name="multiple">
   <Multiple />
+</Preview>
+
+## 设置title
+
+<Preview comp-name="Select" demo-name="title">
+  <TitleDemo />
 </Preview>
 
 ## Select Api

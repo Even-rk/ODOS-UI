@@ -14,7 +14,7 @@
     "vue3"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build && node script/copyDir.js",
     "build:lib": "vite build --config ./build/lib.config.ts",
     "preview": "vite preview",
