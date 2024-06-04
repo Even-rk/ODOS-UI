@@ -1,20 +1,19 @@
 .odos-textarea {
   width: 100%;
   height: 100%;
-}
-
-:where(.css-dev-only-do-not-override-1hsjdkk).ant-input {
-  border-color: transparent;
-  background: #f2f3f5;
-  &:hover {
-    background: #e5e6eb;
+  :deep .ant-input {
     border-color: transparent;
-  }
-  &:focus-within {
-    border: 1px solid #2e6ce4;
-    background: #fff;
-  }
-  &:focus {
-    box-shadow: none;
+    background: #f2f3f5;
+    &:hover {
+      background: #e5e6eb;
+      border-color: transparent;
+    }
+    &:focus-within {
+      border: 1px solid #2e6ce4;
+      background: #fff;
+    }
+    &:focus {
+      box-shadow: none;
+    }
   }
 }

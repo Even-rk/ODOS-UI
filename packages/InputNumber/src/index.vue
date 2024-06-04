@@ -18,7 +18,7 @@
 import { computed, ref } from 'vue'
 
 const emit = defineEmits<{
-  (e: 'update:value', data: string): void
+  (e: 'update:value', data: number): void
   (e: 'input' | 'focus' | 'change' | 'blur', data: Event): void
 }>()
 
@@ -41,10 +41,10 @@ const WidthSize = computed(() => {
 
 const handleInput = (e: Event) => {
   emit('input', e)
-  emit('update:value', (e.target as HTMLInputElement).value)
+  emit('update:value', +(e.target as HTMLInputElement).value)
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '/styles/inputNumber.scss';
 </style>

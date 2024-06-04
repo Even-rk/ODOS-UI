@@ -29,7 +29,7 @@ const { position, trigger } = defineProps<{
 }>()
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .odos-popover {
   cursor: pointer;
 }

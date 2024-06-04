@@ -45,6 +45,6 @@ watchEffect(() => {
 defineEmits(['click'])
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '/styles/button.scss';
 </style>

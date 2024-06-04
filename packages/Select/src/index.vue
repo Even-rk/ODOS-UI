@@ -31,9 +31,9 @@
 </template>
 
 <script setup lang="ts">
-import Icon from 'packages/Icon/src/index.vue'
+import { Icon } from 'packages/Icon'
 import { Select } from 'ant-design-vue'
-import { computed, type VNode } from 'vue'
+import { computed } from 'vue'
 const { value, width, placeholder, options, title, allowClear, disabled, multiple, maxTagCount, showSearch } =
   defineProps<{
     value?: string | number | string[] | number[]
@@ -66,6 +66,6 @@ const getPopupContainer = (triggerNode: Element) => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '/styles/select.scss';
 </style>

@@ -1,5 +1,5 @@
 .odos-pagination {
-  .ant-pagination {
+  :deep .ant-pagination {
     .ant-pagination-prev,
     .ant-pagination-next,
     .ant-pagination-item {

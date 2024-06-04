@@ -61,6 +61,6 @@ const styleClass = computed(() => {
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '/styles/checkBox.scss';
 </style>

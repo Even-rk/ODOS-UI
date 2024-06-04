@@ -56,6 +56,6 @@ const handelBlur = ($event: Event) => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '/styles/input.scss';
 </style>

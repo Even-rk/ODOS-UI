@@ -19,10 +19,10 @@
         <div class="odos-date-picker-header-year">{{ dayjs(showDate).format('YYYY年MM月') }}</div>
         <div class="odos-date-picker-btn">
           <div class="odos-date-picker-header-pre" @click="updateMouth('pre')">
-            <odos-icon name="ArowLeft" size="25px" />
+            <Icon name="ArowLeft" size="25px" />
           </div>
           <div class="odos-date-picker-header-next" @click="updateMouth('next')">
-            <odos-icon name="ArowRight" size="25px" />
+            <Icon name="ArowRight" size="25px" />
           </div>
         </div>
       </div>
@@ -67,6 +67,7 @@
 </template>
 
 <script lang="ts">
+import { Icon } from 'packages/Icon'
 import dayjs from 'dayjs'
 import { computed, ref } from 'vue'
 
@@ -145,8 +146,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
-
-<style lang="scss">
+<style lang="scss" scoped>
 @import '/styles/datePicker.scss';
 </style>

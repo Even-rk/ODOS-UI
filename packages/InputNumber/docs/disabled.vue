@@ -5,5 +5,5 @@
 <script setup>
 import { ref } from 'vue'
 
-const inputNumberValue = ref('')
+const inputNumberValue = ref()
 </script>

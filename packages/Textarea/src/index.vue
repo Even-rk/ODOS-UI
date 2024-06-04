@@ -29,6 +29,6 @@ const $input = (e: ChangeEvent) => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '/styles/textarea.scss';
 </style>

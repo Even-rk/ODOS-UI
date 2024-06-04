@@ -45,6 +45,6 @@ const className = computed(() => {
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import url('/styles/tag.scss');
 </style>

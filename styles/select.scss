@@ -39,7 +39,7 @@
   .odos-select-isTitle {
     padding-left: 80px;
   }
-  .ant-select {
+  :deep .ant-select {
     &.ant-select-focused .ant-select-selector {
       box-shadow: none !important;
     }
@@ -61,7 +61,7 @@
       background: transparent;
     }
   }
-  .ant-select-multiple {
+  :deep .ant-select-multiple {
     .ant-select-selection-item {
       border-radius: 4px;
       display: flex;
@@ -73,7 +73,7 @@
     }
   }
 }
-.ant-select-dropdown {
+:deep .ant-select-dropdown {
   .ant-select-item-option-selected {
     background: transparent !important;
     color: #2e6ce4 !important;

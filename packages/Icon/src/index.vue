@@ -25,6 +25,6 @@ const IconSize = computed(() => {
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '/styles/icon.scss';
 </style>
