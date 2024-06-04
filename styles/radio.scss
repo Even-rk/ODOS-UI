@@ -1,7 +1,8 @@
 .odos-radio {
   display: inline-flex;
+  user-select: none;
 
-  .odos-radio-item {
+  :deep .odos-radio-item {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -40,14 +41,14 @@
 
 .odos-radio {
   &.odos-radio-size--medium {
-    .odos-radio-item {
+    :deep .odos-radio-item {
       height: 32px;
       padding: 0 16px;
     }
   }
 
   &.odos-radio-size--small {
-    .odos-radio-item {
+    :deep .odos-radio-item {
       height: 28px;
       padding: 0 12px;
     }

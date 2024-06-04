@@ -73,7 +73,9 @@ import { computed, ref } from 'vue'
 
 export default {
   setup() {
+    // 绑定值
     const datePicker = ref()
+    // 显示月份
     const showDate = ref()
 
     const isShowPicker = ref(false)
@@ -87,7 +89,7 @@ export default {
     const preDay = computed(() => {
       return dayjs(showDate.value).startOf('month').subtract(1, 'month').endOf('month')
     })
-
+    // 日期显示title
     const titleDayList = ['日', '一', '二', '三', '四', '五', '六']
     // 当月天数
     const days = computed(() => {
@@ -128,6 +130,9 @@ export default {
       datePickerClick,
       inputRef
     }
+  },
+  components: {
+    Icon
   },
   directives: {
     outside: {

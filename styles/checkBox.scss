@@ -1,7 +1,7 @@
 .odos-check-box {
   display: inline-flex;
 
-  .odos-check-box-item {
+  :deep .odos-check-box-item {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -40,14 +40,14 @@
 
 .odos-check-box {
   &.odos-check-box-size--medium {
-    .odos-check-box-item {
+    :deep .odos-check-box-item {
       height: 32px;
       padding: 0 16px;
     }
   }
 
   &.odos-check-box-size--small {
-    .odos-check-box-item {
+    :deep .odos-check-box-item {
       height: 28px;
       padding: 0 12px;
     }
