@@ -16,10 +16,11 @@
       :max-tag-count="maxTagCount"
       :show-search="showSearch"
       :defaultActiveFirstOption="false"
+      :getPopupContainer="getPopupContainer"
     >
       <template #suffixIcon>
         <slot name="suffixIcon">
-          <odos-icon name="ArowDown" size="20px" />
+          <Icon name="ArowDown" size="20px" />
         </slot>
       </template>
       <template #dropdownRender v-if="dropdown">
@@ -30,8 +31,9 @@
 </template>
 
 <script setup lang="ts">
+import Icon from 'packages/Icon/src/index.vue'
 import { Select } from 'ant-design-vue'
-import { computed } from 'vue'
+import { computed, type VNode } from 'vue'
 const { value, width, placeholder, options, title, allowClear, disabled, multiple, maxTagCount, showSearch } =
   defineProps<{
     value?: string | number | string[] | number[]
@@ -58,6 +60,10 @@ const selectChange = (value?: string | number) => {
 const mode = computed(() => {
   return multiple ? 'multiple' : undefined
 })
+
+const getPopupContainer = (triggerNode: Element) => {
+  return triggerNode.parentElement || document.body
+}
 </script>
 
 <style lang="scss">

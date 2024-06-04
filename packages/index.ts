@@ -36,7 +36,7 @@ const Packages = [
   PaginationPlugin
 ]
 
-const OdosPlugin: Plugin = {
+const OdosPlugin: Plugin<unknown[]> = {
   install(app: App) {
     Packages.forEach((item) => {
       item.install?.(app)

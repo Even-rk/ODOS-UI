@@ -4,6 +4,7 @@
       class="odos-table"
       :loading="loading"
       :data-source="data"
+      :rowClassName="rowClassName"
       :pagination="false"
       :row-selection="isSelection ? (rowSelection as any) : null"
       :columns="columns as any"
@@ -58,8 +59,12 @@ const rowSelection: TableRowSelection = {
 const sorter = (_: any, __: any, sorter: any) => {
   emit('sorter', sorter)
 }
+const rowClassName = (_: Column, index: number) => {
+  // 条件判断基于索引index决定是否添加特定的类名
+  return index % 2 === 0 ? 'odos-table-even-row' : 'odos-table-odd-row'
+}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '/styles/table.scss';
 </style>

@@ -1,39 +1,17 @@
 .odos-table {
   width: 100%;
-  .ant-table {
+  :deep .ant-table {
     * {
       border: none !important;
     }
     .ant-table-container {
       table {
+        .ant-table-thead {
+          .ant-table-cell {
+            background-color: #f1f5ff;
+          }
+        }
         tr {
-          .ant-table-cell-fix-left::after,
-          .ant-table-cell-fix-right::after {
-            border-inline-end: none !important;
-          }
-          &:nth-child(2n) {
-            &:hover {
-              .ant-table-cell-fix-left,
-              .ant-table-cell-fix-right {
-                background-color: #fafafa;
-                &::after {
-                  border-inline-end: none !important;
-                }
-              }
-            }
-            background-color: #f8faff;
-            .ant-table-cell-fix-left,
-            .ant-table-cell-fix-right {
-              border-inline-end: none !important;
-              background-color: #f8faff;
-              &::after {
-                border-inline-end: none !important;
-              }
-            }
-          }
-          &:nth-child(2n - 1) {
-            background-color: #fff;
-          }
           td,
           th {
             .ant-checkbox {
@@ -42,26 +20,24 @@
             }
           }
         }
-
-        .ant-table-thead {
+        .odos-table-even-row {
+          background-color: #fff;
           .ant-table-cell {
-            background-color: #f1f5ff;
+            background-color: #fff;
+          }
+          .ant-table-cell-row-hover {
+            transition: all 0.8s;
+            background-color: #f2f3f5;
           }
         }
-        .ant-table-tbody > tr.ant-table-row-selected {
-          & > td {
-            background: #fff;
+        .odos-table-odd-row {
+          background-color: #f8faff;
+          .ant-table-cell {
+            background-color: #f8faff;
           }
-          &:nth-child(2n) > td {
-            background: #f1f5ff;
-          }
-        }
-        .ant-table-tbody tr {
-          & > td.ant-table-column-sort {
-            background: #fff;
-          }
-          &:nth-child(2n) > td.ant-table-column-sort {
-            background: #f8faff;
+          .ant-table-cell-row-hover {
+            transition: all 0.8s;
+            background-color: #f2f3f5;
           }
         }
       }

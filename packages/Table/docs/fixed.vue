@@ -43,27 +43,33 @@ const data = [
 
 const columns = [
   {
+    title: 'Index',
+    dataIndex: 'key',
+    fixed: 'left',
+    sorter: true,
+    width: '100px'
+  },
+  {
     title: 'Name',
     dataIndex: 'name',
-    fixed: 'left',
-    sorter: true
+    width: '200px'
   },
   {
     title: 'Salary',
     dataIndex: 'salary',
     slotName: 'Salary',
-    fixed: true,
-    width: '500px'
+    width: '200px'
   },
   {
     title: 'Address',
     dataIndex: 'address',
-    width: '500px'
+    width: '200px'
   },
   {
     title: 'Email',
     dataIndex: 'email',
-    width: '500px'
+    width: '100px',
+    fixed: 'right'
   }
 ]
 </script>
