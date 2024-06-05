@@ -4,12 +4,29 @@
   user-select: none;
 }
 .odos-date-picker * {
-  cursor: pointer !important;
+  cursor: pointer;
   width: 100%;
 }
 .odos-date-picker {
   position: relative;
-  .odos-input {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  .odos-date-picker-title {
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #4e5969;
+    border-right: 1px solid #c9cdd4;
+    z-index: 1;
+  }
+  .odos-date-picker-input {
     display: flex;
     box-sizing: border-box;
     align-items: center;
@@ -22,6 +39,9 @@
     outline: none;
     &:hover {
       background: #e5e6eb;
+    }
+    &.odos-date-picker-isTitle {
+      padding-left: 88px;
     }
     &.odos-input-focus {
       border: 1px solid #2e6ce4;

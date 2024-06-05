@@ -1,6 +1,6 @@
 <template>
   <div class="odos-select" :class="{ 'odos-select-disabled': disabled }" :style="{ width }">
-    <div class="title" v-if="title">{{ title }}</div>
+    <div class="odos-select-title" v-if="title">{{ title }}</div>
     <Select
       :class="{ 'odos-select-isTitle': title }"
       @change="selectChange($event as string | number)"

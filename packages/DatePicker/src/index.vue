@@ -1,9 +1,13 @@
 <template>
   <div class="odos-date-picker" ref="datePickerRef">
+    <div class="odos-date-picker-title">title</div>
     <input
       ref="inputRef"
-      class="odos-input"
-      :class="{ 'odos-input-focus': isShowPicker }"
+      class="odos-date-picker-input"
+      :class="{
+        'odos-date-picker-focus-input': isShowPicker,
+        'odos-date-picker-isTitle': title
+      }"
       :value="datePicker"
       placeholder="请选择日期"
     />
@@ -70,6 +74,9 @@
 import { Icon } from 'packages/Icon'
 import dayjs from 'dayjs'
 import { computed, ref } from 'vue'
+const { title } = defineProps<{
+  title?: string
+}>()
 // 绑定值
 const datePicker = ref()
 // 显示月份
