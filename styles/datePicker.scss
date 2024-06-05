@@ -1,3 +1,8 @@
+@mixin useSelect {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .odos-date-picker * {
   cursor: pointer !important;
   width: 100%;
@@ -38,11 +43,6 @@
       position: absolute;
       top: 44px;
     }
-    * {
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
     width: 312px;
     height: 340px;
     border-radius: 8px;
@@ -53,6 +53,7 @@
     padding: 0 16px;
     z-index: 1000;
     .odos-date-picker-header {
+      @include useSelect;
       width: 280px;
       height: 44px;
       display: flex;
@@ -88,6 +89,7 @@
       }
     }
     .odos-date-picker-body {
+      @include useSelect;
       width: 280px;
       height: 280px;
       box-sizing: border-box;
