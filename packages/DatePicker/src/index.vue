@@ -1,5 +1,5 @@
 <template>
-  <div class="odos-date-picker" v-outside>
+  <div class="odos-date-picker" ref="datePickerRef">
     <input
       ref="inputRef"
       class="odos-input"
@@ -66,87 +66,61 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { Icon } from 'packages/Icon'
 import dayjs from 'dayjs'
 import { computed, ref } from 'vue'
+// 绑定值
+const datePicker = ref()
+// 显示月份
+const showDate = ref()
 
-export default {
-  setup() {
-    // 绑定值
-    const datePicker = ref()
-    // 显示月份
-    const showDate = ref()
+const isShowPicker = ref(false)
+const inputFocus = () => {
+  isShowPicker.value = true
+}
+const inputBlur = () => {
+  isShowPicker.value = false
+}
+// 上个月最后一天
+const preDay = computed(() => {
+  return dayjs(showDate.value).startOf('month').subtract(1, 'month').endOf('month')
+})
+// 日期显示title
+const titleDayList = ['日', '一', '二', '三', '四', '五', '六']
+// 当月天数
+const days = computed(() => {
+  const year = dayjs(showDate.value).year()
+  const month = dayjs(showDate.value).month()
+  return new Date(year, month + 1, 0).getDate()
+})
+// 变换月份
+const updateMouth = (type: 'pre' | 'next') => {
+  if (type === 'next') {
+    showDate.value = dayjs(showDate.value).add(1, 'month')
+  } else {
+    showDate.value = dayjs(showDate.value).subtract(1, 'month')
+  }
+}
+// 变换日期
+const datePickerClick = (day: number, type?: 'next' | 'pre') => {
+  if (type == 'pre') {
+    showDate.value = dayjs(showDate.value).subtract(1, 'month')
+  } else if (type === 'next') {
+    showDate.value = dayjs(showDate.value).add(1, 'month')
+  }
+  datePicker.value = dayjs(showDate.value).format('YYYY-MM') + '-' + (day >= 10 ? day : '0' + day)
+  showDate.value = dayjs(datePicker.value)
+}
+const datePickerRef = ref()
+const inputRef = ref()
 
-    const isShowPicker = ref(false)
-    const inputFocus = () => {
-      isShowPicker.value = true
-    }
-    const inputBlur = () => {
-      isShowPicker.value = false
-    }
-    // 上个月最后一天
-    const preDay = computed(() => {
-      return dayjs(showDate.value).startOf('month').subtract(1, 'month').endOf('month')
-    })
-    // 日期显示title
-    const titleDayList = ['日', '一', '二', '三', '四', '五', '六']
-    // 当月天数
-    const days = computed(() => {
-      const year = dayjs(showDate.value).year()
-      const month = dayjs(showDate.value).month()
-      return new Date(year, month + 1, 0).getDate()
-    })
-    // 变换月份
-    const updateMouth = (type: 'pre' | 'next') => {
-      if (type === 'next') {
-        showDate.value = dayjs(showDate.value).add(1, 'month')
-      } else {
-        showDate.value = dayjs(showDate.value).subtract(1, 'month')
-      }
-    }
-    // 变换日期
-    const datePickerClick = (day: number, type?: 'next' | 'pre') => {
-      if (type == 'pre') {
-        showDate.value = dayjs(showDate.value).subtract(1, 'month')
-      } else if (type === 'next') {
-        showDate.value = dayjs(showDate.value).add(1, 'month')
-      }
-      datePicker.value = dayjs(showDate.value).format('YYYY-MM') + '-' + (day >= 10 ? day : '0' + day)
-      showDate.value = dayjs(datePicker.value)
-    }
-    const inputRef = ref()
-    return {
-      dayjs,
-      datePicker,
-      showDate,
-      isShowPicker,
-      titleDayList,
-      inputFocus,
-      inputBlur,
-      preDay,
-      days,
-      updateMouth,
-      datePickerClick,
-      inputRef
-    }
-  },
-  components: {
-    Icon
-  },
-  directives: {
-    outside: {
-      mounted(el, _, VNode: any) {
-        document.onclick = (e) => {
-          if (el.contains(e.target)) {
-            VNode.ctx.devtoolsRawSetupState.inputFocus()
-            VNode.ctx.devtoolsRawSetupState.inputRef.value.focus()
-          } else {
-            VNode.ctx.devtoolsRawSetupState.inputBlur()
-          }
-        }
-      }
-    }
+document.onclick = (e) => {
+  if (datePickerRef.value.contains(e.target)) {
+    inputFocus()
+    inputRef.value.focus()
+  } else {
+    inputBlur()
   }
 }
 </script>
