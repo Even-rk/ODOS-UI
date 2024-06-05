@@ -27,6 +27,6 @@ import TitleDemo from './title.vue'
 
 ## DatePicker API
 
-<API />
-
 ### DatePicker 属性
+
+<API />

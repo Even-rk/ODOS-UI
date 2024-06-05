@@ -3,6 +3,9 @@ import Default from './default.vue'
 import Size from './size.vue'
 import Alarm from './alarm.vue'
 import ItemWidth from './itemWidth.vue'
+import API from './api.vue'
+import ItemAPI from './item-api.vue'
+import ItemSlot from './item-api-slot.vue'
 </script>
 
 # Radio 单选框
@@ -30,3 +33,17 @@ import ItemWidth from './itemWidth.vue'
 <Preview comp-name="Radio" demo-name="itemWidth">
   <ItemWidth />
 </Preview>
+
+# Radio API
+
+## Radio 属性
+
+<API />
+
+## RadioItem 属性
+
+<ItemAPI />
+
+## RadioItem slot
+
+<ItemSlot />
