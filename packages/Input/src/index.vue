@@ -1,6 +1,8 @@
 <template>
   <div class="odos-input" :class="{ 'odos-input-disabled': disabled }" :style="{ width: WidthSize }">
+    <div class="odos-input-title" v-if="title">{{ title }}</div>
     <input
+      :class="{ 'odos-input-isTitle': title }"
       type="text"
       :value="value"
       :disabled="disabled"
@@ -28,12 +30,13 @@ onUpdated(() => {
   }
 })
 
-const { value, width, placeholder, disabled, isFocus } = defineProps<{
+const { value, width, placeholder, disabled, isFocus, title } = defineProps<{
   value?: string
   width?: string | number
   placeholder?: string
   disabled?: boolean
   isFocus?: boolean
+  title?: string
 }>()
 
 const WidthSize = computed(() => {

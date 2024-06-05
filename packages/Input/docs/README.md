@@ -3,6 +3,7 @@ import demo from './demo.vue'
 import Disabled from './disabled.vue'
 import API from './api.vue'
 import Event from './event.vue'
+import TitleDemo from './title.vue'
 </script>
 
 # Input输入框
@@ -17,6 +18,12 @@ import Event from './event.vue'
 
 <Preview comp-name="Input" demo-name="disabled">
   <Disabled />
+</Preview>
+
+## 设置title
+
+<Preview comp-name="Input" demo-name="title">
+  <TitleDemo />
 </Preview>
 
 ## Input API

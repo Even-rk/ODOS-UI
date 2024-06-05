@@ -1,6 +1,12 @@
 <template>
-  <div class="odos-input-number" :class="{ 'odos-input-number-disabled': disabled }" :style="{ width: WidthSize }">
+  <div
+    class="odos-input-number"
+    :class="{ 'odos-input-number-disabled': disabled }"
+    :style="{ width: WidthSize }"
+  >
+    <div class="odos-input-number-title" v-if="title">{{ title }}</div>
     <input
+      :class="{ 'odos-input-number-isTitle': title }"
       type="number"
       :value.prop="value"
       :disabled="disabled"
@@ -22,11 +28,12 @@ const emit = defineEmits<{
   (e: 'input' | 'focus' | 'change' | 'blur', data: Event): void
 }>()
 
-const { value, width, placeholder, disabled } = defineProps<{
+const { value, width, placeholder, disabled, title } = defineProps<{
   value?: number
   width?: string | number
   placeholder?: string
   disabled?: boolean
+  title?: string
 }>()
 
 const WidthSize = computed(() => {
