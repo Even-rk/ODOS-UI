@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-const datePicker = ref()
+const datePicker = ref('')
 
 watch(datePicker, () => {
   console.log(datePicker.value)

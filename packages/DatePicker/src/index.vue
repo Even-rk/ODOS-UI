@@ -127,14 +127,14 @@ const datePickerClick = (day: number, type?: 'next' | 'pre') => {
 const datePickerRef = ref()
 const inputRef = ref()
 
-document.onclick = (e) => {
+document.addEventListener('click', (e) => {
   if (datePickerRef.value.contains(e.target)) {
     inputFocus()
     inputRef.value.focus()
   } else {
     inputBlur()
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
