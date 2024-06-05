@@ -1,11 +1,11 @@
 <template>
   <div class="odos-date-picker" ref="datePickerRef">
-    <div class="odos-date-picker-title">title</div>
+    <div class="odos-date-picker-title" v-if="title">{{ title }}</div>
     <input
       ref="inputRef"
       class="odos-date-picker-input"
       :class="{
-        'odos-date-picker-focus-input': isShowPicker,
+        'odos-date-picker-input-focus': isShowPicker,
         'odos-date-picker-isTitle': title
       }"
       :value="datePicker"
@@ -74,8 +74,12 @@
 import { Icon } from 'packages/Icon'
 import dayjs from 'dayjs'
 import { computed, ref } from 'vue'
-const { title } = defineProps<{
+const { value, title } = defineProps<{
   title?: string
+  value: string
+}>()
+const emit = defineEmits<{
+  (e: 'update:value', data: string): void
 }>()
 // 绑定值
 const datePicker = ref()
@@ -118,6 +122,7 @@ const datePickerClick = (day: number, type?: 'next' | 'pre') => {
   }
   datePicker.value = dayjs(showDate.value).format('YYYY-MM') + '-' + (day >= 10 ? day : '0' + day)
   showDate.value = dayjs(datePicker.value)
+  emit('update:value', datePicker.value)
 }
 const datePickerRef = ref()
 const inputRef = ref()

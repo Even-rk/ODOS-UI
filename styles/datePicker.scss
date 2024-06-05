@@ -3,16 +3,15 @@
   -ms-user-select: none;
   user-select: none;
 }
-.odos-date-picker * {
-  cursor: pointer;
-  width: 100%;
-}
 .odos-date-picker {
   position: relative;
   cursor: pointer;
   display: flex;
   align-items: center;
   width: 100%;
+  * {
+    width: 100%;
+  }
   .odos-date-picker-title {
     position: absolute;
     width: 80px;
@@ -43,7 +42,7 @@
     &.odos-date-picker-isTitle {
       padding-left: 88px;
     }
-    &.odos-input-focus {
+    &.odos-date-picker-input-focus {
       border: 1px solid #2e6ce4;
       background: #fff;
     }
@@ -73,7 +72,6 @@
     padding: 0 16px;
     z-index: 1000;
     .odos-date-picker-header {
-      @include useSelect;
       width: 280px;
       height: 44px;
       display: flex;
@@ -109,7 +107,6 @@
       }
     }
     .odos-date-picker-body {
-      @include useSelect;
       width: 280px;
       height: 280px;
       box-sizing: border-box;

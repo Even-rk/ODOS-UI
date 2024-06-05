@@ -1,12 +1,19 @@
 <script setup>
-import Demo from './demo.vue'
+import Default from './default.vue'
 import API from './api.vue'
+import TitleDemo from './title.vue'
 </script>
 
 # DatePicker 日期选择器
 
-<Preview comp-name="DatePicker" demo-name="demo">
-  <Demo />
+# 基础使用
+<Preview comp-name="DatePicker" demo-name="default">
+  <Default />
+</Preview>
+
+# 设置title
+<Preview comp-name="DatePicker" demo-name="title">
+  <TitleDemo />
 </Preview>
 
 ## DatePicker API
