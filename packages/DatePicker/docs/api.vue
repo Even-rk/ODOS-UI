@@ -5,28 +5,28 @@
 <script setup lang="ts">
 const data = [
   {
-    attribute: 'type',
-    default: 'default',
-    type: 'primary | default | line | text',
-    describe: '类型'
+    attribute: 'v-model:value',
+    default: '--',
+    type: 'string',
+    describe: '日期框绑定值'
   },
   {
-    attribute: 'size',
-    default: 'large',
-    type: 'small | medium | large',
-    describe: '大小'
+    attribute: 'width',
+    default: '100%',
+    type: 'string | number',
+    describe: '输入框的宽度'
+  },
+  {
+    attribute: 'title',
+    default: '--',
+    type: 'string',
+    describe: '用于设置title'
   },
   {
     attribute: 'disabled',
     default: 'false',
     type: 'boolean',
-    describe: '按钮是否为禁用状态'
-  },
-  {
-    attribute: 'icon',
-    default: '--',
-    type: 'string',
-    describe: '图标组件'
+    describe: '是否禁用'
   }
 ]
 

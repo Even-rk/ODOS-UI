@@ -1,5 +1,12 @@
 <template>
-  <div class="odos-date-picker" ref="datePickerRef">
+  <div
+    class="odos-date-picker"
+    :class="{
+      'odos-date-picker-disabled': disabled
+    }"
+    ref="datePickerRef"
+    :style="{ width: WidthSize }"
+  >
     <div class="odos-date-picker-title" v-if="title">{{ title }}</div>
     <input
       ref="inputRef"
@@ -8,7 +15,8 @@
         'odos-date-picker-input-focus': isShowPicker,
         'odos-date-picker-isTitle': title
       }"
-      :value="datePicker"
+      :disabled="disabled"
+      :value="value"
       placeholder="请选择日期"
     />
     <div
@@ -74,13 +82,25 @@
 import { Icon } from 'packages/Icon'
 import dayjs from 'dayjs'
 import { computed, ref } from 'vue'
-const { value, title } = defineProps<{
+const { value, title, width, disabled } = defineProps<{
   title?: string
-  value: string
+  value?: string
+  width?: string | number
+  disabled?: boolean
 }>()
 const emit = defineEmits<{
   (e: 'update:value', data: string): void
 }>()
+
+const WidthSize = computed(() => {
+  const widthSize = ref('')
+  if (typeof width === 'number') {
+    widthSize.value = `${width}px`
+  } else if (typeof width === 'string') {
+    widthSize.value = width
+  }
+  return widthSize.value
+})
 // 绑定值
 const datePicker = ref()
 // 显示月份
@@ -128,7 +148,7 @@ const datePickerRef = ref()
 const inputRef = ref()
 
 document.addEventListener('click', (e) => {
-  if (datePickerRef.value.contains(e.target)) {
+  if (datePickerRef.value?.contains(e.target)) {
     inputFocus()
     inputRef.value.focus()
   } else {

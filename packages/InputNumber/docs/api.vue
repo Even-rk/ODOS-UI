@@ -17,6 +17,12 @@ const data = [
     describe: '输入框的宽度'
   },
   {
+    attribute: 'title',
+    default: '--',
+    type: 'string',
+    describe: '用于设置title'
+  },
+  {
     attribute: 'placeholder',
     default: '请输入',
     type: 'string',
