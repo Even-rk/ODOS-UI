@@ -1,5 +1,5 @@
 .odos-tag {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   height: 24px;
   font-size: 12px;
@@ -15,7 +15,7 @@
     color: #2e6ce4;
   }
   &.odos-line-tag {
-    border: 1px solid #2e6ce4;
+    border: 1px solid #2e6ce4 !important;
     color: #2e6ce4;
   }
 

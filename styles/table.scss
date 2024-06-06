@@ -3,6 +3,7 @@
   :deep .ant-table {
     * {
       border: none !important;
+      border-inline-end: none !important;
     }
     .ant-table-container {
       table {

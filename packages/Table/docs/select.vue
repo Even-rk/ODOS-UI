@@ -48,8 +48,7 @@ const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    width: '500px',
-    fixed: 'left'
+    width: '500px'
   },
   {
     title: 'Salary',
@@ -64,7 +63,6 @@ const columns = [
   {
     title: 'Email',
     dataIndex: 'email',
-    fixed: 'right',
     width: '200px'
   }
 ]
