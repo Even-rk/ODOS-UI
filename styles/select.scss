@@ -6,6 +6,7 @@
 .odos-select {
   position: relative;
   @include wh(40px);
+  background: #f2f3f5;
   border: 1px solid #f2f3f5;
   border-radius: 8px;
   display: flex;
