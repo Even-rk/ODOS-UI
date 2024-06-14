@@ -3,6 +3,7 @@ import demo from './demo.vue'
 import Position from './position.vue'
 import API from './api.vue'
 import SLOT from './slot.vue'
+import Event from './event.vue'
 </script>
 
 # Popover 气泡框
@@ -22,6 +23,10 @@ import SLOT from './slot.vue'
 ## Popover API
 
 <API/>
+
+## Popover 事件
+
+<Event/>
 
 ## Popover 插槽
 

@@ -1,6 +1,6 @@
 <template>
   <div class="odos-popover">
-    <Popover :placement="position" :trigger="trigger">
+    <Popover :placement="position" @open-change="openChange" :trigger="trigger">
       <template #content>
         <slot name="content"></slot>
       </template>
@@ -27,6 +27,14 @@ const { position, trigger } = defineProps<{
     | 'rightBottom'
   trigger?: 'hover' | 'click'
 }>()
+
+const emit = defineEmits<{
+  (e: 'openChange', data: boolean): void
+}>()
+
+const openChange = (isShow: boolean) => {
+  emit('openChange', isShow)
+}
 </script>
 
 <style lang="scss" scoped>
