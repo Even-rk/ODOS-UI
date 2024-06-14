@@ -57,6 +57,9 @@
     }
     &.odos-select-isTitle .ant-select-selector {
       padding-left: 88px !important;
+      .ant-select-selection-search input {
+        padding-left: 77px;
+      }
     }
     .ant-select-selection-search-input {
       @include wh(100%);
