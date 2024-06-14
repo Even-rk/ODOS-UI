@@ -41,7 +41,7 @@ const iconColor = computed(() => {
   }
 })
 const className = computed(() => {
-  return `odos-${type}-tag`
+  return type ? `odos-${type}-tag` : 'odos-default-tag'
 })
 </script>
 

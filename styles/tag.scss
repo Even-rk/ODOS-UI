@@ -6,6 +6,10 @@
   border-radius: 6px;
   padding: 0 8px;
   box-sizing: border-box;
+  &.odos-default-tag {
+    border: 1px solid #c9cdd4 !important;
+    color: #1D2129;
+  }
   &.odos-dark-tag {
     background: #2e6ce4;
     color: #fff;

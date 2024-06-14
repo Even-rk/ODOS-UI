@@ -19,13 +19,17 @@
       <template #bodyCell="{ column, record }">
         <slot :name="(column as Column).slotName" :record="record" />
       </template>
+      <!-- 自定义空数据时的显示内容 -->
+      <template #emptyText>
+        <Empty :description="emptyText" />
+      </template>
     </Table>
   </ConfigProvider>
 </template>
 
 <script setup lang="ts">
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
-import { Table, ConfigProvider } from 'ant-design-vue'
+import { Table, ConfigProvider, Empty } from 'ant-design-vue'
 import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
 export type Column = {
   align?: 'left' | 'right' | 'center'
@@ -39,12 +43,13 @@ export type Column = {
   sorter?: Function | boolean
   fixed?: boolean | string
 }
-const { data, columns, loading, isSelection } = defineProps<{
+const { data, columns, loading, isSelection, emptyText } = defineProps<{
   data: { [key: string]: any }[]
   columns: Column[]
   loading?: boolean
   scroll?: { x?: number; y?: number }
   isSelection?: boolean
+  emptyText?: string
 }>()
 
 const emit = defineEmits<{
