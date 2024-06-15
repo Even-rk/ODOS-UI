@@ -82,7 +82,8 @@ const columns = [
   },
   {
     title: '默认值',
-    dataIndex: 'default'
+    dataIndex: 'default',
+    width: '150px'
   }
 ]
 </script>

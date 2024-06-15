@@ -4,8 +4,8 @@
     :class="className"
     :style="{
       color,
-      border: type == 'line' ? `1px solid ${color}` : 'none',
-      backgroundColor: bgc
+      border: type == 'line' ? `1px solid ${borderColor}` : 'none',
+      backgroundColor
     }"
   >
     <slot name="icon">
@@ -21,11 +21,12 @@
 import Icon from 'packages/Icon/src/index.vue'
 import { computed } from 'vue'
 
-const { type, icon, color } = defineProps<{
+const { type, icon, color, borderColor, backgroundColor } = defineProps<{
   type?: 'dark' | 'light' | 'line'
   icon?: string
   color?: string
-  bgc?: string
+  borderColor?: string
+  backgroundColor?: string
 }>()
 
 const iconColor = computed(() => {

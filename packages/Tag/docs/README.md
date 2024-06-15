@@ -1,5 +1,6 @@
 <script setup>
 import Default from './default.vue'
+import API from './api.vue'
 </script>
 
 # Tag 标签
@@ -10,3 +11,8 @@ import Default from './default.vue'
   <Default />
 </Preview>
 
+# Tag API
+
+## Tag 属性
+
+<API />

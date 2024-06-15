@@ -32,7 +32,7 @@ import ODOSUI from 'odos-ui'
 createApp(App).use(ODOSUI).mount('#app')
 ```
 
-### 按需导入
+### 按需导入（推荐）
 
 main.ts
 

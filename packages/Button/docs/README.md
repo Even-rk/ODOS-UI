@@ -5,6 +5,7 @@ import Icon from './icon.vue'
 import Disabled from './disabled.vue'
 import API from './api.vue'
 import SLOT from './slot.vue'
+import Event from './event.vue'
 </script>
 
 # Button 按钮
@@ -38,6 +39,10 @@ import SLOT from './slot.vue'
 ### Button 属性
 
 <API />
+
+### Button 事件
+
+<Event />
 
 ### Button 插槽
 

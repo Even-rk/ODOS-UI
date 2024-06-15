@@ -7,7 +7,7 @@ const data = [
   {
     attribute: 'v-model:value',
     default: '--',
-    type: 'string',
+    type: 'string[] | number[]',
     describe: '关联选中的值'
   },
   {
