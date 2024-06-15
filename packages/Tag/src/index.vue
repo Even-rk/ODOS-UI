@@ -4,7 +4,7 @@
     :class="className"
     :style="{
       color,
-      border: type == 'line' ? `1px solid ${borderColor}` : 'none',
+      border: `1px solid ${borderColor}`,
       backgroundColor
     }"
   >

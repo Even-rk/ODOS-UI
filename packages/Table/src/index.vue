@@ -35,8 +35,6 @@ export type Column = {
   title?: string
   dataIndex?: string
   width?: string | number
-  maxWidth?: number
-  minWidth?: number
   headerSlotName?: string
   slotName?: string
   sorter?: Function | boolean
