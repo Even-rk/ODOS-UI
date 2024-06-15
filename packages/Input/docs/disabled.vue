@@ -1,5 +1,5 @@
 <template>
-  <odos-input v-model:value="inputValue" :disabled="true"/>
+  <odos-input v-model:value="inputValue" :disabled="true" />
 </template>
 
 <script setup>

@@ -42,8 +42,8 @@ onMounted(async () => {
         await import(/* @vite-ignore */ `../../packages/${compName}/docs/${demoName}.vue?raw`)
       ).default
     } else {
-      sourceCode.value = await fetch(`${isDev ? '' : './'}/packages/${compName}/docs/${demoName}.vue`).then((res) =>
-        res.text()
+      sourceCode.value = await fetch(`${isDev ? '' : './'}/packages/${compName}/docs/${demoName}.vue`).then(
+        (res) => res.text()
       )
     }
   }

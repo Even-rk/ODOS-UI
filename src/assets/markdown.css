@@ -19,11 +19,11 @@ body {
   overflow-x: hidden;
 }
 
-body>*:first-child {
+body > *:first-child {
   margin-top: 0 !important;
 }
 
-body>*:last-child {
+body > *:last-child {
   margin-bottom: 0 !important;
 }
 
@@ -133,8 +133,8 @@ table {
   margin: 0.8em 0;
 }
 
-li>ol,
-li>ul {
+li > ol,
+li > ul {
   margin: 0 0;
 }
 
@@ -148,25 +148,25 @@ hr {
   box-sizing: content-box;
 }
 
-body>h2:first-child {
+body > h2:first-child {
   margin-top: 0;
   padding-top: 0;
 }
 
-body>h1:first-child {
+body > h1:first-child {
   margin-top: 0;
   padding-top: 0;
 }
 
-body>h1:first-child+h2 {
+body > h1:first-child + h2 {
   margin-top: 0;
   padding-top: 0;
 }
 
-body>h3:first-child,
-body>h4:first-child,
-body>h5:first-child,
-body>h6:first-child {
+body > h3:first-child,
+body > h4:first-child,
+body > h5:first-child,
+body > h6:first-child {
   margin-top: 0;
   padding-top: 0;
 }
@@ -269,10 +269,10 @@ code {
 
 pre {
   padding: 10px;
-  background-color: #F5F7FA;
+  background-color: #f5f7fa;
   max-height: 500px;
 }
 
 pre code[class*='language-'] {
-  background: #F5F7FA !important;
+  background: #f5f7fa !important;
 }
