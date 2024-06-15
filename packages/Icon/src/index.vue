@@ -6,20 +6,21 @@
 
 <script setup lang="ts">
 import './iconfont'
-import { computed, ref } from 'vue'
-const { name, size, color } = defineProps<{
+import { computed, ref, toRefs } from 'vue'
+const props = defineProps<{
   name?: string
   size?: number | string
   color?: string
 }>()
+const { name, size, color } = toRefs(props)
 
-const IconName = computed(() => `#icon-${name}`)
+const IconName = computed(() => `#icon-${name.value}`)
 const IconSize = computed(() => {
   const iconSize = ref('')
-  if (typeof size === 'number') {
-    iconSize.value = `${size}px`
-  } else if (typeof size === 'string') {
-    iconSize.value = size
+  if (typeof size.value === 'number') {
+    iconSize.value = `${size.value}px`
+  } else if (typeof size.value === 'string') {
+    iconSize.value = size.value
   }
   return iconSize.value
 })

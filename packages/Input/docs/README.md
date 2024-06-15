@@ -1,5 +1,7 @@
 <script setup>
 import demo from './demo.vue'
+import PassWord from './password.vue'
+import Search from './search.vue'
 import Disabled from './disabled.vue'
 import API from './api.vue'
 import Event from './event.vue'
@@ -12,6 +14,18 @@ import TitleDemo from './title.vue'
 
 <Preview comp-name="Input" demo-name="demo">
   <demo />
+</Preview>
+
+## 密码输入框
+
+<Preview comp-name="Input" demo-name="password">
+  <PassWord />
+</Preview>
+
+## Search搜索框
+
+<Preview comp-name="Input" demo-name="search">
+  <Search />
 </Preview>
 
 ## 禁用

@@ -29,6 +29,14 @@
       padding-left: 88px;
     }
   }
+  .odos-icon {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    &.odos-search-icon {
+      cursor: auto;
+    }
+  }
   .odos-input-title {
     position: absolute;
     width: 80px;

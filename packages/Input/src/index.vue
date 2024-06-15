@@ -3,7 +3,7 @@
     <div class="odos-input-title" v-if="title">{{ title }}</div>
     <input
       :class="{ 'odos-input-isTitle': title }"
-      type="text"
+      :type="typeName || 'text'"
       :value="value"
       :disabled="disabled"
       @change="emit('change', $event)"
@@ -12,14 +12,18 @@
       @input="handleInput"
       :placeholder="placeholder || '请输入'"
     />
+    <div v-if="type" class="odos-icon" :class="{ 'odos-search-icon': type == 'search' }" @click="iconClick">
+      <Icon :name="iconName" color="#86909c" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onUpdated, ref } from 'vue'
+import Icon from '../../Icon/src/index.vue'
 
 const emit = defineEmits<{
-  (e: 'update:value', data: string): void
+  (e: 'update:value' | 'search', data: string): void
   (e: 'input' | 'focus' | 'change' | 'blur', data: Event): void
 }>()
 
@@ -30,7 +34,8 @@ onUpdated(() => {
   }
 })
 
-const { value, width, placeholder, disabled, isFocus, title } = defineProps<{
+const { value, width, placeholder, disabled, isFocus, title, type } = defineProps<{
+  type?: 'text' | 'password' | 'search'
   value?: string
   width?: string | number
   placeholder?: string
@@ -38,6 +43,23 @@ const { value, width, placeholder, disabled, isFocus, title } = defineProps<{
   isFocus?: boolean
   title?: string
 }>()
+const Type = ref(type)
+// typeName
+const typeName = computed(() => {
+  return Type.value == 'search' ? 'text' : Type.value
+})
+// iconName
+const iconName = computed(() => {
+  return Type.value == 'password' ? 'hide' : Type.value == 'search' ? 'Search' : 'View'
+})
+
+const iconClick = () => {
+  if (Type && Type.value == 'password') {
+    Type.value = 'text'
+  } else if (Type.value == 'text') {
+    Type.value = 'password'
+  }
+}
 
 const WidthSize = computed(() => {
   const widthSize = ref('')
