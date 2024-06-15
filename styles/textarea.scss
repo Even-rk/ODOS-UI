@@ -15,5 +15,9 @@
     &:focus {
       box-shadow: none;
     }
+    
+    &::placeholder {
+      color: #86909c;
+    }
   }
 }

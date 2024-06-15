@@ -6,10 +6,9 @@
       :data-source="data"
       :rowClassName="rowClassName"
       :pagination="false"
-      :row-selection="isSelection ? (rowSelection as any) : null"
-      :columns="columns as any"
+      :row-selection="isSelection ? rowSelection : undefined"
+      :columns="columns"
       @change="sorter"
-      bordered
       :scroll="scroll"
     >
       <!-- 自定义表头 -->
@@ -45,7 +44,7 @@ export type Column = {
 }
 const { data, columns, loading, isSelection, emptyText } = defineProps<{
   data: { [key: string]: any }[]
-  columns: Column[]
+  columns: Column[] | any
   loading?: boolean
   scroll?: { x?: number; y?: number }
   isSelection?: boolean

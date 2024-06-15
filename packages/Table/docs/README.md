@@ -2,6 +2,7 @@
 import Default from './default.vue'
 import Selection from './select.vue'
 import Fixed from './fixed.vue'
+import API from './api.vue'
 </script>
 
 # Table表格
@@ -23,3 +24,9 @@ import Fixed from './fixed.vue'
 <Preview comp-name="Table" demo-name="fixed">
   <Fixed />
 </Preview>
+
+# Table API
+
+## Table 属性
+
+<API />
