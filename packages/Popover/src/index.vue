@@ -1,6 +1,11 @@
 <template>
   <div class="odos-popover">
-    <Popover :placement="position" @open-change="openChange" :trigger="trigger">
+    <Popover
+      :placement="position"
+      @open-change="openChange"
+      :trigger="trigger"
+      :getPopupContainer="getPopupContainer"
+    >
       <template #content>
         <slot name="content"></slot>
       </template>
@@ -34,6 +39,10 @@ const emit = defineEmits<{
 
 const openChange = (isShow: boolean) => {
   emit('openChange', isShow)
+}
+
+const getPopupContainer = (triggerNode: Element) => {
+  return triggerNode.parentElement || document.body
 }
 </script>
 
