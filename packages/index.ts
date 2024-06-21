@@ -17,6 +17,7 @@ import { SelectPlugin } from './Select'
 import { CheckBoxPlugin } from './CheckBox'
 import { DatePickerPlugin } from './DatePicker'
 import { TablePlugin } from './Table'
+import { TabsPlugin } from './Tabs'
 import { TagPlugin } from './Tag'
 import { TextareaPlugin } from './Textarea'
 
@@ -31,6 +32,7 @@ const Packages = [
   CheckBoxPlugin,
   DatePickerPlugin,
   TablePlugin,
+  TabsPlugin,
   TagPlugin,
   TextareaPlugin,
   PaginationPlugin
@@ -58,6 +60,7 @@ export * from './Select'
 export * from './CheckBox'
 export * from './DatePicker'
 export * from './Table'
+export * from './Tabs'
 export * from './Tag'
 export * from './Textarea'
 export * from './Pagination'

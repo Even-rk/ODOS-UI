@@ -1,0 +1,20 @@
+.odos-tab {
+  height: 30px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0 6px;
+  cursor: pointer;
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+  &.odos-tab-selected {
+    border: 1px solid #2e6ce4;
+    color: #2e6ce4;
+  }
+}

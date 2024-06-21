@@ -67,6 +67,11 @@ const route: RouteRecordRaw[] = [
     component: () => import('packages/Table/docs/README.md')
   },
   {
+    name: 'Tabs',
+    path: '/components/Tabs',
+    component: () => import('packages/Tabs/docs/README.md')
+  },
+  {
     name: 'Tag',
     path: '/components/Tag',
     component: () => import('packages/Tag/docs/README.md')

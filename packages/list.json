@@ -65,6 +65,11 @@
     "compClassName": "table"
   },
   {
+    "compName": "Tabs",
+    "compZhName": "Tabs标签页",
+    "compClassName": "tabs"
+  },
+  {
     "compName": "Tag",
     "compZhName": "Tag标签",
     "compClassName": "tag"

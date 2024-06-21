@@ -19,6 +19,8 @@ declare module 'vue' {
     OdosCheckBoxItem: (typeof import('../packages/CheckBox/src/item.vue'))['default']
     OdosDatePicker: (typeof import('../packages/datePicker/src/index.vue'))['default']
     OdosTable: (typeof import('../packages/Table/src/index.vue'))['default']
+    OdosTabs: (typeof import('../packages/Tabs/src/index.vue'))['default']
+    OdosTab: (typeof import('../packages/Tabs/src/item.vue'))['default']
     OdosTag: (typeof import('../packages/Tag/src/index.vue'))['default']
     OdosTextarea: (typeof import('../packages/Textarea/src/index.vue'))['default']
     OdosPagination: (typeof import('../packages/Pagination/src/index.vue'))['default']
