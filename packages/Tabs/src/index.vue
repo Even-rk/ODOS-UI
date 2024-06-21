@@ -44,7 +44,7 @@ const randerTabBar = () => {
           <Icon
             size="16px"
             name={icon as string}
-            color={value === props.currentTab ? '#2E6CE4' : '#CACACA'}
+            color={value === props.currentTab ? '#2E6CE4' : '#4E5969'}
           />
         )}
         <div class="label">{tab}</div>

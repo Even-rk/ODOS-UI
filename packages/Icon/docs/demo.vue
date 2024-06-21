@@ -32,6 +32,16 @@ const copy = async (name: string) => {
   }
 }
 const list: string[] = [
+  'call',
+  'endoscope',
+  'female',
+  'frankl-data',
+  'male',
+  'xray',
+  'schedule',
+  'OralCheck',
+  'market',
+  'wechat',
   'sync',
   'flag',
   'hide',
