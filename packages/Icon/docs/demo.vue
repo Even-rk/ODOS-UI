@@ -32,6 +32,8 @@ const copy = async (name: string) => {
   }
 }
 const list: string[] = [
+  'sync',
+  'flag',
   'hide',
   'check',
   'Callender',
