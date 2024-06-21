@@ -35,13 +35,7 @@ import SLOT from './slot.vue'
 
 # CheckBox API
 
-## CheckBox 属性
-
 <API/>
-
-## CheckBoxItem 属性
-
-<ItemAPI />
 
 ## CheckBoxItem slot
 

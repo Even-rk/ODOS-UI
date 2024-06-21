@@ -35,13 +35,7 @@ import SLOT from './slot.vue'
 
 # Radio API
 
-## Radio 属性
-
 <API />
-
-## RadioItem 属性
-
-<ItemAPI />
 
 ## RadioItem slot
 
