@@ -1,9 +1,11 @@
 <template>
+  <odos-table :columns="itemColumns" :data="itemData"></odos-table>
+  <h2>RadioItem slot</h2>
   <odos-table :columns="columns" :data="data"></odos-table>
 </template>
 
 <script setup lang="ts">
-const data = [
+const itemData = [
   {
     attribute: 'label',
     default: '--',
@@ -24,7 +26,7 @@ const data = [
   }
 ]
 
-const columns = [
+const itemColumns = [
   {
     title: '属性',
     dataIndex: 'attribute'
@@ -40,6 +42,24 @@ const columns = [
   {
     title: '默认值',
     dataIndex: 'default'
+  }
+]
+
+const data = [
+  {
+    slotName: '--',
+    describe: '自定义默认内容'
+  }
+]
+
+const columns = [
+  {
+    title: '插槽名',
+    dataIndex: 'slotName'
+  },
+  {
+    title: '说明',
+    dataIndex: 'describe'
   }
 ]
 </script>
