@@ -4,7 +4,7 @@ import Size from './size.vue'
 import Alarm from './alarm.vue'
 import ItemWidth from './itemWidth.vue'
 import API from './api.vue'
-import ItemAPI from './item-api.vue'
+import SLOT from './slot.vue'
 </script>
 
 # Radio 单选框
@@ -42,3 +42,7 @@ import ItemAPI from './item-api.vue'
 ## RadioItem 属性
 
 <ItemAPI />
+
+## RadioItem slot
+
+<SLOT />

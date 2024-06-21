@@ -4,8 +4,7 @@ import Size from './size.vue'
 import Alarm from './alarm.vue'
 import ItemWidth from './itemWidth.vue'
 import API from './api.vue'
-import ItemAPI from './item-api.vue'
-import ItemSlot from './item-api-slot.vue'
+import SLOT from './slot.vue'
 </script>
 
 # CheckBox 单选框
@@ -46,4 +45,4 @@ import ItemSlot from './item-api-slot.vue'
 
 ## CheckBoxItem slot
 
-<ItemSlot />
+<SLOT />
