@@ -25,18 +25,21 @@ const props = defineProps<{
 const randerTabBar = () => {
   const list = slots.default && slots.default()
   return list?.map((i) => {
-    const { value, tab, icon } = i.props as {
+    const { value, tab, icon, disabled } = i.props as {
       value: string | number
       tab: string | VNode
       icon?: string
+      disabled?: boolean
     }
     return (
       <div
         class={{
           [styles['odos-tab-selected']]: value === props.currentTab,
-          [styles['odos-tab']]: true
+          [styles['odos-tab']]: true,
+          [styles['odos-tab-disabled']]: disabled
         }}
         onClick={() => {
+          if (disabled) return
           emit('update:currentTab', value)
         }}
       >

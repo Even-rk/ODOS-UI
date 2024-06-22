@@ -11,6 +11,7 @@ defineProps<{
   value: string | number
   tab: string | VNode
   icon?: string
+  disabled?: boolean
 }>()
 </script>
 

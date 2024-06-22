@@ -21,4 +21,9 @@
   :global .icon {
     margin-right: 4px;
   }
+  &.odos-tab-disabled {
+    color: #86909c;
+    border: 1px solid #f7f8fa;
+    cursor: not-allowed;
+  }
 }
