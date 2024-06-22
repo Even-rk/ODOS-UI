@@ -48,7 +48,6 @@
   },
   "files": [
     "lib",
-    "styles",
     "types"
   ]
 }
