@@ -45,9 +45,3 @@ const getPopupContainer = (triggerNode: Element) => {
   return triggerNode.parentElement || document.body
 }
 </script>
-
-<style lang="scss" scoped>
-.odos-popover {
-  cursor: pointer;
-}
-</style>

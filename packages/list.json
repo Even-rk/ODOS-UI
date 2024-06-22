@@ -10,6 +10,11 @@
     "compClassName": "button"
   },
   {
+    "compName": "Empty",
+    "compZhName": "Empty空状态",
+    "compClassName": "empty"
+  },
+  {
     "compName": "Icon",
     "compZhName": "Icon图标",
     "compClassName": "icon"

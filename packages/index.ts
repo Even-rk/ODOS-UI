@@ -7,6 +7,7 @@
  */
 import type { App } from 'vue'
 import { ButtonPlugin } from './Button'
+import { EmptyPlugin } from './Empty'
 import { IconPlugin } from './Icon'
 import { InputPlugin } from './Input'
 import { InputNumberPlugin } from './InputNumber'
@@ -23,19 +24,20 @@ import { TextareaPlugin } from './Textarea'
 
 const Packages = [
   ButtonPlugin,
+  CheckBoxPlugin,
+  DatePickerPlugin,
+  EmptyPlugin,
   IconPlugin,
   InputPlugin,
   InputNumberPlugin,
+  PaginationPlugin,
   PopoverPlugin,
   RadioPlugin,
   SelectPlugin,
-  CheckBoxPlugin,
-  DatePickerPlugin,
   TablePlugin,
   TabsPlugin,
   TagPlugin,
-  TextareaPlugin,
-  PaginationPlugin
+  TextareaPlugin
 ]
 
 const OdosPlugin: any = {
@@ -47,20 +49,21 @@ const OdosPlugin: any = {
 }
 
 export default OdosPlugin
-// message
-export * from './Message'
+
 // 统一导出
 export * from './Button'
+export * from './CheckBox'
+export * from './DatePicker'
+export * from './Empty'
 export * from './Icon'
 export * from './Input'
 export * from './InputNumber'
+export * from './Message'
+export * from './Pagination'
 export * from './Popover'
 export * from './Radio'
 export * from './Select'
-export * from './CheckBox'
-export * from './DatePicker'
 export * from './Table'
 export * from './Tabs'
 export * from './Tag'
 export * from './Textarea'
-export * from './Pagination'

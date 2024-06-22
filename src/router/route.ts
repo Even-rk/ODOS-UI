@@ -12,6 +12,21 @@ const route: RouteRecordRaw[] = [
     component: () => import('packages/Button/docs/README.md')
   },
   {
+    name: 'CheckBox',
+    path: '/components/CheckBox',
+    component: () => import('packages/CheckBox/docs/README.md')
+  },
+  {
+    name: 'DatePicker',
+    path: '/components/DatePicker',
+    component: () => import('packages/DatePicker/docs/README.md')
+  },
+  {
+    name: 'Empty',
+    path: '/components/Empty',
+    component: () => import('packages/Empty/docs/README.md')
+  },
+  {
     name: 'Icon',
     path: '/components/Icon',
     component: () => import('packages/Icon/docs/README.md')
@@ -50,16 +65,6 @@ const route: RouteRecordRaw[] = [
     name: 'Select',
     path: '/components/Select',
     component: () => import('packages/Select/docs/README.md')
-  },
-  {
-    name: 'CheckBox',
-    path: '/components/CheckBox',
-    component: () => import('packages/CheckBox/docs/README.md')
-  },
-  {
-    name: 'DatePicker',
-    path: '/components/DatePicker',
-    component: () => import('packages/DatePicker/docs/README.md')
   },
   {
     name: 'Table',
