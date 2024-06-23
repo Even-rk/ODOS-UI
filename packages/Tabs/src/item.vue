@@ -1,5 +1,5 @@
 <template>
-  <div class="odos-tab-content">
+  <div class="odos-tab-content" name="tab">
     <slot></slot>
   </div>
 </template>
