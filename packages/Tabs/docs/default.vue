@@ -10,9 +10,3 @@ import { ref } from 'vue'
 
 const currentTab = ref('1')
 </script>
-
-<style scoped lang="scss">
-.odos-btn {
-  margin-right: 10px;
-}
-</style>

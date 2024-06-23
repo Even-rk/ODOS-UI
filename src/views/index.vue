@@ -9,8 +9,6 @@
   </div>
 </template>
 
-<script setup></script>
-
 <style lang="scss" scoped>
 .odos-home {
   width: 800px;

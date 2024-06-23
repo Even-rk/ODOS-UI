@@ -25,7 +25,6 @@ main.ts
 import { createApp } from 'vue'
 import App from './App.vue'
 // 引入样式和组件
-// sass 使用改为  odos-ui/styles/index.scss
 import 'odos-ui/lib/style.css'
 import ODOSUI from 'odos-ui'
 
