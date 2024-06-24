@@ -3,7 +3,11 @@
     <slot></slot>
   </div>
 </template>
-
+<script lang="ts">
+export default {
+  name: 'odos-tab'
+}
+</script>
 <script setup lang="ts">
 import type { VNode } from 'vue'
 

@@ -25,8 +25,10 @@ const props = defineProps<{
 const randerTabBar = () => {
   const list = slots.default && slots.default()
   const VNodeList = list?.filter((i) => {
-    return i.shapeFlag === 36 && (i.type as { __file: string }).__file.includes('Tabs')
+    const { name } = i.type as { name: string }
+    return name === 'odos-tab'
   })
+  console.log(VNodeList)
   return VNodeList?.map((i) => {
     const { value, tab, icon, disabled } = i.props as {
       value: string | number
@@ -62,7 +64,8 @@ const randerTabBar = () => {
 const randerContent = () => {
   const list = slots.default && slots.default()
   const VNodeList = list?.filter((i) => {
-    return i.shapeFlag === 36 && (i.type as { __file: string }).__file.includes('Tabs')
+    const { name } = i.type as { name: string }
+    return name === 'odos-tab'
   })
   return VNodeList?.find((i) => {
     const { value } = i.props as {
