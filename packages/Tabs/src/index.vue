@@ -28,7 +28,6 @@ const randerTabBar = () => {
     const { name } = i.type as { name: string }
     return name === 'odos-tab'
   })
-  console.log(VNodeList)
   return VNodeList?.map((i) => {
     const { value, tab, icon, disabled } = i.props as {
       value: string | number
