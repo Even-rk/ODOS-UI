@@ -1,0 +1,3 @@
+<template>
+  <odos-loading />
+</template>

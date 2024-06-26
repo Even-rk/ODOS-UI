@@ -12,6 +12,7 @@ import { EmptyPlugin } from './Empty'
 import { IconPlugin } from './Icon'
 import { InputPlugin } from './Input'
 import { InputNumberPlugin } from './InputNumber'
+import { LoadingPlugin } from './Loading'
 import { PaginationPlugin } from './Pagination'
 import { PopoverPlugin } from './Popover'
 import { RadioPlugin } from './Radio'
@@ -39,7 +40,8 @@ const Packages = [
   TablePlugin,
   TabsPlugin,
   TagPlugin,
-  TextareaPlugin
+  TextareaPlugin,
+  LoadingPlugin
 ]
 
 const OdosPlugin: any = {
@@ -61,6 +63,7 @@ export * from './Empty'
 export * from './Icon'
 export * from './Input'
 export * from './InputNumber'
+export * from './Loading'
 export * from './Message'
 export * from './Pagination'
 export * from './Popover'

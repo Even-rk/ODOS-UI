@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    OdosAudio: (typeof import('../packages/Audio/src/index.vue'))['default']
     OdosButton: (typeof import('../packages/Button/src/index.vue'))['default']
     OdosCheckBox: (typeof import('../packages/CheckBox/src/index.vue'))['default']
     OdosCheckBoxItem: (typeof import('../packages/CheckBox/src/item.vue'))['default']

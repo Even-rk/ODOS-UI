@@ -35,6 +35,11 @@
     "compClassName": "inputNumber"
   },
   {
+    "compName": "Loading",
+    "compZhName": "Loading加载",
+    "compClassName": "loading"
+  },
+  {
     "compName": "Message",
     "compZhName": "Message提示框",
     "compClassName": "message"
