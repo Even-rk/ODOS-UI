@@ -32,6 +32,8 @@ const copy = async (name: string) => {
   }
 }
 const list: string[] = [
+  'audio-play',
+  'audio-pause',
   'call',
   'endoscope',
   'female',

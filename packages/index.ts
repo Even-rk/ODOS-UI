@@ -6,6 +6,7 @@
  * 根据 /packages 目录下的组件所生成的模块导出，请勿手动修改
  */
 import type { App } from 'vue'
+import { AudioPlugin } from './Audio'
 import { ButtonPlugin } from './Button'
 import { EmptyPlugin } from './Empty'
 import { IconPlugin } from './Icon'
@@ -23,6 +24,7 @@ import { TagPlugin } from './Tag'
 import { TextareaPlugin } from './Textarea'
 
 const Packages = [
+  AudioPlugin,
   ButtonPlugin,
   CheckBoxPlugin,
   DatePickerPlugin,
@@ -51,6 +53,7 @@ const OdosPlugin: any = {
 export default OdosPlugin
 
 // 统一导出
+export * from './Audio'
 export * from './Button'
 export * from './CheckBox'
 export * from './DatePicker'

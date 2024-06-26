@@ -7,6 +7,11 @@ const route: RouteRecordRaw[] = [
     component: () => import('packages/README.md')
   },
   {
+    name: 'Audio',
+    path: '/components/Audio',
+    component: () => import('packages/Audio/docs/README.md')
+  },
+  {
     name: 'Button',
     path: '/components/Button',
     component: () => import('packages/Button/docs/README.md')

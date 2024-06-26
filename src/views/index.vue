@@ -5,6 +5,7 @@
         <h1>ODOS-UI</h1>
         <p>ODOSUI,一套为医疗场景准备的vue3组件库</p>
       </div>
+      <img class="img" src="../assets/imgs/login-bg.svg" />
     </div>
   </div>
 </template>
@@ -21,6 +22,9 @@
     margin-top: 40px;
     margin: 0;
     font-family: Inter, sans-serif;
+  }
+  .img {
+    height: calc(100vh - 300px);
   }
 }
 [text~='center'] {

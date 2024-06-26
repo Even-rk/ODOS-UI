@@ -5,6 +5,11 @@
     "compClassName": "useComp"
   },
   {
+    "compName": "Audio",
+    "compZhName": "Audio音频",
+    "compClassName": "audio"
+  },
+  {
     "compName": "Button",
     "compZhName": "Button按钮",
     "compClassName": "button"
