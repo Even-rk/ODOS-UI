@@ -45,3 +45,6 @@ const getPopupContainer = (triggerNode: Element) => {
   return triggerNode.parentElement || document.body
 }
 </script>
+<style scoped lang="scss">
+@import '/styles/popover.scss';
+</style>
