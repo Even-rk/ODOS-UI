@@ -34,5 +34,4 @@ const loading = {
   }
 }
 
-export default Loading
-export { loading }
+export { Loading, loading }
