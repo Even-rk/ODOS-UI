@@ -6,13 +6,13 @@ import Method from './method.vue'
 
 # Loading加载
 
-## 基础使用
+## 组件使用
 
 <Preview comp-name="Loading" demo-name="demo">
   <demo />
 </Preview>
 
-## 全局方法
+## 方法使用
 
 <Preview comp-name="Loading" demo-name="method">
   <Method />

@@ -1,15 +1,15 @@
 <template>
   <odos-button @click="showLoading">loading</odos-button>
-  <odos-button @click="loading.show(2000)">set time</odos-button>
+  <odos-button @click="useLoadingShow(2000)">set time</odos-button>
 </template>
 
 <script setup lang="ts">
-import { loading } from '../../Loading/src/index'
+import { useLoadingHide, useLoadingShow } from '../utils/loading.jsx'
 const showLoading = async () => {
-  loading.show()
+  useLoadingShow()
   // 模拟数据请求
   await new Promise<void>((resolve) => setTimeout(() => resolve(), 3000))
-  loading.hide()
+  useLoadingHide()
 }
 </script>
 
