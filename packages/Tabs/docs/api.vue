@@ -12,6 +12,12 @@ const tabsdata = [
     default: '--',
     type: 'string | number',
     describe: '当前激活的 tab 面板'
+  },
+  {
+    attribute: 'type',
+    default: 'btn',
+    type: 'btn | line',
+    describe: '面板类型'
   }
 ]
 const tabdata = [

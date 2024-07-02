@@ -1,6 +1,7 @@
 <script setup>
 import Default from './default.vue'
 import Disabled from './disabled.vue'
+import LineType from './lineType.vue'
 import API from './api.vue'
 </script>
 
@@ -16,6 +17,12 @@ import API from './api.vue'
 
 <Preview comp-name="Tabs" demo-name="disabled">
   <Disabled />
+</Preview>
+
+## Line类型
+
+<Preview comp-name="Tabs" demo-name="lineType">
+  <LineType />
 </Preview>
 
 # Tabs API
