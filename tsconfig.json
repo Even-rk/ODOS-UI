@@ -13,11 +13,6 @@
     "packages/**/*.d.ts",
     "packages/**/*.tsx",
     "packages/**/*.vue",
-    "vite.config.*",
-    "vitest.config.*",
-    "cypress.config.*",
-    "nightwatch.conf.*",
-    "playwright.config.*"
   ],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
