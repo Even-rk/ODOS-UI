@@ -39,23 +39,26 @@
         </div>
       </div>
       <div class="odos-date-picker-body">
-        <div class="odos-date-picker-day-title">
-          <div class="odos-date-picker-day-item" v-for="(day, i) in titleDayList" :key="i">
-            {{ day }}
+        <div class="odos-date-picker-week-title">
+          <div class="odos-date-picker-week-item" v-for="(week, i) in titleDayList" :key="i">
+            {{ week }}
           </div>
         </div>
         <div class="odos-date-picker-day-content">
+          <!-- 上个月 -->
           <div
-            class="odos-date-picker-day-item pre"
-            v-for="(day, i) in preDay.day()"
+            class="odos-date-picker-day-pre-item"
+            v-for="(day, i) in Array.from({ length: preDay.day() + 1 }, (_, index) => index + 1).reverse()"
             :key="i"
             @click="datePickerClick(day === 1 ? preDay.date() - day : preDay.date(), 'pre')"
           >
-            {{ day === 1 ? preDay.date() - day : preDay.date() }}
+            {{ preDay.date() + 1 - day }}
           </div>
+          <!-- 本月 -->
           <div
             :class="{
-              active: dayjs(showDate).date() === day && dayjs(datePicker).month() === dayjs(showDate).month()
+              'odos-date-picker-today': isToday(day),
+              'odos-date-picker-selected': isSelect(day)
             }"
             class="odos-date-picker-day-item"
             v-for="(day, i) in days"
@@ -64,9 +67,10 @@
           >
             {{ day }}
           </div>
+          <!-- 下个月 -->
           <div
-            class="odos-date-picker-day-item next"
-            v-for="(day, i) in 42 - (preDay.day() + days)"
+            class="odos-date-picker-day-next-item"
+            v-for="(day, i) in 42 - (preDay.day() + 1 + days)"
             :key="i"
             @click="datePickerClick(day, 'next')"
           >
@@ -81,7 +85,7 @@
 <script lang="ts" setup>
 import { Icon } from 'packages/Icon'
 import dayjs from 'dayjs'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 const { value, title, width, disabled } = defineProps<{
   title?: string
   value?: string
@@ -91,6 +95,16 @@ const { value, title, width, disabled } = defineProps<{
 const emit = defineEmits<{
   (e: 'update:value', data: string): void
 }>()
+// 是否是今天
+const isToday = (day: number) => {
+  return dayjs(new Date()).date() === day && dayjs(new Date()).month() === dayjs(showDate.value).month()
+}
+// 是否被选中
+const isSelect = (day: number) => {
+  const isDay = datePicker.value && dayjs(datePicker.value).date() === day
+  const isMonth = dayjs(datePicker.value).month() === dayjs(showDate.value).month()
+  return datePicker && isDay && isMonth
+}
 
 const WidthSize = computed(() => {
   const widthSize = ref('')
@@ -104,7 +118,7 @@ const WidthSize = computed(() => {
 // 绑定值
 const datePicker = ref()
 // 显示月份
-const showDate = ref()
+const showDate = ref(dayjs(new Date()))
 
 const isShowPicker = ref(false)
 const inputFocus = () => {
