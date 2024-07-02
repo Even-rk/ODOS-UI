@@ -8,6 +8,9 @@
   margin: 0 6px;
   color: #4e5969;
   cursor: pointer;
+  &.odos-tab-line {
+    border: none;
+  }
   &:first-child {
     margin-left: 0;
   }
@@ -17,6 +20,21 @@
   &.odos-tab-selected {
     border: 1px solid #2e6ce4;
     color: #2e6ce4;
+  }
+  &.odos-tab-line-selected {
+    position: relative;
+    border: none;
+    color: #2e6ce4;
+    :global .line {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 2px;
+      border-radius: 20px;
+      background-color: #2e6ce4;
+    }
   }
   :global .icon {
     margin-right: 4px;

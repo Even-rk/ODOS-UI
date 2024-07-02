@@ -20,6 +20,7 @@ interface Emit {
 const emit = defineEmits<Emit>()
 const props = defineProps<{
   currentTab: string
+  type?: 'btn' | 'line'
 }>()
 
 const randerTabBar = () => {
@@ -28,7 +29,7 @@ const randerTabBar = () => {
     const { name } = i.type as { name: string }
     return name === 'odos-tab'
   })
-  return VNodeList?.map((i) => {
+  return VNodeList?.map((i, index) => {
     const { value, tab, icon, disabled } = i.props as {
       value: string | number
       tab: string | VNode
@@ -38,8 +39,10 @@ const randerTabBar = () => {
     return (
       <div
         class={{
+          [styles['odos-tab-line-selected']]: value === props.currentTab && props.type === 'line',
           [styles['odos-tab-selected']]: value === props.currentTab,
           [styles['odos-tab']]: true,
+          [styles['odos-tab-line']]: props.type === 'line',
           [styles['odos-tab-disabled']]: disabled
         }}
         onClick={() => {
@@ -47,6 +50,7 @@ const randerTabBar = () => {
           emit('update:currentTab', value)
         }}
       >
+        {props.type === 'line' && <div class="line" />}
         {icon && (
           <Icon
             size="16px"
@@ -66,7 +70,7 @@ const randerContent = () => {
     const { name } = i.type as { name: string }
     return name === 'odos-tab'
   })
-  return VNodeList?.find((i) => {
+  return VNodeList?.find((i, index) => {
     const { value } = i.props as {
       value: string | number
     }
