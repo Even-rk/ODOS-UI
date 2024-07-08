@@ -32,6 +32,10 @@ const copy = async (name: string) => {
   }
 }
 const list: string[] = [
+  'missed',
+  'callIn',
+  'call-out',
+  'squared',
   'mute',
   'hang-up',
   'Arrow',
@@ -102,13 +106,16 @@ const list: string[] = [
 .radio {
   display: flex;
   align-items: center;
+
   h1 {
     margin-right: 50px;
   }
 }
+
 .demo-icon {
   display: flex;
   flex-wrap: wrap;
+
   .copy-icon {
     width: 16.66%;
     height: 100px;
@@ -120,25 +127,30 @@ const list: string[] = [
     border-radius: 10px;
     margin: 10px;
     cursor: pointer;
+
     .icon {
       width: 30px;
       height: 30px;
       transition: all 0.5s;
     }
+
     .value {
       margin-top: 10px;
       color: rgba(0, 0, 0, 0.88);
       font-size: 14px;
       transition: all 0.5s;
     }
+
     &:hover {
       background: #3f6bdc;
       border: 1px solid transparent;
+
       .icon {
         width: 40px;
         height: 40px;
         color: #fff;
       }
+
       .value {
         color: #fff;
         font-size: 18px;
