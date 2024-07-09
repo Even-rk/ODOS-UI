@@ -1,6 +1,5 @@
 @mixin bgc($bgc) {
   background-color: $bgc;
-  mix-blend-mode: multiply;
 }
 @mixin border($color) {
   box-sizing: border-box;
