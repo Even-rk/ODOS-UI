@@ -17,6 +17,7 @@ const slots = useSlots()
 interface Emit {
   (e: 'update:currentTab', val: string | number): void
 }
+
 const emit = defineEmits<Emit>()
 const props = defineProps<{
   currentTab: string
@@ -29,7 +30,7 @@ const randerTabBar = () => {
     const { name } = i.type as { name: string }
     return name === 'odos-tab'
   })
-  return VNodeList?.map((i, index) => {
+  return VNodeList?.map((i) => {
     const { value, tab, icon, disabled } = i.props as {
       value: string | number
       tab: string | VNode

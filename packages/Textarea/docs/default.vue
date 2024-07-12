@@ -1,5 +1,5 @@
 <template>
-  <odos-textarea v-model:value="textarea"></odos-textarea>
+  <odos-textarea v-model:value="textarea" />
 </template>
 
 <script setup lang="ts">

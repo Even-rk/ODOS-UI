@@ -27,7 +27,16 @@ type Item = {
 
 const slots = useSlots()
 const randerContent = () => {
-  const list = slots.default && (slots.default() as Item[])
+  const list = ref([] as Item[])
+  list.value = (slots.default && slots.default()) as Item[]
+  if (list.value.length <= 1) {
+    return CheckBoxItem((slots.default && slots.default()[0].children) as Item[])
+  } else {
+    return CheckBoxItem(list.value)
+  }
+}
+
+const CheckBoxItem = (list: Item[]) => {
   return (
     <>
       {list?.map((it: Item, index: number) => (
