@@ -39,7 +39,11 @@
             background-color: #f2f3f5;
           }
         }
-      }
+        .ant-table-expanded-row {
+          *{
+            background-color: #F2F3F5 !important;
+          }
+        }      }
     }
   }
 }

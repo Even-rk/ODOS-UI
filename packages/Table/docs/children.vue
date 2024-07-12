@@ -1,5 +1,9 @@
 <template>
-  <odos-table :columns="columns" :data="data"></odos-table>
+  <odos-table :columns="columns" :data="data" expandedRowRender>
+    <template #expandedRowRender>
+      <odos-table :columns="columns" :data="data" />
+    </template>
+  </odos-table>
 </template>
 
 <script setup lang="tsx">

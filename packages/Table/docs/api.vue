@@ -39,6 +39,12 @@ const data = [
     default: '--',
     type: 'string',
     describe: '自定义空数据时的显示文字'
+  },
+  {
+    attribute: 'expandedRowRender',
+    default: 'false',
+    type: 'boolean',
+    describe: '控制镶嵌子表格'
   }
 ]
 

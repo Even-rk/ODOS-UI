@@ -22,13 +22,17 @@
       <template #emptyText>
         <Empty :description="emptyText" />
       </template>
+      <!-- 镶嵌子表格 -->
+      <template #expandedRowRender v-if="expandedRowRender">
+        <slot name="expandedRowRender" />
+      </template>
     </Table>
   </ConfigProvider>
 </template>
 
 <script setup lang="ts">
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
-import { Table, ConfigProvider, Empty } from 'ant-design-vue'
+import { ConfigProvider, Empty, Table } from 'ant-design-vue'
 import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
 export type Column = {
   align?: 'left' | 'right' | 'center'
@@ -47,6 +51,7 @@ const { data, columns, loading, isSelection, emptyText } = defineProps<{
   scroll?: { x?: number; y?: number }
   isSelection?: boolean
   emptyText?: string
+  expandedRowRender?: boolean
 }>()
 
 const emit = defineEmits<{

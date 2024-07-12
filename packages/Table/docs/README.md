@@ -1,9 +1,9 @@
 <script setup>
 import Default from './default.vue'
 import Selection from './select.vue'
+import Children from './children.vue'
 import Fixed from './fixed.vue'
 import API from './api.vue'
-import ColumnsAPI from './columns-api.vue'
 </script>
 
 # Table表格
@@ -26,11 +26,21 @@ import ColumnsAPI from './columns-api.vue'
   <Fixed />
 </Preview>
 
+## 镶嵌子表格
+
+<Preview comp-name="Table" demo-name="children">
+  <Children />
+</Preview>
+
 # Table API
 
 ## Table 属性
 
 <API />
+
+## Table slot
+
+<Slot />
 
 ## Columns 属性
 
