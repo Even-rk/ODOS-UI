@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="tsx">
-import styles from './index.module.scss'
+import '/styles/tabs.scss'
 import Icon from '../../Icon/src/index.vue'
 import { ref, useSlots, type VNode } from 'vue'
 
@@ -53,11 +53,11 @@ const Tabbar = (list: Item[]) => {
     return (
       <div
         class={{
-          [styles['odos-tab-line-selected']]: value === props.currentTab && props.type === 'line',
-          [styles['odos-tab-selected']]: value === props.currentTab,
-          [styles['odos-tab']]: true,
-          [styles['odos-tab-line']]: props.type === 'line',
-          [styles['odos-tab-disabled']]: disabled
+          'odos-tab-line-selected': value === props.currentTab && props.type === 'line',
+          'odos-tab-selected': value === props.currentTab,
+          'odos-tab': true,
+          'odos-tab-line': props.type === 'line',
+          'odos-tab-disabled': disabled
         }}
         onClick={() => {
           if (disabled) return
