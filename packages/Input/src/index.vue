@@ -86,8 +86,8 @@ const WidthSize = computed(() => {
 })
 
 const handleInput = (e: Event) => {
-  emit('input', e)
   emit('update:value', (e.target as HTMLInputElement).value)
+  emit('input', e)
 }
 
 const handelBlur = ($event: Event) => {
