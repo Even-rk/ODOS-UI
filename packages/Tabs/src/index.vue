@@ -10,7 +10,7 @@
 <script setup lang="tsx">
 import styles from './index.module.scss'
 import Icon from '../../Icon/src/index.vue'
-import { useSlots, type VNode } from 'vue'
+import { ref, useSlots, type VNode } from 'vue'
 
 const slots = useSlots()
 
@@ -24,8 +24,21 @@ const props = defineProps<{
   type?: 'btn' | 'line'
 }>()
 
+type Item = {
+  props: Object
+  type: Object
+}
+
 const randerTabBar = () => {
-  const list = slots.default && slots.default()
+  const list = ref([] as Item[])
+  list.value = (slots.default && slots.default()) as Item[]
+  if (list.value.length <= 1) {
+    return Tabbar((slots.default && slots.default()[0].children) as Item[])
+  } else {
+    return Tabbar(list.value)
+  }
+}
+const Tabbar = (list: Item[]) => {
   const VNodeList = list?.filter((i) => {
     const { name } = i.type as { name: string }
     return name === 'odos-tab'
@@ -66,12 +79,20 @@ const randerTabBar = () => {
 }
 
 const randerContent = () => {
-  const list = slots.default && slots.default()
+  const list = ref([] as Item[])
+  list.value = (slots.default && slots.default()) as Item[]
+  if (list.value.length <= 1) {
+    return Content((slots.default && slots.default()[0].children) as Item[])
+  } else {
+    return Content(list.value)
+  }
+}
+const Content = (list: Item[]) => {
   const VNodeList = list?.filter((i) => {
     const { name } = i.type as { name: string }
     return name === 'odos-tab'
   })
-  return VNodeList?.find((i, index) => {
+  return VNodeList?.find((i) => {
     const { value } = i.props as {
       value: string | number
     }
