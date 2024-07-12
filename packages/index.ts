@@ -9,6 +9,7 @@ import type { App } from 'vue'
 import { AudioPlugin } from './Audio'
 import { ButtonPlugin } from './Button'
 import { EmptyPlugin } from './Empty'
+import { FormPlugin } from './Form'
 import { IconPlugin } from './Icon'
 import { InputPlugin } from './Input'
 import { InputNumberPlugin } from './InputNumber'
@@ -30,6 +31,7 @@ const Packages = [
   CheckBoxPlugin,
   DatePickerPlugin,
   EmptyPlugin,
+  FormPlugin,
   IconPlugin,
   InputPlugin,
   InputNumberPlugin,
@@ -60,6 +62,7 @@ export * from './Button'
 export * from './CheckBox'
 export * from './DatePicker'
 export * from './Empty'
+export * from './Form'
 export * from './Icon'
 export * from './Input'
 export * from './InputNumber'

@@ -32,6 +32,11 @@ const route: RouteRecordRaw[] = [
     component: () => import('packages/Empty/docs/README.md')
   },
   {
+    name: 'Form',
+    path: '/components/Form',
+    component: () => import('packages/Form/docs/README.md')
+  },
+  {
     name: 'Icon',
     path: '/components/Icon',
     component: () => import('packages/Icon/docs/README.md')

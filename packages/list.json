@@ -20,6 +20,11 @@
     "compClassName": "empty"
   },
   {
+    "compName": "Form",
+    "compZhName": "Form表单",
+    "compClassName": "form"
+  },
+  {
     "compName": "Icon",
     "compZhName": "Icon图标",
     "compClassName": "icon"

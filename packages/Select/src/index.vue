@@ -40,7 +40,7 @@ const { value, width, placeholder, options, title, allowClear, disabled, multipl
     title?: string
     width?: string | number
     placeholder?: string
-    options?: { value: string; label: string }[]
+    options?: { value: string | number; label: string }[]
     allowClear?: boolean
     disabled?: boolean
     multiple?: boolean

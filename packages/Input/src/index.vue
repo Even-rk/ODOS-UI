@@ -2,6 +2,7 @@
   <div class="odos-input" :class="{ 'odos-input-disabled': disabled }" :style="{ width: WidthSize }">
     <div class="odos-input-title" v-if="title">{{ title }}</div>
     <input
+      :style="inputStyle"
       :class="{ 'odos-input-isTitle': title }"
       :type="typeName || 'text'"
       :value="value"
@@ -14,6 +15,9 @@
     />
     <div v-if="type" class="odos-icon" :class="{ 'odos-search-icon': type == 'search' }" @click="iconClick">
       <Icon :name="iconName" color="#86909c" />
+    </div>
+    <div class="odos-unit">
+      {{ unit }}
     </div>
   </div>
 </template>
@@ -34,7 +38,7 @@ onUpdated(() => {
   }
 })
 
-const { value, width, placeholder, disabled, isFocus, title, type } = defineProps<{
+const { value, width, placeholder, disabled, isFocus, title, type, unit } = defineProps<{
   type?: 'text' | 'password' | 'search'
   value?: string
   width?: string | number
@@ -42,6 +46,7 @@ const { value, width, placeholder, disabled, isFocus, title, type } = defineProp
   disabled?: boolean
   isFocus?: boolean
   title?: string
+  unit?: string
 }>()
 const Type = ref(type)
 // typeName
@@ -52,7 +57,16 @@ const typeName = computed(() => {
 const iconName = computed(() => {
   return Type.value == 'password' ? 'hide' : Type.value == 'search' ? 'Search' : 'View'
 })
-
+// inputStyle
+const inputStyle = computed(() => {
+  if (type === 'password' || type === 'search' || unit) {
+    return {
+      paddingRight: '35px'
+    }
+  } else {
+    return {}
+  }
+})
 const iconClick = () => {
   if (Type && Type.value == 'password') {
     Type.value = 'text'

@@ -39,6 +39,12 @@ const data = [
     default: 'false',
     type: 'boolean',
     describe: '初始化获取焦点'
+  },
+  {
+    attribute: 'unit',
+    default: '--',
+    type: 'string',
+    describe: '设置单位'
   }
 ]
 

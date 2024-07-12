@@ -4,6 +4,7 @@
   height: 40px;
   display: flex;
   align-items: center;
+
   input {
     display: flex;
     box-sizing: border-box;
@@ -15,28 +16,40 @@
     height: 100%;
     border: 1px solid #f2f3f5;
     outline: none;
+
     &:hover {
       background: #e5e6eb;
     }
+
     &:focus-within {
       border: 1px solid #2e6ce4;
       background: #fff;
     }
+
     &::placeholder {
       color: #86909c;
     }
+
     &.odos-input-isTitle {
       padding-left: 88px;
     }
   }
+
   .odos-icon {
     position: absolute;
     right: 12px;
     cursor: pointer;
+
     &.odos-search-icon {
       cursor: auto;
     }
   }
+
+  .odos-unit {
+    position: absolute;
+    right: 12px;
+  }
+
   .odos-input-title {
     position: absolute;
     width: 80px;
@@ -50,9 +63,11 @@
     border-right: 1px solid #c9cdd4;
     z-index: 1;
   }
+
   &.odos-input-disabled {
     background: #f2f3f5;
     border-radius: 8px;
+
     input:hover {
       cursor: not-allowed;
       background: #f2f3f5;

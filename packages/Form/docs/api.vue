@@ -5,40 +5,28 @@
 <script setup lang="ts">
 const data = [
   {
-    attribute: 'v-model:value',
-    default: '--',
-    type: 'string',
-    describe: '输入框内容'
+    attribute: 'type',
+    default: 'default',
+    type: 'primary | default | line | text',
+    describe: '类型'
   },
   {
-    attribute: 'width',
-    default: '100%',
-    type: 'string | number',
-    describe: '输入框的宽度'
-  },
-  {
-    attribute: 'title',
-    default: '--',
-    type: 'string',
-    describe: '用于设置title'
-  },
-  {
-    attribute: 'placeholder',
-    default: '请输入',
-    type: 'string',
-    describe: '输入框占位描述'
+    attribute: 'size',
+    default: 'large',
+    type: 'small | medium | large',
+    describe: '大小'
   },
   {
     attribute: 'disabled',
     default: 'false',
     type: 'boolean',
-    describe: '是否禁用'
+    describe: '按钮是否为禁用状态'
   },
   {
-    attribute: 'unit',
+    attribute: 'icon',
     default: '--',
     type: 'string',
-    describe: '设置单位'
+    describe: '图标组件'
   }
 ]
 

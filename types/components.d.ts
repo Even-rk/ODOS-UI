@@ -13,6 +13,8 @@ declare module 'vue' {
     OdosCheckBoxItem: (typeof import('../packages/CheckBox/src/item.vue'))['default']
     OdosDatePicker: (typeof import('../packages/datePicker/src/index.vue'))['default']
     OdosEmpty: (typeof import('../packages/Empty/src/index.vue'))['default']
+    OdosForm: (typeof import('../packages/Form/src/index.vue'))['default']
+    OdosFormItem: (typeof import('../packages/Form/src/item.vue'))['default']
     OdosIcon: (typeof import('../packages/Icon/src/index.vue'))['default']
     OdosInput: (typeof import('../packages/Input/src/index.vue'))['default']
     OdosInputNumber: (typeof import('../packages/InputNumber/src/index.vue'))['default']
