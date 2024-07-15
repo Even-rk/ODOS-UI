@@ -22,6 +22,7 @@ type Item = {
     label?: string | number
     value?: string | number
     alarm?: boolean
+    disabled?: boolean
   }
 }
 
@@ -44,9 +45,11 @@ const CheckBoxItem = (list: Item[]) => {
           class={{
             'odos-check-box-item': true,
             'active-alarm': it.props.alarm,
-            active: props.value?.includes(it.props.value as never)
+            active: props.value?.includes(it.props.value as never),
+            disabled: it.props.disabled
           }}
           onClick={() => {
+            if (it.props.disabled) return
             if (props.value?.includes(it.props.value as never)) {
               Value.value.splice(Value.value.indexOf(it.props.value as never), 1)
             } else {

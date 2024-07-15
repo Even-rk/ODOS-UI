@@ -22,6 +22,7 @@ type Item = {
     label?: string | number
     value?: string | number
     alarm?: boolean
+    disabled?: boolean
   }
 }
 
@@ -43,10 +44,12 @@ const RadioItem = (list: Item[]) => {
           class={{
             'odos-radio-item': true,
             'active-alarm': it.props.alarm,
-            active: it.props.value == props.value
+            active: it.props.value == props.value,
+            disabled: it.props.disabled
           }}
           style={{ width: props.itemWidth }}
           onClick={() => {
+            if (it.props.disabled) return
             if (it.props.value === props.value) {
               emit('update:value', undefined)
             } else {

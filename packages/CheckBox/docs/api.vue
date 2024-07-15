@@ -64,6 +64,12 @@ const data = [
     default: 'false',
     type: 'boolean',
     describe: '是否设定当前按钮为警示按钮'
+  },
+  {
+    attribute: 'disabled',
+    default: 'false',
+    type: 'boolean',
+    describe: '禁用'
   }
 ]
 

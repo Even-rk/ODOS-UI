@@ -9,5 +9,6 @@ defineProps<{
   label?: string | number
   value?: string | number
   alarm?: boolean
+  disabled?: boolean
 }>()
 </script>
