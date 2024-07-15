@@ -1,12 +1,12 @@
 <template>
-  <div class="odos-select" :class="{ 'odos-select-disabled': disabled }" :style="{ width: WidthSize }">
+  <div class="odos-select" :class="{ 'odos-select-disabled': disabled }" :style="{ width }">
     <div class="odos-select-title" v-if="title">{{ title }}</div>
     <Select
       :class="{ 'odos-select-isTitle': title }"
       @change="selectChange($event as string | number)"
       showArrow
       :value="value"
-      :style="{ width: WidthSize }"
+      :style="{ width }"
       :placeholder="placeholder || '请选择'"
       :options="options"
       :allowClear="allowClear"
@@ -33,12 +33,13 @@
 <script setup lang="ts">
 import { Icon } from 'packages/Icon'
 import { Select } from 'ant-design-vue'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 const { value, width, placeholder, options, title, allowClear, disabled, multiple, maxTagCount, showSearch } =
   defineProps<{
     value?: string | number | string[] | number[]
     title?: string
-    width?: string | number
+    width?: string
+    height?: string
     placeholder?: string
     options?: { value: string | number; label: string }[]
     allowClear?: boolean
@@ -49,15 +50,6 @@ const { value, width, placeholder, options, title, allowClear, disabled, multipl
     dropdown?: boolean
   }>()
 
-const WidthSize = computed(() => {
-  const widthSize = ref('')
-  if (typeof width === 'number') {
-    widthSize.value = `${width}px`
-  } else if (typeof width === 'string') {
-    widthSize.value = width
-  }
-  return widthSize.value
-})
 
 const emit = defineEmits<{
   (e: 'update:value', data: string | number | undefined): void
