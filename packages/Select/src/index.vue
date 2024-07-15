@@ -1,12 +1,12 @@
 <template>
-  <div class="odos-select" :class="{ 'odos-select-disabled': disabled }" :style="{ width }">
+  <div class="odos-select" :class="{ 'odos-select-disabled': disabled }" :style="{ width, height }">
     <div class="odos-select-title" v-if="title">{{ title }}</div>
     <Select
       :class="{ 'odos-select-isTitle': title }"
       @change="selectChange($event as string | number)"
       showArrow
       :value="value"
-      :style="{ width }"
+      :style="{ width, height }"
       :placeholder="placeholder || '请选择'"
       :options="options"
       :allowClear="allowClear"
@@ -34,7 +34,7 @@
 import { Icon } from 'packages/Icon'
 import { Select } from 'ant-design-vue'
 import { computed } from 'vue'
-const { value, width, placeholder, options, title, allowClear, disabled, multiple, maxTagCount, showSearch } =
+const { value, width, placeholder, options, title, allowClear, disabled, multiple, maxTagCount, showSearch, height } =
   defineProps<{
     value?: string | number | string[] | number[]
     title?: string

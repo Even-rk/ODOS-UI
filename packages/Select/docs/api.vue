@@ -29,6 +29,12 @@ const data = [
     describe: '宽度'
   },
   {
+    attribute: 'height',
+    default: '40px',
+    type: 'string',
+    describe: '高度'
+  },
+  {
     attribute: 'placeholder',
     default: '请选择',
     type: 'string',
