@@ -22,7 +22,7 @@ const { description, image, width } = defineProps<{
 }>()
 
 const Image = computed(() => {
-  if (!image || image === 'DEFAULT') {
+  if (image === 'DEFAULT') {
     return Empty.PRESENTED_IMAGE_DEFAULT
   } else if (image === 'SIMPLE') {
     return Empty.PRESENTED_IMAGE_SIMPLE

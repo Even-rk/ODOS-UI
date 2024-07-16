@@ -23,8 +23,15 @@
           <Icon name="ArowDown" size="20px" />
         </slot>
       </template>
-      <template #dropdownRender v-if="dropdown">
-        <slot name="dropdownRender" />
+      <template #dropdownRender="{ menuNode }">
+        <slot name="dropdownRender" :menu="menuNode">
+          <VNodes :vnodes="menuNode" />
+        </slot>
+      </template>
+      <template #notFoundContent>
+        <slot name="notFoundContent">
+          <Empty />
+        </slot>
       </template>
     </Select>
   </div>
@@ -32,8 +39,8 @@
 
 <script setup lang="ts">
 import { Icon } from 'packages/Icon'
-import { Select } from 'ant-design-vue'
-import { computed } from 'vue'
+import { Empty, Select } from 'ant-design-vue'
+import { computed, defineComponent } from 'vue'
 const { value, width, placeholder, options, title, allowClear, disabled, multiple, maxTagCount, showSearch, height } =
   defineProps<{
     value?: string | number | string[] | number[]
@@ -50,6 +57,17 @@ const { value, width, placeholder, options, title, allowClear, disabled, multipl
     dropdown?: boolean
   }>()
 
+const VNodes = defineComponent({
+  props: {
+    vnodes: {
+      type: Object,
+      required: true
+    }
+  },
+  render() {
+    return this.vnodes
+  }
+})
 
 const emit = defineEmits<{
   (e: 'update:value', data: string | number | undefined): void
