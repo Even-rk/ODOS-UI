@@ -5,8 +5,13 @@ import warning from './../icon/warning.svg'
 import error from './../icon/error.svg'
 import '../../../styles/message.scss'
 import type { VNode } from 'vue'
+import type { JSX } from 'vue/jsx-runtime'
 // info
-export const useInfoMessage = (data?: { content: string | VNode; time?: number } | string) => {
+export const useInfoMessage = (data?: {
+  content: string | VNode | (() => JSX.Element);
+  time?: number,
+  key?: string | number
+} | string) => {
   if (typeof data === 'string') {
     message.info({
       content: data,
@@ -15,6 +20,7 @@ export const useInfoMessage = (data?: { content: string | VNode; time?: number }
     })
   } else if (typeof data === 'object') {
     message.info({
+      key: data.key,
       content: data.content,
       icon: () => <img class="icon" src={info} />,
       duration: data.time,
@@ -25,7 +31,11 @@ export const useInfoMessage = (data?: { content: string | VNode; time?: number }
   }
 }
 // error
-export const useErrorMessage = (data?: { content: string | VNode; time?: number } | string) => {
+export const useErrorMessage = (data?: {
+  content: string | VNode | (() => JSX.Element);
+  time?: number,
+  key?: string | number
+} | string) => {
   if (typeof data === 'string') {
     message.error({
       content: data,
@@ -34,6 +44,7 @@ export const useErrorMessage = (data?: { content: string | VNode; time?: number 
     })
   } else if (typeof data === 'object') {
     message.error({
+      key: data.key,
       content: data.content,
       icon: () => <img class="icon" src={error} />,
       duration: data.time,
@@ -44,7 +55,11 @@ export const useErrorMessage = (data?: { content: string | VNode; time?: number 
   }
 }
 // success
-export const useSuccessMessage = (data?: { content: string | VNode; time?: number } | string) => {
+export const useSuccessMessage = (data?: {
+  content: string | VNode | (() => JSX.Element);
+  time?: number,
+  key?: string | number
+} | string) => {
   if (typeof data === 'string') {
     message.success({
       content: data,
@@ -53,6 +68,7 @@ export const useSuccessMessage = (data?: { content: string | VNode; time?: numbe
     })
   } else if (typeof data === 'object') {
     message.success({
+      key: data.key,
       content: data.content,
       icon: () => <img class="icon" src={success} />,
       duration: data.time,
@@ -64,7 +80,11 @@ export const useSuccessMessage = (data?: { content: string | VNode; time?: numbe
 }
 
 // success
-export const useWarningMessage = (data?: { content: string | VNode; time?: number } | string) => {
+export const useWarningMessage = (data?: {
+  content: string | VNode | (() => JSX.Element);
+  time?: number,
+  key?: string | number
+} | string) => {
   if (typeof data === 'string') {
     message.warning({
       content: data,
@@ -73,6 +93,7 @@ export const useWarningMessage = (data?: { content: string | VNode; time?: numbe
     })
   } else if (typeof data === 'object') {
     message.warning({
+      key: data.key,
       content: data.content,
       icon: () => <img class="icon" src={warning} />,
       duration: data.time,
@@ -84,7 +105,11 @@ export const useWarningMessage = (data?: { content: string | VNode; time?: numbe
 }
 
 // success
-export const useLoadingMessage = (data?: { content: string | VNode; time?: number } | string) => {
+export const useLoadingMessage = (data?: {
+  content: string | VNode | (() => JSX.Element);
+  time?: number,
+  key?: string | number
+} | string) => {
   if (typeof data === 'string') {
     message.loading({
       content: data,
@@ -92,6 +117,7 @@ export const useLoadingMessage = (data?: { content: string | VNode; time?: numbe
     })
   } else if (typeof data === 'object') {
     message.loading({
+      key: data.key,
       content: data.content,
       duration: data.time,
       class: 'odos-loading-msg'
@@ -99,4 +125,9 @@ export const useLoadingMessage = (data?: { content: string | VNode; time?: numbe
   } else {
     throw Error('内容不能为空')
   }
+}
+
+// destroy
+export const useDestroyMessage = (key?: string | number) => {
+  message.destroy(key)
 }

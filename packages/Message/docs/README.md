@@ -12,3 +12,8 @@ import API from './api.vue'
 ## Message 配置
 
 <API/>
+
+### 全局方法
+
+useDestroyMessage()
+也可通过 useDestroyMessage(key) 来关闭一条消息。
