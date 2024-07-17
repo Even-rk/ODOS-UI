@@ -32,6 +32,7 @@ const copy = async (name: string) => {
   }
 }
 const list: string[] = [
+  'transfer',
   'missed',
   'callIn',
   'call-out',
