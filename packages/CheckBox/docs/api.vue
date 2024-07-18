@@ -1,6 +1,8 @@
 <template>
   <h2>CheckBox 属性</h2>
   <odos-table :columns="apiColumns" :data="apiData"></odos-table>
+  <h2>CheckBox event</h2>
+  <odos-table :columns="eventcolumns" :data="eventdata"></odos-table>
   <h2>CheckBoxItem 属性</h2>
   <odos-table :columns="columns" :data="data"></odos-table>
 </template>
@@ -45,7 +47,7 @@ const apiColumns = [
     dataIndex: 'default'
   }
 ]
-
+// item属性
 const data = [
   {
     attribute: 'label',
@@ -89,6 +91,29 @@ const columns = [
   {
     title: '默认值',
     dataIndex: 'default'
+  }
+]
+// 事件
+const eventdata = [
+  {
+    eventName: 'change',
+    type: 'Function($event)',
+    describe: '选中内容改变后触发'
+  }
+]
+
+const eventcolumns = [
+  {
+    title: '事件名',
+    dataIndex: 'eventName'
+  },
+  {
+    title: '说明',
+    dataIndex: 'describe'
+  },
+  {
+    title: '类型',
+    dataIndex: 'type'
   }
 ]
 </script>

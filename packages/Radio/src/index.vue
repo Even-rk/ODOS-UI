@@ -14,7 +14,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:value', data?: string | number): void
+  (e: 'update:value' | 'change', data?: string | number): void
 }>()
 
 type Item = {
@@ -52,8 +52,10 @@ const RadioItem = (list: Item[]) => {
             if (it.props.disabled) return
             if (it.props.value === props.value) {
               emit('update:value', undefined)
+              emit('change', undefined)
             } else {
               emit('update:value', it.props.value)
+              emit('change', it.props.value)
             }
           }}
         >

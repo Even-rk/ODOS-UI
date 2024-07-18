@@ -14,7 +14,7 @@ const props = defineProps<{
 
 const Value = ref([])
 const emit = defineEmits<{
-  (e: 'update:value', data?: string[] | number[]): void
+  (e: 'update:value' | 'change', data?: string[] | number[]): void
 }>()
 
 type Item = {
@@ -56,6 +56,7 @@ const CheckBoxItem = (list: Item[]) => {
               Value.value.push(it.props.value as never)
             }
             emit('update:value', Value.value)
+            emit('change', Value.value)
           }}
         >
           {it.props.label}

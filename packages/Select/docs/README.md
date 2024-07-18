@@ -2,6 +2,7 @@
 import demo from './demo.vue'
 import Disabled from './disabled.vue'
 import API from './api.vue'
+import Event from './event.vue'
 import SLOT from './slot.vue'
 import Multiple from './multiple.vue'
 import TitleDemo from './title.vue'
@@ -38,6 +39,10 @@ import TitleDemo from './title.vue'
 ### Select 属性
 
 <API/>
+
+### Select event
+
+<Event/>
 
 ### Select 插槽
 

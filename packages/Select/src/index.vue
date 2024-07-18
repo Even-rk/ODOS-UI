@@ -41,21 +41,32 @@
 import { Icon } from 'packages/Icon'
 import { Empty, Select } from 'ant-design-vue'
 import { computed, defineComponent } from 'vue'
-const { value, width, placeholder, options, title, allowClear, disabled, multiple, maxTagCount, showSearch, height } =
-  defineProps<{
-    value?: string | number | string[] | number[]
-    title?: string
-    width?: string
-    height?: string
-    placeholder?: string
-    options?: { value: string | number; label: string }[]
-    allowClear?: boolean
-    disabled?: boolean
-    multiple?: boolean
-    maxTagCount?: number
-    showSearch?: boolean
-    dropdown?: boolean
-  }>()
+const {
+  value,
+  width,
+  placeholder,
+  options,
+  title,
+  allowClear,
+  disabled,
+  multiple,
+  maxTagCount,
+  showSearch,
+  height
+} = defineProps<{
+  value?: string | number | string[] | number[]
+  title?: string
+  width?: string
+  height?: string
+  placeholder?: string
+  options?: { value: string | number; label: string }[]
+  allowClear?: boolean
+  disabled?: boolean
+  multiple?: boolean
+  maxTagCount?: number
+  showSearch?: boolean
+  dropdown?: boolean
+}>()
 
 const VNodes = defineComponent({
   props: {
@@ -70,11 +81,12 @@ const VNodes = defineComponent({
 })
 
 const emit = defineEmits<{
-  (e: 'update:value', data: string | number | undefined): void
+  (e: 'update:value' | 'change', data?: string | number | string[] | number[]): void
 }>()
 
-const selectChange = (value?: string | number) => {
+const selectChange = (value?: string | number | string[] | number[]) => {
   emit('update:value', value)
+  emit('change', value)
 }
 
 const mode = computed(() => {

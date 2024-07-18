@@ -1,6 +1,8 @@
 <template>
   <h2>Radio 属性</h2>
   <odos-table :columns="apiColumns" :data="apiData"></odos-table>
+  <h2>Radio event</h2>
+  <odos-table :columns="eventcolumns" :data="eventdata"></odos-table>
   <h2>RadioItem 属性</h2>
   <odos-table :columns="itemColumns" :data="itemData"></odos-table>
 </template>
@@ -88,6 +90,30 @@ const itemColumns = [
   {
     title: '默认值',
     dataIndex: 'default'
+  }
+]
+
+// 事件
+const eventdata = [
+  {
+    eventName: 'change',
+    type: 'Function($event)',
+    describe: '选中内容改变后触发'
+  }
+]
+
+const eventcolumns = [
+  {
+    title: '事件名',
+    dataIndex: 'eventName'
+  },
+  {
+    title: '说明',
+    dataIndex: 'describe'
+  },
+  {
+    title: '类型',
+    dataIndex: 'type'
   }
 ]
 </script>
