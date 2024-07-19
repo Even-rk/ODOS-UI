@@ -15,6 +15,12 @@ const data = [
     default: '3000',
     type: 'number',
     describe: '显示时间，单位为毫秒。 设为 0 则不会自动关闭'
+  },
+  {
+    attribute: 'key',
+    default: '--',
+    type: 'string | number',
+    describe: '当前提示的唯一标志'
   }
 ]
 

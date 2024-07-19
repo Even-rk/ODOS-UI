@@ -12,7 +12,6 @@ const props = defineProps<{
   value?: string[] | number[]
 }>()
 
-const Value = ref([])
 const emit = defineEmits<{
   (e: 'update:value' | 'change', data?: string[] | number[]): void
 }>()
@@ -51,12 +50,16 @@ const CheckBoxItem = (list: Item[]) => {
           onClick={() => {
             if (it.props.disabled) return
             if (props.value?.includes(it.props.value as never)) {
-              Value.value.splice(Value.value.indexOf(it.props.value as never), 1)
+              props.value.splice(props.value.indexOf(it.props.value as never), 1)
+            } else if (props.value) {
+              props.value?.push(it.props.value as never)
             } else {
-              Value.value.push(it.props.value as never)
+              emit('update:value', [it.props.value as never])
+              emit('change', [it.props.value as never])
+              return
             }
-            emit('update:value', Value.value)
-            emit('change', Value.value)
+            emit('change', props.value)
+            emit('update:value', props.value)
           }}
         >
           {it.props.label}
