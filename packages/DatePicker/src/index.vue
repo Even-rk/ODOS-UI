@@ -7,6 +7,7 @@
     ref="datePickerRef"
     :style="{ width: WidthSize }"
   >
+    <Icon class="odos-date-picker-icon" name="Callender" />
     <div class="odos-date-picker-title" v-if="title">{{ title }}</div>
     <input
       ref="inputRef"
