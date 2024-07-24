@@ -1,11 +1,5 @@
 <template>
-  <button
-    ref="btnRef"
-    @click="$emit('click', $event)"
-    class="odos-btn"
-    :class="styleClass"
-    :disabled="disabled"
-  >
+  <button ref="btnRef" @click="Click" class="odos-btn" :class="styleClass" :disabled="disabled">
     <slot name="icon">
       <div :class="styleIconClass" v-if="icon">
         <Icon :name="icon" :color="iconColor" />
@@ -48,7 +42,12 @@ const styleIconClass = computed(() => {
 watchEffect(() => {
   if (!slots.default) iconColor.value = '#4E5969'
 })
-defineEmits(['click'])
+const emit = defineEmits(['click'])
+
+const Click = (e: Event) => {
+  if (disabled) return
+  emit('click', e)
+}
 </script>
 
 <style lang="scss" scoped>
