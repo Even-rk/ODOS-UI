@@ -65,10 +65,10 @@ const data = [
     describe: '配置是否可搜索'
   },
   {
-    attribute: 'dropdown',
-    default: 'false',
-    type: 'boolean',
-    describe: '是否自定义下拉框内容，设置为true，下拉框内容就会被替换为插槽dropdownRender'
+    attribute: 'filterProp',
+    default: 'label',
+    type: 'string',
+    describe: '搜索时过滤对应的 option 属性'
   }
 ]
 

@@ -5,6 +5,7 @@
       :class="{ 'odos-select-isTitle': title }"
       @change="selectChange($event as string | number)"
       showArrow
+      :optionFilterProp="filterProp || 'label'"
       :value="value"
       :style="{ width, height }"
       :placeholder="placeholder || '请选择'"
@@ -52,7 +53,8 @@ const {
   multiple,
   maxTagCount,
   showSearch,
-  height
+  height,
+  filterProp
 } = defineProps<{
   value?: string | number | string[] | number[]
   title?: string
@@ -66,6 +68,7 @@ const {
   maxTagCount?: number
   showSearch?: boolean
   dropdown?: boolean
+  filterProp?: string
 }>()
 
 const VNodes = defineComponent({

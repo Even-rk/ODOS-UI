@@ -10,7 +10,7 @@ const data = [
   },
   {
     slotName: 'dropdownRender',
-    describe: '自定义下拉框内容,需dropdown属性设置为true'
+    describe: '自定义下拉框内容'
   }
 ]
 
