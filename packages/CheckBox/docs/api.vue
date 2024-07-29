@@ -26,6 +26,18 @@ const apiData = [
     default: 'auto',
     type: 'string',
     describe: '设置多选按钮固定宽度'
+  },
+  {
+    attribute: 'mutex',
+    default: 'false',
+    type: 'boolean',
+    describe: '是否开启互斥'
+  },
+  {
+    attribute: 'mutexOptionValue',
+    default: '[]',
+    type: 'string[] | number[]',
+    describe: '互斥的选项value值'
   }
 ]
 
