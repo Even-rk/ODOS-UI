@@ -1,11 +1,5 @@
 <template>
-  <odos-form
-    ref="formRef"
-    :model="formState"
-    :rules="rules"
-    :label-col="labelCol"
-    :wrapper-col="wrapperCol"
-  >
+  <odos-form ref="formRef" :model="formState" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
     <odos-form-item label="Activity name" name="name">
       <odos-input v-model:value="formState.name" />
     </odos-form-item>
@@ -14,11 +8,11 @@
 </template>
 <script lang="ts" setup>
 import type { UnwrapRef } from 'vue'
-import { reactive, ref, toRaw } from 'vue'
+import { reactive, ref } from 'vue'
 import type { Rule } from 'ant-design-vue/es/form'
 
 interface FormState {
-  name: string;
+  name: string
 }
 
 const formRef = ref()
@@ -48,4 +42,3 @@ const resetForm = () => {
   formRef.value.resetFields()
 }
 </script>
-

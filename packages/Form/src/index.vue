@@ -1,24 +1,34 @@
 <template>
-  <Form ref="ref" :modal="modal" :role="rule" :labelCol="labelCol" :wrapperCol="wrapperCol">
-    <slot />
-  </Form>
+  <div class="odos-form">
+    <Form
+      ref="formRef"
+      :modal="modal"
+      :role="rule"
+      :labelCol="labelCol"
+      :wrapperCol="wrapperCol"
+      :scrollToFirstError="scrollToFirstError"
+    >
+      <slot />
+    </Form>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { Form } from 'ant-design-vue'
-const { modal, rule, labelCol, wrapperCol, ref } = defineProps<{
-  ref: any,
+import { ref } from 'vue'
+const { modal, rule, labelCol, wrapperCol } = defineProps<{
   modal?: object
   rule?: object
-  labelCol?: { span?: number, offset?: number }
-  wrapperCol?: { span?: number, offset?: number }
+  labelCol?: { span?: number; offset?: number }
+  wrapperCol?: { span?: number; offset?: number }
+  scrollToFirstError?: boolean
 }>()
 
-const validate = () => {
-  console.log('aaa')
+const formRef = ref()
+
+const validate = async () => {
+  return await formRef.value.validate()
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
