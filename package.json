@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Even-rk/blog"
+    "url": "git+https://github.com/Even-rk/ODOS-UI"
   },
   "scripts": {
     "dev": "vite --host",
