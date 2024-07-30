@@ -54,7 +54,9 @@ const {
   maxTagCount,
   showSearch,
   height,
-  filterProp
+  filterProp,
+  mutex,
+  mutexOptionValue
 } = defineProps<{
   value?: string | number | string[] | number[]
   title?: string
@@ -69,6 +71,8 @@ const {
   showSearch?: boolean
   dropdown?: boolean
   filterProp?: string
+  mutex?: boolean
+  mutexOptionValue?: string[] | number[]
 }>()
 
 const VNodes = defineComponent({
@@ -88,8 +92,20 @@ const emit = defineEmits<{
 }>()
 
 const selectChange = (value?: string | number | string[] | number[]) => {
-  emit('update:value', value)
-  emit('change', value)
+  // 多选且是互斥
+  if (multiple && mutex) {
+    if (mutexOptionValue?.includes((value as string)[(value as string[]).length - 1] as never)) {
+      emit('update:value', (value as string)[(value as string[]).length - 1])
+      emit('change', (value as string)[(value as string[]).length - 1])
+    } else {
+      const target = (value as string[]).filter((i) => !mutexOptionValue?.includes(i as never))
+      emit('update:value', target)
+      emit('change', target)
+    }
+  } else {
+    emit('update:value', value)
+    emit('change', value)
+  }
 }
 
 const mode = computed(() => {
