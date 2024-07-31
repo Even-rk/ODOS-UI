@@ -1,24 +1,23 @@
 .odos-textarea {
-  width: 100%;
+  border-color: transparent;
+  background: #f2f3f5;
   height: 100%;
-  :deep .ant-input {
+
+  &:hover {
+    background: #e5e6eb;
     border-color: transparent;
-    background: #f2f3f5;
-    height: 100%;
-    &:hover {
-      background: #e5e6eb;
-      border-color: transparent;
-    }
-    &:focus-within {
-      border: 1px solid #2e6ce4;
-      background: #fff;
-    }
-    &:focus {
-      box-shadow: none;
-    }
-    
-    &::placeholder {
-      color: #86909c;
-    }
+  }
+
+  &:focus-within {
+    border: 1px solid #2e6ce4;
+    background: #fff;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: #86909c;
   }
 }

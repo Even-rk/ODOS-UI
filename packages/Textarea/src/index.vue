@@ -1,15 +1,14 @@
 <template>
-  <div class="odos-textarea">
-    <Textarea
-      :placeholder="placeholder || '请输入'"
-      :value="value"
-      @input="$input($event)"
-      :auto-size="autoSize"
-      :disabled="disabled"
-      :show-count="showCount"
-      :maxlength="maxlength"
-    />
-  </div>
+  <Textarea
+    class="odos-textarea"
+    :placeholder="placeholder || '请输入'"
+    :value="value"
+    @input="$input($event)"
+    :auto-size="autoSize"
+    :disabled="disabled"
+    :show-count="showCount"
+    :maxlength="maxlength"
+  />
 </template>
 
 <script setup lang="ts">
