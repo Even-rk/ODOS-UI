@@ -3,9 +3,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 const datePicker = ref('')
+
+onMounted(() => {
+  datePicker.value = '2024-08-01'
+})
 
 watch(datePicker, () => {
   console.log(datePicker.value)

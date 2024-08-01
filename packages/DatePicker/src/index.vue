@@ -86,16 +86,21 @@
 <script lang="ts" setup>
 import { Icon } from 'packages/Icon'
 import dayjs from 'dayjs'
-import { computed, onMounted, ref } from 'vue'
-const { value, title, width, disabled } = defineProps<{
+import { computed, ref, toRefs, watch } from 'vue'
+const props = defineProps<{
   title?: string
   value?: string
   width?: string | number
   disabled?: boolean
 }>()
+const { value, title, width, disabled } = toRefs(props)
 const emit = defineEmits<{
   (e: 'update:value', data: string): void
 }>()
+
+watch(value, () => {
+  datePicker.value = value.value
+})
 // 是否是今天
 const isToday = (day: number) => {
   return dayjs(new Date()).date() === day && dayjs(new Date()).month() === dayjs(showDate.value).month()
@@ -155,9 +160,9 @@ const datePickerClick = (day: number, type?: 'next' | 'pre') => {
   } else if (type === 'next') {
     showDate.value = dayjs(showDate.value).add(1, 'month')
   }
-  datePicker.value = dayjs(showDate.value).format('YYYY-MM') + '-' + (day >= 10 ? day : '0' + day)
-  showDate.value = dayjs(datePicker.value)
-  emit('update:value', datePicker.value)
+  const data = dayjs(showDate.value).format('YYYY-MM') + '-' + (day >= 10 ? day : '0' + day)
+  showDate.value = dayjs(data)
+  emit('update:value', data)
 }
 const datePickerRef = ref()
 const inputRef = ref()
