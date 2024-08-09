@@ -34,6 +34,9 @@
           <Empty />
         </slot>
       </template>
+      <template #option="option">
+        <slot name="option" :option="option">{{ option.label }}</slot>
+      </template>
     </Select>
   </div>
 </template>

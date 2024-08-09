@@ -69,6 +69,18 @@ const data = [
     default: 'label',
     type: 'string',
     describe: '搜索时过滤对应的 option 属性'
+  },
+  {
+    attribute: 'mutex',
+    default: 'false',
+    type: 'boolean',
+    describe: '设置 Select 的模式为互斥模式'
+  },
+  {
+    attribute: 'mutexOptionValue',
+    default: '[]',
+    type: 'string[]',
+    describe: '互斥选项的值（互斥的内容为单选)'
   }
 ]
 
