@@ -15,12 +15,6 @@ const data = [
     default: '--',
     type: 'Object',
     describe: '表单验证规则'
-  },
-  {
-    attribute: 'scrollToFirstError',
-    default: 'false',
-    type: 'boolean',
-    describe: '提交失败自动滚动到第一个错误字段'
   }
 ]
 

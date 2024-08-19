@@ -1,33 +1,21 @@
 <template>
   <div class="odos-form">
-    <Form
-      ref="formRef"
-      :modal="modal"
-      :role="rule"
-      :labelCol="labelCol"
-      :wrapperCol="wrapperCol"
-      :scrollToFirstError="scrollToFirstError"
-    >
+    <form method="get" @submit.prevent="Submit">
       <slot />
-    </Form>
+    </form>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Form } from 'ant-design-vue'
-import { ref } from 'vue'
-const { modal, rule, labelCol, wrapperCol } = defineProps<{
-  modal?: object
-  rule?: object
-  labelCol?: { span?: number; offset?: number }
-  wrapperCol?: { span?: number; offset?: number }
-  scrollToFirstError?: boolean
+const { model } = defineProps<{
+  model: any
 }>()
 
-const formRef = ref()
-
-const validate = async () => {
-  return await formRef.value.validate()
+const emit = defineEmits<{
+  (e: 'finish', data: any): void
+}>()
+const Submit = () => {
+  emit('finish', model)
 }
 </script>
 
