@@ -6,7 +6,8 @@
     <div class="audio-slider">
       <Slider
         v-model:value="process"
-        @change="currentTimeChange"
+        @afterChange="currentTimeChange"
+        @change="currentChange"
         :tooltipOpen="false"
         :step="0.01"
         :disabled="!props.src"
@@ -18,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, reactive, ref } from 'vue'
+import { nextTick, onMounted, reactive, ref } from 'vue'
 import Icon from '../../Icon/src/index.vue'
 import { Slider } from 'ant-design-vue'
 
@@ -54,7 +55,7 @@ const process = ref(0)
 const audioData: {
   // 总时长
   duration: number
-  // 播放时间
+  // 播放开始时间
   currentTime: number
 } = reactive({
   duration: 0,
@@ -116,6 +117,9 @@ const audioPause = () => {
   audioRef.value.pause()
 }
 
+const currentChange = () => {
+  audioRef.value.pause()
+}
 // 改变播放时间
 const currentTimeChange = (val: [number, number] | number) => {
   audioRef.value.currentTime = ((val as number) / 100) * audioData.duration
