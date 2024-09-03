@@ -30,10 +30,10 @@
   "dependencies": {
     "ant-design-vue": "^4.2.3",
     "dayjs": "^1.11.11",
-    "mitt": "^3.0.1",
     "prismjs": "^1.29.0",
     "vue": "^3.4.15",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vuelidate": "^0.7.7"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
@@ -42,6 +42,7 @@
     "@vitejs/plugin-vue": "^5.0.3",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/tsconfig": "^0.5.1",
+    "@yankeeinlondon/code-builder": "^1.2.1",
     "npm-run-all2": "^6.1.1",
     "prettier": "^3.2.5",
     "sass": "^1.70.0",

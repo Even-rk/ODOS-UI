@@ -1,22 +1,42 @@
 <template>
-  <div class="odos-form">
-    <form method="get" @submit.prevent="Submit">
-      <slot />
-    </form>
-  </div>
+  <form class="odos-form" method="get" @submit.prevent="Submit">
+    <slot />
+  </form>
 </template>
 
 <script setup lang="ts">
-const { model } = defineProps<{
-  model: any
-}>()
-
 const emit = defineEmits<{
-  (e: 'finish', data: any): void
+  (e: 'finish', ev: Event): void
 }>()
-const Submit = () => {
-  emit('finish', model)
+// 表单提交事件
+const Submit = (e: Event) => {
+  emit('finish', e)
 }
+
+const validate = (
+  rules: {
+    [key: string]: {
+      type?: string
+      required?: boolean
+      message?: string
+      trigger?: 'blur' | 'change' | 'input'
+      validator?: () => boolean
+    }
+  },
+  model: Record<string, unknown>
+) => {
+  console.log(rules, model)
+}
+
+const resetFields = () => {}
+
+defineExpose({
+  validate
+})
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.odos-form {
+  width: 100%;
+}
+</style>

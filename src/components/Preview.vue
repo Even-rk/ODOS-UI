@@ -28,10 +28,6 @@ const codeVisible = ref(false)
 
 const previewSourceCode = computed(() => {
   const str = sourceCode.value.replace(/'\.\.\/\.\.\/index'/g, `'@tencent/odos-ui'`)
-  const startIndex = str.indexOf('<template>') + '<template>'.length
-  const endIndex = str.indexOf('</template>')
-  const content = str.substring(startIndex, endIndex)
-  // return '<template>' + content + '<template>'
   return str
 })
 
