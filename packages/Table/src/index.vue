@@ -6,6 +6,7 @@
       :data-source="data"
       :rowClassName="rowClassName"
       :pagination="false"
+      :expandIcon="expandIcon"
       :row-selection="isSelection ? rowSelection : undefined"
       :columns="columns"
       @change="sorter"
@@ -34,6 +35,7 @@
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { ConfigProvider, Empty, Table } from 'ant-design-vue'
 import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
+import type { VNode } from 'vue'
 export type Column = {
   align?: 'left' | 'right' | 'center'
   title?: string
@@ -44,7 +46,7 @@ export type Column = {
   sorter?: Function | boolean
   fixed?: boolean | string
 }
-const { data, columns, loading, isSelection, emptyText } = defineProps<{
+const { data, columns, loading, isSelection, emptyText, expandIcon } = defineProps<{
   data: { [key: string]: any }[]
   columns: Column[] | any
   loading?: boolean
@@ -52,6 +54,7 @@ const { data, columns, loading, isSelection, emptyText } = defineProps<{
   isSelection?: boolean
   emptyText?: string
   expandedRowRender?: boolean
+  expandIcon?: () => VNode
 }>()
 
 const emit = defineEmits<{
