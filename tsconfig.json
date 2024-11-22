@@ -12,9 +12,9 @@
     "packages/**/*.ts",
     "packages/**/*.d.ts",
     "packages/**/*.tsx",
-    "packages/**/*.vue",
+    "packages/**/*.vue"
   ],
-  "exclude": ["src/**/__tests__/*"],
+  "exclude": ["src/**/__tests__/*", "packages/Table/src/index.vue"],
   "compilerOptions": {
     "target": "esnext",
     "useDefineForClassFields": true,
