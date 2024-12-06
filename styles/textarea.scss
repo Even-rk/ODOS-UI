@@ -1,23 +1,31 @@
 .odos-textarea {
-  border-color: transparent;
-  background: #f2f3f5;
-  height: 100%;
-
-  &:hover {
-    background: #e5e6eb;
+  width: 100%;
+  .length{
+    line-height: 12px;
+    float: right;
+    font-size: 12px;
+  }
+  textarea {
     border-color: transparent;
-  }
+    background: #f2f3f5;
+    height: 100%;
 
-  &:focus-within {
-    border: 1px solid #2e6ce4;
-    background: #fff;
-  }
+    &:hover {
+      background: #e5e6eb;
+      border-color: transparent;
+    }
 
-  &:focus {
-    box-shadow: none;
-  }
+    &:focus-within {
+      border: 1px solid #2e6ce4;
+      background: #fff;
+    }
 
-  &::placeholder {
-    color: #86909c;
+    &:focus {
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: #86909c;
+    }
   }
 }

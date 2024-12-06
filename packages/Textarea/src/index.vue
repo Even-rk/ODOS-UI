@@ -1,23 +1,23 @@
 <template>
-  <Textarea
-    class="odos-textarea"
-    :placeholder="placeholder || '请输入'"
-    :value="value"
-    @input="$input($event)"
-    :auto-size="autoSize"
-    :disabled="disabled"
-    :show-count="showCount"
-    :maxlength="maxlength"
-  />
+  <div class="odos-textarea">
+    <Textarea
+      :placeholder="placeholder || '请输入'"
+      :value="value"
+      @input="$input($event)"
+      :auto-size="autoSize"
+      :disabled="disabled"
+      :maxlength="maxlength"
+    />
+    <div class="length" v-if="maxlength">{{ value?.length }}/{{ maxlength }}</div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { Textarea } from 'ant-design-vue'
 import type { ChangeEvent } from 'ant-design-vue/es/_util/EventInterface'
-const { value, maxlength, autoSize, showCount, disabled, placeholder } = defineProps<{
+const { value, maxlength, autoSize, disabled, placeholder } = defineProps<{
   value?: string
   maxlength?: number
-  showCount?: boolean
   autoSize?: boolean
   disabled?: boolean
   placeholder?: string
