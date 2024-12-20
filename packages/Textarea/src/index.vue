@@ -8,7 +8,7 @@
       :disabled="disabled"
       :maxlength="maxlength"
     />
-    <div class="length" v-if="maxlength">{{ value?.length }}/{{ maxlength }}</div>
+    <div class="length" v-if="maxlength">{{ value?.length || 0 }}/{{ maxlength }}</div>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ import type { ChangeEvent } from 'ant-design-vue/es/_util/EventInterface'
 const { value, maxlength, autoSize, disabled, placeholder } = defineProps<{
   value?: string
   maxlength?: number
-  autoSize?: boolean
+  autoSize?: boolean | { minRows?: number; maxRows?: number }
   disabled?: boolean
   placeholder?: string
 }>()
