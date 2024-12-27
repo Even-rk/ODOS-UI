@@ -8,7 +8,7 @@ import API from './api.vue'
 import SLOT from './slot.vue'
 </script>
 
-# CheckBox 单选框
+# CheckBox 多选框
 
 ## 基础使用
 

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="tsx">
-import { computed, ref, useSlots } from 'vue'
+import { computed, ref, useSlots, type VNode } from 'vue'
 
 const props = defineProps<{
   size?: 'small' | 'medium' | 'large'
@@ -26,11 +26,11 @@ type Item = {
   }
 }
 
-const slots = useSlots()
+const slots = useSlots() as { default: () => VNode[] }
 const randerContent = () => {
   const list = ref([] as Item[])
   list.value = (slots.default && slots.default()) as Item[]
-  if (list.value.length <= 1) {
+  if (list.value.length <= 1 && slots.default()[0].children) {
     return RadioItem((slots.default && slots.default()[0].children) as Item[])
   } else {
     return RadioItem(list.value)

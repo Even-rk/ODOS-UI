@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useSuccessMessage } from '../../Message/index'
 
 const radio = ref(1)
@@ -31,76 +31,15 @@ const copy = async (name: string) => {
     useSuccessMessage(`<Icon name="${name}" /> copied`)
   }
 }
-const list: string[] = [
-  'transfer',
-  'missed',
-  'callIn',
-  'call-out',
-  'squared',
-  'mute',
-  'hang-up',
-  'Arrow',
-  'minify',
-  'Back',
-  'fullscreen',
-  'filter',
-  'audio-pause',
-  'audio-play',
-  'audio-pause',
-  'call',
-  'endoscope',
-  'female',
-  'frankl-data',
-  'male',
-  'xray',
-  'schedule',
-  'OralCheck',
-  'market',
-  'wechat',
-  'sync',
-  'flag',
-  'hide',
-  'check',
-  'Callender',
-  'AdaptX',
-  'Reset',
-  'Colock',
-  'Nurse',
-  'DoubleArrowDown',
-  'Download',
-  'Search',
-  'More',
-  'Doctor',
-  'AdaptY',
-  'History',
-  'PatientNum',
-  'Fold',
-  'Delete',
-  'CancelCircle',
-  'Tidy',
-  'View',
-  'Tag',
-  'Send',
-  'Drag',
-  'ProfileView',
-  'Unfold',
-  'Upload',
-  'FullScreen',
-  'ZoomIn',
-  'Transfer',
-  'Disinfect',
-  'Tooth',
-  'Edit',
-  'Copy',
-  'Operations',
-  'Add',
-  'ArowDown',
-  'ArowRight',
-  'ArowLeft',
-  'Cancel',
-  'Call',
-  'ArowUp'
-]
+
+const list = ref([] as string[])
+onMounted(() => {
+  const svgString = window._iconfont
+  const iconNames = svgString.match(/icon-[^"']+/g)
+  list.value = iconNames!.map((item: string) => {
+    return item.replace('icon-', '')
+  })
+})
 </script>
 
 <style lang="scss" scoped>
