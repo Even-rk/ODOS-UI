@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="tsx">
-import { computed, ref, useSlots } from 'vue'
+import { computed, onMounted, ref, useSlots, type VNode } from 'vue'
 
 const props = defineProps<{
   size?: 'small' | 'medium' | 'large'
@@ -13,6 +13,13 @@ const props = defineProps<{
   mutex?: boolean
   mutexOptionValue?: string[] | number[]
 }>()
+
+onMounted(() => {
+  // 如果props.value数组为空，则将其初始化为一个空数组。
+  if (props.value === undefined) {
+    emit('update:value', [])
+  }
+})
 
 const emit = defineEmits<{
   (e: 'update:value' | 'change', data?: string[] | number[]): void
@@ -27,7 +34,7 @@ type Item = {
   }
 }
 
-const slots = useSlots()
+const slots = useSlots() as { default: () => VNode[] }
 const randerContent = () => {
   const list = ref([] as Item[])
   list.value = (slots.default && slots.default()) as Item[]
@@ -50,6 +57,7 @@ const CheckBoxItem = (list: Item[]) => {
             disabled: it.props.disabled
           }}
           onClick={() => {
+            // 如果props.value数组为空，则将其初始化为一个空数组。
             if (it.props.disabled) return
             // 如果props.value数组已经包含了当前项（it.props.value），则从数组中移除这个项。
             if (props.value?.includes(it.props.value as never)) {
