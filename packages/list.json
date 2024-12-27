@@ -15,6 +15,21 @@
     "compClassName": "button"
   },
   {
+    "compName": "CheckBox",
+    "compZhName": "CheckBox多选框",
+    "compClassName": "checkBox"
+  },
+  {
+    "compName": "DatePicker",
+    "compZhName": "DatePicker日期选择器",
+    "compClassName": "datePicker"
+  },
+  {
+    "compName": "ToothPosit",
+    "compZhName": "ToothPosit 牙位选择器",
+    "compClassName": "toothPosit"
+  },
+  {
     "compName": "Empty",
     "compZhName": "Empty空状态",
     "compClassName": "empty"
@@ -63,16 +78,6 @@
     "compName": "Select",
     "compZhName": "Select选择器",
     "compClassName": "select"
-  },
-  {
-    "compName": "CheckBox",
-    "compZhName": "CheckBox多选框",
-    "compClassName": "checkBox"
-  },
-  {
-    "compName": "DatePicker",
-    "compZhName": "DatePicker日期选择器",
-    "compClassName": "datePicker"
   },
   {
     "compName": "Table",
