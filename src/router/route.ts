@@ -27,9 +27,9 @@ const route: RouteRecordRaw[] = [
     component: () => import('packages/DatePicker/docs/README.md')
   },
   {
-    name: 'ToothPosit',
-    path: '/components/ToothPosit',
-    component: () => import('packages/ToothPosit/docs/README.md')
+    name: 'ToothSelect',
+    path: '/components/ToothSelect',
+    component: () => import('packages/ToothSelect/docs/README.md')
   },
   {
     name: 'Empty',

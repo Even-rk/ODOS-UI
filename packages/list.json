@@ -25,9 +25,9 @@
     "compClassName": "datePicker"
   },
   {
-    "compName": "ToothPosit",
-    "compZhName": "ToothPosit 牙位选择器",
-    "compClassName": "toothPosit"
+    "compName": "ToothSelect",
+    "compZhName": "ToothSelect 牙位选择器",
+    "compClassName": "toothSelect"
   },
   {
     "compName": "Empty",

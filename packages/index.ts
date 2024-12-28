@@ -23,7 +23,7 @@ import { TablePlugin } from './Table'
 import { TabsPlugin } from './Tabs'
 import { TagPlugin } from './Tag'
 import { TextareaPlugin } from './Textarea'
-import { ToothPositPlugin } from './ToothPosit'
+import { ToothSelectPlugin } from './ToothSelect'
 
 const Packages = [
   AudioPlugin,
@@ -42,7 +42,7 @@ const Packages = [
   TabsPlugin,
   TagPlugin,
   TextareaPlugin,
-  ToothPositPlugin,
+  ToothSelectPlugin,
   LoadingPlugin
 ]
 
@@ -61,7 +61,7 @@ export * from './Audio'
 export * from './Button'
 export * from './CheckBox'
 export * from './DatePicker'
-export * from './ToothPosit'
+export * from './ToothSelect'
 export * from './Empty'
 export * from './Icon'
 export * from './Input'

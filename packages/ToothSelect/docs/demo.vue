@@ -1,5 +1,5 @@
 <template>
-  <OdosToothPosit />
+  <OdosToothSelect />
 </template>
 
 <script setup lang="ts"></script>
