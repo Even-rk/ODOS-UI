@@ -13,8 +13,8 @@
       :scroll="scroll"
     >
       <!-- 自定义表头 -->
-      <template #headerCell="{ column }">
-        <slot :name="(column as Column).headerSlotName" />
+      <template #headerCell="{ title, column }">
+        <slot :name="(column as Column).headerSlotName" :title="title" />
       </template>
       <template #bodyCell="{ column, record }">
         <slot :name="(column as Column).slotName" :record="record" />

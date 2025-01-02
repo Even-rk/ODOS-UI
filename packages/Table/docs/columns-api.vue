@@ -32,7 +32,7 @@ const data = [
     attribute: 'headerSlotName',
     default: '--',
     type: 'string',
-    describe: '当前列自定义表头插槽名'
+    describe: '当前列自定义表头插槽名 v-slot:[headerSlotName]="{ title }"'
   },
   {
     attribute: 'slotName',
