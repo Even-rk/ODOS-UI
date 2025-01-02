@@ -143,13 +143,27 @@ const isElementInRegion = (elementList: Element[], e?: MouseEvent) => {
       const rightRegion = itemRect.right <= regionRect.right
       const topRegion = itemRect.top >= regionRect.top
       const bottomRegion = itemRect.bottom <= regionRect.bottom
-      if (item.classList.contains('odos-check-box-item') && !toothVal.value.includes(children[index].id)) {
-        if (leftRegion && rightRegion && topRegion && bottomRegion) {
-          // 选中的元素
-          item.classList.add('active')
-        } else {
-          // 删除选中的元素
-          item.classList.remove('active')
+      if (e?.shiftKey) {
+        if (item.classList.contains('odos-check-box-item') && toothVal.value.includes(children[index].id)) {
+          if (leftRegion && rightRegion && topRegion && bottomRegion) {
+            // 删除选中的元素
+            item.classList.remove('active')
+            item.classList.add('error')
+          } else {
+            // 不删除选中的元素
+            item.classList.remove('error')
+            item.classList.add('active')
+          }
+        }
+      } else {
+        if (item.classList.contains('odos-check-box-item') && !toothVal.value.includes(children[index].id)) {
+          if (leftRegion && rightRegion && topRegion && bottomRegion) {
+            // 选中的元素
+            item.classList.add('active')
+          } else {
+            // 删除选中的元素
+            item.classList.remove('active')
+          }
         }
       }
     }
@@ -187,6 +201,7 @@ const selectRegion = (e: MouseEvent) => {
 
     // 判断框选区域包含的元素
     const elementList = Array.from(document.querySelectorAll('.odos-check-box-item'))
+    // 拖拽时，是否有按住shift键
     isElementInRegion(elementList, e)
   })
   // 鼠标抬起事件
@@ -313,6 +328,10 @@ const toothValChange = () => {
         background: #2e6ce4;
         color: #ffffff;
       }
+      &.error {
+        background: #ff4d4f;
+        color: #fff;
+      }
       // 框选区域
       .odos-check_box-item-content {
         position: absolute;
@@ -331,6 +350,7 @@ const toothValChange = () => {
     z-index: 1;
     .rectangle {
       position: absolute;
+      background-color: #2e6ce410;
       border: 1px dashed #2e6ce4;
     }
   }
