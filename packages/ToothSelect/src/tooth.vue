@@ -60,7 +60,7 @@
         </template>
       </CheckBox>
     </div>
-    <!-- 中间 -->
+    <!-- 滑动控制覆层 -->
     <template v-if="isBoxSelect">
       <div class="module">
         <div class="rectangle" :style="regionConfig" />
@@ -75,7 +75,7 @@ import { ref } from 'vue'
 import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
 
-const toothVal = ref()
+const toothVal = ref([] as string[])
 // 乳牙
 const deciduousTeeth = [
   {
@@ -125,8 +125,10 @@ const officeEnd = ref({
 const isElementInRegion = (elementList: Element[], e?: MouseEvent) => {
   e?.stopPropagation
   // 判断框选区域选中的元素
-  elementList.forEach((item) => {
-    const itemRect = item.getBoundingClientRect()
+  const children = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
+  elementList.forEach((item, index) => {
+    const target = children[index]
+    const itemRect = target.getBoundingClientRect()
     const regionRect = document.querySelector('.module .rectangle')?.getBoundingClientRect()
     if (regionRect) {
       // 只要元素有在框选区域内，就认为元素在框选区域内
@@ -134,18 +136,12 @@ const isElementInRegion = (elementList: Element[], e?: MouseEvent) => {
       const rightRegion = itemRect.right <= regionRect.right
       const topRegion = itemRect.top >= regionRect.top
       const bottomRegion = itemRect.bottom <= regionRect.bottom
-      if (item.classList.contains('odos-check_box-item-content')) {
-        if (leftRegion && rightRegion && topRegion && bottomRegion) {
-          // 选中的id
-          if (!toothVal.value.includes(item.id)) {
-            toothVal.value.push(item.id)
-          }
-        }
-      } else if (item.classList.contains('odos-check-box-item')) {
+      if (item.classList.contains('odos-check-box-item') && !toothVal.value.includes(children[index].id)) {
         if (leftRegion && rightRegion && topRegion && bottomRegion) {
           // 选中的元素
           item.classList.add('active')
         } else {
+          // 删除选中的元素
           item.classList.remove('active')
         }
       }
@@ -189,7 +185,10 @@ const selectRegion = (e: MouseEvent) => {
   // 鼠标抬起事件
   document.addEventListener('mouseup', () => {
     const elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
-    isElementInRegion(elementList, e)
+    const filterList = elementList.filter((item) => {
+      return item.parentElement?.classList.contains('active')
+    })
+    toothVal.value = filterList.map((item) => item.id)
     isBoxSelect.value = false
     officeStart.value = {
       x: 0,
@@ -285,6 +284,7 @@ const onmousedown = (e: MouseEvent) => {
   }
   :deep .odos-check-box {
     .odos-check-box-item {
+      position: relative;
       width: 24px;
       height: 24px;
       border-radius: 4px;
@@ -298,6 +298,13 @@ const onmousedown = (e: MouseEvent) => {
       &.active {
         background: #2e6ce4;
         color: #ffffff;
+      }
+      // 框选区域
+      .odos-check_box-item-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
   }

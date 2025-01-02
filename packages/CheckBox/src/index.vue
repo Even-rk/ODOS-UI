@@ -38,7 +38,7 @@ const slots = useSlots() as { default: () => VNode[] }
 const randerContent = () => {
   const list = ref([] as Item[])
   list.value = (slots.default && slots.default()) as Item[]
-  if (list.value.length <= 1) {
+  if (list.value.length <= 1 && slots.default()[0].children) {
     return CheckBoxItem((slots.default && slots.default()[0].children) as Item[])
   } else {
     return CheckBoxItem(list.value)
