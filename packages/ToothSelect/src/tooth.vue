@@ -3,13 +3,13 @@
     <!-- 第一，第五，象限 -->
     <div class="quadrant" style="align-items: end">
       <!-- 恒牙列 -->
-      <CheckBox v-model:value="toothVal">
+      <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reversePermanentTeeth" :key="item">
           <CheckBoxItem :id="'1' + item" :value="'1' + item" :label="item" />
         </template>
       </CheckBox>
       <!-- 乳牙列 -->
-      <CheckBox v-model:value="toothVal">
+      <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reverseDeciduousTeeth" :key="item.value">
           <CheckBoxItem :id="'5' + item.value" :value="'5' + item.value" :label="item.label" />
         </template>
@@ -18,13 +18,13 @@
     <!-- 第二，第六，象限 -->
     <div class="quadrant">
       <!-- 恒牙列 -->
-      <CheckBox v-model:value="toothVal">
+      <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in permanentTeeth" :key="item">
           <CheckBoxItem :id="'2' + item" :value="'2' + item" :label="item" />
         </template>
       </CheckBox>
       <!-- 乳牙列 -->
-      <CheckBox v-model:value="toothVal">
+      <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in deciduousTeeth" :key="item.value">
           <CheckBoxItem :id="'6' + item.value" :value="'6' + item.value" :label="item.label" />
         </template>
@@ -33,13 +33,13 @@
     <!-- 第四，第八，象限 -->
     <div class="quadrant" style="justify-content: end; align-items: end">
       <!-- 乳牙列 -->
-      <CheckBox v-model:value="toothVal">
+      <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reverseDeciduousTeeth" :key="item.value">
           <CheckBoxItem :id="'8' + item.value" :value="'8' + item.value" :label="item.label" />
         </template>
       </CheckBox>
       <!-- 恒牙列 -->
-      <CheckBox v-model:value="toothVal">
+      <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reversePermanentTeeth" :key="item">
           <CheckBoxItem :id="'4' + item" :value="'4' + item" :label="item" />
         </template>
@@ -48,13 +48,13 @@
     <!-- 第三，第七，象限 -->
     <div class="quadrant" style="justify-content: end">
       <!-- 乳牙列 -->
-      <CheckBox v-model:value="toothVal">
+      <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in deciduousTeeth" :key="item.value">
           <CheckBoxItem :id="'7' + item.value" :value="'7' + item.value" :label="item.label" />
         </template>
       </CheckBox>
       <!-- 恒牙列 -->
-      <CheckBox v-model:value="toothVal">
+      <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in permanentTeeth" :key="item">
           <CheckBoxItem :id="'3' + item" :value="'3' + item" :label="item" />
         </template>
@@ -75,7 +75,14 @@ import { ref } from 'vue'
 import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
 
-const toothVal = ref([] as string[])
+// 默认数据
+const { value = [] } = defineProps<{
+  value?: string[]
+}>()
+const toothVal = ref(value)
+const emit = defineEmits<{
+  (e: 'update:value' | 'change', data: string[]): void
+}>()
 // 乳牙
 const deciduousTeeth = [
   {
@@ -189,6 +196,8 @@ const selectRegion = (e: MouseEvent) => {
       return item.parentElement?.classList.contains('active')
     })
     toothVal.value = filterList.map((item) => item.id)
+    emit('update:value', toothVal.value)
+    emit('change', toothVal.value)
     isBoxSelect.value = false
     officeStart.value = {
       x: 0,
@@ -217,6 +226,11 @@ const onmousedown = (e: MouseEvent) => {
   if (!target.classList.contains('odos-check-box-item')) {
     selectRegion(e)
   }
+}
+
+const toothValChange = () => {
+  emit('update:value', toothVal.value)
+  emit('change', toothVal.value)
 }
 </script>
 

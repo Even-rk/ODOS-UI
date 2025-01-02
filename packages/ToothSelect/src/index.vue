@@ -2,8 +2,8 @@
   <div class="odos-tooth-posit">
     <div class="header">
       <div class="complete">
-        <CheckBox v-model:value="toothVal">
-          <CheckBoxItem value="全口" label="全口" />
+        <CheckBox v-model:value="toothVal" mutex :mutex-option-value="['-1']" @change="toothValChange">
+          <CheckBoxItem id="-1" value="-1" label="全口" />
         </CheckBox>
       </div>
       <div class="info">
@@ -11,13 +11,13 @@
         <span>单击选择单个牙位，框选可选择多个牙位</span>
       </div>
     </div>
-    <Tooth v-model:value="toothVal" />
+    <Tooth v-model:value="toothVal" @change="toothValChange" />
     <div class="footer" v-if="multipleToothList?.length">
       <div class="label">多生牙：</div>
       <div class="value">
-        <CheckBox v-model:value="toothVal">
+        <CheckBox v-model:value="toothVal" @change="toothValChange">
           <template v-for="ele in multipleToothList" :key="ele.value">
-            <CheckBoxItem :value="ele.value" :label="ele.label" />
+            <CheckBoxItem :id="ele.value" :value="ele.value" :label="ele.label" />
           </template>
         </CheckBox>
       </div>
@@ -32,15 +32,24 @@ import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
 // 象限牙位
 import Tooth from './tooth.vue'
-import { ref } from 'vue'
-const { value, multipleToothList } = defineProps<{
+import { ref, watch } from 'vue'
+const { value = [], multipleToothList = [] } = defineProps<{
   value: string[]
   multipleToothList: {
     label: string
     value: string
   }[]
 }>()
-const toothVal = ref(value || [])
+const toothVal = ref(value)
+
+const emit = defineEmits<{
+  (e: 'update:value', data: string[]): void
+  (e: 'change', data: string[]): void
+}>()
+const toothValChange = () => {
+  emit('update:value', toothVal.value)
+  emit('change', toothVal.value)
+}
 </script>
 
 <style scoped lang="scss">
