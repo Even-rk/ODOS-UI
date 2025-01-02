@@ -1,9 +1,11 @@
 <script setup>
+import SLOT from './slot.vue'
 import Default from './default.vue'
 import Selection from './select.vue'
 import Children from './children.vue'
 import Fixed from './fixed.vue'
 import API from './api.vue'
+import ColumnsAPI from './columns-api.vue'
 </script>
 
 # Table表格
@@ -40,7 +42,7 @@ import API from './api.vue'
 
 ## Table slot
 
-<Slot />
+<SLOT />
 
 ## Columns 属性
 
