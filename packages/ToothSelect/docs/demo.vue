@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const value = ref(['11', '12'])
 const multipleToothList = ref([
@@ -16,6 +16,10 @@ const multipleToothList = ref([
     value: '12.1'
   }
 ])
+
+watch(value, () => {
+  // console.log(value.value)
+})
 </script>
 
 <style scoped lang="scss"></style>

@@ -2,7 +2,7 @@
   <div class="odos-tooth-posit">
     <div class="header">
       <div class="complete">
-        <CheckBox v-model:value="toothVal" mutex :mutex-option-value="['-1']" @change="toothValChange">
+        <CheckBox v-model:value="toothVal" @change="toothValChange">
           <CheckBoxItem id="-1" value="-1" label="全口" />
         </CheckBox>
       </div>
@@ -32,7 +32,7 @@ import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
 // 象限牙位
 import Tooth from './tooth.vue'
-import { ref, watch } from 'vue'
+import { nextTick, provide, ref, watch } from 'vue'
 const { value = [], multipleToothList = [] } = defineProps<{
   value: string[]
   multipleToothList: {
@@ -41,14 +41,37 @@ const { value = [], multipleToothList = [] } = defineProps<{
   }[]
 }>()
 const toothVal = ref(value)
+provide('toothVal', toothVal.value)
 
 const emit = defineEmits<{
   (e: 'update:value', data: string[]): void
   (e: 'change', data: string[]): void
 }>()
+// 定义一个处理牙齿值变化的函数
 const toothValChange = () => {
-  emit('update:value', toothVal.value)
-  emit('change', toothVal.value)
+  // 使用nextTick确保在DOM更新之后再执行后续代码
+  nextTick(() => {
+    // 检查牙齿值数组是否为空
+    if (toothVal.value.length > 0) {
+      // 如果数组最后一个元素是'-1'，则将数组设置为只包含'-1'
+      if (toothVal.value[toothVal.value.length - 1] == '-1') {
+        toothVal.value = ['-1']
+        // 触发更新事件和变化事件
+        emit('update:value', toothVal.value)
+        emit('change', toothVal.value)
+      } else {
+        // 如果数组中包含'-1'但不是最后一个元素，则移除所有'-1'
+        toothVal.value = toothVal.value.filter((i) => i != '-1')
+        // 触发更新事件和变化事件
+        emit('update:value', toothVal.value)
+        emit('change', toothVal.value)
+      }
+    } else {
+      // 如果数组为空，触发更新事件和变化事件
+      emit('update:value', toothVal.value)
+      emit('change', toothVal.value)
+    }
+  })
 }
 </script>
 

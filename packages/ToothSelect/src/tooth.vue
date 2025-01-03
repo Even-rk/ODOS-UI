@@ -70,16 +70,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 // 多选
 import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
 
 // 默认数据
-const { value = [] } = defineProps<{
-  value?: string[]
+const props = defineProps<{
+  value: string[]
 }>()
-const toothVal = ref(value)
+const toothVal = ref(props.value || [])
 const emit = defineEmits<{
   (e: 'update:value' | 'change', data: string[]): void
 }>()
@@ -169,43 +169,37 @@ const isElementInRegion = (elementList: Element[], e?: MouseEvent) => {
     }
   })
 }
-// 鼠标框选函数
-const selectRegion = (e: MouseEvent) => {
-  officeStart.value = {
+// 鼠标移动事件
+const onMousemove = (e: MouseEvent) => {
+  e.stopPropagation()
+  if (!isBoxSelect.value) return false
+  officeEnd.value = {
     x: e.pageX,
     y: e.pageY
   }
-  regionConfig.value.top = e.pageY + 'px'
-  regionConfig.value.left = e.pageX + 'px'
-  isBoxSelect.value = true
-  // 鼠标移动事件
-  document.addEventListener('mousemove', (e: MouseEvent) => {
-    e.stopPropagation()
-    if (!isBoxSelect.value) return false
-    officeEnd.value = {
-      x: e.pageX,
-      y: e.pageY
-    }
-    const x = e.pageX - officeStart.value.x
-    const y = e.pageY - officeStart.value.y
-    regionConfig.value.width = Math.abs(x) + 'px'
-    regionConfig.value.height = Math.abs(y) + 'px'
+  const x = e.pageX - officeStart.value.x
+  const y = e.pageY - officeStart.value.y
+  regionConfig.value.width = Math.abs(x) + 'px'
+  regionConfig.value.height = Math.abs(y) + 'px'
 
-    if (x < 0) {
-      regionConfig.value.left = e.pageX + 'px'
-    }
+  if (x < 0) {
+    regionConfig.value.left = e.pageX + 'px'
+  }
 
-    if (y < 0) {
-      regionConfig.value.top = e.pageY + 'px'
-    }
+  if (y < 0) {
+    regionConfig.value.top = e.pageY + 'px'
+  }
 
-    // 判断框选区域包含的元素
-    const elementList = Array.from(document.querySelectorAll('.odos-check-box-item'))
-    // 拖拽时，是否有按住shift键
-    isElementInRegion(elementList, e)
-  })
-  // 鼠标抬起事件
-  document.addEventListener('mouseup', () => {
+  // 判断框选区域包含的元素
+  const elementList = Array.from(document.querySelectorAll('.odos-check-box-item'))
+  // 拖拽时，是否有按住shift键
+  isElementInRegion(elementList, e)
+}
+// 鼠标框选结束函数
+let timer: NodeJS.Timeout
+const onMouseup = () => {
+  clearTimeout(timer)
+  timer = setTimeout(() => {
     const elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
     const filterList = elementList.filter((item) => {
       return item.parentElement?.classList.contains('active')
@@ -228,11 +222,26 @@ const selectRegion = (e: MouseEvent) => {
       width: '0px',
       height: '0px'
     }
+  })
+}
+// 鼠标框选函数
+const selectRegion = (e: MouseEvent) => {
+  officeStart.value = {
+    x: e.pageX,
+    y: e.pageY
+  }
+  regionConfig.value.top = e.pageY + 'px'
+  regionConfig.value.left = e.pageX + 'px'
+  // 鼠标移动事件
+  isBoxSelect.value = true
+  document.addEventListener('mousemove', (e: MouseEvent) => onMousemove(e))
+  // 鼠标抬起事件
+  document.addEventListener('mouseup', () => {
+    onMouseup()
+
     // 清除监听事件
-    document.removeEventListener('mousemove', (e: MouseEvent) => {
-      e.stopPropagation()
-    })
-    document.removeEventListener('mouseup', () => {})
+    document.removeEventListener('mousemove', (e: MouseEvent) => onMousemove(e))
+    document.removeEventListener('mouseup', () => onMouseup())
   })
 }
 // 鼠标按下事件
@@ -247,6 +256,10 @@ const toothValChange = () => {
   emit('update:value', toothVal.value)
   emit('change', toothVal.value)
 }
+
+// 监听value
+const watchValue = (newValue: string[]) => (toothVal.value = newValue)
+watch(() => props.value, watchValue, { deep: true })
 </script>
 
 <style scoped lang="scss">
