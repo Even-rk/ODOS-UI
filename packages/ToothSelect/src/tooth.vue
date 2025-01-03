@@ -196,33 +196,29 @@ const onMousemove = (e: MouseEvent) => {
   isElementInRegion(elementList, e)
 }
 // 鼠标框选结束函数
-let timer: NodeJS.Timeout
 const onMouseup = () => {
-  clearTimeout(timer)
-  timer = setTimeout(() => {
-    const elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
-    const filterList = elementList.filter((item) => {
-      return item.parentElement?.classList.contains('active')
-    })
-    toothVal.value = filterList.map((item) => item.id)
-    emit('update:value', toothVal.value)
-    emit('change', toothVal.value)
-    isBoxSelect.value = false
-    officeStart.value = {
-      x: 0,
-      y: 0
-    }
-    officeEnd.value = {
-      x: 0,
-      y: 0
-    }
-    regionConfig.value = {
-      top: '0px',
-      left: '0px',
-      width: '0px',
-      height: '0px'
-    }
+  const elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
+  const filterList = elementList.filter((item) => {
+    return item.parentElement?.classList.contains('active')
   })
+  toothVal.value = filterList.map((item) => item.id)
+  emit('update:value', toothVal.value)
+  emit('change', toothVal.value)
+  isBoxSelect.value = false
+  officeStart.value = {
+    x: 0,
+    y: 0
+  }
+  officeEnd.value = {
+    x: 0,
+    y: 0
+  }
+  regionConfig.value = {
+    top: '0px',
+    left: '0px',
+    width: '0px',
+    height: '0px'
+  }
 }
 // 鼠标框选函数
 const selectRegion = (e: MouseEvent) => {
@@ -234,15 +230,27 @@ const selectRegion = (e: MouseEvent) => {
   regionConfig.value.left = e.pageX + 'px'
   // 鼠标移动事件
   isBoxSelect.value = true
-  document.addEventListener('mousemove', (e: MouseEvent) => onMousemove(e))
-  // 鼠标抬起事件
-  document.addEventListener('mouseup', () => {
+  // 定义鼠标移动事件处理函数
+  function handleMousemove(e: MouseEvent) {
+    // 调用 onMousemove 函数处理鼠标移动事件
+    onMousemove(e)
+  }
+
+  // 定义鼠标抬起事件处理函数
+  function handleMouseup() {
+    // 调用 onMouseup 函数处理鼠标抬起事件
     onMouseup()
 
-    // 清除监听事件
-    document.removeEventListener('mousemove', (e: MouseEvent) => onMousemove(e))
-    document.removeEventListener('mouseup', () => onMouseup())
-  })
+    // 清除鼠标移动和鼠标抬起的事件监听器，防止内存泄漏和不必要的事件触发
+    document.removeEventListener('mousemove', handleMousemove)
+    document.removeEventListener('mouseup', handleMouseup)
+  }
+
+  // 添加鼠标移动事件监听器，当鼠标在文档中移动时触发 handleMousemove 函数
+  document.addEventListener('mousemove', handleMousemove)
+
+  // 添加鼠标抬起事件监听器，当鼠标在文档中抬起时触发 handleMouseup 函数
+  document.addEventListener('mouseup', handleMouseup)
 }
 // 鼠标按下事件
 const onmousedown = (e: MouseEvent) => {
