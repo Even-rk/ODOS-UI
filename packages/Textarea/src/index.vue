@@ -4,6 +4,9 @@
       :placeholder="placeholder || '请输入'"
       :value="value"
       @input="$input($event)"
+      @change="$change($event)"
+      @blur="$blur($event)"
+      @focus="$focus($event)"
       :auto-size="autoSize"
       :disabled="disabled"
       :maxlength="maxlength"
@@ -24,11 +27,24 @@ const { value, maxlength, autoSize, disabled, placeholder } = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:value', data: string): void
+  (e: 'update:value' | 'change' | 'blur' | 'input' | 'focus', data: string): void
 }>()
-const $input = (e: ChangeEvent) => {
+const $input = (e: Event) => {
   const target = e.target as HTMLInputElement
   emit('update:value', target.value)
+  emit('input', target.value)
+}
+const $change = (e: Event) => {
+  const target = e.target as HTMLInputElement
+  emit('change', target.value)
+}
+const $focus = (e: Event) => {
+  const target = e.target as HTMLInputElement
+  emit('focus', target.value)
+}
+const $blur = (e: Event) => {
+  const target = e.target as HTMLInputElement
+  emit('blur', target.value)
 }
 </script>
 

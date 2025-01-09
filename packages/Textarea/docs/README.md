@@ -1,6 +1,7 @@
 <script setup>
 import Default from './default.vue'
 import API from './api.vue'
+import Event from './event.vue'
 </script>
 
 # Textarea 文本域
@@ -16,3 +17,7 @@ import API from './api.vue'
 ## Textarea 属性
 
 <API />
+
+## Textarea 事件
+
+<Event />
