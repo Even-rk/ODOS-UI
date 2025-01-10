@@ -66,7 +66,7 @@ const {
   width?: string
   height?: string
   placeholder?: string
-  options?: { value: string | number; label: string }[]
+  options?: { [key: string]: string }[]
   allowClear?: boolean
   disabled?: boolean
   multiple?: boolean

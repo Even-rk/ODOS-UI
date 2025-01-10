@@ -11,6 +11,12 @@ const data = [
     describe: '指定当前选中的条目'
   },
   {
+    attribute: 'options',
+    default: '--',
+    type: 'Array<{ label: string, value: string, [key:string]: string }>',
+    describe: '选项列表'
+  },
+  {
     attribute: 'allowClear',
     default: 'false',
     type: 'boolean',

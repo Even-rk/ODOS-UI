@@ -5,6 +5,7 @@ import API from './api.vue'
 import Event from './event.vue'
 import SLOT from './slot.vue'
 import Multiple from './multiple.vue'
+import FilterDemo from './filter.vue'  
 import TitleDemo from './title.vue'
 </script>
 
@@ -32,6 +33,12 @@ import TitleDemo from './title.vue'
 
 <Preview comp-name="Select" demo-name="title">
   <TitleDemo />
+</Preview>
+
+## 筛选
+
+<Preview comp-name="Select" demo-name="filter">
+  <FilterDemo />
 </Preview>
 
 ## Select Api
