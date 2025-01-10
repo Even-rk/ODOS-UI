@@ -1,50 +1,11 @@
 <template>
-  <div class="odos-select" :class="{ 'odos-select-disabled': disabled }" :style="{ width, height }">
-    <div class="odos-select-title" v-if="title">{{ title }}</div>
-    <Select
-      :class="{ 'odos-select-isTitle': title }"
-      @change="selectChange($event as string | number)"
-      showArrow
-      :optionFilterProp="filterProp || 'label'"
-      :value="value"
-      :style="{ width, height }"
-      :placeholder="placeholder || '请选择'"
-      :options="options"
-      :allowClear="allowClear"
-      :bordered="false"
-      :disabled="disabled"
-      :mode="mode"
-      :max-tag-count="maxTagCount"
-      :show-search="showSearch"
-      :defaultActiveFirstOption="false"
-      :getPopupContainer="getPopupContainer"
-    >
-      <template #suffixIcon>
-        <slot name="suffixIcon">
-          <Icon name="ArowDown" size="20px" />
-        </slot>
-      </template>
-      <template #dropdownRender="{ menuNode }">
-        <slot name="dropdownRender" :menu="menuNode">
-          <VNodes :vnodes="menuNode" />
-        </slot>
-      </template>
-      <template #notFoundContent>
-        <slot name="notFoundContent">
-          <Empty />
-        </slot>
-      </template>
-      <template #option="option">
-        <slot name="option" :option="option">{{ option.label }}</slot>
-      </template>
-    </Select>
-  </div>
+  <RenderContent />
 </template>
 
-<script setup lang="ts">
+<script setup lang="tsx">
 import { Icon } from 'packages/Icon'
 import { Empty, Select } from 'ant-design-vue'
-import { computed, defineComponent } from 'vue'
+import { computed, useSlots } from 'vue'
 const {
   value,
   width,
@@ -78,18 +39,6 @@ const {
   mutexOptionValue?: string[] | number[]
 }>()
 
-const VNodes = defineComponent({
-  props: {
-    vnodes: {
-      type: Object,
-      required: true
-    }
-  },
-  render() {
-    return this.vnodes
-  }
-})
-
 const emit = defineEmits<{
   (e: 'update:value' | 'change', data?: string | number | string[] | number[]): void
 }>()
@@ -118,6 +67,54 @@ const mode = computed(() => {
 const getPopupContainer = (triggerNode: Element) => {
   return triggerNode.parentElement || document.body
 }
+
+// 渲染的内容
+const RenderContent = computed(() => {
+  const slots = useSlots()
+  return (
+    <div class={{ 'odos-select': true, 'odos-select-disabled': disabled }} style={{ width, height }}>
+      {title && <div class="odos-select-title">{title}</div>}
+      <Select
+        class={{ 'odos-select-isTitle': title }}
+        onChange={($event) => selectChange($event as string | number)}
+        showArrow
+        optionFilterProp={filterProp || 'label'}
+        value={value}
+        style={{ width, height }}
+        placeholder={placeholder || '请选择'}
+        options={options}
+        allowClear={allowClear}
+        bordered={false}
+        disabled={disabled}
+        mode={mode.value}
+        max-tag-count={maxTagCount}
+        show-search={showSearch}
+        defaultActiveFirstOption={false}
+        getPopupContainer={($event: Element) => getPopupContainer($event)}
+        suffixIcon={<Icon name="ArowDown" size="20px" />}
+        notFoundContent={<Empty />}
+        // 下拉选项
+        v-slots={{
+          ...(slots.option
+            ? {
+                option: (option: { value: string | number; label: string }) => {
+                  return slots.option && slots.option({ option })
+                }
+              }
+            : {})
+        }}
+        // 下拉菜单
+        {...(slots.dropdownRender
+          ? {
+              dropdownRender: (menuNode) => {
+                return slots.dropdownRender && slots.dropdownRender({ menuNode: menuNode?.menuNode })
+              }
+            }
+          : {})}
+      />
+    </div>
+  )
+})
 </script>
 
 <style lang="scss" scoped>
