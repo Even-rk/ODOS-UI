@@ -32,10 +32,10 @@ import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
 // 象限牙位
 import Tooth from './tooth.vue'
-import { nextTick, provide, ref } from 'vue'
+import { nextTick, ref } from 'vue'
 const { value = [], multipleToothList = [] } = defineProps<{
   value: string[]
-  multipleToothList: {
+  multipleToothList?: {
     label: string
     value: string
   }[]
