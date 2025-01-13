@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="tsx">
-import { Icon } from 'packages/Icon'
+import Icon from '../../Icon/src/index.vue'
 import { Empty, Select } from 'ant-design-vue'
 import { computed, useSlots } from 'vue'
 const {
@@ -39,25 +39,27 @@ const {
   mutexOptionValue?: string[] | number[]
 }>()
 
-const emit = defineEmits<{
+interface Emit {
   (e: 'update:value' | 'change', data?: string | number | string[] | number[]): void
   (e: 'blur' | 'focus', data?: Event): void
-}>()
+}
 
-const selectChange = (value?: string | number | string[] | number[]) => {
+const emit = defineEmits<Emit>()
+
+const selectChange = (Val?: string | number | string[] | number[]) => {
   // 多选且是互斥
   if (multiple && mutex) {
-    if (mutexOptionValue?.includes((value as string)[(value as string[]).length - 1] as never)) {
-      emit('update:value', (value as string)[(value as string[]).length - 1])
-      emit('change', (value as string)[(value as string[]).length - 1])
+    if (mutexOptionValue?.includes((Val as string)[(Val as string[]).length - 1] as never)) {
+      emit('update:value', (Val as string)[(Val as string[]).length - 1])
+      emit('change', (Val as string)[(Val as string[]).length - 1])
     } else {
-      const target = (value as string[]).filter((i) => !mutexOptionValue?.includes(i as never))
+      const target = (Val as string[]).filter((i) => !mutexOptionValue?.includes(i as never))
       emit('update:value', target)
       emit('change', target)
     }
   } else {
-    emit('update:value', value)
-    emit('change', value)
+    emit('update:value', Val)
+    emit('change', Val)
   }
 }
 
@@ -77,9 +79,9 @@ const RenderContent = computed(() => {
       {title && <div class="odos-select-title">{title}</div>}
       <Select
         class={{ 'odos-select-isTitle': title }}
-        onChange={($event) => selectChange($event as string | number)}
-        onBlur={($event) => emit('blur', $event)}
-        onFocus={($event) => emit('focus', $event)}
+        onChange={($event) => selectChange($event as string | number | string[] | number[])}
+        onBlur={($event: Event) => emit('blur', $event)}
+        onFocus={($event: Event) => emit('focus', $event)}
         showArrow
         optionFilterProp={filterProp || 'label'}
         value={value}
