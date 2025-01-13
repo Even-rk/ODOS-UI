@@ -41,6 +41,7 @@ const {
 
 const emit = defineEmits<{
   (e: 'update:value' | 'change', data?: string | number | string[] | number[]): void
+  (e: 'blur' | 'focus', data?: Event): void
 }>()
 
 const selectChange = (value?: string | number | string[] | number[]) => {
@@ -77,6 +78,8 @@ const RenderContent = computed(() => {
       <Select
         class={{ 'odos-select-isTitle': title }}
         onChange={($event) => selectChange($event as string | number)}
+        onBlur={($event) => emit('blur', $event)}
+        onFocus={($event) => emit('focus', $event)}
         showArrow
         optionFilterProp={filterProp || 'label'}
         value={value}
