@@ -41,7 +41,6 @@ const { value = [], multipleToothList = [] } = defineProps<{
   }[]
 }>()
 const toothVal = ref(value)
-provide('toothVal', toothVal.value)
 
 const emit = defineEmits<{
   (e: 'update:value', data: string[]): void
