@@ -1,8 +1,43 @@
 <template>
-  <RenderContent />
+  <div class="odos-select" :class="{ 'odos-select-disabled': disabled }" :style="{ width, height }">
+    <div v-if="title" class="odos-select-title">{{ title }}</div>
+    <Select
+      :class="{ 'odos-select-isTitle': title }"
+      @change="selectChange($event as string | number | string[] | number[])"
+      @blur="$emit('blur', $event)"
+      @focus="$emit('focus', $event)"
+      :show-arrow="true"
+      :option-filter-prop="filterProp || 'label'"
+      :value="value"
+      :style="{ width, height }"
+      :placeholder="placeholder || '请选择'"
+      :options="options"
+      :allow-clear="allowClear"
+      :bordered="false"
+      :disabled="disabled"
+      :mode="mode"
+      :max-tag-count="maxTagCount"
+      :show-search="showSearch"
+      :default-active-first-option="false"
+      :get-popup-container="getPopupContainer"
+    >
+      <template #suffixIcon>
+        <Icon name="ArowDown" size="20px" />
+      </template>
+      <template #notFoundContent>
+        <Empty />
+      </template>
+      <template v-if="$slots.option" #option="{ option }">
+        <slot name="option" :option="option" />
+      </template>
+      <template v-if="$slots.dropdownRender" #dropdownRender="{ menuNode }">
+        <slot name="dropdownRender" :menuNode="menuNode" />
+      </template>
+    </Select>
+  </div>
 </template>
 
-<script setup lang="tsx">
+<script setup lang="ts">
 import Icon from '../../Icon/src/index.vue'
 import { Empty, Select } from 'ant-design-vue'
 import { computed, useSlots } from 'vue'
@@ -70,56 +105,6 @@ const mode = computed(() => {
 const getPopupContainer = (triggerNode: Element) => {
   return triggerNode.parentElement || document.body
 }
-
-// 渲染的内容
-const RenderContent = computed(() => {
-  const slots = useSlots()
-  return (
-    <div class={{ 'odos-select': true, 'odos-select-disabled': disabled }} style={{ width, height }}>
-      {title && <div class="odos-select-title">{title}</div>}
-      <Select
-        class={{ 'odos-select-isTitle': title }}
-        onChange={($event) => selectChange($event as string | number | string[] | number[])}
-        onBlur={($event: Event) => emit('blur', $event)}
-        onFocus={($event: Event) => emit('focus', $event)}
-        showArrow
-        optionFilterProp={filterProp || 'label'}
-        value={value}
-        style={{ width, height }}
-        placeholder={placeholder || '请选择'}
-        options={options}
-        allowClear={allowClear}
-        bordered={false}
-        disabled={disabled}
-        mode={mode.value}
-        max-tag-count={maxTagCount}
-        show-search={showSearch}
-        defaultActiveFirstOption={false}
-        getPopupContainer={($event: Element) => getPopupContainer($event)}
-        suffixIcon={<Icon name="ArowDown" size="20px" />}
-        notFoundContent={<Empty />}
-        // 下拉选项
-        v-slots={{
-          ...(slots.option
-            ? {
-                option: (option: { value: string | number; label: string }) => {
-                  return slots.option && slots.option({ option })
-                }
-              }
-            : {})
-        }}
-        // 下拉菜单
-        {...(slots.dropdownRender
-          ? {
-              dropdownRender: (menuNode) => {
-                return slots.dropdownRender && slots.dropdownRender({ menuNode: menuNode?.menuNode })
-              }
-            }
-          : {})}
-      />
-    </div>
-  )
-})
 </script>
 
 <style lang="scss" scoped>
