@@ -16,10 +16,6 @@
     &.disabled {
       cursor: not-allowed;
       color: #c9cdd4;
-
-      &:hover {
-        background: #f2f3f5;
-      }
     }
 
     &:first-child {
@@ -33,7 +29,7 @@
     }
 
     &:hover {
-      background: #e5e6eb;
+      background: #f2f3f5;
     }
 
     &.active {

@@ -15,6 +15,12 @@ const data = [
     default: '[]',
     type: '{ label: string; value: string; }[]',
     describe: '多生牙列options'
+  },
+  {
+    attribute: 'range-limit',
+    default: '--',
+    type: " 'fullMouth' | 'tooth' ",
+    describe: '范围限制'
   }
 ]
 

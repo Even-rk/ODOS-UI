@@ -5,13 +5,18 @@
       <!-- 恒牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reversePermanentTeeth" :key="item">
-          <CheckBoxItem :id="'1' + item" :value="'1' + item" :label="item" />
+          <CheckBoxItem :disabled="disabled" :id="'1' + item" :value="'1' + item" :label="item" />
         </template>
       </CheckBox>
       <!-- 乳牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reverseDeciduousTeeth" :key="item.value">
-          <CheckBoxItem :id="'5' + item.value" :value="'5' + item.value" :label="item.label" />
+          <CheckBoxItem
+            :disabled="disabled"
+            :id="'5' + item.value"
+            :value="'5' + item.value"
+            :label="item.label"
+          />
         </template>
       </CheckBox>
     </div>
@@ -20,13 +25,18 @@
       <!-- 恒牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in permanentTeeth" :key="item">
-          <CheckBoxItem :id="'2' + item" :value="'2' + item" :label="item" />
+          <CheckBoxItem :disabled="disabled" :id="'2' + item" :value="'2' + item" :label="item" />
         </template>
       </CheckBox>
       <!-- 乳牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in deciduousTeeth" :key="item.value">
-          <CheckBoxItem :id="'6' + item.value" :value="'6' + item.value" :label="item.label" />
+          <CheckBoxItem
+            :disabled="disabled"
+            :id="'6' + item.value"
+            :value="'6' + item.value"
+            :label="item.label"
+          />
         </template>
       </CheckBox>
     </div>
@@ -35,13 +45,18 @@
       <!-- 乳牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reverseDeciduousTeeth" :key="item.value">
-          <CheckBoxItem :id="'8' + item.value" :value="'8' + item.value" :label="item.label" />
+          <CheckBoxItem
+            :disabled="disabled"
+            :id="'8' + item.value"
+            :value="'8' + item.value"
+            :label="item.label"
+          />
         </template>
       </CheckBox>
       <!-- 恒牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reversePermanentTeeth" :key="item">
-          <CheckBoxItem :id="'4' + item" :value="'4' + item" :label="item" />
+          <CheckBoxItem :disabled="disabled" :id="'4' + item" :value="'4' + item" :label="item" />
         </template>
       </CheckBox>
     </div>
@@ -50,13 +65,18 @@
       <!-- 乳牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in deciduousTeeth" :key="item.value">
-          <CheckBoxItem :id="'7' + item.value" :value="'7' + item.value" :label="item.label" />
+          <CheckBoxItem
+            :disabled="disabled"
+            :id="'7' + item.value"
+            :value="'7' + item.value"
+            :label="item.label"
+          />
         </template>
       </CheckBox>
       <!-- 恒牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in permanentTeeth" :key="item">
-          <CheckBoxItem :id="'3' + item" :value="'3' + item" :label="item" />
+          <CheckBoxItem :disabled="disabled" :id="'3' + item" :value="'3' + item" :label="item" />
         </template>
       </CheckBox>
     </div>
@@ -78,6 +98,7 @@ import CheckBoxItem from '../../CheckBox/src/item.vue'
 // 默认数据
 const props = defineProps<{
   value: string[]
+  disabled: boolean
 }>()
 const toothVal = ref(props.value || [])
 const emit = defineEmits<{
@@ -254,6 +275,7 @@ const selectRegion = (e: MouseEvent) => {
 }
 // 鼠标按下事件
 const onmousedown = (e: MouseEvent) => {
+  if (props.disabled) return
   const target = e.target as HTMLElement
   if (!target.classList.contains('odos-check-box-item')) {
     selectRegion(e)
@@ -345,9 +367,16 @@ watch(() => props.value, watchValue, { deep: true })
       align-items: center;
       background: #ffffff;
       border: 0.5px solid #c9cdd4;
+      &:hover {
+        background: #f2f3f5;
+      }
       &.active {
         background: #2e6ce4;
         color: #ffffff;
+      }
+      &.disabled {
+        background: none;
+        color: #c9cdd4;
       }
       &.error {
         background: #ff4d4f;

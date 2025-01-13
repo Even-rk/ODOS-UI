@@ -3,7 +3,7 @@
     <div class="header">
       <div class="complete">
         <CheckBox v-model:value="toothVal" @change="toothValChange">
-          <CheckBoxItem id="-1" value="-1" label="全口" />
+          <CheckBoxItem :disabled="rangeLimit === 'tooth'" id="-1" value="-1" label="全口" />
         </CheckBox>
       </div>
       <div class="info">
@@ -11,13 +11,18 @@
         <span>单击选择单个牙位，框选可选择多个牙位</span>
       </div>
     </div>
-    <Tooth v-model:value="toothVal" @change="toothValChange" />
+    <Tooth v-model:value="toothVal" :disabled="rangeLimit === 'fullMouth'" @change="toothValChange" />
     <div class="footer" v-if="multipleToothList?.length">
       <div class="label">多生牙：</div>
       <div class="value">
         <CheckBox v-model:value="toothVal" @change="toothValChange">
           <template v-for="ele in multipleToothList" :key="ele.value">
-            <CheckBoxItem :id="ele.value" :value="ele.value" :label="ele.label" />
+            <CheckBoxItem
+              :disabled="rangeLimit === 'fullMouth'"
+              :id="ele.value"
+              :value="ele.value"
+              :label="ele.label"
+            />
           </template>
         </CheckBox>
       </div>
@@ -33,12 +38,17 @@ import CheckBoxItem from '../../CheckBox/src/item.vue'
 // 象限牙位
 import Tooth from './tooth.vue'
 import { nextTick, ref } from 'vue'
-const { value = [], multipleToothList = [] } = defineProps<{
+const {
+  value = [],
+  multipleToothList = [],
+  rangeLimit
+} = defineProps<{
   value: string[]
   multipleToothList?: {
     label: string
     value: string
   }[]
+  rangeLimit?: 'fullMouth' | 'tooth'
 }>()
 const toothVal = ref(value)
 

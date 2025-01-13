@@ -1,5 +1,5 @@
 <template>
-  <OdosToothSelect v-model:value="value" :multiple-tooth-list="multipleToothList" />
+  <OdosToothSelect v-model:value="value" range-limit="fullMouth" :multiple-tooth-list="multipleToothList" />
 </template>
 
 <script setup lang="ts">
