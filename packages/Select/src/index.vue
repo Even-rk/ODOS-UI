@@ -7,6 +7,7 @@
       @blur="$emit('blur', $event)"
       @focus="$emit('focus', $event)"
       @deselect="$emit('deselect', $event)"
+      @select="$emit('select', $event)"
       :show-arrow="true"
       :option-filter-prop="filterProp || 'label'"
       :value="value"
@@ -79,7 +80,7 @@ const slots = useSlots()
 
 interface Emit {
   (e: 'update:value' | 'change', data?: string | number | string[] | number[]): void
-  (e: 'blur' | 'focus' | 'deselect', data?: Event): void
+  (e: 'blur' | 'focus' | 'deselect' | 'select', data?: Event): void
 }
 
 const emit = defineEmits<Emit>()
