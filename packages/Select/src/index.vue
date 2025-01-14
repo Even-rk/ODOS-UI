@@ -6,6 +6,7 @@
       @change="selectChange($event as string | number | string[] | number[])"
       @blur="$emit('blur', $event)"
       @focus="$emit('focus', $event)"
+      @deselect="$emit('deselect', $event)"
       :show-arrow="true"
       :option-filter-prop="filterProp || 'label'"
       :value="value"
@@ -27,10 +28,10 @@
       <template #notFoundContent>
         <Empty />
       </template>
-      <template v-if="$slots.option" #option="{ option }">
+      <template v-if="slots.option" #option="{ option }">
         <slot name="option" :option="option" />
       </template>
-      <template v-if="$slots.dropdownRender" #dropdownRender="{ menuNode }">
+      <template v-if="slots.dropdownRender" #dropdownRender="{ menuNode }">
         <slot name="dropdownRender" :menuNode="menuNode" />
       </template>
     </Select>
@@ -74,9 +75,11 @@ const {
   mutexOptionValue?: string[] | number[]
 }>()
 
+const slots = useSlots()
+
 interface Emit {
   (e: 'update:value' | 'change', data?: string | number | string[] | number[]): void
-  (e: 'blur' | 'focus', data?: Event): void
+  (e: 'blur' | 'focus' | 'deselect', data?: Event): void
 }
 
 const emit = defineEmits<Emit>()
