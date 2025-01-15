@@ -11,6 +11,7 @@
       :show-arrow="true"
       :option-filter-prop="filterProp || 'label'"
       :value="value"
+      :virtual="false"
       :style="{ width, height }"
       :placeholder="placeholder || '请选择'"
       :options="options"
