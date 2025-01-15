@@ -1,5 +1,10 @@
 <template>
-  <OdosToothSelect v-model:value="value" range-limit="fullMouth" :multiple-tooth-list="multipleToothList" />
+  <OdosToothSelect
+    name="disabled"
+    v-model:value="value"
+    range-limit="fullMouth"
+    :multiple-tooth-list="multipleToothList"
+  />
 </template>
 
 <script setup lang="ts">

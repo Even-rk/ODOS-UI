@@ -21,6 +21,12 @@ const data = [
     default: '--',
     type: " 'fullMouth' | 'tooth' ",
     describe: '范围限制'
+  },
+  {
+    attribute: 'name',
+    default: '--',
+    type: 'string',
+    describe: '唯一标识（当一个页面使用了多个牙位选择器的情况下，需要设置），确保当前牙位选择器唯一'
   }
 ]
 

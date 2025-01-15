@@ -1,5 +1,5 @@
 <template>
-  <div class="tooth" @mousedown="onmousedown">
+  <div :class="`tooth ${props.name}`" @mousedown="onmousedown">
     <!-- 第一，第五，象限 -->
     <div class="quadrant" style="align-items: end">
       <!-- 恒牙列 -->
@@ -90,7 +90,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onUnmounted, ref, watch } from 'vue'
 // 多选
 import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
@@ -99,6 +99,7 @@ import CheckBoxItem from '../../CheckBox/src/item.vue'
 const props = defineProps<{
   value: string[]
   disabled: boolean
+  name?: string
 }>()
 const toothVal = ref(props.value || [])
 const emit = defineEmits<{
@@ -152,8 +153,13 @@ const officeEnd = ref({
 // 框选元素判断 选中/删除
 const isElementInRegion = (elementList: Element[], e?: MouseEvent) => {
   e?.stopPropagation
+  let children = [] as Element[]
   // 判断框选区域选中的元素
-  const children = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
+  if (props.name) {
+    children = Array.from(document.querySelectorAll(`.${props.name} .odos-check_box-item-content`))
+  } else {
+    children = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
+  }
   elementList.forEach((item, index) => {
     const target = children[index]
     const itemRect = target.getBoundingClientRect()
@@ -212,15 +218,33 @@ const onMousemove = (e: MouseEvent) => {
   }
 
   // 判断框选区域包含的元素
-  const elementList = Array.from(document.querySelectorAll('.odos-check-box-item'))
-  // 拖拽时，是否有按住shift键
-  isElementInRegion(elementList, e)
+  if (props.name) {
+    const elementList = Array.from(document.querySelectorAll(`.${props.name} .odos-check-box-item`))
+    // 拖拽时，是否有按住shift键
+    isElementInRegion(elementList, e)
+  } else {
+    const elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
+    // 拖拽时，是否有按住shift键
+    isElementInRegion(elementList, e)
+  }
 }
 // 鼠标框选结束函数
 const onMouseup = () => {
-  const elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
+  let elementList = [] as Element[]
+  if (props.name) {
+    elementList = Array.from(document.querySelectorAll(`.${props.name} .odos-check_box-item-content`))
+  } else {
+    elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
+  }
+  // 选中的
   const filterList = elementList.filter((item) => {
-    return item.parentElement?.classList.contains('active')
+    // 判断元素是否在框选区域内
+    const active = item.parentElement?.classList.contains('active')
+    // 删除选中的元素
+    const error = !item.parentElement?.classList.contains('error')
+    // 删除删除的元素
+    item.parentElement?.classList.remove('error')
+    return active && error
   })
   toothVal.value = filterList.map((item) => item.id)
   emit('update:value', toothVal.value)
@@ -290,6 +314,15 @@ const toothValChange = () => {
 // 监听value
 const watchValue = (newValue: string[]) => (toothVal.value = newValue)
 watch(() => props.value, watchValue, { deep: true })
+
+// 卸载阶段
+onUnmounted(() => {
+  // 移除事件监听器
+  document.removeEventListener('mousemove', onMousemove)
+  document.removeEventListener('mouseup', onMouseup)
+  // 清空数据
+  toothVal.value = []
+})
 </script>
 
 <style scoped lang="scss">

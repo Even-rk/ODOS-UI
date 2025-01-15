@@ -1,11 +1,11 @@
 <template>
-  <OdosToothSelect v-model:value="value" :multiple-tooth-list="multipleToothList" />
+  <OdosToothSelect name="dome" v-model:value="value" :multiple-tooth-list="multipleToothList" />
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-const value = ref(['11', '12'])
+const value = ref([])
 const multipleToothList = ref([
   {
     label: '12近中',

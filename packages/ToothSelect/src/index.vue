@@ -11,7 +11,12 @@
         <span>单击选择单个牙位，框选可选择多个牙位</span>
       </div>
     </div>
-    <Tooth v-model:value="toothVal" :disabled="rangeLimit === 'fullMouth'" @change="toothValChange" />
+    <Tooth
+      :name="name"
+      v-model:value="toothVal"
+      :disabled="rangeLimit === 'fullMouth'"
+      @change="toothValChange"
+    />
     <div class="footer" v-if="multipleToothList?.length">
       <div class="label">多生牙：</div>
       <div class="value">
@@ -37,17 +42,19 @@ import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
 // 象限牙位
 import Tooth from './tooth.vue'
-import { nextTick, ref } from 'vue'
+import { nextTick, onUnmounted, ref } from 'vue'
 const {
   value = [],
   multipleToothList = [],
-  rangeLimit
+  rangeLimit,
+  name
 } = defineProps<{
   value: string[]
   multipleToothList?: {
     label: string
     value: string
   }[]
+  name?: string
   rangeLimit?: 'fullMouth' | 'tooth'
 }>()
 const toothVal = ref(value)
@@ -82,6 +89,11 @@ const toothValChange = () => {
     }
   })
 }
+
+// 卸载阶段
+onUnmounted(() => {
+  toothVal.value = []
+})
 </script>
 
 <style scoped lang="scss">
