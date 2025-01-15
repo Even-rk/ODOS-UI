@@ -33,15 +33,6 @@ createApp(App).use(ODOSUI).mount('#app')
 
 ### 按需导入（推荐）
 
-main.ts
-
-```ts
-// odos-ui-style
-import 'odos-ui/lib/style.css'
-```
-
-\*\*.vue
-
 ```vue
 <template>
   <Button type="primary">按钮</Button>
