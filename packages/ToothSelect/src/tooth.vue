@@ -210,11 +210,11 @@ const onMousemove = (e: MouseEvent) => {
   regionConfig.value.height = Math.abs(y) + 'px'
 
   if (x < 0) {
-    regionConfig.value.left = e.pageX + 'px'
+    regionConfig.value.left = e.clientX + 'px'
   }
 
   if (y < 0) {
-    regionConfig.value.top = e.pageY + 'px'
+    regionConfig.value.top = e.clientY + 'px'
   }
 
   // 判断框选区域包含的元素
@@ -223,7 +223,7 @@ const onMousemove = (e: MouseEvent) => {
     // 拖拽时，是否有按住shift键
     isElementInRegion(elementList, e)
   } else {
-    const elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
+    const elementList = Array.from(document.querySelectorAll('.odos-check-box-item'))
     // 拖拽时，是否有按住shift键
     isElementInRegion(elementList, e)
   }
@@ -271,8 +271,8 @@ const selectRegion = (e: MouseEvent) => {
     x: e.pageX,
     y: e.pageY
   }
-  regionConfig.value.top = e.pageY + 'px'
-  regionConfig.value.left = e.pageX + 'px'
+  regionConfig.value.top = e.clientY + 'px'
+  regionConfig.value.left = e.clientX + 'px'
   // 鼠标移动事件
   isBoxSelect.value = true
   // 定义鼠标移动事件处理函数
