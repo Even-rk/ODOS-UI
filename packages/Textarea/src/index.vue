@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
 import { Textarea } from 'ant-design-vue'
-import type { ChangeEvent } from 'ant-design-vue/es/_util/EventInterface'
 const { value, maxlength, autoSize, disabled, placeholder } = defineProps<{
   value?: string
   maxlength?: number

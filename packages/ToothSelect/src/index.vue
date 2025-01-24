@@ -14,7 +14,8 @@
     <Tooth
       :name="name"
       v-model:value="toothVal"
-      :disabled="rangeLimit === 'fullMouth'"
+      :rangeLimit="rangeLimit"
+      :disabled="rangeLimit === 'fullMouth' || rangeLimit === 'bitewing'"
       @change="toothValChange"
     />
     <div class="footer" v-if="multipleToothList?.length">
@@ -55,7 +56,7 @@ const {
     value: string
   }[]
   name?: string
-  rangeLimit?: 'fullMouth' | 'tooth'
+  rangeLimit?: 'fullMouth' | 'tooth' | 'bitewing' | string
 }>()
 const toothVal = ref(value)
 

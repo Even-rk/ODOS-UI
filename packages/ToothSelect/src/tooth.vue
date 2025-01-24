@@ -5,14 +5,19 @@
       <!-- 恒牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reversePermanentTeeth" :key="item">
-          <CheckBoxItem :disabled="disabled" :id="'1' + item" :value="'1' + item" :label="item" />
+          <CheckBoxItem
+            :disabled="isDisabled('1' + item)"
+            :id="'1' + item"
+            :value="'1' + item"
+            :label="item"
+          />
         </template>
       </CheckBox>
       <!-- 乳牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reverseDeciduousTeeth" :key="item.value">
           <CheckBoxItem
-            :disabled="disabled"
+            :disabled="isDisabled('5' + item.value)"
             :id="'5' + item.value"
             :value="'5' + item.value"
             :label="item.label"
@@ -25,14 +30,19 @@
       <!-- 恒牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in permanentTeeth" :key="item">
-          <CheckBoxItem :disabled="disabled" :id="'2' + item" :value="'2' + item" :label="item" />
+          <CheckBoxItem
+            :disabled="isDisabled('2' + item)"
+            :id="'2' + item"
+            :value="'2' + item"
+            :label="item"
+          />
         </template>
       </CheckBox>
       <!-- 乳牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in deciduousTeeth" :key="item.value">
           <CheckBoxItem
-            :disabled="disabled"
+            :disabled="isDisabled('6' + item.value)"
             :id="'6' + item.value"
             :value="'6' + item.value"
             :label="item.label"
@@ -46,7 +56,7 @@
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reverseDeciduousTeeth" :key="item.value">
           <CheckBoxItem
-            :disabled="disabled"
+            :disabled="isDisabled('8' + item.value)"
             :id="'8' + item.value"
             :value="'8' + item.value"
             :label="item.label"
@@ -56,7 +66,12 @@
       <!-- 恒牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reversePermanentTeeth" :key="item">
-          <CheckBoxItem :disabled="disabled" :id="'4' + item" :value="'4' + item" :label="item" />
+          <CheckBoxItem
+            :disabled="isDisabled('4' + item)"
+            :id="'4' + item"
+            :value="'4' + item"
+            :label="item"
+          />
         </template>
       </CheckBox>
     </div>
@@ -66,7 +81,7 @@
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in deciduousTeeth" :key="item.value">
           <CheckBoxItem
-            :disabled="disabled"
+            :disabled="isDisabled('7' + item.value)"
             :id="'7' + item.value"
             :value="'7' + item.value"
             :label="item.label"
@@ -76,7 +91,12 @@
       <!-- 恒牙列 -->
       <CheckBox v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in permanentTeeth" :key="item">
-          <CheckBoxItem :disabled="disabled" :id="'3' + item" :value="'3' + item" :label="item" />
+          <CheckBoxItem
+            :disabled="isDisabled('3' + item)"
+            :id="'3' + item"
+            :value="'3' + item"
+            :label="item"
+          />
         </template>
       </CheckBox>
     </div>
@@ -94,17 +114,46 @@ import { onUnmounted, ref, watch } from 'vue'
 // 多选
 import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
-
+// 上前牙和下前牙
+const bitewing = [
+  '11',
+  '12',
+  '21',
+  '22',
+  '31',
+  '32',
+  '41',
+  '42',
+  '51',
+  '52',
+  '61',
+  '62',
+  '71',
+  '72',
+  '81',
+  '82'
+]
 // 默认数据
 const props = defineProps<{
   value: string[]
   disabled: boolean
+  rangeLimit?: string
   name?: string
 }>()
 const toothVal = ref(props.value || [])
 const emit = defineEmits<{
   (e: 'update:value' | 'change', data: string[]): void
 }>()
+
+const isDisabled = (val: string) => {
+  const isBitewing = props.rangeLimit === 'bitewing'
+  const isHaveTooth = bitewing.includes(val)
+  if (isBitewing) {
+    return props.disabled && isHaveTooth
+  } else {
+    return props.disabled
+  }
+}
 // 乳牙
 const deciduousTeeth = [
   {
@@ -240,11 +289,13 @@ const onMouseup = () => {
   const filterList = elementList.filter((item) => {
     // 判断元素是否在框选区域内
     const active = item.parentElement?.classList.contains('active')
+    // 判断元素是否禁用
+    const disabled = item.parentElement?.classList.contains('disabled')
     // 删除选中的元素
     const error = !item.parentElement?.classList.contains('error')
     // 删除删除的元素
     item.parentElement?.classList.remove('error')
-    return active && error
+    return active && error && !disabled
   })
   toothVal.value = filterList.map((item) => item.id)
   emit('update:value', toothVal.value)
@@ -299,7 +350,7 @@ const selectRegion = (e: MouseEvent) => {
 }
 // 鼠标按下事件
 const onmousedown = (e: MouseEvent) => {
-  if (props.disabled) return
+  if (props.rangeLimit == 'fullMouth') return
   const target = e.target as HTMLElement
   if (!target.classList.contains('odos-check-box-item')) {
     selectRegion(e)

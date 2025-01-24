@@ -1,8 +1,14 @@
 <template>
   <OdosToothSelect
-    name="disabled"
+    name="fullMouth"
     v-model:value="value"
     range-limit="fullMouth"
+    :multiple-tooth-list="multipleToothList"
+  />
+  <OdosToothSelect
+    name="bitewing"
+    v-model:value="value"
+    range-limit="bitewing"
     :multiple-tooth-list="multipleToothList"
   />
 </template>
