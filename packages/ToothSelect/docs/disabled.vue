@@ -1,16 +1,19 @@
 <template>
-  <OdosToothSelect
-    name="fullMouth"
-    v-model:value="value"
-    range-limit="fullMouth"
-    :multiple-tooth-list="multipleToothList"
-  />
-  <OdosToothSelect
-    name="bitewing"
-    v-model:value="value"
-    range-limit="bitewing"
-    :multiple-tooth-list="multipleToothList"
-  />
+  <div class="odos-tooth-select-disabled">
+    <OdosToothSelect
+      name="fullMouth"
+      v-model:value="value"
+      range-limit="fullMouth"
+      :multiple-tooth-list="multipleToothList"
+    />
+    <hr />
+    <OdosToothSelect
+      name="bitewing"
+      v-model:value="value"
+      range-limit="bitewing"
+      :multiple-tooth-list="multipleToothList"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -33,4 +36,9 @@ watch(value, () => {
 })
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.odos-tooth-select-disabled {
+  display: flex;
+  flex-direction: column;
+}
+</style>

@@ -86,9 +86,10 @@
       box-sizing: border-box;
       border: 1px solid #e5e6eb;
     }
-
-    .ant-select-selection-placeholder {
-      padding-left: 77px;
+    &.odos-select-isTitle {
+      .ant-select-selection-placeholder {
+        padding-left: 77px;
+      }
     }
   }
 }
