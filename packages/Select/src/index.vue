@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import Icon from '../../Icon/src/index.vue'
 import { Empty, Select } from 'ant-design-vue'
-import { computed, useSlots } from 'vue'
+import { computed, useSlots, type SetupContext } from 'vue'
 const {
   value,
   width,
@@ -77,7 +77,7 @@ const {
   mutexOptionValue?: string[] | number[]
 }>()
 
-const slots = useSlots()
+const slots = useSlots() as SetupContext['slots']
 
 interface Emit {
   (e: 'update:value' | 'change', data?: string | number | string[] | number[]): void
