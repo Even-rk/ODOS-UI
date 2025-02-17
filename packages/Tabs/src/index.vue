@@ -10,9 +10,9 @@
 <script setup lang="tsx">
 import '/styles/tabs.scss'
 import Icon from '../../Icon/src/index.vue'
-import { ref, useSlots, type VNode } from 'vue'
+import { ref, useSlots, type SetupContext, type VNode } from 'vue'
 
-const slots = useSlots()
+const slots = useSlots() as SetupContext['slots']
 
 interface Emit {
   (e: 'update:currentTab', val: string | number): void

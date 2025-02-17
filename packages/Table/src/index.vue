@@ -1,6 +1,7 @@
 <template>
   <ConfigProvider :locale="zhCN">
     <Table
+      v-bind="$attrs"
       class="odos-table"
       :loading="loading"
       :data-source="data"
@@ -24,8 +25,8 @@
         <Empty :description="emptyText" />
       </template>
       <!-- 镶嵌子表格 -->
-      <template #expandedRowRender v-if="expandedRowRender">
-        <slot name="expandedRowRender" />
+      <template v-for="(_, name) in slots" #[name]="SlotProps">
+        <slot :name="name" v-bind="SlotProps"></slot>
       </template>
     </Table>
   </ConfigProvider>
@@ -35,7 +36,7 @@
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { ConfigProvider, Empty, Table } from 'ant-design-vue'
 import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
-import type { VNode } from 'vue'
+import { useSlots, type SetupContext, type VNode } from 'vue'
 export type Column = {
   align?: 'left' | 'right' | 'center'
   title?: string
@@ -56,6 +57,8 @@ const { data, columns, loading, isSelection, emptyText, expandIcon } = definePro
   expandedRowRender?: boolean
   expandIcon?: () => VNode
 }>()
+
+const slots = useSlots() as SetupContext['slots']
 
 const emit = defineEmits<{
   (e: 'selectChange', row: any[]): void

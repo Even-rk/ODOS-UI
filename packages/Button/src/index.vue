@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import Icon from 'packages/Icon/src/index.vue'
-import { computed, ref, useSlots, watchEffect } from 'vue'
+import { computed, ref, useSlots, watchEffect, type SetupContext } from 'vue'
 
 const { type, size, disabled, icon } = defineProps<{
   type?: 'primary' | 'default' | 'line' | 'text'
@@ -20,7 +20,7 @@ const { type, size, disabled, icon } = defineProps<{
   icon?: string
 }>()
 
-const slots = useSlots()
+const slots = useSlots() as SetupContext['slots']
 const iconColor = ref('')
 
 const styleClass = computed(() => {

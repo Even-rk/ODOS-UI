@@ -6,16 +6,16 @@
       :trigger="trigger"
       :getPopupContainer="getPopupContainer"
     >
-      <template #content>
-        <slot name="content"></slot>
+      <template v-for="(_, name) in slots" #[name]="SlotProps">
+        <slot :name="name" v-bind="SlotProps"></slot>
       </template>
-      <slot></slot>
     </Popover>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Popover } from 'ant-design-vue'
+import { useSlots, type SetupContext } from 'vue'
 const { position, trigger } = defineProps<{
   position?:
     | 'top'
@@ -32,6 +32,8 @@ const { position, trigger } = defineProps<{
     | 'rightBottom'
   trigger?: 'hover' | 'click'
 }>()
+
+const slots = useSlots() as SetupContext['slots']
 
 const emit = defineEmits<{
   (e: 'openChange', data: boolean): void

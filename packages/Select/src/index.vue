@@ -2,6 +2,7 @@
   <div class="odos-select" :class="{ 'odos-select-disabled': disabled }" :style="{ width, height }">
     <div v-if="title" class="odos-select-title">{{ title }}</div>
     <Select
+      v-bind="$attrs"
       :class="{ 'odos-select-isTitle': title }"
       @change="selectChange($event as string | number | string[] | number[])"
       @blur="$emit('blur', $event)"
@@ -30,11 +31,8 @@
       <template #notFoundContent>
         <Empty />
       </template>
-      <template v-if="slots.option" #option="{ option }">
-        <slot name="option" :option="option" />
-      </template>
-      <template v-if="slots.dropdownRender" #dropdownRender="{ menuNode }">
-        <slot name="dropdownRender" :menuNode="menuNode" />
+      <template v-for="(_, name) in slots" #[name]="SlotProps">
+        <slot :name="name" v-bind="SlotProps"></slot>
       </template>
     </Select>
   </div>
@@ -78,7 +76,6 @@ const {
 }>()
 
 const slots = useSlots() as SetupContext['slots']
-
 interface Emit {
   (e: 'update:value' | 'change', data?: string | number | string[] | number[]): void
   (e: 'blur' | 'focus' | 'deselect' | 'select', data?: Event): void

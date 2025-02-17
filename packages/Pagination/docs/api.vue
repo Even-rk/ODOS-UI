@@ -1,5 +1,5 @@
 <template>
-  <odos-table :columns="columns" :data="data"></odos-table>
+  <odos-table :columns="columns" :data="data" />
 </template>
 
 <script setup lang="ts">

@@ -1,6 +1,7 @@
 <template>
   <div class="odos-textarea">
     <Textarea
+      v-bind="$attrs"
       :placeholder="placeholder || '请输入'"
       :value="value"
       @input="$input($event)"
