@@ -4,20 +4,20 @@ import Disabled from './disabled.vue'
 import API from './api.vue'
 </script>
 
-# ToothSelect 牙位选择器
+# ToothChart 十字牙位
 
 ## 基本使用
 
-<Preview comp-name="ToothSelect" demo-name="demo">
+<Preview comp-name="ToothChart" demo-name="demo">
   <demo />
 </Preview>
 
-## ToothSelect 选择禁用
+## ToothChart 选择禁用
 
-<Preview comp-name="ToothSelect" demo-name="disabled">
+<Preview comp-name="ToothChart" demo-name="disabled">
   <Disabled />
 </Preview>
 
-## ToothSelect 属性
+## ToothChart 属性
 
 <API />

@@ -30,6 +30,11 @@
     "compClassName": "toothSelect"
   },
   {
+    "compName": "ToothChart",
+    "compZhName": "ToothChart 十字牙位",
+    "compClassName": "toothChart"
+  },
+  {
     "compName": "Empty",
     "compZhName": "Empty空状态",
     "compClassName": "empty"

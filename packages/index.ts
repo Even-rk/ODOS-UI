@@ -24,8 +24,10 @@ import { TabsPlugin } from './Tabs'
 import { TagPlugin } from './Tag'
 import { TextareaPlugin } from './Textarea'
 import { ToothSelectPlugin } from './ToothSelect'
+import { ToothChartPlugin } from './ToothChart'
+import type { Plugin } from 'vue'
 
-const Packages = [
+const Packages: Plugin[] = [
   AudioPlugin,
   ButtonPlugin,
   CheckBoxPlugin,
@@ -34,6 +36,7 @@ const Packages = [
   IconPlugin,
   InputPlugin,
   InputNumberPlugin,
+  LoadingPlugin,
   PaginationPlugin,
   PopoverPlugin,
   RadioPlugin,
@@ -43,10 +46,10 @@ const Packages = [
   TagPlugin,
   TextareaPlugin,
   ToothSelectPlugin,
-  LoadingPlugin
+  ToothChartPlugin
 ]
 
-const OdosPlugin: any = {
+const OdosPlugin: Plugin = {
   install(app: App) {
     Packages.forEach((item) => {
       item.install?.(app)
@@ -62,6 +65,7 @@ export * from './Button'
 export * from './CheckBox'
 export * from './DatePicker'
 export * from './ToothSelect'
+export * from './ToothChart'
 export * from './Empty'
 export * from './Icon'
 export * from './Input'
