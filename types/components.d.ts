@@ -22,6 +22,8 @@ declare module 'vue' {
     OdosRadio: (typeof import('../packages/Radio/src/index.vue'))['default']
     OdosRadioItem: (typeof import('../packages/Radio/src/item.vue'))['default']
     OdosSelect: (typeof import('../packages/Select/src/index.vue'))['default']
+    OdosToothChart: (typeof import('../packages/ToothChart/src/index.vue'))['default']
+    OdosToothSelect: (typeof import('../packages/ToothSelect/src/index.vue'))['default']
     OdosTable: (typeof import('../packages/Table/src/index.vue'))['default']
     OdosTabs: (typeof import('../packages/Tabs/src/index.vue'))['default']
     OdosTab: (typeof import('../packages/Tabs/src/item.vue'))['default']

@@ -2,7 +2,7 @@
   <div class="odos-tooth-posit">
     <div class="header">
       <div class="complete">
-        <CheckBox v-model:value="toothVal" @change="toothValChange">
+        <CheckBox v-model:value="toothVal" @change="toothValChange" mutex mutexOptionValue="All">
           <CheckBoxItem :disabled="rangeLimit === 'tooth'" id="-1" value="-1" label="全口" />
         </CheckBox>
       </div>
@@ -21,7 +21,7 @@
     <div class="footer" v-if="multipleToothList?.length">
       <div class="label">多生牙：</div>
       <div class="value">
-        <CheckBox v-model:value="toothVal" @change="toothValChange">
+        <CheckBox v-model:value="toothVal" @change="toothValChange" mutex :mutexOptionValue="['-1']">
           <template v-for="ele in multipleToothList" :key="ele.value">
             <CheckBoxItem
               :disabled="rangeLimit === 'fullMouth'"
@@ -72,7 +72,6 @@ const toothValChange = () => {
     if (toothVal.value.length > 0) {
       // 如果数组最后一个元素是'-1'，则将数组设置为只包含'-1'
       if (toothVal.value[toothVal.value.length - 1] == '-1') {
-        toothVal.value = ['-1']
         // 触发更新事件和变化事件
         emit('update:value', toothVal.value)
         emit('change', toothVal.value)
@@ -85,8 +84,8 @@ const toothValChange = () => {
       }
     } else {
       // 如果数组为空，触发更新事件和变化事件
-      emit('update:value', toothVal.value)
-      emit('change', toothVal.value)
+      emit('update:value', [])
+      emit('change', [])
     }
   })
 }

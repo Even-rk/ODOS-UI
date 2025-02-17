@@ -11,7 +11,7 @@ const props = defineProps<{
   size?: 'small' | 'medium' | 'large'
   value?: string[] | number[]
   mutex?: boolean
-  mutexOptionValue?: string[] | number[]
+  mutexOptionValue?: string[] | number[] | 'All'
 }>()
 
 onMounted(() => {
@@ -67,8 +67,14 @@ const CheckBoxItem = (list: Item[]) => {
             else {
               // 处理互斥内容
               if (props.mutex) {
+                //  如果props.mutexOptionValue 为All 表示与其他所有都互斥
+                if (props.mutexOptionValue == 'All') {
+                  emit('change', [it.props.value as number])
+                  emit('update:value', [it.props.value as number])
+                  return
+                }
                 // 如果props.mutexOptionValue数组已经包含了当前项（it.props.value），则不对props.value进行修改，而是直接通过emit方法触发change和update:value事件，并将当前项作为参数传递。
-                if (props.mutexOptionValue?.includes(it.props.value as never)) {
+                else if (props.mutexOptionValue?.includes(it.props.value as never)) {
                   emit('change', [it.props.value as number])
                   emit('update:value', [it.props.value as number])
                   return

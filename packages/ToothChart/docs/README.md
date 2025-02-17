@@ -1,6 +1,5 @@
 <script setup>
 import demo from './demo.vue'
-import Disabled from './disabled.vue'
 import API from './api.vue'
 </script>
 
@@ -10,12 +9,6 @@ import API from './api.vue'
 
 <Preview comp-name="ToothChart" demo-name="demo">
   <demo />
-</Preview>
-
-## ToothChart 选择禁用
-
-<Preview comp-name="ToothChart" demo-name="disabled">
-  <Disabled />
 </Preview>
 
 ## ToothChart 属性

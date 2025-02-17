@@ -3,7 +3,7 @@
     <!-- 第一，第五，象限 -->
     <div class="quadrant" style="align-items: end">
       <!-- 恒牙列 -->
-      <CheckBox v-model:value="toothVal" @change="toothValChange">
+      <CheckBox mutex :mutexOptionValue="['-1']" v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reversePermanentTeeth" :key="item">
           <CheckBoxItem
             :disabled="isDisabled('1' + item)"
@@ -14,7 +14,7 @@
         </template>
       </CheckBox>
       <!-- 乳牙列 -->
-      <CheckBox v-model:value="toothVal" @change="toothValChange">
+      <CheckBox mutex :mutexOptionValue="['-1']" v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reverseDeciduousTeeth" :key="item.value">
           <CheckBoxItem
             :disabled="isDisabled('5' + item.value)"
@@ -28,7 +28,7 @@
     <!-- 第二，第六，象限 -->
     <div class="quadrant">
       <!-- 恒牙列 -->
-      <CheckBox v-model:value="toothVal" @change="toothValChange">
+      <CheckBox mutex :mutexOptionValue="['-1']" v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in permanentTeeth" :key="item">
           <CheckBoxItem
             :disabled="isDisabled('2' + item)"
@@ -39,7 +39,7 @@
         </template>
       </CheckBox>
       <!-- 乳牙列 -->
-      <CheckBox v-model:value="toothVal" @change="toothValChange">
+      <CheckBox mutex :mutexOptionValue="['-1']" v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in deciduousTeeth" :key="item.value">
           <CheckBoxItem
             :disabled="isDisabled('6' + item.value)"
@@ -53,7 +53,7 @@
     <!-- 第四，第八，象限 -->
     <div class="quadrant" style="justify-content: end; align-items: end">
       <!-- 乳牙列 -->
-      <CheckBox v-model:value="toothVal" @change="toothValChange">
+      <CheckBox mutex :mutexOptionValue="['-1']" v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reverseDeciduousTeeth" :key="item.value">
           <CheckBoxItem
             :disabled="isDisabled('8' + item.value)"
@@ -64,7 +64,7 @@
         </template>
       </CheckBox>
       <!-- 恒牙列 -->
-      <CheckBox v-model:value="toothVal" @change="toothValChange">
+      <CheckBox mutex :mutexOptionValue="['-1']" v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in reversePermanentTeeth" :key="item">
           <CheckBoxItem
             :disabled="isDisabled('4' + item)"
@@ -78,7 +78,7 @@
     <!-- 第三，第七，象限 -->
     <div class="quadrant" style="justify-content: end">
       <!-- 乳牙列 -->
-      <CheckBox v-model:value="toothVal" @change="toothValChange">
+      <CheckBox mutex :mutexOptionValue="['-1']" v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in deciduousTeeth" :key="item.value">
           <CheckBoxItem
             :disabled="isDisabled('7' + item.value)"
@@ -89,7 +89,7 @@
         </template>
       </CheckBox>
       <!-- 恒牙列 -->
-      <CheckBox v-model:value="toothVal" @change="toothValChange">
+      <CheckBox mutex :mutexOptionValue="['-1']" v-model:value="toothVal" @change="toothValChange">
         <template v-for="item in permanentTeeth" :key="item">
           <CheckBoxItem
             :disabled="isDisabled('3' + item)"
@@ -326,6 +326,7 @@ const selectRegion = (e: MouseEvent) => {
   regionConfig.value.left = e.clientX + 'px'
   // 鼠标移动事件
   isBoxSelect.value = true
+
   // 定义鼠标移动事件处理函数
   function handleMousemove(e: MouseEvent) {
     // 调用 onMousemove 函数处理鼠标移动事件
@@ -388,32 +389,38 @@ onUnmounted(() => {
   padding: 12px;
   background: #f7f8fa;
   position: relative;
+
   .quadrant {
     width: 232px;
     height: 50%;
     display: flex;
     flex-direction: column;
+
     &:nth-child(1) {
       padding-right: 8px;
       border-right: 0.5px solid #c9cdd4;
       border-bottom: 0.5px solid #c9cdd4;
     }
+
     &:nth-child(2) {
       padding-left: 8px;
       border-left: 0.5px solid #c9cdd4;
       border-bottom: 0.5px solid #c9cdd4;
     }
+
     &:nth-child(3) {
       padding-right: 8px;
       border-right: 0.5px solid #c9cdd4;
       border-top: 0.5px solid #c9cdd4;
     }
+
     &:nth-child(4) {
       padding-left: 8px;
       border-left: 0.5px solid #c9cdd4;
       border-top: 0.5px solid #c9cdd4;
     }
   }
+
   &::after {
     font-size: 10px;
     position: absolute;
@@ -426,6 +433,7 @@ onUnmounted(() => {
     color: #4e5969;
     background-color: #f7f8fa;
   }
+
   &::before {
     font-size: 10px;
     position: absolute;
@@ -438,6 +446,7 @@ onUnmounted(() => {
     color: #4e5969;
     background-color: #f7f8fa;
   }
+
   :deep .odos-check-box {
     .odos-check-box-item {
       position: relative;
@@ -451,21 +460,26 @@ onUnmounted(() => {
       align-items: center;
       background: #ffffff;
       border: 0.5px solid #c9cdd4;
+
       &:hover {
         background: #f2f3f5;
       }
+
       &.active {
         background: #2e6ce4;
         color: #ffffff;
       }
+
       &.disabled {
         background: none;
         color: #c9cdd4;
       }
+
       &.error {
         background: #ff4d4f;
         color: #fff;
       }
+
       // 框选区域
       .odos-check_box-item-content {
         position: absolute;
@@ -475,6 +489,7 @@ onUnmounted(() => {
       }
     }
   }
+
   .module {
     position: fixed;
     top: 0;
@@ -482,6 +497,7 @@ onUnmounted(() => {
     width: 100vw;
     height: 100vh;
     z-index: 9999;
+
     .rectangle {
       position: absolute;
       background-color: #2e6ce410;
