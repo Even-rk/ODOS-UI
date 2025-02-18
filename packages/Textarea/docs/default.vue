@@ -1,5 +1,5 @@
 <template>
-  <odos-textarea v-model:value="textarea" :maxlength="100"/>
+  <odos-textarea v-model:value="textarea" :maxlength="100" show-count />
 </template>
 
 <script setup lang="ts">
@@ -13,3 +13,9 @@ watch(
   }
 )
 </script>
+
+<style scoped lang="scss">
+.odos-textarea {
+  margin-bottom: 14px;
+}
+</style>

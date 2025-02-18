@@ -12,18 +12,19 @@
       :disabled="disabled"
       :maxlength="maxlength"
     />
-    <div class="length" v-if="maxlength">{{ value?.length || 0 }}/{{ maxlength }}</div>
+    <div class="length" v-if="maxlength && showCount">{{ value?.length || 0 }}/{{ maxlength }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Textarea } from 'ant-design-vue'
-const { value, maxlength, autoSize, disabled, placeholder } = defineProps<{
+const { value, maxlength, autoSize, disabled, placeholder, showCount } = defineProps<{
   value?: string
   maxlength?: number
   autoSize?: boolean | { minRows?: number; maxRows?: number }
   disabled?: boolean
   placeholder?: string
+  showCount?: boolean
 }>()
 
 const emit = defineEmits<{
