@@ -33,6 +33,12 @@ const data = [
     default: '请输入',
     type: 'string',
     describe: '占位符'
+  },
+  {
+    attribute: 'showCount',
+    default: 'false',
+    type: 'boolean',
+    describe: '是否显示字数统计(需设置maxlength)'
   }
 ]
 
