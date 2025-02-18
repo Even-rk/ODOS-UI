@@ -11,6 +11,7 @@
       :auto-size="autoSize"
       :disabled="disabled"
       :maxlength="maxlength"
+      :show-count="false"
     />
     <div class="length" v-if="maxlength && showCount">{{ value?.length || 0 }}/{{ maxlength }}</div>
   </div>
