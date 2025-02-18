@@ -1,6 +1,10 @@
 <template>
-  <OdosToothChart :tooth-list="toothList" />
-  <OdosToothSelect v-model:value="toothList" />
+  <OdosPopover position="bottomRight" trigger="click">
+    <template #content>
+      <OdosToothSelect v-model:value="toothList" />
+    </template>
+    <OdosToothChart :tooth-list="toothList" />
+  </OdosPopover>
 </template>
 
 <script setup lang="ts">

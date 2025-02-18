@@ -6,8 +6,14 @@
       :trigger="trigger"
       :getPopupContainer="getPopupContainer"
     >
-      <template v-for="(_, name) in slots" #[name]="SlotProps">
-        <slot :name="name" v-bind="SlotProps"></slot>
+      <template #content>
+        <slot name="content"></slot>
+      </template>
+      <template #title>
+        <slot name="title"></slot>
+      </template>
+      <template #default>
+        <slot></slot>
       </template>
     </Popover>
   </div>

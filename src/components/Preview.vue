@@ -56,7 +56,6 @@ pre {
   border: 4px;
   border: 1px solid #dddfe5;
   border-radius: 8px;
-  overflow: hidden;
   .section {
     display: flex;
     margin: 15px;
