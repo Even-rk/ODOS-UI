@@ -64,6 +64,11 @@
     "compZhName": "Message提示框",
     "compClassName": "message"
   },
+   {
+    "compName": "Modal",
+    "compZhName": "Modal对话框",
+    "compClassName": "modal"
+  },
   {
     "compName": "Pagination",
     "compZhName": "Pagination分页器",

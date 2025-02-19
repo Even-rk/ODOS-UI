@@ -15,6 +15,7 @@ import { IconPlugin } from './Icon'
 import { InputPlugin } from './Input'
 import { InputNumberPlugin } from './InputNumber'
 import { LoadingPlugin } from './Loading'
+import { ModalPlugin } from './Modal'
 import { PaginationPlugin } from './Pagination'
 import { PopoverPlugin } from './Popover'
 import { RadioPlugin } from './Radio'
@@ -37,6 +38,7 @@ const Packages: Plugin[] = [
   InputPlugin,
   InputNumberPlugin,
   LoadingPlugin,
+  ModalPlugin,
   PaginationPlugin,
   PopoverPlugin,
   RadioPlugin,
@@ -72,6 +74,7 @@ export * from './Input'
 export * from './InputNumber'
 export * from './Loading'
 export * from './Message'
+export * from './Modal'
 export * from './Pagination'
 export * from './Popover'
 export * from './Radio'
