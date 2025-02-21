@@ -115,6 +115,7 @@ const audioPause = () => {
   if (!props.src) return
   isPlay.value = false
   audioRef.value.pause()
+  emit('pause', audioData.currentTime, props.src)
 }
 
 const currentChange = () => {
