@@ -1,49 +1,49 @@
 <script setup>
-import Type from './type.vue'
-import Size from './size.vue'
-import Icon from './icon.vue'
-import Disabled from './disabled.vue'
-import API from './api.vue'
-import SLOT from './slot.vue'
-import Event from './event.vue'
+import demo from './demo.vue'
 </script>
 
-# Button 按钮
+# Button 按钮组件
 
-## 按钮类型
+按钮组件是一个基础的交互元素，用于触发点击操作。支持多种样式、尺寸和状态。
 
-<Preview comp-name="Button" demo-name="type">
-  <Type />
-</Preview>
+## 功能特点
 
-## 按钮大小
+- 支持四种按钮类型：主要按钮、默认按钮、线框按钮和文本按钮
+- 提供三种尺寸选择：大、中、小
+- 支持禁用状态
+- 支持图标按钮
+- 支持自定义内容和图标插槽
 
-<Preview comp-name="Button" demo-name="size">
-  <Size />
-</Preview>
-
-## 禁用状态
-
-<Preview comp-name="Button" demo-name="disabled">
-  <Disabled />
-</Preview>
-
-## 图标按钮
-
-<Preview comp-name="Button" demo-name="icon">
-  <Icon />
+<Preview comp-name="Button" demo-name="demo">
+  <demo />
 </Preview>
 
 ## Button API
 
-### Button 属性
+### 属性
 
-<API />
+| 参数     | 说明                               | 类型                                       | 默认值    |
+| -------- | ---------------------------------- | ------------------------------------------ | --------- |
+| type     | 按钮类型                           | 'primary' \| 'default' \| 'line' \| 'text' | 'default' |
+| size     | 按钮尺寸                           | 'small' \| 'medium' \| 'large'             | 'medium'  |
+| disabled | 是否禁用                           | boolean                                    | false     |
+| icon     | 按钮图标，使用Icon组件的name属性值 | string                                     | -         |
 
-### Button 事件
+### 事件
 
-<Event />
+| 事件名称 | 说明           | 回调参数       |
+| -------- | -------------- | -------------- |
+| click    | 点击按钮时触发 | (event: Event) |
 
-### Button 插槽
+### 插槽
 
-<SLOT />
+| 插槽名称 | 说明                           |
+| -------- | ------------------------------ |
+| default  | 按钮的内容                     |
+| icon     | 自定义图标内容，会覆盖icon属性 |
+
+### 注意事项
+
+1. 当使用`icon`属性时，需要确保已经引入并注册Icon组件
+2. 当按钮处于`disabled`状态时，点击事件将不会触发
+3. 如果只设置了`icon`属性且没有设置按钮内容，按钮将会以图标按钮的形式展示
