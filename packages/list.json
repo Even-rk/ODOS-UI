@@ -35,6 +35,11 @@
     "compClassName": "toothChart"
   },
   {
+    "compName": "Tooltip",
+    "compZhName": "Tooltip文本提示",
+    "compClassName": "tooltip"
+  },
+  {
     "compName": "Empty",
     "compZhName": "Empty空状态",
     "compClassName": "empty"
@@ -64,7 +69,7 @@
     "compZhName": "Message提示框",
     "compClassName": "message"
   },
-   {
+  {
     "compName": "Modal",
     "compZhName": "Modal对话框",
     "compClassName": "modal"

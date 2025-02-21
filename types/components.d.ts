@@ -31,5 +31,5 @@ export interface GlobalComponents {
   OdosTag: (typeof import('../packages/Tag/src/index.vue'))['default']
   OdosTextarea: (typeof import('../packages/Textarea/src/index.vue'))['default']
   OdosPagination: (typeof import('../packages/Pagination/src/index.vue'))['default']
+  OdosTooltip: (typeof import('../packages/Tooltip/src/index.vue'))['default']
 }
-

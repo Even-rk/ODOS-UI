@@ -21,7 +21,7 @@ interface Emit {
 const emit = defineEmits<Emit>()
 const props = defineProps<{
   currentTab: string
-  type?: 'btn' | 'line'
+  type?: 'btn' | 'line' | 'btn-line'
 }>()
 
 type Item = {
