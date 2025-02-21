@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import './iconfont'
+import 'https://orange-odos.oss-cn-hangzhou.aliyuncs.com/assets/js/iconfont.js'
 import { computed, ref, toRefs } from 'vue'
 const props = defineProps<{
   name?: string
