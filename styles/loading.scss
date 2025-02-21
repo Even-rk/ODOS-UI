@@ -8,9 +8,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.75);
   z-index: 9999;
 }
+
+.odos-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .odos-loader {
   width: 2.5em;
   height: 2.5em;
@@ -36,6 +43,25 @@
   &:after {
     animation: after 2s infinite;
   }
+}
+
+.odos-loading-tip {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 16px;
+  margin-top: 32px;
+  font-weight: bold;
+  text-shadow:
+    0 0 2px rgba(0, 0, 0, 0.75),
+    0 1px 1px rgba(0, 0, 0, 0.75),
+    1px 0 1px rgba(0, 0, 0, 0.75),
+    -1px 0 1px rgba(0, 0, 0, 0.75);
+}
+
+.odos-loading-text {
+  margin-top: 32px;
+  color: #34495e;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 @keyframes before {
