@@ -5,8 +5,9 @@
       :hideOnSinglePage="true"
       @change="changePage"
       :current="current"
+      :showSizeChanger="false"
       :total="total"
-      :page-size="pageSize"
+      :page-size="pageSize || 10"
     >
       <template v-for="(_, name) in slots" #[name]="SlotProps">
         <slot :name="name" v-bind="SlotProps"></slot>
