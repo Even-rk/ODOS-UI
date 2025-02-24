@@ -3,48 +3,9 @@ import { createApp, defineComponent, onMounted, onUnmounted, ref } from 'vue'
 import '../../../styles/loading.scss'
 
 // 组件
-export const Loading = defineComponent({
-  props: {
-    className: {
-      type: String,
-      default: 'odos-loading-text'
-    }
-  },
-  setup(props: { className: string }) {
-    const tipUrl = 'https://orange-odos.oss-cn-hangzhou.aliyuncs.com/assets/file/loading_tips.txt'
-    const index = ref(0)
-    const tips = ref<string[]>([])
-    let timer: number
-
-    onMounted(async () => {
-      const response = await fetch(tipUrl)
-      const text = await response.text()
-      tips.value = text.split('\n').filter((tip) => tip.trim())
-
-      if (tips.value.length > 0) {
-        // 设置初始值
-        index.value = Math.floor(Math.random() * tips.value.length)
-
-        timer = window.setInterval(() => {
-          index.value = Math.floor(Math.random() * tips.value.length)
-        }, 5000)
-      }
-    })
-
-    onUnmounted(() => {
-      if (timer) {
-        clearInterval(timer)
-      }
-    })
-
-    return () => (
-      <div class="odos-loading-container">
-        <div class="odos-loader" />
-        <div class={props.className || 'odos-loading-text'}>{tips.value[index.value]}</div>
-      </div>
-    )
-  }
-})
+export const Loading = () => {
+  return <div class="odos-loader" />
+}
 
 const LoadingView = defineComponent({
   props: {
@@ -74,13 +35,13 @@ const LoadingView = defineComponent({
 
     return () => (
       <div class="odos-loading">
-        <Loading className="odos-loading-tip" />
+        <Loading />
+        <div class="odos-loading-text">{tips[index.value]}</div>
       </div>
     )
   }
 })
-
-export const useLoadingHide = async () => {
+export const useLoadingHide = () => {
   const target = document.querySelector('.odos-modal-loading')
   target?.remove()
 }
