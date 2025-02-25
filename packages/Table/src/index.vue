@@ -17,8 +17,8 @@
       <template #headerCell="{ title, column }">
         <slot :name="(column as Column).headerSlotName" :title="title" />
       </template>
-      <template #bodyCell="{ column, record }">
-        <slot :name="(column as Column).slotName" :record="record" />
+      <template #bodyCell="{ column, record, index, text }">
+        <slot :name="(column as Column).slotName" :record="record" :index="index" :text="text" />
       </template>
       <!-- 自定义空数据时的显示内容 -->
       <template #emptyText>

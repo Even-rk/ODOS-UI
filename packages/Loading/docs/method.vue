@@ -8,7 +8,7 @@ import { useLoadingHide, useLoadingShow } from '../utils/loading.jsx'
 const showLoading = async () => {
   useLoadingShow()
   // 模拟数据请求
-  await new Promise<void>((resolve) => setTimeout(() => resolve(), 100000))
+  await new Promise<void>((resolve) => setTimeout(() => resolve(), 10000))
   useLoadingHide()
 }
 </script>
