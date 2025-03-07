@@ -43,7 +43,7 @@ import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
 // 象限牙位
 import Tooth from './tooth.vue'
-import { nextTick, onUnmounted, ref } from 'vue'
+import { nextTick, onUnmounted, ref, watch } from 'vue'
 const {
   value = [],
   multipleToothList = [],
@@ -59,6 +59,14 @@ const {
   rangeLimit?: 'fullMouth' | 'tooth' | 'bitewing' | string
 }>()
 const toothVal = ref(value)
+
+watch(
+  () => value,
+  () => {
+    toothVal.value = value
+  },
+  { deep: true }
+)
 
 const emit = defineEmits<{
   (e: 'update:value', data: string[]): void
