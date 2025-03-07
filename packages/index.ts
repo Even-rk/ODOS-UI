@@ -24,6 +24,7 @@ import { TablePlugin } from './Table'
 import { TabsPlugin } from './Tabs'
 import { TagPlugin } from './Tag'
 import { TextareaPlugin } from './Textarea'
+import { TextDisplayPlugin } from './TextDisplay'
 import { ToothSelectPlugin } from './ToothSelect'
 import { ToothChartPlugin } from './ToothChart'
 import { TooltipPlugin } from './Tooltip'
@@ -48,6 +49,7 @@ const Packages: Plugin[] = [
   TabsPlugin,
   TagPlugin,
   TextareaPlugin,
+  TextDisplayPlugin,
   ToothSelectPlugin,
   ToothChartPlugin,
   TooltipPlugin
@@ -85,4 +87,5 @@ export * from './Table'
 export * from './Tabs'
 export * from './Tag'
 export * from './Textarea'
+export * from './TextDisplay'
 export * from './Tooltip'

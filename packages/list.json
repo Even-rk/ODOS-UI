@@ -113,5 +113,10 @@
     "compName": "Textarea",
     "compZhName": "Textarea文本域",
     "compClassName": "textarea"
+  },
+  {
+    "compName": "TextDisplay",
+    "compZhName": "TextDisplay文本展示",
+    "compClassName": "textDisplay"
   }
 ]
