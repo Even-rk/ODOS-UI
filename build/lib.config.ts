@@ -4,24 +4,37 @@ import dts from 'vite-plugin-dts'
 import vue from '@vitejs/plugin-vue'
 import vuejsx from '@vitejs/plugin-vue-jsx'
 import Markdown from 'vite-plugin-md'
+import path from 'path'
+
+// 获取 packages 目录下的所有组件
 
 export default defineConfig({
   build: {
-    outDir: 'lib',
+    outDir: 'odos-ui',
     lib: {
-      entry: resolve(__dirname, '../packages/index.ts'),
+      entry: path.resolve(__dirname, '../packages/index.ts'),
       name: 'ODOSUI',
       fileName: (format) => `odos-ui.${format}.js`
     },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
       external: ['vue'],
-      output: {
-        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-        globals: {
-          vue: 'Vue'
+      output: [
+        {
+          format: 'es',
+          dir: 'odos-ui/es',
+          preserveModules: true,
+          preserveModulesRoot: 'packages',
+          entryFileNames: 'packages/[name].js'
+        },
+        {
+          format: 'cjs',
+          dir: 'odos-ui/lib',
+          preserveModules: true,
+          preserveModulesRoot: 'packages',
+          entryFileNames: 'packages/[name].js'
         }
-      }
+      ]
     }
   },
   resolve: {
@@ -37,6 +50,10 @@ export default defineConfig({
     }),
     Markdown(),
     vuejsx(),
-    dts()
+    dts({
+      entryRoot: 'packages',
+      outDir: ['odos-ui/es/packages', 'odos-ui/lib/packages'],
+      tsconfigPath: path.resolve(__dirname, '../tsconfig.json')
+    })
   ]
 })
