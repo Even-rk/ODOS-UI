@@ -51,5 +51,42 @@ const $blur = (e: Event) => {
 </script>
 
 <style lang="scss" scoped>
-@import '/styles/textarea.scss';
+.odos-textarea {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .length {
+    position: absolute;
+    line-height: 17px;
+    right: 0;
+    bottom: -20px;
+    font-size: 12px;
+    color: #86909c;
+  }
+
+  textarea {
+    border-color: transparent;
+    background: #f2f3f5;
+    height: 100%;
+
+    &:hover {
+      background: #e5e6eb;
+      border-color: transparent;
+    }
+
+    &:focus-within {
+      border: 1px solid #2e6ce4;
+      background: #fff;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: #86909c;
+    }
+  }
+}
 </style>

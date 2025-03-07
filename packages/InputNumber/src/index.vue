@@ -53,5 +53,55 @@ const handleInput = (e: Event) => {
 </script>
 
 <style lang="scss" scoped>
-@import '/styles/inputNumber.scss';
+.odos-input-number {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  input {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px 16px;
+    background: #f2f3f5;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #f2f3f5;
+    outline: none;
+    &:focus-within {
+      border: 1px solid #2e6ce4;
+    }
+    &::placeholder {
+      color: #86909c;
+    }
+    &.odos-input-number-isTitle {
+      padding-left: 88px;
+    }
+  }
+
+  .odos-input-number-title {
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #4e5969;
+    border-right: 1px solid #c9cdd4;
+    z-index: 1;
+  }
+
+  &.odos-input-number-disabled {
+    background: #f2f3f5;
+    border-radius: 8px;
+    input:hover {
+      cursor: not-allowed;
+      background: #f2f3f5;
+    }
+  }
+}
 </style>

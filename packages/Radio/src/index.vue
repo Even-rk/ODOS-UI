@@ -75,5 +75,71 @@ const styleClass = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '/styles/radio.scss';
+.odos-radio {
+  display: inline-flex;
+  user-select: none;
+
+  :deep .odos-radio-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    font-size: 14px;
+    padding: 0 20px;
+    margin: 0 1px;
+    color: #4e5969;
+    background: #f2f3f5;
+
+    &.disabled {
+      cursor: not-allowed;
+      color: #c9cdd4;
+
+      &:hover {
+        background: #f2f3f5;
+      }
+    }
+
+    &:first-child {
+      border-radius: 6px 0px 0px 6px;
+      margin-left: 0;
+    }
+
+    &:last-child {
+      border-radius: 0px 6px 6px 0px;
+      margin-right: 0;
+    }
+
+    &:hover {
+      background: #e5e6eb;
+    }
+
+    &.active {
+      background: #e7efff;
+      color: #2e6ce4;
+      font-weight: bold;
+
+      &.active-alarm {
+        background: #feefef;
+        color: #ff4f49;
+      }
+    }
+  }
+}
+
+.odos-radio {
+  &.odos-radio-size--medium {
+    :deep .odos-radio-item {
+      height: 32px;
+      padding: 0 16px;
+    }
+  }
+
+  &.odos-radio-size--small {
+    :deep .odos-radio-item {
+      height: 28px;
+      padding: 0 12px;
+    }
+  }
+}
 </style>

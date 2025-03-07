@@ -42,5 +42,25 @@ const changePage = (page: number, pageSize: number) => {
 </script>
 
 <style lang="scss" scoped>
-@import '/styles/pagination.scss';
+.odos-pagination {
+  :deep .ant-pagination {
+    .ant-pagination-prev,
+    .ant-pagination-next,
+    .ant-pagination-item {
+      background: #f2f3f5;
+    }
+    .ant-pagination-item-link {
+      padding: 0;
+    }
+    .ant-pagination-item-active {
+      background: #2e6ce4;
+      &:hover a {
+        color: #ffffff;
+      }
+      a {
+        color: #ffffff;
+      }
+    }
+  }
+}
 </style>

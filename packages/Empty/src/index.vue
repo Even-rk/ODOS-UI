@@ -33,5 +33,12 @@ const Image = computed(() => {
 </script>
 
 <style scoped lang="scss">
-@import '/styles/empty.scss';
+.odos-empty {
+  width: 100%;
+  :deep .ant-empty {
+    .ant-empty-description {
+      color: rgba(0, 0, 0, 0.25);
+    }
+  }
+}
 </style>

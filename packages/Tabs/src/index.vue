@@ -8,7 +8,6 @@
 </template>
 
 <script setup lang="tsx">
-import '/styles/tabs.scss'
 import Icon from '../../Icon/src/index.vue'
 import { ref, useSlots, type SetupContext, type VNode } from 'vue'
 
@@ -104,5 +103,54 @@ const Content = (list: Item[]) => {
 <style scoped lang="scss">
 .odos-tabbar {
   display: flex;
+}
+</style>
+<style lang="scss">
+.odos-tab {
+  height: 30px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0 6px;
+  color: #4e5969;
+  cursor: pointer;
+  &.odos-tab-line {
+    border: none;
+  }
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+  &.odos-tab-selected {
+    border: 1px solid #2e6ce4;
+    color: #2e6ce4;
+  }
+  &.odos-tab-line-selected {
+    position: relative;
+    border: none;
+    color: #2e6ce4;
+    :global .line {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 2px;
+      border-radius: 20px;
+      background-color: #2e6ce4;
+    }
+  }
+  .icon {
+    margin-right: 4px;
+  }
+  &.odos-tab-disabled {
+    color: #86909c;
+    border: 1px solid #f7f8fa;
+    cursor: not-allowed;
+  }
 }
 </style>

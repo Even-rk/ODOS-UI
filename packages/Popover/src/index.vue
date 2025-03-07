@@ -39,8 +39,6 @@ const { position, trigger } = defineProps<{
   trigger?: 'hover' | 'click'
 }>()
 
-const slots = useSlots() as SetupContext['slots']
-
 const emit = defineEmits<{
   (e: 'openChange', data: boolean): void
 }>()
@@ -54,5 +52,8 @@ const getPopupContainer = (triggerNode: Element) => {
 }
 </script>
 <style scoped lang="scss">
-@import '/styles/popover.scss';
+.odos-popover {
+  position: relative;
+  cursor: pointer;
+}
 </style>

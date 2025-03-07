@@ -79,5 +79,54 @@ const rowClassName = (_: Column, index: number) => {
 </script>
 
 <style lang="scss" scoped>
-@import '/styles/table.scss';
+@mixin borderNone {
+  border: none !important;
+  border-inline-end: none !important;
+}
+
+.odos-table {
+  width: 100%;
+  :deep .ant-table {
+    .ant-table-container {
+      table {
+        .ant-table-thead {
+          .ant-table-cell {
+            background-color: #f1f5ff;
+          }
+        }
+        tr {
+          td,
+          th {
+            @include borderNone();
+          }
+        }
+        .odos-table-even-row {
+          background-color: #fff;
+          .ant-table-cell {
+            background-color: #fff;
+          }
+          .ant-table-cell-row-hover {
+            transition: all 0.8s;
+            background-color: #f2f3f5;
+          }
+        }
+        .odos-table-odd-row {
+          background-color: #f8faff;
+          .ant-table-cell {
+            background-color: #f8faff;
+          }
+          .ant-table-cell-row-hover {
+            transition: all 0.8s;
+            background-color: #f2f3f5;
+          }
+        }
+        .ant-table-expanded-row {
+          * {
+            background-color: #f2f3f5 !important;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

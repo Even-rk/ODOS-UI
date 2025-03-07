@@ -1,6 +1,6 @@
 // 全局loading
 import { createApp, defineComponent, onMounted, onUnmounted, ref } from 'vue'
-import '../../../styles/loading.scss'
+import './loading.scss'
 
 // 组件
 export const Loading = () => {

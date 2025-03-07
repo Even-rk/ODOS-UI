@@ -110,5 +110,112 @@ const getPopupContainer = (triggerNode: Element) => {
 </script>
 
 <style lang="scss" scoped>
-@import '/styles/select.scss';
+@mixin wh($h) {
+  width: 100%;
+  min-height: $h;
+}
+
+.odos-select {
+  @include wh(40px);
+  position: relative;
+  background: #f2f3f5;
+  border: 1px solid #f2f3f5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background: #e5e6eb;
+    border-radius: 8px;
+  }
+
+  &:focus-within {
+    border: 1px solid #2e6ce4;
+    background: #fff;
+    border-radius: 8px;
+  }
+
+  &.odos-select-disabled:hover {
+    background: #fff;
+  }
+
+  .odos-select-title {
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #4e5969;
+    border-right: 1px solid #c9cdd4;
+    z-index: 1;
+  }
+
+  :deep .ant-select {
+    &.ant-select-focused .ant-select-selector {
+      box-shadow: none !important;
+    }
+
+    @include wh(40px);
+
+    .ant-select-selector {
+      border: none !important;
+      display: flex;
+      align-items: center;
+      box-shadow: none;
+      background: transparent;
+      padding-left: 16px;
+      @include wh(40px);
+
+      .ant-select-selection-placeholder {
+        color: #86909c;
+      }
+    }
+
+    &.odos-select-isTitle .ant-select-selector {
+      padding-left: 88px !important;
+
+      .ant-select-selection-search input {
+        padding-left: 77px;
+      }
+    }
+
+    .ant-select-selection-search-input {
+      @include wh(100%);
+      background: transparent;
+    }
+  }
+
+  :deep .ant-select-multiple {
+    .ant-select-selection-item {
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      box-sizing: border-box;
+      border: 1px solid #e5e6eb;
+    }
+    &.odos-select-isTitle {
+      .ant-select-selection-placeholder {
+        padding-left: 77px;
+      }
+    }
+  }
+}
+
+:deep .ant-select-dropdown {
+  .ant-select-item-option-selected {
+    background: transparent !important;
+    color: #2e6ce4 !important;
+  }
+
+  .ant-select-item {
+    &:hover {
+      background: #f7f8fa !important;
+    }
+  }
+}
 </style>

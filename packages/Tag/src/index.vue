@@ -47,5 +47,38 @@ const className = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import url('/styles/tag.scss');
+.odos-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  &.odos-default-tag {
+    border: 1px solid #c9cdd4;
+    color: #1d2129;
+  }
+  &.odos-dark-tag {
+    background: #2e6ce4;
+    color: #fff;
+  }
+  &.odos-light-tag {
+    background: #eaf0fc;
+    color: #2e6ce4;
+  }
+  &.odos-line-tag {
+    border: 1px solid #2e6ce4;
+    color: #2e6ce4;
+  }
+
+  .odos-icon {
+    width: 12px;
+    height: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+  }
+}
 </style>

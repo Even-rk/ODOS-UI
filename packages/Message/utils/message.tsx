@@ -3,7 +3,7 @@ import info from './../icon/info.svg'
 import success from './../icon/success.svg'
 import warning from './../icon/warning.svg'
 import error from './../icon/error.svg'
-import '../../../styles/message.scss'
+import './message.scss'
 import type { VNode } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 // info

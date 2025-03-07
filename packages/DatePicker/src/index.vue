@@ -178,5 +178,188 @@ document.addEventListener('click', (e) => {
 </script>
 
 <style lang="scss" scoped>
-@import '/styles/datePicker.scss';
+@mixin useSelect {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin DateItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+.odos-date-picker {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  .odos-date-picker-title {
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #4e5969;
+    border-right: 1px solid #c9cdd4;
+    z-index: 1;
+  }
+  .odos-date-picker-icon {
+    position: absolute;
+    cursor: auto;
+    right: 10px;
+  }
+  .odos-date-picker-input {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px 30px 10px 16px;
+    background: #f2f3f5;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #f2f3f5;
+    outline: none;
+    &:hover {
+      background: #e5e6eb;
+    }
+    &.odos-date-picker-isTitle {
+      padding-left: 88px;
+    }
+    &.odos-date-picker-input-focus {
+      border: 1px solid #2e6ce4;
+      background: #fff;
+    }
+    &:blur {
+      border: 1px solid #2e6ce4;
+      background: #fff;
+    }
+    &::placeholder {
+      position: relative;
+      top: 1px;
+      color: #86909c;
+    }
+  }
+
+  .odos-date-picker-content {
+    &.bottom {
+      position: absolute;
+      top: 44px;
+    }
+    width: 312px;
+    height: 340px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #e5e6eb;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+    padding: 0 16px;
+    z-index: 1000;
+    .odos-date-picker-header {
+      @include useSelect();
+      width: 280px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      border-bottom: 1px solid #f4f4f5;
+      padding-left: 14px;
+      padding-right: 4px;
+      .odos-date-picker-header-year {
+        font-size: 18px;
+        font-weight: 500;
+        width: 120px;
+      }
+      .odos-date-picker-btn {
+        width: 130px;
+        display: flex;
+        justify-content: space-between;
+        .odos-date-picker-header-next,
+        .odos-date-picker-header-pre {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &:hover {
+            background: #e5e6eb;
+          }
+          &:active {
+            background: #86909c;
+          }
+        }
+      }
+    }
+    .odos-date-picker-body {
+      width: 285px;
+      height: 285px;
+      box-sizing: border-box;
+      .odos-date-picker-week-title {
+        display: flex;
+        .odos-date-picker-week-item {
+          @include DateItem;
+        }
+      }
+      .odos-date-picker-day-title,
+      .odos-date-picker-day-content {
+        display: flex;
+        flex-wrap: wrap;
+        .odos-date-picker-day-item {
+          @include DateItem;
+        }
+      }
+      .odos-date-picker-day-content {
+        .odos-date-picker-day-pre {
+          display: flex;
+          align-items: end;
+        }
+        .odos-date-picker-day-pre-item,
+        .odos-date-picker-day-next-item {
+          @include DateItem;
+          color: #bfbfbf;
+        }
+        .odos-date-picker-day-item {
+          &:hover {
+            background: #e5e6eb;
+          }
+          &:active {
+            background: #86909c;
+          }
+          &.odos-date-picker-today {
+            border: 1px dashed #2e6ce4;
+            color: #2e6ce4;
+          }
+          &.odos-date-picker-selected {
+            background-color: #2e6ce4;
+            color: #fff;
+            &:hover,
+            &:active {
+              background-color: #2e6ce4;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.odos-date-picker-disabled {
+    background: #f2f3f5;
+    border-radius: 8px;
+    input:hover {
+      cursor: not-allowed;
+      background: #f2f3f5;
+    }
+  }
+}
 </style>

@@ -133,5 +133,61 @@ const currentTimeChange = (val: [number, number] | number) => {
 </script>
 
 <style scoped lang="scss">
-@import '/styles/audio.scss';
+.odos-audio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 23px;
+  .icon {
+    cursor: pointer;
+    margin-right: 8px;
+    &.disabled {
+      cursor: not-allowed;
+    }
+  }
+  .audio-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    :deep .ant-slider {
+      width: 100%;
+      .ant-slider-rail {
+        height: 5px;
+        background: #c9cdd4;
+      }
+      .ant-slider-track {
+        height: 5px;
+        background: #2e6ce4;
+      }
+      .ant-slider-step {
+        height: 5px;
+      }
+      .ant-slider-handle-click-focused,
+      .ant-slider-handle {
+        &::after,
+        &::before {
+          content: none;
+        }
+      }
+      .ant-slider-handle {
+        top: -1px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #2e6ce4;
+        border: 2px solid #fff;
+      }
+    }
+    .time {
+      display: flex;
+      align-items: center;
+      margin-left: 8px;
+      width: 40px;
+      height: 23px;
+      color: #4e5969;
+    }
+  }
+}
 </style>
