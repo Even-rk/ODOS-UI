@@ -30,8 +30,10 @@ const props = defineProps<{
 <style lang="scss" scoped>
 .odos-text-display {
   width: 100%;
+  line-height: 16px;
   overflow: hidden;
-  line-height: 1;
+  display: flex;
+  align-items: center;
 
   .odos-text-display_ellipsis__text {
     // 超出显示省略号
