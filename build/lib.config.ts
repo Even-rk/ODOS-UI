@@ -11,16 +11,41 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, '../packages/index.ts'),
       name: 'ODOSUI',
-      fileName: (format) => `odos-ui.${format}.js`
+      formats: ['es', 'umd']
     },
+    cssCodeSplit: false, // Unified CSS bundling
     rollupOptions: {
-      // 确保外部化处理那些你不想打包进库的依赖
-      external: ['vue'],
-      output: {
-        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-        globals: {
-          vue: 'Vue'
+      external: ['vue', 'ant-design-vue', '@vueuse/core', 'dayjs', 'vue-router'],
+      output: [
+        {
+          format: 'es',
+          dir: 'lib/es',
+          preserveModules: true,
+          preserveModulesRoot: 'packages',
+          entryFileNames: '[name].js'
+        },
+        {
+          format: 'umd',
+          dir: 'lib/umd',
+          name: 'ODOSUI',
+          globals: {
+            vue: 'Vue',
+            'ant-design-vue': 'antd',
+            '@vueuse/core': 'VueUse',
+            dayjs: 'dayjs',
+            'vue-router': 'VueRouter'
+          },
+          entryFileNames: 'odos-ui.umd.js',
+          assetFileNames: 'style.css' // Unified CSS file
         }
+      ]
+    },
+    emptyOutDir: true
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        charset: false
       }
     }
   },
@@ -37,6 +62,11 @@ export default defineConfig({
     }),
     Markdown(),
     vuejsx(),
-    dts()
+    dts({
+      include: ['packages/**/*'],
+      outDir: 'lib/es',
+      staticImport: true,
+      insertTypesEntry: true
+    })
   ]
 })
