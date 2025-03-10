@@ -43,7 +43,7 @@ main.ts
 
 ```ts
 // odos-ui-style
-import 'odos-ui/lib/style.css'
+import 'odos-ui/es/style.css'
 ```
 
 \*\*.vue
