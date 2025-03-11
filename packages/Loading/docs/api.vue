@@ -5,16 +5,16 @@
 <script setup lang="ts">
 const data = [
   {
-    attribute: 'show',
-    default: '--',
-    type: 'Function',
-    describe: '开始播放'
+    attribute: 'showTip',
+    default: 'false',
+    type: 'boolean',
+    describe: '是否显示提示文本'
   },
   {
-    attribute: 'hide',
-    default: '--',
-    type: 'Function',
-    describe: '停止播放'
+    attribute: 'tipColor',
+    default: '#1d2129',
+    type: 'string',
+    describe: '提示文本颜色'
   }
 ]
 

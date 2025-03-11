@@ -1,12 +1,53 @@
 // 全局loading
-import { createApp, defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import { createApp, defineComponent, nextTick, onMounted, onUnmounted, ref } from 'vue'
 import './loading.scss'
 
 // 组件
-export const Loading = () => {
-  return <div class="odos-loader" />
-}
-
+export const Loading = defineComponent({
+  props: {
+    showTip: {
+      type: Boolean,
+      default: false
+    },
+    tipColor: {
+      type: String,
+      default: '#1d2129'
+    }
+  },
+  setup(props) {
+    const tips = ref<string[]>([])
+    const index = ref(0)
+    let timer: number
+    onMounted(async () => {
+      if (props.showTip) {
+        const tipUrl = 'https://orange-odos.oss-cn-hangzhou.aliyuncs.com/assets/file/loading_tips.txt'
+        const response = await fetch(tipUrl)
+        const text = await response.text()
+        tips.value = text.split('\n').filter((tip) => tip.trim())
+        // 设置初始值
+        index.value = Math.floor(Math.random() * tips.value.length)
+        timer = window.setInterval(() => {
+          index.value = Math.floor(Math.random() * tips.value.length)
+        }, 5000)
+      }
+    })
+    return () => (
+      <div class="odos-loading-container">
+        <div class="odos-loader" />
+        {props.showTip && (
+          <div
+            class="odos-loading-loader-text"
+            style={{
+              color: props.tipColor
+            }}
+          >
+            {tips.value[index.value]}
+          </div>
+        )}
+      </div>
+    )
+  }
+})
 const LoadingView = defineComponent({
   props: {
     text: {
