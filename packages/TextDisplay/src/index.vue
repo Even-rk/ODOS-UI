@@ -1,7 +1,7 @@
 <template>
   <div class="odos-text-display" :style="{ width: props.width + 'px' }">
     <template v-if="props.mode !== 'marquee'">
-      <Tooltip :title="props.tooltip" placement="top" trigger="hover">
+      <Tooltip :title="props.tooltip" placement="top" :trigger="props.trigger || 'hover'">
         <p class="odos-text-display_ellipsis__text" :style="{ width: props.width + 'px' }">
           {{ props.text }}
         </p>
@@ -24,6 +24,7 @@ const props = defineProps<{
   width?: number
   text?: string
   tooltip?: string
+  trigger?: 'hover' | 'click'
   mode?: 'marquee' | 'ellipsis'
 }>()
 </script>

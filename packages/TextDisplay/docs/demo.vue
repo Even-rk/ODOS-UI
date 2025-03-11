@@ -11,6 +11,18 @@
         />
       </div>
     </div>
+    <!--  触发方式  -->
+    <div class="display-row">
+      <h4>点击触发Tooltip模式</h4>
+      <div class="display-group">
+        <odos-text-display
+          trigger="click"
+          text="这是一段很长的文本，当文本超出指定宽度时将会显示省略号，鼠标悬停可查看完整内容"
+          tooltip="这是一段很长的文本，当文本超出指定宽度时将会显示省略号，鼠标悬停可查看完整内容"
+          :width="200"
+        />
+      </div>
+    </div>
 
     <!-- 跑马灯模式 -->
     <div class="display-row">
@@ -50,7 +62,8 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+</script>
 
 <style scoped lang="scss">
 .demo-text-display {
