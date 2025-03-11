@@ -24,6 +24,19 @@
       </div>
     </div>
 
+    <!-- 省略号模式 -->
+    <div class="display-row">
+      <h4>插槽</h4>
+      <div class="display-group">
+        <odos-text-display
+          tooltip="这是一段很长的文本，当文本超出指定宽度时将会显示省略号，鼠标悬停可查看完整内容"
+          :width="200"
+        >
+          <h2>这是一段很长的文本，当文本超出指定宽度时将会显示省略号，鼠标悬停可查看完整内容</h2>
+        </odos-text-display>
+      </div>
+    </div>
+
     <!-- 跑马灯模式 -->
     <div class="display-row">
       <h4>跑马灯模式</h4>

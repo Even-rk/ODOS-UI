@@ -2,20 +2,20 @@
   <div class="odos-text-display" :style="{ width: props.width + 'px' }">
     <template v-if="props.mode !== 'marquee'">
       <Tooltip :title="props.tooltip" placement="top" :trigger="props.trigger || 'hover'">
-        <p class="odos-text-display_ellipsis__text" :style="{ width: props.width + 'px' }">
+        <div class="odos-text-display_ellipsis__text" :style="{ width: props.width + 'px' }">
           <slot>{{ props.text }}</slot>
-        </p>
+        </div>
       </Tooltip>
     </template>
     <template v-else>
       <div class="odos-text-display__marquee">
         <div class="odos-text-display_marquee__container">
-          <span class="odos-text-display_marquee__text">
+          <div class="odos-text-display_marquee__text">
             <slot>{{ props.text }}</slot>
-          </span>
-          <span class="odos-text-display_marquee__text">
+          </div>
+          <div class="odos-text-display_marquee__text">
             <slot>{{ props.text }}</slot>
-          </span>
+          </div>
         </div>
       </div>
     </template>
@@ -46,6 +46,12 @@ const props = defineProps<{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    * {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 
   .odos-text-display__marquee {
