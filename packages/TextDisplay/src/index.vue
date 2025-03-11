@@ -3,15 +3,19 @@
     <template v-if="props.mode !== 'marquee'">
       <Tooltip :title="props.tooltip" placement="top" :trigger="props.trigger || 'hover'">
         <p class="odos-text-display_ellipsis__text" :style="{ width: props.width + 'px' }">
-          {{ props.text }}
+          <slot>{{ props.text }}</slot>
         </p>
       </Tooltip>
     </template>
     <template v-else>
       <div class="odos-text-display__marquee">
         <div class="odos-text-display_marquee__container">
-          <span class="odos-text-display_marquee__text">{{ props.text }}</span>
-          <span class="odos-text-display_marquee__text">{{ props.text }}</span>
+          <span class="odos-text-display_marquee__text">
+            <slot>{{ props.text }}</slot>
+          </span>
+          <span class="odos-text-display_marquee__text">
+            <slot>{{ props.text }}</slot>
+          </span>
         </div>
       </div>
     </template>
