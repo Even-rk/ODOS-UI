@@ -2,8 +2,11 @@
   <div class="odos-tabs">
     <div class="odos-tabbar">
       <randerTabBar />
+      <slot name="tabbar-right"></slot>
     </div>
-    <randerContent />
+    <div class="odos-tab-content">
+      <randerContent />
+    </div>
   </div>
 </template>
 
@@ -103,8 +106,21 @@ const Content = (list: Item[]) => {
 </script>
 
 <style scoped lang="scss">
-.odos-tabbar {
+.odos-tabs {
+  width: 100%;
   display: flex;
+  flex-direction: column;
+}
+
+.odos-tabbar {
+  width: fit-content;
+  display: flex;
+  min-width: min-content;
+}
+
+.odos-tab-content {
+  width: 100%;
+  overflow-x: auto;
 }
 </style>
 <style lang="scss">

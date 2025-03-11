@@ -25,3 +25,9 @@ import { ref } from 'vue'
 
 const activeTab = ref('tab1')
 </script>
+
+<style lang="scss">
+.content-box {
+  width: 500px;
+}
+</style>
