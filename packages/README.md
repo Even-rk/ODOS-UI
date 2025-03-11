@@ -25,7 +25,7 @@ main.ts
 import { createApp } from 'vue'
 import App from './App.vue'
 // 引入样式和组件
-import 'odos-ui/lib/style.css'
+import 'odos-ui/lib/umd/style.css'
 import ODOSUI from 'odos-ui'
 
 createApp(App).use(ODOSUI).mount('#app')
