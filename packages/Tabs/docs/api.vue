@@ -16,7 +16,7 @@ const tabsdata = [
   {
     attribute: 'type',
     default: 'btn',
-    type: 'btn | line',
+    type: 'btn | line | btn-line | block',
     describe: '面板类型'
   }
 ]

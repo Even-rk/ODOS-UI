@@ -20,7 +20,7 @@ interface Emit {
 const emit = defineEmits<Emit>()
 const props = defineProps<{
   currentTab: string
-  type?: 'btn' | 'line' | 'btn-line'
+  type?: 'btn' | 'line' | 'btn-line' | 'block'
 }>()
 
 type Item = {
@@ -53,9 +53,11 @@ const Tabbar = (list: Item[]) => {
       <div
         class={{
           'odos-tab-line-selected': value === props.currentTab && props.type === 'line',
-          'odos-tab-selected': value === props.currentTab,
+          'odos-tab-block-selected': value === props.currentTab && props.type === 'block',
+          'odos-tab-selected': value === props.currentTab && props.type !== 'line' && props.type !== 'block',
           'odos-tab': true,
           'odos-tab-line': props.type === 'line',
+          'odos-tab-block': props.type === 'block',
           'odos-tab-disabled': disabled
         }}
         onClick={() => {
@@ -68,7 +70,7 @@ const Tabbar = (list: Item[]) => {
           <Icon
             size="16px"
             name={icon as string}
-            color={value === props.currentTab ? '#2E6CE4' : '#4E5969'}
+            color={value === props.currentTab ? (props.type === 'block' ? '#fff' : '#2E6CE4') : '#4E5969'}
           />
         )}
         <div class="label">{tab}</div>
@@ -119,6 +121,16 @@ const Content = (list: Item[]) => {
   &.odos-tab-line {
     border: none;
   }
+  &.odos-tab-block {
+    border: none;
+    border-radius: 0;
+    flex: 1;
+    justify-content: center;
+    margin: 0;
+    position: relative;
+    height: 40px;
+    font-size: 16px;
+  }
   &:first-child {
     margin-left: 0;
   }
@@ -141,6 +153,22 @@ const Content = (list: Item[]) => {
       width: 80%;
       height: 2px;
       border-radius: 20px;
+      background-color: #2e6ce4;
+    }
+  }
+  &.odos-tab-block-selected {
+    background-color: #eaf0fc;
+    color: #2e6ce4;
+    border: none;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
       background-color: #2e6ce4;
     }
   }
