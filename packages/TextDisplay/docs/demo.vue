@@ -4,8 +4,9 @@
     <div class="display-row">
       <h4>省略号模式</h4>
       <div class="display-group">
-        <odos-text-display 
-          text="这是一段很长的文本，当文本超出指定宽度时将会显示省略号，鼠标悬停可查看完整内容" 
+        <odos-text-display
+          text="这是一段很长的文本，当文本超出指定宽度时将会显示省略号，鼠标悬停可查看完整内容"
+          tooltip="这是一段很长的文本，当文本超出指定宽度时将会显示省略号，鼠标悬停可查看完整内容"
           :width="200"
         />
       </div>
@@ -15,8 +16,9 @@
     <div class="display-row">
       <h4>跑马灯模式</h4>
       <div class="display-group">
-        <odos-text-display 
-          text="这是一段很长的文本，当文本超出指定宽度时将会以跑马灯的形式滚动显示" 
+        <odos-text-display
+          text="这是一段很长的文本，当文本超出指定宽度时将会以跑马灯的形式滚动显示"
+          tooltip="这是一段很长的文本，当文本超出指定宽度时将会以跑马灯的形式滚动显示"
           :width="200"
           mode="marquee"
         />
@@ -29,15 +31,17 @@
       <div class="display-group">
         <div class="width-demo">
           <span>200px：</span>
-          <odos-text-display 
-            text="这是一段文本，展示在200px宽度的容器中" 
+          <odos-text-display
+            text="这是一段文本，展示在200px宽度的容器中"
             :width="200"
+            tooltip="这是一段文本，展示在200px宽度的容器中"
           />
         </div>
         <div class="width-demo">
           <span>300px：</span>
-          <odos-text-display 
-            text="这是一段文本，展示在300px宽度的容器中" 
+          <odos-text-display
+            text="这是一段文本，展示在300px宽度的容器中"
+            tooltip="这是一段文本，展示在300px宽度的容器中"
             :width="300"
           />
         </div>
@@ -70,7 +74,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      
+
       span {
         width: 60px;
         color: #86909c;
