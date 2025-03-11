@@ -1,7 +1,7 @@
 <template>
   <div class="odos-text-display" :style="{ width: props.width + 'px' }">
     <template v-if="props.mode !== 'marquee'">
-      <Tooltip :title="props.tooltip" placement="top" :trigger="props.trigger || 'hover'">
+      <Tooltip :title="props.tooltip" :placement="props.placement || 'top'" :trigger="props.trigger || 'hover'">
         <div class="odos-text-display_ellipsis__text" :style="{ width: props.width + 'px' }">
           <slot>{{ props.text }}</slot>
         </div>
@@ -30,13 +30,13 @@ const props = defineProps<{
   tooltip?: string
   trigger?: 'hover' | 'click'
   mode?: 'marquee' | 'ellipsis'
+  placement?: 'top' | 'bottom' | 'left' | 'right'
 }>()
 </script>
 
 <style lang="scss" scoped>
 .odos-text-display {
-  width: 100%;
-  line-height: 16px;
+  width: fit-content;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -65,13 +65,11 @@ const props = defineProps<{
       animation: marquee 10s linear infinite;
       padding-right: 50px;
       height: 100%;
-      line-height: 1;
     }
 
     .odos-text-display_marquee__text {
       display: inline-block;
       padding-right: 70px;
-      line-height: 1;
     }
   }
 }
