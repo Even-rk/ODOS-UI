@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import Icon from 'packages/Icon/src/index.vue'
-import { computed, ref, useSlots, watchEffect, type SetupContext } from 'vue'
+import { computed, ref, useSlots, watchEffect, type SetupContext, watch } from 'vue'
 
 const { type, size, disabled, icon } = defineProps<{
   type?: 'primary' | 'default' | 'line' | 'text'
@@ -19,6 +19,8 @@ const { type, size, disabled, icon } = defineProps<{
   disabled?: boolean
   icon?: string
 }>()
+
+const selfDisabled = ref(disabled)
 
 const slots = useSlots() as SetupContext['slots']
 const iconColor = ref('')
@@ -44,8 +46,12 @@ watchEffect(() => {
 })
 const emit = defineEmits(['click'])
 
+watch(() => disabled, () => {
+  selfDisabled.value = disabled
+}, { deep: true })
+
 const Click = (e: Event) => {
-  if (disabled) return
+  if (selfDisabled) return
   emit('click', e)
 }
 </script>
