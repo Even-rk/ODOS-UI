@@ -5,7 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import 'https://orange-odos.oss-cn-hangzhou.aliyuncs.com/assets/js/iconfont.js'
+import 'https://orange-odos.oss-cn-hangzhou.aliyuncs.com/assets/js/iconfont.js?t='
++Date.now()
 import { computed, ref, toRefs } from 'vue'
 const props = defineProps<{
   name?: string

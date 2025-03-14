@@ -21,7 +21,11 @@ export const Loading = defineComponent({
     onMounted(async () => {
       if (props.showTip) {
         const tipUrl = 'https://orange-odos.oss-cn-hangzhou.aliyuncs.com/assets/file/loading_tips.txt'
-        const response = await fetch(tipUrl)
+        const response = await fetch(tipUrl, {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        })
         const text = await response.text()
         tips.value = text.split('\n').filter((tip) => tip.trim())
         // 设置初始值
@@ -89,7 +93,12 @@ export const useLoadingHide = () => {
 
 export const useLoadingShow = async (time?: number) => {
   const tipUrl = 'https://orange-odos.oss-cn-hangzhou.aliyuncs.com/assets/file/loading_tips.txt'
-  const response = await fetch(tipUrl)
+  const response = await fetch(tipUrl, {
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    }
+  )
   const text = await response.text()
   // 创建
   const loader = createApp(LoadingView, { text })
