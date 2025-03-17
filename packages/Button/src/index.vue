@@ -51,7 +51,7 @@ watch(() => disabled, () => {
 }, { deep: true })
 
 const Click = (e: Event) => {
-  if (selfDisabled) return
+  if (selfDisabled.value) return
   emit('click', e)
 }
 </script>
