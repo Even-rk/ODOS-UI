@@ -1,5 +1,5 @@
 // 全局loading
-import { createApp, defineComponent, nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { createApp, defineComponent, onMounted, onUnmounted, ref } from 'vue'
 import './loading.scss'
 
 // 组件
