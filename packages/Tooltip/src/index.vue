@@ -161,7 +161,7 @@ const handleMouseEnter = () => {
   }
   mouseEnterTimer = setTimeout(() => {
     showTooltip()
-  }, props.mouseEnterDelay || 100)
+  }, props.mouseEnterDelay || 0)
 }
 
 const handleMouseLeave = () => {
