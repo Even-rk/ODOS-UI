@@ -37,7 +37,8 @@
     "format": "prettier --write src/",
     "format:packages": "prettier --write packages/",
     "push:npm": "npm publish --registry=https://registry.npmjs.org",
-    "push": "npm publish --registry=https://packages.aliyun.com/619daf222873bc436ca52219/npm/npm-registry/"
+    "push": "npm publish --registry=https://packages.aliyun.com/619daf222873bc436ca52219/npm/npm-registry/",
+    "createComp": "node shell/create-components.js"
   },
   "dependencies": {
     "@vueuse/core": "^12.7.0",
@@ -57,6 +58,7 @@
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/tsconfig": "^0.5.1",
     "@yankeeinlondon/code-builder": "^1.2.1",
+    "inquirer": "^12.5.0",
     "npm-run-all2": "^6.1.1",
     "prettier": "^3.2.5",
     "sass": "^1.70.0",
