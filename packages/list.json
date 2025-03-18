@@ -118,5 +118,10 @@
     "compName": "TextDisplay",
     "compZhName": "TextDisplay文本展示",
     "compClassName": "textDisplay"
+  },
+  {
+    "compName": "Drawer",
+    "compZhName": "Drawer抽屉",
+    "compClassName": "drawer"
   }
 ]

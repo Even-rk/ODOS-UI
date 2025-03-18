@@ -28,6 +28,7 @@ import { TextDisplayPlugin } from './TextDisplay'
 import { ToothSelectPlugin } from './ToothSelect'
 import { ToothChartPlugin } from './ToothChart'
 import { TooltipPlugin } from './Tooltip'
+import { DrawerPlugin } from './Drawer'
 import type { Plugin } from 'vue'
 
 const Packages: Plugin[] = [
@@ -52,7 +53,8 @@ const Packages: Plugin[] = [
   TextDisplayPlugin,
   ToothSelectPlugin,
   ToothChartPlugin,
-  TooltipPlugin
+  TooltipPlugin,
+  DrawerPlugin
 ]
 
 const OdosPlugin: Plugin = {
@@ -89,3 +91,4 @@ export * from './Tag'
 export * from './Textarea'
 export * from './TextDisplay'
 export * from './Tooltip'
+export * from './Drawer'
