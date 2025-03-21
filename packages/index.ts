@@ -18,6 +18,7 @@ import { LoadingPlugin } from './Loading'
 import { ModalPlugin } from './Modal'
 import { PaginationPlugin } from './Pagination'
 import { PopoverPlugin } from './Popover'
+import { PopconfirmPlugin } from './Popconfirm'
 import { RadioPlugin } from './Radio'
 import { SelectPlugin } from './Select'
 import { TablePlugin } from './Table'
@@ -44,6 +45,7 @@ const Packages: Plugin[] = [
   ModalPlugin,
   PaginationPlugin,
   PopoverPlugin,
+  PopconfirmPlugin,
   RadioPlugin,
   SelectPlugin,
   TablePlugin,

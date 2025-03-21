@@ -85,6 +85,11 @@
     "compClassName": "popover"
   },
   {
+    "compName": "Popconfirm",
+    "compZhName": "Popconfirm气泡确认框",
+    "compClassName": "popconfirm"
+  },
+  {
     "compName": "Radio",
     "compZhName": "Radio单选框",
     "compClassName": "radio"

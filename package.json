@@ -44,6 +44,7 @@
     "@vueuse/core": "^12.7.0",
     "ant-design-vue": "^4.2.3",
     "dayjs": "^1.11.11",
+    "element-plus": "^2.9.7",
     "prismjs": "^1.29.0",
     "vue": "^3.4.15",
     "vue-drag-select-pro": "^1.1.0",
