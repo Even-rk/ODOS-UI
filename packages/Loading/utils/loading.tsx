@@ -87,8 +87,12 @@ const LoadingView = defineComponent({
   }
 })
 export const useLoadingHide = () => {
-  const target = document.querySelector('.odos-modal-loading')
-  target?.remove()
+  const target = document.querySelectorAll('.odos-modal-loading')
+  if (target) {
+    target.forEach((item) => {
+      item.remove()
+    })
+  }
 }
 
 export const useLoadingShow = async (time?: number) => {
