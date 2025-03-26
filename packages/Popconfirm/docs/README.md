@@ -13,16 +13,16 @@ import Event from './event.vue'
 <Preview comp-name="Popconfirm" demo-name="demo">
   <demo />
 </Preview>
-<!-- 
+ 
 ## 位置方向
 
 <Preview comp-name="Popconfirm" demo-name="position">
   <Position />
-</Preview> -->
+</Preview>
 
-<!-- ## Popconfirm API
+## Popconfirm API
 
-<API/> -->
+<API/>
 
 ## Popconfirm 事件
 

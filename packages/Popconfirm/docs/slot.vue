@@ -10,6 +10,11 @@ const data = [
     type: '—'
   },
   {
+    slotName: 'content',
+    describe: '非页脚内容',
+    type: '—'
+  },
+  {
     slotName: 'actions',
     describe: '页脚的内容',
     type: 'Object : ({ confirm: (e: MouseEvent) => void, cancel: (e: MouseEvent) => void })'

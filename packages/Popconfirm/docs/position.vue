@@ -1,74 +1,47 @@
 <template>
-  <div class="popover-position">
+  <div class="popconfirm-position">
     <div class="odos-btn-group">
-      <odos-popover position="left" trigger="click">
+      <odos-popconfirm position="left">
         <template #content>
           <div>Content</div>
         </template>
         <odos-button>left</odos-button>
-      </odos-popover>
+      </odos-popconfirm>
 
-      <odos-popover position="leftTop" trigger="click">
-        <template #content>
-          <div>Content</div>
-        </template>
-        <odos-button>leftTop</odos-button>
-      </odos-popover>
-
-      <odos-popover position="top" trigger="click">
+      <odos-popconfirm position="top">
         <template #content>
           <div>Content</div>
         </template>
         <odos-button>top</odos-button>
-      </odos-popover>
-
-      <odos-popover position="rightTop" trigger="click">
-        <template #content>
-          <div>Content</div>
-        </template>
-        <odos-button>rightTop</odos-button>
-      </odos-popover>
+      </odos-popconfirm>
     </div>
 
     <div class="odos-btn-group">
-      <odos-popover position="right" trigger="click">
+      <odos-popconfirm position="right">
         <template #content>
           <div>Content</div>
         </template>
         <odos-button>right</odos-button>
-      </odos-popover>
+      </odos-popconfirm>
 
-      <odos-popover position="rightBottom" trigger="click">
-        <template #content>
-          <div>Content</div>
-        </template>
-        <odos-button>rightBottom</odos-button>
-      </odos-popover>
-
-      <odos-popover position="bottom" trigger="click">
+      <odos-popconfirm position="bottom">
         <template #content>
           <div>Content</div>
         </template>
         <odos-button>bottom</odos-button>
-      </odos-popover>
-
-      <odos-popover position="leftBottom" trigger="click">
-        <template #content>
-          <div>Content</div>
-        </template>
-        <odos-button>leftBottom</odos-button>
-      </odos-popover>
+      </odos-popconfirm>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.popover-position {
+.popconfirm-position {
   display: flex;
   flex-direction: column;
 
   .odos-btn-group {
     display: flex;
+    gap: 10px;
     &:first-child {
       margin-bottom: 8px;
     }
