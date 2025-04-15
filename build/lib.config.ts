@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import vuejsx from '@vitejs/plugin-vue-jsx'
 import Markdown from 'vite-plugin-md'
 
-let nodeList = []
+let nodeList: string[] = []
 export default defineConfig({
   build: {
     outDir: 'lib',
