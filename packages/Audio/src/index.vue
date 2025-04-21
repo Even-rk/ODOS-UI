@@ -1,8 +1,22 @@
 <template>
   <audio :src="props.src" ref="audioRef" />
   <div class="odos-audio">
-    <Icon name="audio-play" :class="{ disabled: !props.src }" v-show="!isPlay" @click="audioPlay" />
-    <Icon name="audio-pause" :class="{ disabled: !props.src }" v-show="isPlay" @click="audioPause" />
+    <Icon
+      v-if="!isPlay1x"
+      name="tripleSpeed"
+      size="24px"
+      :class="{ disabled: disabled1x }"
+      @click="audioPlay(1)"
+    />
+    <Icon name="radiopaused-1x" v-else size="24px" :class="{ disabled: disabled1x }" @click="audioPause" />
+    <Icon
+      v-if="!isPlay2x"
+      name="doubleSpeed"
+      size="24px"
+      :class="{ disabled: disabled2x }"
+      @click="audioPlay(2)"
+    />
+    <Icon name="radiopaused-2x" v-else size="24px" :class="{ disabled: disabled2x }" @click="audioPause" />
     <div class="audio-slider">
       <Slider
         v-model:value="process"
@@ -12,14 +26,14 @@
         :step="0.01"
         :disabled="!props.src"
       />
-      <div class="time" v-show="!isPlay">{{ secondsToMMSS(audioData.duration as number) }}</div>
-      <div class="time" v-show="isPlay">{{ secondsToMMSS(audioData.currentTime as number) }}</div>
+      <div class="time" v-if="isPlay1x || isPlay2x">{{ secondsToMMSS(audioData.currentTime as number) }}</div>
+      <div class="time" v-else>{{ secondsToMMSS(audioData.duration as number) }}</div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref } from 'vue'
+import { computed, nextTick, onMounted, reactive, ref } from 'vue'
 import Icon from '../../Icon/src/index.vue'
 import { Slider } from 'ant-design-vue'
 
@@ -48,7 +62,17 @@ const secondsToMMSS = (seconds: number) => {
   return `${minutes.toString().padStart(2, '0')}:${second.value.toString().padStart(2, '0')}`
 }
 // 是否在播放
-const isPlay = ref(false)
+const isPlay1x = ref(false)
+const isPlay2x = ref(false)
+// 1倍速按钮禁用
+const disabled1x = computed(() => {
+  return !!props.src && isPlay2x.value
+})
+
+// 2倍速按钮禁用
+const disabled2x = computed(() => {
+  return !!props.src && isPlay1x.value
+})
 // 进度
 const process = ref(0)
 // 音频时长
@@ -72,7 +96,7 @@ onMounted(async () => {
     nextTick(() => {
       document.querySelector('body')?.click()
       audioRef.value.pause()
-      isPlay.value = true
+      isPlay1x.value = true
       audioRef.value
         .play()
         .then(() => {})
@@ -100,20 +124,33 @@ onMounted(async () => {
   })
   // 播放结束
   audioRef.value.addEventListener('ended', () => {
-    isPlay.value = false
+    isPlay1x.value = false
+    isPlay2x.value = false
   })
 })
 
-// 播放
-const audioPlay = () => {
+/**
+ * 播放按钮
+ * @param rade 几倍速
+ */
+const audioPlay = (rade: 1 | 2) => {
+  if (rade == 1 && disabled1x.value) return
+  if (rade == 2 && disabled2x.value) return
   if (!props.src) return
-  isPlay.value = true
+  if (rade == 1) {
+    isPlay1x.value = true
+    isPlay2x.value = false
+  } else if (rade == 2) {
+    isPlay2x.value = true
+    isPlay1x.value = false
+  }
+  audioRef.value.playbackRate = rade // 设置播放播放
   audioRef.value.play()
 }
 // 暂停
 const audioPause = () => {
-  if (!props.src) return
-  isPlay.value = false
+  isPlay1x.value = false
+  isPlay2x.value = false
   audioRef.value.pause()
   emit('pause', audioData.currentTime, props.src)
 }
@@ -124,7 +161,7 @@ const currentChange = () => {
 // 改变播放时间
 const currentTimeChange = (val: [number, number] | number) => {
   audioRef.value.currentTime = ((val as number) / 100) * audioData.duration
-  if (isPlay.value) {
+  if (isPlay1x.value || isPlay2x.value) {
     audioRef.value.play()
   } else {
     audioRef.value.pause()
@@ -144,6 +181,7 @@ const currentTimeChange = (val: [number, number] | number) => {
     margin-right: 8px;
     &.disabled {
       cursor: not-allowed;
+      color: #c9cdd4;
     }
   }
   .audio-slider {
