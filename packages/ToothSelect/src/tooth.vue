@@ -146,7 +146,7 @@ const emit = defineEmits<{
 }>()
 
 const isDisabled = (val: string) => {
-  const isBitewing = props.rangeLimit === 'bitewing'
+  const isBitewing = props.rangeLimit === 'bitewing' || props.rangeLimit === 'all'
   const isHaveTooth = bitewing.includes(val)
   if (isBitewing) {
     return props.disabled && isHaveTooth

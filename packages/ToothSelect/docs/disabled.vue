@@ -13,6 +13,13 @@
       range-limit="bitewing"
       :multiple-tooth-list="multipleToothList"
     />
+    <hr />
+    <OdosToothSelect
+      name="bitewing"
+      v-model:value="value"
+      range-limit="all"
+      :multiple-tooth-list="multipleToothList"
+    />
   </div>
 </template>
 

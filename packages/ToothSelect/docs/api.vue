@@ -19,8 +19,8 @@ const data = [
   {
     attribute: 'range-limit',
     default: '--',
-    type: " 'fullMouth' | 'tooth' | 'bitewing'",
-    describe: '范围限制 (fullMouth: 全口牙; tooth: 全口; bitewing: 咬翼)'
+    type: " 'fullMouth' | 'tooth' | 'bitewing' | 'all'",
+    describe: '范围限制 (fullMouth: 全口牙; tooth: 全口; bitewing: 咬翼; all: 全口 + 咬翼)'
   },
   {
     attribute: 'name',

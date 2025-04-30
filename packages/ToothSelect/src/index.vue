@@ -3,7 +3,12 @@
     <div class="header">
       <div class="complete">
         <CheckBox v-model:value="toothVal" @change="toothValChange" mutex mutexOptionValue="All">
-          <CheckBoxItem :disabled="props.rangeLimit === 'tooth'" id="-1" value="-1" label="全口" />
+          <CheckBoxItem
+            :disabled="props.rangeLimit === 'tooth' || props.rangeLimit == 'all'"
+            id="-1"
+            value="-1"
+            label="全口"
+          />
         </CheckBox>
       </div>
       <div class="info">
@@ -15,7 +20,7 @@
       :name="props.name"
       v-model:value="toothVal"
       :rangeLimit="props.rangeLimit"
-      :disabled="props.rangeLimit === 'fullMouth' || props.rangeLimit === 'bitewing'"
+      :disabled="toothDisabled"
       @change="toothValChange"
     />
     <div class="footer" v-if="props.multipleToothList && props.multipleToothList?.length">
@@ -24,7 +29,7 @@
         <CheckBox v-model:value="toothVal" @change="toothValChange" mutex :mutexOptionValue="['-1']">
           <template v-for="ele in props.multipleToothList" :key="ele.value">
             <CheckBoxItem
-              :disabled="props.rangeLimit === 'fullMouth'"
+              :disabled="props.rangeLimit === 'fullMouth' || props.rangeLimit === 'all'"
               :id="ele.value"
               :value="ele.value"
               :label="ele.label"
@@ -43,7 +48,7 @@ import CheckBox from '../../CheckBox/src/index.vue'
 import CheckBoxItem from '../../CheckBox/src/item.vue'
 // 象限牙位
 import Tooth from './tooth.vue'
-import { nextTick, onUnmounted, ref, watch } from 'vue'
+import { computed, nextTick, onUnmounted, ref, watch } from 'vue'
 const props = defineProps<{
   value: string[]
   multipleToothList?: {
@@ -51,10 +56,14 @@ const props = defineProps<{
     value: string
   }[]
   name?: string
-  rangeLimit?: 'fullMouth' | 'tooth' | 'bitewing' | string
+  rangeLimit?: 'fullMouth' | 'tooth' | 'bitewing' | 'all' | string
 }>()
 
 const toothVal = ref(props.value)
+
+const toothDisabled = computed(() => {
+  return props.rangeLimit === 'fullMouth' || props.rangeLimit === 'bitewing' || props.rangeLimit === 'all'
+})
 
 watch(
   () => props.value,
