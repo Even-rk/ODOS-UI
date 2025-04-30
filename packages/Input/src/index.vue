@@ -38,7 +38,7 @@ onUpdated(() => {
   }
 })
 
-const { value, width, placeholder, disabled, isFocus, title, type, unit } = defineProps<{
+const { value, width, placeholder, disabled, isFocus, title, type, unit, maxLength } = defineProps<{
   type?: 'text' | 'password' | 'search'
   value?: string
   width?: string | number
@@ -47,6 +47,7 @@ const { value, width, placeholder, disabled, isFocus, title, type, unit } = defi
   isFocus?: boolean
   title?: string
   unit?: string
+  maxLength?: number
 }>()
 const Type = ref(type)
 // typeName
@@ -86,7 +87,11 @@ const WidthSize = computed(() => {
 })
 
 const handleInput = (e: Event) => {
-  emit('update:value', (e.target as HTMLInputElement).value)
+  if (maxLength) {
+    emit('update:value', (e.target as HTMLInputElement).value.slice(0, maxLength))
+  } else {
+    emit('update:value', (e.target as HTMLInputElement).value)
+  }
   emit('input', e)
 }
 
