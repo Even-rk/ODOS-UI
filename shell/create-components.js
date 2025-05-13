@@ -9,6 +9,16 @@ const __dirname = path.dirname(__filename)
 // 读取组件列表
 const list = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'packages', 'list.json'), 'utf-8'))
 
+// 组件分类
+const componentCategories = {
+  basic: '基础组件',
+  display: '展示组件',
+  feedback: '反馈组件',
+  navigation: '导航组件',
+  special: '特殊组件',
+  other: '其他组件'
+}
+
 // 组件模板
 const componentTemplate = `<template>
   <div class="odos-{{name}}">
@@ -113,7 +123,7 @@ export { {{name}} }`
 
 async function getInput() {
   // 让用户输入组件信息
-  const { name, zhName, className } = await inquirer.prompt([
+  const { name, zhName, className, category } = await inquirer.prompt([
     {
       type: 'input',
       name: 'name',
@@ -142,13 +152,23 @@ async function getInput() {
         if (!/^[a-z]+(-[a-z]+)*$/.test(input)) return '类名只能包含小写字母和连字符'
         return true
       }
+    },
+    {
+      type: 'list',
+      name: 'category',
+      message: '请选择组件分类：',
+      choices: Object.entries(componentCategories).map(([key, value]) => ({
+        name: value,
+        value: key
+      }))
     }
   ])
 
   return {
     name,
     zhName,
-    className
+    className,
+    category
   }
 }
 
@@ -196,24 +216,24 @@ async function createComponent(component) {
   // 找到最后一个导入语句的位置
   const lastImportIndex = mainIndexContent.lastIndexOf('import')
   const lastImportLineEndIndex = mainIndexContent.indexOf('\n', lastImportIndex)
-  
+
   if (lastImportIndex !== -1 && lastImportLineEndIndex !== -1) {
     // 在最后一个导入语句后添加新的导入语句
-    mainIndexContent = 
-      mainIndexContent.slice(0, lastImportLineEndIndex + 1) + 
-      importStatement + 
+    mainIndexContent =
+      mainIndexContent.slice(0, lastImportLineEndIndex + 1) +
+      importStatement +
       mainIndexContent.slice(lastImportLineEndIndex + 1)
   }
 
   // 添加到Packages数组
   const packagesDeclarationRegex = /const\s+Packages\s*:\s*Plugin\[\]\s*=\s*\[/
   const packagesDeclarationMatch = mainIndexContent.match(packagesDeclarationRegex)
-  
+
   if (packagesDeclarationMatch) {
     const insertIndex = packagesDeclarationMatch.index + packagesDeclarationMatch[0].length
-    mainIndexContent = 
-      mainIndexContent.slice(0, insertIndex) + 
-      `\n  ${component.name}Plugin,` + 
+    mainIndexContent =
+      mainIndexContent.slice(0, insertIndex) +
+      `\n  ${component.name}Plugin,` +
       mainIndexContent.slice(insertIndex)
   }
 
@@ -222,13 +242,13 @@ async function createComponent(component) {
   if (exportSection !== -1) {
     const lastExportIndex = mainIndexContent.lastIndexOf('export *')
     const lastExportLineEndIndex = mainIndexContent.indexOf('\n', lastExportIndex)
-    
+
     if (lastExportIndex !== -1 && lastExportLineEndIndex !== -1) {
       // 在最后一个导出语句后添加新的导出语句
       const newExportStatement = `export * from './${component.name}'\n`
-      mainIndexContent = 
-        mainIndexContent.slice(0, lastExportLineEndIndex + 1) + 
-        newExportStatement + 
+      mainIndexContent =
+        mainIndexContent.slice(0, lastExportLineEndIndex + 1) +
+        newExportStatement +
         mainIndexContent.slice(lastExportLineEndIndex + 1)
     }
   }
@@ -236,14 +256,78 @@ async function createComponent(component) {
   // 写入更新后的内容
   fs.writeFileSync(mainIndexPath, mainIndexContent)
 
+  // 更新分类配置文件
+  updateComponentCategory(component.name, component.category)
+
   // 更新list.json
   list.push({
     compName: component.name,
     compZhName: component.zhName,
-    compClassName: component.className
+    compClassName: component.className,
+    category: component.category
   })
   fs.writeFileSync(path.join(__dirname, '..', 'packages', 'list.json'), JSON.stringify(list, null, 2))
-  console.log(`组件 ${component.name} 创建成功！`)
+  console.log(`组件 ${component.name} 创建成功！分类为：${componentCategories[component.category]}`)
+}
+
+// 更新组件分类配置
+function updateComponentCategory(componentName, category) {
+  const layoutPath = path.join(__dirname, '..', 'src', 'layout', 'component-categories.ts')
+  let categoryContent
+
+  // 检查文件是否存在，不存在则创建
+  if (!fs.existsSync(layoutPath)) {
+    // 创建初始分类配置文件
+    categoryContent = `// 组件分类配置
+export const componentGroups = {
+  basic: [],
+  display: [],
+  feedback: [],
+  navigation: [],
+  special: [],
+  other: []
+}
+
+// 分类名称
+export const categoryNames = {
+  basic: '基础组件',
+  display: '展示组件',
+  feedback: '反馈组件',
+  navigation: '导航组件',
+  special: '特殊组件',
+  other: '其他组件'
+}
+`
+  } else {
+    categoryContent = fs.readFileSync(layoutPath, 'utf-8')
+  }
+
+  // 将组件添加到对应分类
+  const categoryRegex = new RegExp(`(${category}:\\s*\\[)([^\\]]*)\\]`)
+  const match = categoryContent.match(categoryRegex)
+
+  if (match) {
+    // 有现有组件列表
+    let componentsList = match[2].trim()
+    const newComponent = `'${componentName}'`
+
+    // 添加组件到列表
+    if (componentsList) {
+      // 检查组件是否已存在
+      if (!componentsList.includes(newComponent)) {
+        componentsList += `, ${newComponent}`
+      }
+    } else {
+      componentsList = newComponent
+    }
+
+    // 更新分类配置
+    categoryContent = categoryContent.replace(categoryRegex, `$1${componentsList}]`)
+  }
+
+  // 写入更新后的分类配置
+  fs.writeFileSync(layoutPath, categoryContent)
+  console.log(`已将组件 ${componentName} 添加到 ${componentCategories[category]} 分类中`)
 }
 
 // 执行创建组件
