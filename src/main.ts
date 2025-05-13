@@ -7,9 +7,11 @@ import './assets/markdown.css'
 import OrangeODOS from '../packages'
 // 源码组件
 import Preview from './components/Preview.vue'
+import TocNav from './components/TocNav.vue'
 
 const app = createApp(App)
 app.component('Preview', Preview)
+app.component('TocNav', TocNav)
 app.use(OrangeODOS)
 app.use(router)
 app.mount('#app')

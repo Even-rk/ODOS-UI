@@ -62,6 +62,7 @@
     "@vue/tsconfig": "^0.5.1",
     "@yankeeinlondon/code-builder": "^1.2.1",
     "inquirer": "^12.5.0",
+    "markdown-it-anchor": "^9.2.0",
     "npm-run-all2": "^6.1.1",
     "prettier": "^3.2.5",
     "sass": "^1.70.0",

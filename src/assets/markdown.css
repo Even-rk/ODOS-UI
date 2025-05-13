@@ -57,6 +57,28 @@ h6:hover a.anchor {
   text-decoration: none;
 }
 
+h1 .header-anchor,
+h2 .header-anchor,
+h3 .header-anchor,
+h4 .header-anchor,
+h5 .header-anchor,
+h6 .header-anchor {
+  visibility: hidden;
+  margin-left: -20px;
+  padding-right: 4px;
+  color: #3f6bdc;
+  font-weight: normal;
+}
+
+h1:hover .header-anchor,
+h2:hover .header-anchor,
+h3:hover .header-anchor,
+h4:hover .header-anchor,
+h5:hover .header-anchor,
+h6:hover .header-anchor {
+  visibility: visible;
+}
+
 h1 tt,
 h1 code {
   font-size: inherit !important;
@@ -103,6 +125,7 @@ h2 {
   line-height: 1.225;
   margin: 35px 0 15px;
   padding-bottom: 0.5em;
+  border-bottom: 1px solid #eaecef;
 }
 
 h3 {

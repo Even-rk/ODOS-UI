@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Markdown from 'vite-plugin-md'
 import code from '@yankeeinlondon/code-builder'
+import anchor from 'markdown-it-anchor'
 
 
 import vuejsx from '@vitejs/plugin-vue-jsx'
@@ -25,7 +26,19 @@ export default defineConfig({
     }),
     vuejsx(),
     Markdown({
-      builders: [code()]
+      builders: [code()],
+      markdownItOptions: {
+        html: true,
+        linkify: true,
+        typographer: true
+      },
+      markdownItSetup(md) {
+        md.use(anchor, {
+          permalink: true,
+          permalinkBefore: true,
+          permalinkSymbol: '#'
+        })
+      }
     }),
   ]
 })
