@@ -218,7 +218,7 @@ watch(
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      transition: color 0.1s;
+      transition: color 0.3s;
 
       &:hover {
         color: #3f6bdc;
