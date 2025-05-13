@@ -6,6 +6,7 @@
  * 根据 /packages 目录下的组件所生成的模块导出，请勿手动修改
  */
 import type { App } from 'vue'
+import type { Plugin } from 'vue'
 import { AudioPlugin } from './Audio'
 import { ButtonPlugin } from './Button'
 import { CheckBoxPlugin } from './CheckBox'
@@ -30,7 +31,6 @@ import { ToothSelectPlugin } from './ToothSelect'
 import { ToothChartPlugin } from './ToothChart'
 import { TooltipPlugin } from './Tooltip'
 import { DrawerPlugin } from './Drawer'
-import type { Plugin } from 'vue'
 import { ImageUploadPlugin } from './ImageUpload'
 
 const Packages: Plugin[] = [

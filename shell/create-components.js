@@ -193,22 +193,48 @@ async function createComponent(component) {
 
   // 添加导入语句
   const importStatement = `import { ${component.name}Plugin } from './${component.name}'\n`
-  mainIndexContent = mainIndexContent.replace(
-    /const Packages: Plugin\[\] = \[/,
-    `${importStatement}const Packages: Plugin[] = [`
-  )
+  // 找到最后一个导入语句的位置
+  const lastImportIndex = mainIndexContent.lastIndexOf('import')
+  const lastImportLineEndIndex = mainIndexContent.indexOf('\n', lastImportIndex)
+  
+  if (lastImportIndex !== -1 && lastImportLineEndIndex !== -1) {
+    // 在最后一个导入语句后添加新的导入语句
+    mainIndexContent = 
+      mainIndexContent.slice(0, lastImportLineEndIndex + 1) + 
+      importStatement + 
+      mainIndexContent.slice(lastImportLineEndIndex + 1)
+  }
 
   // 添加到Packages数组
-  mainIndexContent = mainIndexContent.replace(
-    /const Packages: Plugin\[\] = \[/,
-    `const Packages: Plugin[] = [\n  ${component.name}Plugin,`
-  )
+  const packagesDeclarationRegex = /const\s+Packages\s*:\s*Plugin\[\]\s*=\s*\[/
+  const packagesDeclarationMatch = mainIndexContent.match(packagesDeclarationRegex)
+  
+  if (packagesDeclarationMatch) {
+    const insertIndex = packagesDeclarationMatch.index + packagesDeclarationMatch[0].length
+    mainIndexContent = 
+      mainIndexContent.slice(0, insertIndex) + 
+      `\n  ${component.name}Plugin,` + 
+      mainIndexContent.slice(insertIndex)
+  }
 
   // 添加导出语句
-  mainIndexContent = mainIndexContent.replace(
-    /export \* from '\.\/[^']+';/g,
-    `export * from './${component.name}';\n$&`
-  )
+  const exportSection = mainIndexContent.indexOf('// 统一导出')
+  if (exportSection !== -1) {
+    const lastExportIndex = mainIndexContent.lastIndexOf('export *')
+    const lastExportLineEndIndex = mainIndexContent.indexOf('\n', lastExportIndex)
+    
+    if (lastExportIndex !== -1 && lastExportLineEndIndex !== -1) {
+      // 在最后一个导出语句后添加新的导出语句
+      const newExportStatement = `export * from './${component.name}'\n`
+      mainIndexContent = 
+        mainIndexContent.slice(0, lastExportLineEndIndex + 1) + 
+        newExportStatement + 
+        mainIndexContent.slice(lastExportLineEndIndex + 1)
+    }
+  }
+
+  // 写入更新后的内容
+  fs.writeFileSync(mainIndexPath, mainIndexContent)
 
   // 更新list.json
   list.push({
@@ -220,15 +246,9 @@ async function createComponent(component) {
   console.log(`组件 ${component.name} 创建成功！`)
 }
 
-// // 执行创建组件
-getInput(3).then((res) => {
+// 执行创建组件
+getInput().then((res) => {
   if (res) {
     createComponent(res)
   }
-})
-
-list.push({
-  compName: 'Button',
-  compZhName: '按钮',
-  compClassName: 'button'
 })
