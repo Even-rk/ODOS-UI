@@ -31,6 +31,7 @@ import { ToothChartPlugin } from './ToothChart'
 import { TooltipPlugin } from './Tooltip'
 import { DrawerPlugin } from './Drawer'
 import type { Plugin } from 'vue'
+import { ImageUploadPlugin } from './ImageUpload'
 
 const Packages: Plugin[] = [
   AudioPlugin,
@@ -56,7 +57,8 @@ const Packages: Plugin[] = [
   ToothSelectPlugin,
   ToothChartPlugin,
   TooltipPlugin,
-  DrawerPlugin
+  DrawerPlugin,
+  ImageUploadPlugin
 ]
 
 const OdosPlugin: Plugin = {
@@ -95,3 +97,4 @@ export * from './Textarea'
 export * from './TextDisplay'
 export * from './Tooltip'
 export * from './Drawer'
+export * from './ImageUpload'
