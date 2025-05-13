@@ -14,6 +14,14 @@
   </header>
   <router-view></router-view>
 </template>
+<script setup lang="ts">
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  const dody = document.body
+  dody.style.setProperty('overflow-y', 'hidden')
+})
+</script>
 <style lang="scss" scoped>
 .header {
   display: flex;

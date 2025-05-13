@@ -87,6 +87,10 @@ onMounted(() => {
       margin-right: 240px; /* 为右侧目录腾出空间 */
       max-width: calc(100% - 330px - 240px);
     }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 </style>
