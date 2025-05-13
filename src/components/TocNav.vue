@@ -32,21 +32,22 @@ const activeId = ref('')
 const emit = defineEmits(['tocChange'])
 
 const generateToc = async () => {
-  // 先发送目录变更通知
-  emit('tocChange', false)
-
   await nextTick()
 
   // 等待 markdown-it-anchor 处理完成
   setTimeout(() => {
+    // 不包含一级标题在内的查询选择器
+
     // 包含一级标题在内的查询选择器
-    const headers = document.querySelectorAll('h1, h2, h3, h4')
-    if (!headers || headers.length === 0) {
+    const headersNoLevel1 = document.querySelectorAll('h2, h3, h4')
+    if (!headersNoLevel1 || headersNoLevel1.length === 0) {
       toc.value = []
       emit('tocChange', false)
       return
     }
 
+    // 包含一级标题在内的查询选择器
+    const headers = document.querySelectorAll('h1, h2, h3, h4')
     const newToc = Array.from(headers).map((header) => {
       // 处理 markdown-it-anchor 生成的 id
       let id = header.id
@@ -217,7 +218,7 @@ watch(
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      transition: color 0.3s;
+      transition: color 0.1s;
 
       &:hover {
         color: #3f6bdc;
@@ -227,7 +228,7 @@ watch(
         color: #3f6bdc;
         font-weight: bold;
       }
-      
+
       &.level-1 {
         font-weight: bold;
         font-size: 15px;
