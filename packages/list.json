@@ -130,11 +130,6 @@
     "compClassName": "drawer"
   },
   {
-    "compName": "Button",
-    "compZhName": "按钮",
-    "compClassName": "button"
-  },
-  {
     "compName": "ImageUpload",
     "compZhName": "ImageUpload 图片上传",
     "compClassName": "image-upload"

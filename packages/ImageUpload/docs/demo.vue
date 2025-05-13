@@ -8,7 +8,6 @@
     @remove="removeImageHandle"
     @updateImage="updateImageHandle"
   />
-  <pre>{{ imageDataInfo }}</pre>
 </template>
 
 <script setup lang="ts">

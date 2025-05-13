@@ -1,6 +1,14 @@
 <template>
   <div class="odos-input" :class="{ 'odos-input-disabled': disabled }" :style="{ width: WidthSize }">
     <div class="odos-input-title" v-if="title">{{ title }}</div>
+    <!-- fix slots -->
+    <div v-if="$slots.prefix" ref="prefixRef" class="odos-input-prefix">
+      <slot name="prefix">prefix</slot>
+    </div>
+    <div v-if="$slots.suffix" ref="suffixRef" class="odos-input-suffix">
+      <slot name="suffix">suffix</slot>
+    </div>
+    
     <input
       :style="inputStyle"
       :class="{ 'odos-input-isTitle': title }"
@@ -23,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onUpdated, ref } from 'vue'
+import { computed, onUpdated, ref, useSlots } from 'vue'
 import Icon from '../../Icon/src/index.vue'
 
 const emit = defineEmits<{
@@ -50,6 +58,9 @@ const { value, width, placeholder, disabled, isFocus, title, type, unit, maxLeng
   maxLength?: number
 }>()
 const Type = ref(type)
+const slots = useSlots()
+const prefixRef = ref<HTMLElement | null>(null)
+const suffixRef = ref<HTMLElement | null>(null)
 // typeName
 const typeName = computed(() => {
   return Type.value == 'search' ? 'text' : Type.value
@@ -60,6 +71,17 @@ const iconName = computed(() => {
 })
 // inputStyle
 const inputStyle = computed(() => {
+  // fix style
+  if (slots.prefix && prefixRef.value) {
+    return {
+      paddingLeft: prefixRef.value.clientWidth + 'px'
+    }
+  }
+  if (slots.suffix && suffixRef.value) {
+    return {
+      paddingRight: suffixRef.value.clientWidth + 'px'
+    }
+  }
   if (type === 'password' || type === 'search' || unit) {
     return {
       paddingRight: '35px'
@@ -88,7 +110,10 @@ const WidthSize = computed(() => {
 
 const handleInput = (e: Event) => {
   if (maxLength) {
-    emit('update:value', (e.target as HTMLInputElement).value.slice(0, maxLength))
+    const sliceValue = (e.target as HTMLInputElement).value.slice(0, maxLength)
+    // @ts-ignore
+    e.target.value = sliceValue
+    emit('update:value', sliceValue)
   } else {
     emit('update:value', (e.target as HTMLInputElement).value)
   }
@@ -136,6 +161,18 @@ const handelBlur = ($event: Event) => {
     &.odos-input-isTitle {
       padding-left: 88px;
     }
+  }
+
+  .odos-input-prefix {
+    position: absolute;
+    padding: 0px 10px;
+    left: 2px;
+  }
+
+  .odos-input-suffix {
+    position: absolute;
+    padding: 0px 10px;
+    right: 2px;
   }
 
   .odos-icon {

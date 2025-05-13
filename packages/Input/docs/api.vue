@@ -45,6 +45,24 @@ const data = [
     default: '--',
     type: 'string',
     describe: '设置单位'
+  },
+  {
+    attribute: 'maxlength',
+    default: '--',
+    type:'number',
+    describe: '最大输入长度'
+  },
+  {
+      attribute:'prefix',
+      default: '--',
+      type:'slot',
+      describe: '设置前缀'
+  },
+  {
+      attribute:'suffix',
+      default: '--',
+      type:'slot',
+      describe:'设置后缀'
   }
 ]
 

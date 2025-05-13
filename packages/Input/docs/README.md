@@ -7,6 +7,7 @@ import API from './api.vue'
 import Event from './event.vue'
 import TitleDemo from './title.vue'
 import Unit from './unit.vue'
+import Slots from './slots.vue'
 </script>
 
 # Input输入框
@@ -45,6 +46,11 @@ import Unit from './unit.vue'
 
 <Preview comp-name="Input" demo-name="unit">
   <Unit />
+</Preview>
+
+## 使用插槽
+<Preview comp-name="Input" demo-name="slots">
+  <Slots />
 </Preview>
 
 ## Input API
