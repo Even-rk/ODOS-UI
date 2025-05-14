@@ -1,22 +1,25 @@
 <template>
   <div class="odos-tooth-select-disabled">
+    <h1>全口</h1>
     <OdosToothSelect
       name="fullMouth"
-      v-model:value="value"
+      v-model:value="fullMouth"
       range-limit="fullMouth"
       :multiple-tooth-list="multipleToothList"
     />
     <hr />
+    <h1>咬翼面和全口</h1>
     <OdosToothSelect
       name="bitewing"
-      v-model:value="value"
+      v-model:value="bitewing"
       range-limit="bitewing"
       :multiple-tooth-list="multipleToothList"
     />
     <hr />
+    <h1>咬翼面</h1>
     <OdosToothSelect
-      name="bitewing"
-      v-model:value="value"
+      name="all"
+      v-model:value="all"
       range-limit="all"
       :multiple-tooth-list="multipleToothList"
     />
@@ -26,7 +29,10 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-const value = ref(['11', '12'])
+const fullMouth = ref(['11', '12'])
+const bitewing = ref(['11', '12'])
+const all = ref(['11', '12'])
+
 const multipleToothList = ref([
   {
     label: '12近中',
@@ -38,8 +44,14 @@ const multipleToothList = ref([
   }
 ])
 
-watch(value, () => {
-  console.log(value.value)
+watch(fullMouth, () => {
+  console.log('fullMouth', fullMouth.value)
+})
+watch(bitewing, () => {
+  console.log('bitewing', bitewing.value)
+})
+watch(all, () => {
+  console.log('all', all.value)
 })
 </script>
 
