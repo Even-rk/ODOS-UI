@@ -26,5 +26,3 @@ const handleCancel = () => {
     </odos-modal>
   </div>
 </template>
-
-<style scoped lang="scss"></style>

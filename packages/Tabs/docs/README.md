@@ -3,7 +3,7 @@ import Default from './default.vue'
 import Disabled from './disabled.vue'
 import LineType from './lineType.vue'
 import BlockType from './blockType.vue'
-import API from './api.vue'
+
 </script>
 
 # Tabs 按钮
@@ -36,4 +36,4 @@ Block类型适合用于顶部导航栏，选中的标签会有蓝色背景和底
 
 # Tabs API
 
-<API />
+

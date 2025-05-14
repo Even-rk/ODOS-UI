@@ -1,6 +1,6 @@
 <script setup>
 import demo from './demo.vue'
-import API from './api.vue'
+
 import Method from './method.vue'
 </script>
 
@@ -18,6 +18,10 @@ import Method from './method.vue'
   <Method />
 </Preview>
 
-## Audio API
+## Loading API
 
-<API />
+| 属性 | 描述 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| showTip | 是否显示提示文本 | boolean | false |
+| tipColor | 提示文本颜色 | string | #1d2129 |
+

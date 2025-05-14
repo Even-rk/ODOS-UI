@@ -1,6 +1,6 @@
 <script setup>
 import demo from './demo.vue'
-import API from './api.vue'
+
 import DemoPlacement from './demo-placement.vue'
 import DemoWidth from './demo-width.vue'
 import DemoFooter from './demo-footer.vue'
@@ -42,4 +42,20 @@ import DemoFooter from './demo-footer.vue'
 
 ## Drawer 属性
 
-<API />
+| 属性 | 描述 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| open | 抽屉是否可见 | boolean | false |
+| title | 抽屉标题 | string | -- |
+| width | 抽屉宽度 | string \| number | -- |
+| height | 抽屉高度，在 placement 为 top 或 bottom 时使用 | string \| number | -- |
+| placement | 抽屉的方向 | -- | -- |
+| closable | 是否显示右上角的关闭按钮 | boolean | true |
+| keyboard | 是否支持键盘 esc 关闭 | boolean | true |
+| mask | 是否显示遮罩 | boolean | true |
+| maskClosable | 点击遮罩是否允许关闭 | boolean | true |
+| destroyOnClose | 关闭时销毁 Drawer 里的子元素 | boolean | false |
+| zIndex | 设置 Drawer 的 z-index | number | 1000 |
+| class | 设置 Drawer 的类名 | string | -- |
+| rootClassName | 设置 Drawer 的根类名 | string | -- |
+| rootStyle | 设置 Drawer 的根样式 | object | -- |
+

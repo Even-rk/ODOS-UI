@@ -32,22 +32,6 @@ TextDisplay 组件用于文本的展示，支持超出宽度显示省略号和�
 |---------|------|
 | default | 默认插槽 |
 | tooltip | Tooltip 插槽 |
-### 使用示例_
-
-```vue
-<!-- 省略号模式 -->
-<odos-text-display
-  text="这是一段很长的文本，超出部分将显示省略号"
-  :width="200"
-/>
-
-<!-- 跑马灯模式 -->
-<odos-text-display
-  text="这是一段很长的文本，将以跑马灯形式展示"
-  :width="200"
-  mode="marquee"
-/>
-```
 
 ### 注意事项
 

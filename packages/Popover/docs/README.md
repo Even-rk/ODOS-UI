@@ -1,9 +1,9 @@
 <script setup>
 import demo from './demo.vue'
 import Position from './position.vue'
-import API from './api.vue'
-import SLOT from './slot.vue'
-import Event from './event.vue'
+
+
+
 </script>
 
 # Popover 气泡框
@@ -22,12 +22,23 @@ import Event from './event.vue'
 
 ## Popover API
 
-<API/>
+| 属性 | 描述 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| position | 位置方向 | top\| left \| right \| bottom \| topLeft \| topRight \| bottomLeft \| bottomRight \| leftTop \| leftBottom \| rightTop \| rightBottom | top |
+| trigger | 触发 | hover \| click | hover |
+
 
 ## Popover 事件
 
-<Event/>
+| 事件名 | 说明 | 类型 |
+| ---- | ---- | ---- |
+| openChange | 显示隐藏的回调 | Function(visible) |
+
 
 ## Popover 插槽
 
-<SLOT/>
+| 插槽名 | 说明 |
+| ---- | ---- |
+| -- | 触发 Popover 显示的 HTML 元素 |
+| content | Popover 内容 |
+

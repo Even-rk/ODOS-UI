@@ -1,7 +1,7 @@
 <script setup>
 import Default from './default.vue'
-import API from './api.vue'
-import Event from './event.vue'
+
+
 </script>
 
 # Textarea 文本域
@@ -16,8 +16,22 @@ import Event from './event.vue'
 
 ## Textarea 属性
 
-<API />
+| 属性 | 描述 | 类型 | 默认值 |
+| ---- | ---- | ---- | ---- |
+| v-model:value | 输入框内容 | string | -- |
+| maxlength | 最大长度 | number | -- |
+| disabled | 是否禁用状态 | boolean | false |
+| autoSize | -- | boolean \| { minRows: number, maxRows: number | -- |
+| placeholder | 占位符 | string | 请输入 |
+| showCount | 是否显示字数统计(需设置maxlength) | boolean | false |
+
 
 ## Textarea 事件
 
-<Event />
+| 事件名 | 说明 | 类型 |
+| ---- | ---- | ---- |
+| input | 在 Input 值改变时触发 | Function |
+| change | 当绑定值变化时触发 | Function |
+| focus | 当选择器的输入框获得焦点时触发 | Function |
+| blur | 当选择器的输入框失去焦点时触发 | Function |
+
