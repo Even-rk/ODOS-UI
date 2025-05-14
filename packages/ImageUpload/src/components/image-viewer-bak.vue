@@ -2,13 +2,7 @@
   <div class="modal-overlay">
     <div class="modal-content" style="color: white">
       <div class="cropper-content" style="max-width: 600px">
-        <img
-          v-if="type === 'view'"
-          :src="cropUrl || sourceUrl"
-          alt=""
-          width="600px"
-          height="400px"
-        />
+        <img v-if="type === 'view'" :src="cropUrl || sourceUrl" alt="" width="600px" height="400px" />
         <vue-cropper
           v-else
           ref="cropperRef"
@@ -18,23 +12,17 @@
           v-bind="cropperOptions"
         />
       </div>
-      <div
-        class="rotation-controls w-[520px] h-[42px] bg-[#8F8F8F] border-rd-[8px] py-[18px] px-[20px] flex"
-      >
+      <div class="rotation-controls w-[520px] h-[42px] bg-[#8F8F8F] border-rd-[8px] py-[18px] px-[20px] flex">
         <div @click="resetRotation" class="color-[#fff] font-500 mr-[24px] iconImg2">重置</div>
         <div class="h-[16px] w-[1px] bg-[#fff]! mr-[20px]"></div>
         <div class="iconImg1 mr-[24px]">
           <a-tooltip content="逆时针旋转90">
-            <span @click="sourceImageRotateHandle('L', 90)"
-              ><Icon name="a-left90" size="28px"
-            /></span>
+            <span @click="sourceImageRotateHandle('L', 90)"><Icon name="a-left90" size="28px" /></span>
           </a-tooltip>
         </div>
         <div class="mr-[20px] iconImg1">
           <a-tooltip content="逆时针旋转1">
-            <span @click="sourceImageRotateHandle('L', 1)"
-              ><Icon name="a-left1" size="28px"
-            /></span>
+            <span @click="sourceImageRotateHandle('L', 1)"><Icon name="a-left1" size="28px" /></span>
           </a-tooltip>
         </div>
         <a-slider
@@ -47,24 +35,17 @@
         />
         <div class="ml-[24px] iconImg1">
           <a-tooltip content="顺时针旋转1">
-            <span @click.stop="sourceImageRotateHandle('R', 1)"
-              ><Icon name="a-right1" size="28px"
-            /></span>
+            <span @click.stop="sourceImageRotateHandle('R', 1)"><Icon name="a-right1" size="28px" /></span>
           </a-tooltip>
         </div>
         <div class="ml-[20px] iconImg1">
           <a-tooltip content="顺时针旋转90">
-            <span @click="sourceImageRotateHandle('R', 90)"
-              ><Icon name="a-right90" size="28px"
-            /></span>
+            <span @click="sourceImageRotateHandle('R', 90)"><Icon name="a-right90" size="28px" /></span>
           </a-tooltip>
         </div>
       </div>
       <div class="zoom-controls">
-        <div
-          @click="sourceImageZoomHandle('RESET')"
-          class="color-[#fff] font-500 mb-[20px] iconImg3"
-        >
+        <div @click="sourceImageZoomHandle('RESET')" class="color-[#fff] font-500 mb-[20px] iconImg3">
           重置
         </div>
         <div class="gap"></div>
@@ -108,8 +89,9 @@ const formatterZoom = (value: number) => {
 
 <script setup lang="ts">
 import 'vue-cropper/dist/index.css'
-import { Icon } from 'odos-ui'
+import Icon from '../../../Icon/src/index.vue'
 import { VueCropper } from 'vue-cropper'
+import { nextTick, onMounted, reactive, ref, watch } from 'vue'
 export interface CropAxisType {
   x1: number
   y1: number
@@ -227,8 +209,6 @@ const sourceImageRotateHandle = (position: 'L' | 'R', angle: number) => {
     rotateLeft: cropperRef.value.rotateLeft,
     rotateRight: cropperRef.value.rotateRight
   })
-
-  // applyRotation(true)
 }
 
 watch([rotation, zoom], (newv, oldv) => {
