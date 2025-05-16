@@ -8,7 +8,7 @@
     <div v-if="$slots.suffix" ref="suffixRef" class="odos-input-suffix">
       <slot name="suffix">suffix</slot>
     </div>
-    
+
     <input
       :style="inputStyle"
       :class="{ 'odos-input-isTitle': title }"
@@ -19,6 +19,9 @@
       @focus="emit('focus', $event)"
       @blur="handelBlur"
       @input="handleInput"
+      @compositionstart="handleCompositionStart"
+      @compositionupdate="handleCompositionUpdate"
+      @compositionend="handleCompositionEnd"
       :placeholder="placeholder || '请输入'"
     />
     <div v-if="type" class="odos-icon" :class="{ 'odos-search-icon': type == 'search' }" @click="iconClick">
@@ -37,6 +40,7 @@ import Icon from '../../Icon/src/index.vue'
 const emit = defineEmits<{
   (e: 'update:value' | 'search', data: string): void
   (e: 'input' | 'focus' | 'change' | 'blur', data: Event): void
+  (e: 'ime-status', status: boolean): void
 }>()
 
 const focusRef = ref()
@@ -61,6 +65,8 @@ const Type = ref(type)
 const slots = useSlots()
 const prefixRef = ref<HTMLElement | null>(null)
 const suffixRef = ref<HTMLElement | null>(null)
+// 输入法状态标志
+const isComposing = ref(false)
 // typeName
 const typeName = computed(() => {
   return Type.value == 'search' ? 'text' : Type.value
@@ -108,7 +114,30 @@ const WidthSize = computed(() => {
   return widthSize.value
 })
 
+// 输入法开始输入
+const handleCompositionStart = () => {
+  isComposing.value = true
+  emit('ime-status', true)
+}
+
+// 输入法输入更新
+const handleCompositionUpdate = () => {
+  isComposing.value = true
+  emit('ime-status', true)
+}
+
+// 输入法输入结束
+const handleCompositionEnd = (e: Event) => {
+  isComposing.value = false
+  emit('ime-status', false)
+  // 在输入法结束后手动触发一次更新，确保最终值被正确捕获
+  handleInput(e)
+}
+
 const handleInput = (e: Event) => {
+  // 如果当前正在使用输入法输入，不进行处理
+  if (isComposing.value) return
+
   if (maxLength) {
     const sliceValue = (e.target as HTMLInputElement).value.slice(0, maxLength)
     // @ts-ignore

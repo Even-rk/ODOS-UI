@@ -72,9 +72,10 @@ import Slots from './slots.vue'
 
 ### Input 事件
 
-| 事件名 | 说明                           | 类型     |
-| ------ | ------------------------------ | -------- |
-| input  | 在 Input 值改变时触发          | Function |
-| change | 当绑定值变化时触发             | Function |
-| focus  | 当选择器的输入框获得焦点时触发 | Function |
-| blur   | 当选择器的输入框失去焦点时触发 | Function |
+| 事件名     | 说明                           | 类型              |
+| ---------- | ------------------------------ | ----------------- |
+| input      | 在 Input 值改变时触发          | Function          |
+| change     | 当绑定值变化时触发             | Function          |
+| focus      | 当选择器的输入框获得焦点时触发 | Function          |
+| blur       | 当选择器的输入框失去焦点时触发 | Function          |
+| ime-status | 输入法输入状态                 | Function<boolean> |
