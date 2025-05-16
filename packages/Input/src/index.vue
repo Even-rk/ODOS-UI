@@ -1,6 +1,6 @@
 <template>
   <div class="odos-input" :class="{ 'odos-input-disabled': disabled }" :style="{ width: WidthSize }">
-    <div class="odos-input-title" v-if="title">{{ title }}</div>
+    <div class="odos-input-title" v-if="!$slots.prefix && title">{{ title }}</div>
     <!-- fix slots -->
     <div v-if="$slots.prefix" ref="prefixRef" class="odos-input-prefix">
       <slot name="prefix">prefix</slot>
@@ -27,7 +27,7 @@
     <div v-if="type" class="odos-icon" :class="{ 'odos-search-icon': type == 'search' }" @click="iconClick">
       <Icon :name="iconName" color="#86909c" />
     </div>
-    <div class="odos-unit">
+    <div class="odos-unit" v-if="!$slots.suffix && unit">
       {{ unit }}
     </div>
   </div>
