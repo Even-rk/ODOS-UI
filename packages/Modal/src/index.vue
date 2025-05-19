@@ -20,8 +20,8 @@
       <!-- 底部按钮 -->
       <div class="drawer-footer">
         <slot name="footer">
-          <odos-button type="line" @click="cancel">取消</odos-button>
-          <odos-button type="primary" @click="ok">确认</odos-button>
+          <Button type="line" @click="cancel">取消</Button>
+          <Button type="primary" @click="ok">确认</Button>
         </slot>
       </div>
     </div>
@@ -29,6 +29,8 @@
 </template>
 
 <script setup lang="ts">
+import Button from '@/components/Button/index.vue'
+
 const props = defineProps<{
   open: boolean
   title: string
