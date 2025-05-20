@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import Button from '@/components/Button/index.vue'
+import Button from 'packages/Button/src/index.vue'
 
 const props = defineProps<{
   open: boolean
