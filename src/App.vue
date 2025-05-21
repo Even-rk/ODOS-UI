@@ -13,7 +13,7 @@
     </div>
     <div class="theme-switch">
       <label class="switch">
-        <input :checked="currentTheme === 'dark'" id="checkbox" type="checkbox" @change="toggleTheme" />
+        <input :checked="currentTheme === 'light'" id="checkbox" type="checkbox" @change="toggleTheme" />
         <span class="slider">
           <div class="star star_1"></div>
           <div class="star star_2"></div>
