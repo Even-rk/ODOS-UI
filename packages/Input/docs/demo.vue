@@ -1,5 +1,5 @@
 <template>
-  <odos-input v-model:value="inputValue" />
+  <odos-input v-model:value="inputValue" :maxLength="10" />
 </template>
 
 <script setup>

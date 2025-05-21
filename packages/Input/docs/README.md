@@ -66,7 +66,7 @@ import Slots from './slots.vue'
 | disabled      | 是否禁用       | boolean          | false  |
 | isFocus       | 初始化获取焦点 | boolean          | false  |
 | unit          | 设置单位       | string           | --     |
-| maxlength     | 最大输入长度   | number           | --     |
+| maxLength     | 最大输入长度   | number           | --     |
 | prefix        | 设置前缀       | slot             | --     |
 | suffix        | 设置后缀       | slot             | --     |
 
