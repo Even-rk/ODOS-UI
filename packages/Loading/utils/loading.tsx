@@ -104,9 +104,19 @@ export const useLoadingHide = () => {
   }
 }
 
-export const useLoadingShow = async (time?: number) => {
+export const useLoadingShow = async (time?: number, showTip?: boolean) => {
+  const text = ref<string>()
+  if (showTip) {
+    const tipUrl = 'https://orange-odos.oss-cn-hangzhou.aliyuncs.com/assets/file/loading_tips.txt'
+    const response = await fetch(tipUrl, {
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    })
+    text.value = await response.text()
+  }
   // 创建
-  const loader = createApp(LoadingView)
+  const loader = createApp(LoadingView, { text: text.value })
   const mountNode = document.createElement('div')
   mountNode.className = 'odos-modal-loading'
   document.body.appendChild(mountNode)
