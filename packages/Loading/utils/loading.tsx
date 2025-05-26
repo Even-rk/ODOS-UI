@@ -35,6 +35,12 @@ export const Loading = defineComponent({
         }, 5000)
       }
     })
+    onUnmounted(() => {
+      if (timer) {
+        clearInterval(timer)
+      }
+    })
+
     return () => (
       <div class="odos-loading-container">
         <div class="odos-loader" />
@@ -56,20 +62,23 @@ const LoadingView = defineComponent({
   props: {
     text: {
       type: String,
-      required: true
+      required: false
     }
   },
   setup(props) {
     const index = ref(0)
-    const tips = props.text.split('\n').filter((tip) => tip.trim())
+    const tips = ref<string[]>([])
     let timer: number
 
     onMounted(() => {
-      // 设置初始值
-      index.value = Math.floor(Math.random() * tips.length)
-      timer = window.setInterval(() => {
-        index.value = Math.floor(Math.random() * tips.length)
-      }, 5000)
+      if (props.text) {
+        tips.value = props?.text.split('\n').filter((tip) => tip.trim())
+        // 设置初始值
+        index.value = Math.floor(Math.random() * tips.value.length)
+        timer = window.setInterval(() => {
+          index.value = Math.floor(Math.random() * tips.value.length)
+        }, 5000)
+      }
     })
 
     onUnmounted(() => {
@@ -81,7 +90,7 @@ const LoadingView = defineComponent({
     return () => (
       <div class="odos-loading">
         <Loading />
-        <div class="odos-loading-text">{tips[index.value]}</div>
+        {tips.value[index.value] && <div class="odos-loading-text">{tips.value[index.value]}</div>}
       </div>
     )
   }
@@ -96,16 +105,8 @@ export const useLoadingHide = () => {
 }
 
 export const useLoadingShow = async (time?: number) => {
-  const tipUrl = 'https://orange-odos.oss-cn-hangzhou.aliyuncs.com/assets/file/loading_tips.txt'
-  const response = await fetch(tipUrl, {
-      headers: {
-        'Cache-Control': 'no-cache'
-      }
-    }
-  )
-  const text = await response.text()
   // 创建
-  const loader = createApp(LoadingView, { text })
+  const loader = createApp(LoadingView)
   const mountNode = document.createElement('div')
   mountNode.className = 'odos-modal-loading'
   document.body.appendChild(mountNode)
