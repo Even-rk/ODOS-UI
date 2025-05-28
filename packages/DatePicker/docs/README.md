@@ -101,7 +101,6 @@ import CompleteDemo from './complete-demo.vue'
 | width | 组件宽度 | `string \| number` | 自适应 | - |
 | disabled | 是否禁用 | `boolean` | `false` | - |
 | disabledDate | 禁用日期函数 | `(date: Date) => boolean` | - | - |
-| format | 显示格式 | `string` | 根据mode自动设置 | - |
 | placeholder | 占位符 | `string` | 根据mode自动设置 | - |
 
 
