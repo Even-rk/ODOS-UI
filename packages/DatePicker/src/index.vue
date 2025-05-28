@@ -380,6 +380,11 @@ const displayValue = computed(() => {
         return dayjs(datePicker.value).format('YYYY-MM')
       case 'datetime':
         datePicker.value = props.value as string
+        selectedTime.value = {
+          hour: dayjs(datePicker.value).hour(),
+          minute: dayjs(datePicker.value).minute(),
+          second: dayjs(datePicker.value).second()
+        }
         return dayjs(datePicker.value).format('YYYY-MM-DD HH:mm:ss')
       default:
         datePicker.value = props.value as string
