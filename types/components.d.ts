@@ -11,7 +11,7 @@ export interface GlobalComponents {
   OdosButton: (typeof import('../packages/Button/src/index.vue'))['default']
   OdosCheckBox: (typeof import('../packages/CheckBox/src/index.vue'))['default']
   OdosCheckBoxItem: (typeof import('../packages/CheckBox/src/item.vue'))['default']
-  OdosDatePicker: (typeof import('../packages/datePicker/src/index.vue'))['default']
+  OdosDatePicker: (typeof import('../packages/DatePicker/src/index.vue'))['default']
   OdosEmpty: (typeof import('../packages/Empty/src/index.vue'))['default']
   OdosForm: (typeof import('../packages/Form/src/index.vue'))['default']
   OdosFormItem: (typeof import('../packages/Form/src/item.vue'))['default']
