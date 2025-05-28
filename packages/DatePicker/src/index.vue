@@ -86,7 +86,7 @@
               'odos-date-picker-selected': isSelectedMonth(month),
               'odos-date-picker-today': isCurrentMonth(month)
             }"
-            @click="selectMonth(month)"
+            @click="selectMonth(month, $event)"
           >
             {{ month }}月
           </div>
@@ -120,7 +120,7 @@
                 'odos-date-picker-selected': isSelectedMonthInDateMode(month),
                 'odos-date-picker-today': isCurrentMonth(month)
               }"
-              @click="selectMonthInDateMode(month)"
+              @click="selectMonthInDateMode(month, $event)"
             >
               {{ month }}月
             </div>
@@ -460,7 +460,11 @@ const updateYear = (type: 'pre' | 'next') => {
 }
 
 // 选择月份
-const selectMonth = (month: number) => {
+const selectMonth = (month: number, event?: Event) => {
+  // 阻止事件冒泡，防止触发全局点击事件
+  if (event) {
+    event.stopPropagation()
+  }
   const selectedDate = dayjs(showDate.value).month(month - 1)
   // 对于月份模式，只保存年月信息
   datePicker.value = selectedDate.format('YYYY-MM-01') // 使用01作为默认日期
@@ -632,7 +636,11 @@ const isSelectedMonthInDateMode = (month: number) => {
   return selected.month() === month - 1 && selected.year() === dayjs(showDate.value).year()
 }
 
-const selectMonthInDateMode = (month: number) => {
+const selectMonthInDateMode = (month: number, event?: Event) => {
+  // 阻止事件冒泡，防止触发全局点击事件
+  if (event) {
+    event.stopPropagation()
+  }
   // 更新显示的月份
   showDate.value = dayjs(showDate.value).month(month - 1)
   // 切换回日期选择面板
@@ -776,12 +784,10 @@ const selectMonthInDateMode = (month: number) => {
 
     &.range-panel {
       width: 624px;
-      height: 340px;
     }
 
     &:not(.range-panel) {
       width: 312px;
-      min-height: 340px;
       padding: 0 16px;
     }
 
