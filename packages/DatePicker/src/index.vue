@@ -317,11 +317,10 @@ const props = defineProps<{
   disabled?: boolean
   mode?: 'date' | 'month' | 'datetime' | 'range'
   disabledDate?: (date: Date) => boolean
-  format?: string
   placeholder?: string
 }>()
 
-const { value, title, width, disabled, disabledDate, format } = toRefs(props)
+const { value, title, width, disabled, disabledDate } = toRefs(props)
 const mode = computed(() => props.mode || 'date')
 
 const emit = defineEmits<{
@@ -375,9 +374,6 @@ const getPlaceholder = () => {
 // 显示值
 const displayValue = computed(() => {
   if (!datePicker.value) return ''
-  if (props.format) {
-    return dayjs(datePicker.value).format(props.format)
-  }
   switch (mode.value) {
     case 'month':
       return dayjs(datePicker.value).format('YYYY-MM')
@@ -387,6 +383,17 @@ const displayValue = computed(() => {
       return dayjs(datePicker.value).format('YYYY-MM-DD')
   }
 })
+
+// 监听value变化
+watch(
+  value,
+  (newVal) => {
+    if (newVal && mode.value === 'range') {
+      rangeValue.value = newVal as string[]
+    }
+  },
+  { immediate: true }
+)
 
 // 是否是今天
 const isToday = (day: number) => {
@@ -468,7 +475,7 @@ const selectMonth = (month: number, event?: Event) => {
   const selectedDate = dayjs(showDate.value).month(month - 1)
   // 对于月份模式，只保存年月信息
   datePicker.value = selectedDate.format('YYYY-MM-01') // 使用01作为默认日期
-  emit('update:value', selectedDate.format(format?.value || 'YYYY-MM'))
+  emit('update:value', selectedDate.format('YYYY-MM'))
   isShowPicker.value = false
 }
 
@@ -487,7 +494,7 @@ const updateDateTime = () => {
       .second(selectedTime.value.second)
 
     datePicker.value = date.format('YYYY-MM-DD HH:mm:ss')
-    emit('update:value', date.format(format?.value || 'YYYY-MM-DD HH:mm:ss'))
+    emit('update:value', date.format('YYYY-MM-DD HH:mm:ss'))
   }
 }
 
@@ -508,7 +515,7 @@ const datePickerClick = (day: number, type?: 'next' | 'pre') => {
       .minute(selectedTime.value.minute)
       .second(selectedTime.value.second)
     datePicker.value = dateTime.format('YYYY-MM-DD HH:mm:ss')
-    emit('update:value', dateTime.format(format?.value || 'YYYY-MM-DD HH:mm:ss'))
+    emit('update:value', dateTime.format('YYYY-MM-DD HH:mm:ss'))
   } else {
     datePicker.value = data
     emit('update:value', data)

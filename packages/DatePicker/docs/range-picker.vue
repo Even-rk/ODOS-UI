@@ -4,5 +4,5 @@
 
 <script setup>
 import { ref } from 'vue'
-const dateRange = ref(['', ''])
+const dateRange = ref(['2025-05-01', '2025-05-03'])
 </script>
