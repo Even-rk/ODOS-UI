@@ -20,6 +20,7 @@
         'odos-date-picker-input-focus': isShowPicker,
         'odos-date-picker-isTitle': title
       }"
+      @focus="inputFocus(true)"
       :disabled="disabled"
       :value="displayValue"
       :placeholder="getPlaceholder()"
@@ -176,7 +177,7 @@
           <div class="odos-date-picker-time-content">
             <div class="odos-date-picker-time-column">
               <div class="odos-date-picker-time-label">时</div>
-              <div class="odos-date-picker-time-list">
+              <div class="odos-date-picker-time-list" ref="hourListRef">
                 <div
                   v-for="hour in 24"
                   :key="hour - 1"
@@ -190,7 +191,7 @@
             </div>
             <div class="odos-date-picker-time-column">
               <div class="odos-date-picker-time-label">分</div>
-              <div class="odos-date-picker-time-list">
+              <div class="odos-date-picker-time-list" ref="minuteListRef">
                 <div
                   v-for="minute in 60"
                   :key="minute - 1"
@@ -204,7 +205,7 @@
             </div>
             <div class="odos-date-picker-time-column">
               <div class="odos-date-picker-time-label">秒</div>
-              <div class="odos-date-picker-time-list">
+              <div class="odos-date-picker-time-list" ref="secondListRef">
                 <div
                   v-for="second in 60"
                   :key="second - 1"
@@ -301,7 +302,7 @@
 <script lang="ts" setup>
 import { Icon } from 'packages/Icon'
 import dayjs from 'dayjs'
-import { computed, ref, toRefs, watch } from 'vue'
+import { computed, ref, toRefs, watch, nextTick } from 'vue'
 
 interface DateItem {
   date: string
@@ -631,9 +632,42 @@ const selectRangeDate = (date: DateItem) => {
 const datePickerRef = ref()
 const inputRef = ref()
 
-const inputFocus = () => {
+// 时间选择器的ref引用
+const hourListRef = ref()
+const minuteListRef = ref()
+const secondListRef = ref()
+
+// 滚动到选中的时间项
+const scrollToSelectedTime = () => {
+  // 使用nextTick确保DOM已更新
+  nextTick(() => {
+    const itemHeight = 24 // 每个时间项的高度
+
+    if (hourListRef.value) {
+      const scrollTop = selectedTime.value.hour * itemHeight
+      hourListRef.value.scrollTop = scrollTop
+    }
+
+    if (minuteListRef.value) {
+      const scrollTop = selectedTime.value.minute * itemHeight
+      minuteListRef.value.scrollTop = scrollTop
+    }
+
+    if (secondListRef.value) {
+      const scrollTop = selectedTime.value.second * itemHeight
+      secondListRef.value.scrollTop = scrollTop
+    }
+  })
+}
+
+const inputFocus = (flag?: boolean) => {
+  
   if (!disabled?.value) {
     isShowPicker.value = true
+    // 如果是datetime模式，滚动到选中的时间
+    if (mode.value === 'datetime' && flag) {
+      scrollToSelectedTime()
+    }
   }
 }
 
@@ -644,7 +678,6 @@ const inputBlur = () => {
 document.addEventListener('click', (e) => {
   if (datePickerRef.value?.contains(e.target)) {
     inputFocus()
-    inputRef.value?.focus()
   } else {
     inputBlur()
   }
