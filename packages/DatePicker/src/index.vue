@@ -373,6 +373,19 @@ const getPlaceholder = () => {
 
 // 显示值
 const displayValue = computed(() => {
+  if (props.value && mode.value !== 'range') {
+    switch (mode.value) {
+      case 'month':
+        datePicker.value = dayjs((props.value as string) + '-01').format('YYYY-MM')
+        return dayjs(datePicker.value).format('YYYY-MM')
+      case 'datetime':
+        datePicker.value = props.value as string
+        return dayjs(datePicker.value).format('YYYY-MM-DD HH:mm:ss')
+      default:
+        datePicker.value = props.value as string
+        return dayjs(datePicker.value).format('YYYY-MM-DD')
+    }
+  }
   if (!datePicker.value) return ''
   switch (mode.value) {
     case 'month':

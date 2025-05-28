@@ -9,5 +9,5 @@
 
 <script setup>
 import { ref } from 'vue'
-const month = ref('')
+const month = ref('2025-05')
 </script> 
