@@ -96,7 +96,12 @@
       <!-- 日期选择模式 -->
       <div v-else-if="mode === 'date' || mode === 'datetime'" class="odos-date-picker-date-panel">
         <div class="odos-date-picker-header">
-          <div class="odos-date-picker-header-year">{{ dayjs(showDate).format('YYYY年MM月') }}</div>
+          <div 
+            class="odos-date-picker-header-year clickable" 
+            @click="toggleMonthPicker"
+          >
+            {{ dayjs(showDate).format('YYYY年MM月') }}
+          </div>
           <div class="odos-date-picker-btn">
             <div class="odos-date-picker-header-pre" @click="updateMouth('pre')">
               <Icon name="ArowLeft" size="25px" />
@@ -106,7 +111,27 @@
             </div>
           </div>
         </div>
-        <div class="odos-date-picker-body">
+        
+        <!-- 月份选择面板 -->
+        <div v-if="isShowMonthPicker" class="odos-date-picker-month-selector">
+          <div class="odos-date-picker-month-grid">
+            <div
+              v-for="month in 12"
+              :key="month"
+              class="odos-date-picker-month-item"
+              :class="{
+                'odos-date-picker-selected': isSelectedMonthInDateMode(month),
+                'odos-date-picker-today': isCurrentMonth(month)
+              }"
+              @click="selectMonthInDateMode(month)"
+            >
+              {{ month }}月
+            </div>
+          </div>
+        </div>
+        
+        <!-- 日期选择面板 -->
+        <div v-else class="odos-date-picker-body">
           <div class="odos-date-picker-week-title">
             <div class="odos-date-picker-week-item" v-for="(week, i) in titleDayList" :key="i">
               {{ week }}
@@ -311,6 +336,7 @@ const datePicker = ref('')
 const rangeValue = ref<string[]>(['', ''])
 const showDate = ref(dayjs(new Date()))
 const isShowPicker = ref(false)
+const isShowMonthPicker = ref(false)
 
 // 时间选择相关
 const selectedTime = ref({
@@ -597,6 +623,24 @@ document.addEventListener('click', (e) => {
     inputBlur()
   }
 })
+
+// 新增方法
+const toggleMonthPicker = () => {
+  isShowMonthPicker.value = !isShowMonthPicker.value
+}
+
+const isSelectedMonthInDateMode = (month: number) => {
+  if (!datePicker.value) return false
+  const selected = dayjs(datePicker.value)
+  return selected.month() === month - 1 && selected.year() === dayjs(showDate.value).year()
+}
+
+const selectMonthInDateMode = (month: number) => {
+  // 更新显示的月份
+  showDate.value = dayjs(showDate.value).month(month - 1)
+  // 切换回日期选择面板
+  isShowMonthPicker.value = false
+}
 </script>
 
 <style lang="scss" scoped>
@@ -778,6 +822,40 @@ document.addEventListener('click', (e) => {
       }
     }
 
+    // 日期模式下的月份选择器
+    .odos-date-picker-month-selector {
+      .odos-date-picker-month-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 16px;
+
+        .odos-date-picker-month-item {
+          @include DateItem;
+          width: 60px;
+          height: 40px;
+
+          &:hover {
+            background: #e5e6eb;
+          }
+
+          &.odos-date-picker-today {
+            border: 1px dashed #2e6ce4;
+            color: #2e6ce4;
+          }
+
+          &.odos-date-picker-selected {
+            background-color: #2e6ce4;
+            color: #fff;
+
+            &:hover {
+              background-color: #2e6ce4;
+            }
+          }
+        }
+      }
+    }
+
     // 时间选择面板
     .odos-date-picker-time-panel {
       border-top: 1px solid #f4f4f5;
@@ -869,7 +947,18 @@ document.addEventListener('click', (e) => {
       .odos-date-picker-header-year {
         font-size: 18px;
         font-weight: 500;
-        width: 120px;
+        width: fit-content;
+        
+        &.clickable {
+          cursor: pointer;
+          border-radius: 4px;
+          padding: 4px 8px;
+          transition: background-color 0.2s;
+          
+          &:hover {
+            background-color: #f2f3f5;
+          }
+        }
       }
 
       .odos-date-picker-btn {
