@@ -96,10 +96,7 @@
       <!-- 日期选择模式 -->
       <div v-else-if="mode === 'date' || mode === 'datetime'" class="odos-date-picker-date-panel">
         <div class="odos-date-picker-header">
-          <div 
-            class="odos-date-picker-header-year clickable" 
-            @click="toggleMonthPicker"
-          >
+          <div class="odos-date-picker-header-year clickable" @click="toggleMonthPicker">
             {{ dayjs(showDate).format('YYYY年MM月') }}
           </div>
           <div class="odos-date-picker-btn">
@@ -111,7 +108,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- 月份选择面板 -->
         <div v-if="isShowMonthPicker" class="odos-date-picker-month-selector">
           <div class="odos-date-picker-month-grid">
@@ -129,7 +126,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- 日期选择面板 -->
         <div v-else class="odos-date-picker-body">
           <div class="odos-date-picker-week-title">
@@ -948,13 +945,13 @@ const selectMonthInDateMode = (month: number) => {
         font-size: 18px;
         font-weight: 500;
         width: fit-content;
-        
+
         &.clickable {
           cursor: pointer;
           border-radius: 4px;
           padding: 4px 8px;
           transition: background-color 0.2s;
-          
+
           &:hover {
             background-color: #f2f3f5;
           }
