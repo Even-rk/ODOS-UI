@@ -10,24 +10,30 @@
 </template>
 
 <script setup lang="ts">
+import empty from './undraw_city_life_gnpr.svg'
 import { Empty } from 'ant-design-vue'
 import { computed, type CSSProperties } from 'vue'
 
-const { description, image, width } = defineProps<{
+const { description, imageType, width, url } = defineProps<{
   width?: string
   height?: string
   description?: string
-  image?: 'SIMPLE' | 'DEFAULT' | string
+  imageType?: 'COMPLEX' | 'SIMPLE'
+  url?: string
   imageStyle?: CSSProperties
 }>()
 
-const Image = computed(() => {
-  if (image === 'DEFAULT') {
-    return Empty.PRESENTED_IMAGE_DEFAULT
-  } else if (image === 'SIMPLE') {
-    return Empty.PRESENTED_IMAGE_SIMPLE
+const Image = computed(() => {  
+  if (url) {
+    return url
   } else {
-    return image
+    if (imageType === 'COMPLEX') {
+      return Empty.PRESENTED_IMAGE_DEFAULT
+    } else if (imageType === 'SIMPLE') {
+      return Empty.PRESENTED_IMAGE_SIMPLE
+    } else {
+      return empty
+    }
   }
 })
 </script>

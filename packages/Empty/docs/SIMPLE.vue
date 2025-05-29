@@ -1,3 +1,3 @@
 <template>
-  <odos-empty image="SIMPLE"></odos-empty>
+  <odos-empty image-type="SIMPLE"></odos-empty>
 </template>

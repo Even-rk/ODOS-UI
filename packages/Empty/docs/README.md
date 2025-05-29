@@ -1,6 +1,7 @@
 <script setup>
 import demo from './demo.vue'
 import SIMPLE from './SIMPLE.vue'
+import COMPLEX from './COMPLEX.vue'
 import description from './description.vue'
 
 </script>
@@ -19,15 +20,21 @@ import description from './description.vue'
   <SIMPLE />
 </Preview>
 
+## COMPLEX 风格
+
+<Preview comp-name="Empty" demo-name="COMPLEX">
+  <COMPLEX />
+</Preview>
+
 ## 自定义内容
 
 <Preview comp-name="Empty" demo-name="description">
   <description />
 </Preview>
 
-| 属性 | 描述 | 类型 | 默认值 |
-| ---- | ---- | ---- | ---- |
-| width | 空状态的宽 | string | -- |
-| height | 空状态的高 | string | -- |
-| description | 自定义文本内容 | string \| v-slot | 暂无数据 |
-| image | 设置显示图片，为 string 时表示自定义图片地址 | DEFAULT \| SIMPLE \| string | DEFAULT |
+| 属性        | 描述                                         | 类型                        | 默认值   |
+| ----------- | -------------------------------------------- | --------------------------- | -------- |
+| width       | 空状态的宽                                   | string                      | --       |
+| height      | 空状态的高                                   | string                      | --       |
+| description | 自定义文本内容                               | string \| v-slot            | 暂无数据 |
+| image       | 设置显示图片，为 string 时表示自定义图片地址 | DEFAULT \| SIMPLE \| string | DEFAULT  |
