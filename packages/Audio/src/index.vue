@@ -14,7 +14,7 @@
       name="doubleSpeed"
       size="24px"
       :class="{ disabled: disabled2x }"
-      @click="audioPlay(2)"
+      @click="audioPlay(1.5)"
     />
     <Icon name="radiopaused-2x" v-else size="24px" :class="{ disabled: disabled2x }" @click="audioPause" />
     <div class="audio-slider">
@@ -133,14 +133,14 @@ onMounted(async () => {
  * 播放按钮
  * @param rade 几倍速
  */
-const audioPlay = (rade: 1 | 2) => {
+const audioPlay = (rade: 1 | 1.5) => {
   if (rade == 1 && disabled1x.value) return
-  if (rade == 2 && disabled2x.value) return
+  if (rade == 1.5 && disabled2x.value) return
   if (!props.src) return
   if (rade == 1) {
     isPlay1x.value = true
     isPlay2x.value = false
-  } else if (rade == 2) {
+  } else if (rade == 1.5) {
     isPlay2x.value = true
     isPlay1x.value = false
   }
