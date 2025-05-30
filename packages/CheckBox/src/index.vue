@@ -12,6 +12,7 @@ const props = defineProps<{
   value?: string[] | number[]
   mutex?: boolean
   mutexOptionValue?: string[] | number[] | 'All'
+  itemWidth?: string
 }>()
 
 onMounted(() => {
@@ -56,6 +57,7 @@ const CheckBoxItem = (list: Item[]) => {
             active: props.value?.includes(it.props.value as never),
             disabled: it.props.disabled
           }}
+          style={{ width: props.itemWidth }}
           onClick={() => {
             // 如果props.value数组为空，则将其初始化为一个空数组。
             if (it.props.disabled) return
