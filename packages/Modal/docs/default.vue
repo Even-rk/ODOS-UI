@@ -18,7 +18,7 @@ const handleCancel = () => {
 
 <template>
   <div>
-    <odos-button type="primary" @click="showModal"> Open Modal </odos-button>
+    <odos-button type="primary" @click="showModal"> Open Modal</odos-button>
     <odos-modal v-model:open="isModalVisible" title="Basic Modal" @ok="handleOk" @cancel="handleCancel">
       <p>Some contents...</p>
       <p>Some contents...</p>

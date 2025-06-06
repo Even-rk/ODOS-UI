@@ -1,7 +1,8 @@
 <template>
   <div class="drawer-wrapper" v-if="props.open">
     <!-- 蒙层 -->
-    <div class="drawer-mask" @click="cancel" />
+    <div class="drawer-mask" @click="cancel" v-if="maskClosable" />
+    <div class="drawer-mask" v-else></div>
 
     <!-- 抽屉容器 -->
     <div class="drawer-container">
@@ -34,6 +35,7 @@ import Button from 'packages/Button/src/index.vue'
 const props = defineProps<{
   open: boolean
   title: string
+  maskClosable?: boolean
 }>()
 
 // 事件函数
