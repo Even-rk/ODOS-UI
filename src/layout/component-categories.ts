@@ -1,7 +1,7 @@
 // 组件分类配置
 export const componentGroups = {
   basic: ['Button', 'Input', 'InputNumber', 'Textarea', 'Select', 'CheckBox', 'Radio', 'DatePicker', 'Buttons'],
-  display: ['Table', 'Pagination', 'Tag', 'TextDisplay', 'Empty', 'Icon'],
+  display: ['Table', 'Pagination', 'Tag', 'TextDisplay', 'Empty', 'Icon', 'ImageClassifyViewer'],
   feedback: ['Modal', 'Message', 'Loading', 'Drawer', 'Popover', 'Popconfirm', 'Tooltip'],
   navigation: ['Tabs'],
   special: ['ToothSelect', 'ToothChart', 'Audio', 'ImageUpload'],

@@ -133,5 +133,11 @@
     "compName": "ImageUpload",
     "compZhName": "ImageUpload 图片上传",
     "compClassName": "image-upload"
+  },
+  {
+    "compName": "ImageClassifyViewer",
+    "compZhName": "ImageClassifyViewer图片分类预览",
+    "compClassName": "image-classify-viewer",
+    "category": "display"
   }
 ]

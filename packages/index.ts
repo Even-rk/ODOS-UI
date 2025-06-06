@@ -32,8 +32,10 @@ import { ToothChartPlugin } from './ToothChart'
 import { TooltipPlugin } from './Tooltip'
 import { DrawerPlugin } from './Drawer'
 import { ImageUploadPlugin } from './ImageUpload'
+import { ImageClassifyViewerPlugin } from './ImageClassifyViewer'
 
 const Packages: Plugin[] = [
+  ImageClassifyViewerPlugin,
   AudioPlugin,
   ButtonPlugin,
   CheckBoxPlugin,
@@ -98,3 +100,4 @@ export * from './TextDisplay'
 export * from './Tooltip'
 export * from './Drawer'
 export * from './ImageUpload'
+export * from './ImageClassifyViewer'
