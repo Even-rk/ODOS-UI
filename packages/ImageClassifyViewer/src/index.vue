@@ -79,13 +79,22 @@ const processedData = computed(() => {
     let isMoreAvailable: boolean
 
     if (title === '口内照') {
-      // "口内照"的逻辑: 初始展示最新预约的6张
+      // "口内照"的特殊逻辑
+      const latestApptHasLessThanSix = appointments.length > 0 && appointments[0].images.length < 6
+
       if (level === 0) {
+        // 初始状态: 最新预约的6张
         imagesToDisplay = appointments.length > 0 ? appointments[0].images.slice(0, 6) : images.slice(0, 6)
+        // 判断是否可展开：如果最新预约本身就超过6张，或者总预约数大于1
+        isMoreAvailable =
+          (appointments.length > 0 && appointments[0].images.length > 6) || appointments.length > 1
       } else {
-        imagesToDisplay = appointments.slice(0, level).flatMap((g) => g.images)
+        // 展开状态
+        // 如果最新预约不足6张，则展开的预约数要比level多1，实现"跳级"效果
+        const appointmentsToShowCount = latestApptHasLessThanSix ? level + 1 : level
+        imagesToDisplay = appointments.slice(0, appointmentsToShowCount).flatMap((g) => g.images)
+        isMoreAvailable = appointmentsToShowCount < appointments.length
       }
-      isMoreAvailable = level < appointments.length
     } else {
       // 其他类别的逻辑: 初始展示最新预约的全部
       if (appointments.length === 0) {
@@ -185,6 +194,9 @@ const classifyHandler = (type: 'date' | 'category') => {
   emit('change', type)
 }
 const clissifyItemClick = (title: string) => {
+  if (currentType.value === 'category') {
+    return
+  }
   const index = openItems.value.indexOf(title)
   if (index > -1) {
     openItems.value.splice(index, 1)
@@ -247,7 +259,8 @@ onMounted(() => {
         <div
           class="odos-ImageClassifyViewer-content-item-title"
           :style="{
-            marginTop: index === 0 ? '0' : '16px'
+            marginTop: index === 0 ? '0' : '16px',
+            cursor: currentType === 'category' ? 'default' : 'pointer'
           }"
           @click="clissifyItemClick(item.title)"
         >
