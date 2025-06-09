@@ -18,6 +18,7 @@ interface Props {
   title?: string
   showSync?: boolean
   showUpload?: boolean
+  defaultType?: 'date' | 'category'
 }
 const props = defineProps<Props>()
 
@@ -124,30 +125,34 @@ watch(
   { immediate: true, deep: true }
 )
 
-watch(currentType, (newType) => {
-  // 切换视图时重置所有展开状态
-  expandedItems.value = []
-  categoryExpansionLevels.value = {}
-  const dataKeys = props.data ? Object.keys(props.data) : []
+watch(
+  currentType,
+  (newType) => {
+    // 切换视图时重置所有展开状态
+    expandedItems.value = []
+    categoryExpansionLevels.value = {}
+    const dataKeys = props.data ? Object.keys(props.data) : []
 
-  if (newType === 'category') {
-    openItems.value = dataKeys
-  } else {
-    // 切换回日期时，默认打开第一个
-    if (dataKeys.length > 0) {
-      openItems.value = [dataKeys[0]]
+    if (newType === 'category') {
+      openItems.value = dataKeys
     } else {
-      openItems.value = []
+      // 切换回日期时，默认打开第一个
+      if (dataKeys.length > 0) {
+        openItems.value = [dataKeys[0]]
+      } else {
+        openItems.value = []
+      }
     }
+  },
+  {
+    immediate: true
   }
-})
+)
 
 const syncHandler = () => {
-  console.log('sync')
   emit('sync')
 }
 const uploadHandler = () => {
-  console.log('upload')
   emit('upload')
 }
 const classifyHandler = (type: 'date' | 'category') => {
@@ -175,7 +180,9 @@ const showMoreHandler = (title: string) => {
   }
 }
 onMounted(() => {
-  console.log(props.data)
+  if (props.defaultType) {
+    classifyHandler(props.defaultType)
+  }
 })
 </script>
 

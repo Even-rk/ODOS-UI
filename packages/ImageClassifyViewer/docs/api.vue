@@ -18,21 +18,27 @@ const data = [
   },
   {
     attribute: 'title',
-    default: '--',
+    default: '',
     type: 'string',
     describe: '标题'
   },
   {
     attribute: 'showSync',
-    default: '--',
+    default: 'false',
     type: 'boolean',
     describe: '是否显示同步按钮'
   },
   {
     attribute: 'showUpload',
-    default: '--',
+    default: 'false',
     type: 'boolean',
     describe: '是否显示上传按钮'
+  },
+  {
+    attribute: 'defaultType',
+    default: 'data',
+    type: 'date | category',
+    describe: '默认类型'
   },
   {
     attribute: 'change',
