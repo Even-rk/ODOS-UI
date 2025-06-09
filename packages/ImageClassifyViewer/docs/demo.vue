@@ -6,6 +6,7 @@
     show-upload
     :data="imgData"
     @change="changeHandler"
+    default-type="category"
   />
 </template>
 
