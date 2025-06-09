@@ -22,7 +22,17 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const emit = defineEmits(['sync', 'upload', 'change'])
+const emit = defineEmits([
+  'sync',
+  'upload',
+  'change',
+  'dragstart',
+  'dragend',
+  'dragover',
+  'drop',
+  'dragenter',
+  'dragleave'
+])
 const currentType = ref<'date' | 'category'>('date')
 const openItems = ref<string[]>([])
 const expandedItems = ref<string[]>([])
@@ -155,6 +165,21 @@ const syncHandler = () => {
 const uploadHandler = () => {
   emit('upload')
 }
+const dragStartHandler = (image: ImageItem, e: DragEvent) => {
+  emit('dragstart', image, e)
+}
+const dragOverHandler = (image: ImageItem, e: DragEvent) => {
+  emit('dragover', image, e)
+}
+const dropHandler = (image: ImageItem, e: DragEvent) => {
+  emit('drop', image, e)
+}
+const dragEnterHandler = (image: ImageItem, e: DragEvent) => {
+  emit('dragenter', image, e)
+}
+const dragLeaveHandler = (image: ImageItem, e: DragEvent) => {
+  emit('dragleave', image, e)
+}
 const classifyHandler = (type: 'date' | 'category') => {
   currentType.value = type
   emit('change', type)
@@ -237,7 +262,17 @@ onMounted(() => {
           v-if="item.data.length > 0 && openItems.includes(item.title)"
           class="odos-ImageClassifyViewer-content-item-list"
         >
-          <ImgViewer v-for="image in item.imagesToDisplay" :key="image.imageUrl" :data="image" />
+          <ImgViewer
+            draggable="true"
+            @dragstart="dragStartHandler(image, $event)"
+            @dragover="dragOverHandler(image, $event)"
+            @drop="dropHandler(image, $event)"
+            @dragenter="dragEnterHandler(image, $event)"
+            @dragleave="dragLeaveHandler(image, $event)"
+            v-for="image in item.imagesToDisplay"
+            :key="image.imageUrl"
+            :data="image"
+          />
           <div v-if="item.isMoreAvailable" class="showMore" @click="showMoreHandler(item.title)">
             查看更多{{ currentType === 'category' ? item.title : '' }}
 
