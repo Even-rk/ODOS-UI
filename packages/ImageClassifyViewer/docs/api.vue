@@ -9,6 +9,36 @@ const data = [
     default: '--',
     type: 'string',
     describe: '属性描述'
+  },
+  {
+    attribute: 'data',
+    default: '--',
+    type: 'array',
+    describe: '数据'
+  },
+  {
+    attribute: 'title',
+    default: '--',
+    type: 'string',
+    describe: '标题'
+  },
+  {
+    attribute: 'showSync',
+    default: '--',
+    type: 'boolean',
+    describe: '是否显示同步按钮'
+  },
+  {
+    attribute: 'showUpload',
+    default: '--',
+    type: 'boolean',
+    describe: '是否显示上传按钮'
+  },
+  {
+    attribute: 'change',
+    default: '--',
+    type: 'function',
+    describe: '切换事件'
   }
 ]
 
