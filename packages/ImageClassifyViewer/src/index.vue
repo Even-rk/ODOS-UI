@@ -215,7 +215,7 @@ onMounted(() => {
   <div class="odos-ImageClassifyViewer">
     <!-- 组件内容 -->
     <div class="odos-ImageClassifyViewer-header">
-      <div class="odos-ImageClassifyViewer-header-left">
+      <div v-if="title || showSync || showUpload" class="odos-ImageClassifyViewer-header-left">
         <span v-if="title">{{ title }}</span>
         <button v-if="showSync" @click="syncHandler">
           <Icon name="sync" />
@@ -291,7 +291,6 @@ onMounted(() => {
   border-radius: 8px;
   padding: 20px 16px 16px 16px;
   box-sizing: border-box;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   height: 100%;
   display: flex;
   flex-direction: column;
