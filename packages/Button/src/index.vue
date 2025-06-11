@@ -1,5 +1,5 @@
 <template>
-  <button ref="btnRef" @click="Click" class="odos-btn" :class="styleClass" :disabled="disabled">
+  <button ref="btnRef" @click="Click" class="odos-btn" :class="styleClass" :disabled="selfDisabled">
     <slot name="icon">
       <div :class="styleIconClass" v-if="icon">
         <Icon :name="icon" :color="iconColor" />
