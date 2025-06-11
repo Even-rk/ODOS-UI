@@ -30,7 +30,7 @@ const styleClass = computed(() => {
     ['odos-btn--icon']: !slots.default,
     [`odos-btn--${type}`]: type,
     [`odos-btn-size--${size}`]: size,
-    'is-disabled': disabled
+    'is-disabled': selfDisabled.value
   }
 })
 
