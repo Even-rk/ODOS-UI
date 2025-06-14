@@ -1,16 +1,36 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import type { ImageItem } from './index.vue'
+import { Image } from 'ant-design-vue'
 interface Props {
   data: ImageItem
 }
 const props = defineProps<Props>()
+const imageViewVisible = ref(false)
+const setImageViewVisible = (value: boolean) => {
+  imageViewVisible.value = value
+}
+const imageViewHandle = () => {
+  setImageViewVisible(true)
+}
 </script>
 
 <template>
   <div class="odos-ImageClassifyViewer-img-viewer">
     <div class="odos-ImageClassifyViewer-img-viewer-img">
-      <div class="odos-ImageClassifyViewer-img-viewer-img-img">
+      <div class="odos-ImageClassifyViewer-img-viewer-img-img" @click="imageViewHandle">
         <img :src="data.thumbnailImageUrl" alt="" />
+        <div :style="{ position: 'absolute', top: '1000px', left: '1000px', zIndex: -10, display: 'none' }">
+          <Image
+            v-if="imageViewVisible"
+            width="80%"
+            :preview="{
+              visible: imageViewVisible,
+              onVisibleChange: setImageViewVisible
+            }"
+            :src="data.imageUrl"
+          />
+        </div>
       </div>
       <p>{{ data.ljCreateDatetime }}</p>
     </div>
