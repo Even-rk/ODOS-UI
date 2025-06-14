@@ -68,7 +68,6 @@ const toothDisabled = computed(() => {
 watch(
   () => props.value,
   (val) => {
-    console.log(val)
     toothVal.value = val
   },
   { deep: true }
