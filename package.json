@@ -41,6 +41,7 @@
     "createComp": "node shell/create-components.js"
   },
   "dependencies": {
+    "@floating-ui/vue": "^1.1.6",
     "@vueuse/core": "^12.7.0",
     "ant-design-vue": "^4.2.3",
     "dayjs": "^1.11.11",
