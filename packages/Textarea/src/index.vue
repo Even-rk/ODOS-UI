@@ -10,10 +10,10 @@
       @focus="$focus($event)"
       :auto-size="autoSize"
       :disabled="disabled"
-      :maxlength="maxlength"
+      :maxlength="maxlength || 500"
       :show-count="false"
     />
-    <div class="length" v-if="maxlength && showCount">{{ value?.length || 0 }}/{{ maxlength }}</div>
+    <div class="length" v-if="showCount">{{ value?.length || 0 }}/{{ maxlength || 500 }}</div>
   </div>
 </template>
 

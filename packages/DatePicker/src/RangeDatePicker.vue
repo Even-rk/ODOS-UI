@@ -18,7 +18,7 @@
         'odos-date-picker-input-focus': isShowPicker,
         'odos-date-picker-isTitle': title
       }"
-      @click="inputFocus(true)"
+      @click="inputFocus"
     >
       <input
         ref="startInputRef"
@@ -133,7 +133,7 @@ import { useFloating, autoUpdate, offset, flip, shift } from '@floating-ui/vue'
 interface DateItem {
   date: string
   day: number
-  isCurrentMonth: boolean
+  isCurrentMonth?: boolean
   key: string
 }
 
@@ -290,7 +290,7 @@ const { floatingStyles } = useFloating(rangeInputRef, floatingRef, {
   whileElementsMounted: autoUpdate
 })
 
-const inputFocus = (flag?: boolean) => {
+const inputFocus = () => {
   if (!disabled?.value) {
     isShowPicker.value = true
   }

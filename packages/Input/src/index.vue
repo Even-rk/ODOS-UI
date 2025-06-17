@@ -38,7 +38,7 @@ import { computed, onUpdated, ref, useSlots } from 'vue'
 import Icon from '../../Icon/src/index.vue'
 
 const emit = defineEmits<{
-  (e: 'update:value' | 'search', data: string): void
+  (e: 'update:value' | 'search', data: string | null): void
   (e: 'input' | 'focus' | 'change' | 'blur', data: Event): void
   (e: 'ime-status', status: boolean): void
 }>()
@@ -52,7 +52,7 @@ onUpdated(() => {
 
 const { value, width, placeholder, disabled, isFocus, title, type, unit, maxLength } = defineProps<{
   type?: 'text' | 'password' | 'search'
-  value?: string
+  value?: string | null
   width?: string | number
   placeholder?: string
   disabled?: boolean
@@ -136,17 +136,17 @@ const handleCompositionEnd = (e: Event) => {
 
 const handleInput = (e: Event) => {
   // 如果当前正在使用输入法输入，不进行处理
+  const target = e.target as HTMLInputElement
   if (isComposing.value) return
-
-  if (maxLength) {
-    const sliceValue = (e.target as HTMLInputElement).value.slice(0, maxLength)
+  if (target.value == '') {
+    return emit('update:value', null)
+  } else {
+    const sliceValue = (e.target as HTMLInputElement).value.slice(0, maxLength || 50)
     // @ts-ignore
     e.target.value = sliceValue
     emit('update:value', sliceValue)
-  } else {
-    emit('update:value', (e.target as HTMLInputElement).value)
+    emit('input', e)
   }
-  emit('input', e)
 }
 
 const handelBlur = ($event: Event) => {

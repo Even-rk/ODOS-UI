@@ -66,7 +66,7 @@ import Slots from './slots.vue'
 | disabled      | 是否禁用       | boolean          | false  |
 | isFocus       | 初始化获取焦点 | boolean          | false  |
 | unit          | 设置单位       | string           | --     |
-| maxLength     | 最大输入长度   | number           | --     |
+| maxLength     | 最大输入长度   | number           | 50     |
 | prefix        | 设置前缀       | slot             | --     |
 | suffix        | 设置后缀       | slot             | --     |
 
@@ -78,4 +78,4 @@ import Slots from './slots.vue'
 | change     | 当绑定值变化时触发             | Function          |
 | focus      | 当选择器的输入框获得焦点时触发 | Function          |
 | blur       | 当选择器的输入框失去焦点时触发 | Function          |
-| ime-status | 输入法输入状态                 | Function<boolean> |
+| ime-status | 输入法输入状态                 | Function&lt;boolean&gt; |

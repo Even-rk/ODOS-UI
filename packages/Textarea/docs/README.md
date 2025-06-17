@@ -19,9 +19,9 @@ import Default from './default.vue'
 | 属性 | 描述 | 类型 | 默认值 |
 | ---- | ---- | ---- | ---- |
 | v-model:value | 输入框内容 | string | -- |
-| maxlength | 最大长度 | number | -- |
+| maxlength | 最大长度 | number | 500 |
 | disabled | 是否禁用状态 | boolean | false |
-| autoSize | -- | boolean \| { minRows: number, maxRows: number | -- |
+| autoSize | 自适应内容高度 | boolean \| { minRows: number, maxRows: number } | -- |
 | placeholder | 占位符 | string | 请输入 |
 | showCount | 是否显示字数统计(需设置maxlength) | boolean | false |
 
