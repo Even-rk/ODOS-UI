@@ -424,7 +424,7 @@ onUnmounted(() => {
   &::after {
     font-size: 10px;
     position: absolute;
-    content: '左';
+    content: '右';
     padding: 0 10px;
     top: 50%;
     left: 25%;
@@ -437,7 +437,7 @@ onUnmounted(() => {
   &::before {
     font-size: 10px;
     position: absolute;
-    content: '右';
+    content: '左';
     padding: 0 10px;
     top: 50%;
     right: 25%;

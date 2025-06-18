@@ -20,8 +20,6 @@ const { type, size, disabled, icon } = defineProps<{
   icon?: string
 }>()
 
-const selfDisabled = ref(disabled)
-
 const slots = useSlots() as SetupContext['slots']
 const iconColor = ref('')
 
@@ -46,9 +44,9 @@ watchEffect(() => {
 })
 const emit = defineEmits(['click'])
 
-watch(() => disabled, () => {
-  selfDisabled.value = disabled
-}, { deep: true })
+const selfDisabled = computed(() => {
+  return disabled
+})
 
 const Click = (e: Event) => {
   if (selfDisabled.value) return
