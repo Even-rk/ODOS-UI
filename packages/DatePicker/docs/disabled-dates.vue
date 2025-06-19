@@ -47,7 +47,9 @@ const disableWeekends = (date) => {
 
 // 禁用过去的日期
 const disablePastDates = (date) => {
-  return date < new Date()
+  const newDate = new Date()
+  newDate.setHours(0, 0, 0, 0)
+  return date < newDate
 }
 
 // 禁用特定日期

@@ -243,6 +243,13 @@ const getRangeDateClass = (date: DateItem) => {
     classes.push('odos-date-picker-today')
   }
 
+  // 检查是否禁用日期
+  const isDisabled = disabledDate?.value && disabledDate.value(new Date(date.date))
+  if (isDisabled) {
+    classes.push('odos-date-picker-day-disabled')
+    return classes // 禁用日期不显示范围选择样式
+  }
+
   const [start, end] = rangeValue.value
   if (start && dayjs(start).isSame(date.date, 'day')) {
     classes.push('odos-date-picker-range-start')
@@ -257,8 +264,30 @@ const getRangeDateClass = (date: DateItem) => {
   return classes
 }
 
+// 检查日期范围内是否有禁用日期
+const hasDisabledDateInRange = (startDate: string, endDate: string) => {
+  if (!disabledDate?.value) return false
+  
+  let current = dayjs(startDate).add(1, 'day')
+  const end = dayjs(endDate)
+  
+  while (current.isBefore(end)) {
+    if (disabledDate.value(current.toDate())) {
+      return true
+    }
+    current = current.add(1, 'day')
+  }
+  
+  return false
+}
+
 // 选择区间日期
 const selectRangeDate = (date: DateItem) => {
+  // 检查是否禁用日期，如果禁用则不允许选择
+  if (disabledDate?.value && disabledDate.value(new Date(date.date))) {
+    return
+  }
+
   const [start, end] = rangeValue.value
 
   if (!start || (start && end)) {
@@ -267,11 +296,26 @@ const selectRangeDate = (date: DateItem) => {
     rangeSelectState.value = 'end'
   } else if (start && !end) {
     // 选择结束日期
+    let newStart: string
+    let newEnd: string
+    
     if (dayjs(date.date).isBefore(start)) {
-      rangeValue.value = [date.date, start]
+      newStart = date.date
+      newEnd = start
     } else {
-      rangeValue.value = [start, date.date]
+      newStart = start
+      newEnd = date.date
     }
+    
+    // 检查范围内是否有禁用日期
+    if (hasDisabledDateInRange(newStart, newEnd)) {
+      // 如果范围内有禁用日期，不允许选择，重新开始选择
+      rangeValue.value = [date.date, '']
+      rangeSelectState.value = 'end'
+      return
+    }
+    
+    rangeValue.value = [newStart, newEnd]
     rangeSelectState.value = null
     emit('update:value', [...rangeValue.value])
     isShowPicker.value = false
@@ -579,6 +623,20 @@ const formattedRangeValue = computed(() => {
 
         &.odos-date-picker-range-start.odos-date-picker-range-end {
           border-radius: 8px;
+        }
+
+        &.odos-date-picker-day-disabled {
+          background-color: #f2f3f5;
+          color: #c9cdd4;
+          cursor: not-allowed;
+
+          &:hover {
+            background-color: #f2f3f5;
+          }
+
+          &:active {
+            background-color: #f2f3f5;
+          }
         }
       }
     }
