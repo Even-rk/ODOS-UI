@@ -432,6 +432,7 @@ onMounted(() => {
         background-color: #fff;
       }
       .odos-ImageClassifyViewer-content-item-list {
+        min-width: 463px;
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
