@@ -399,16 +399,15 @@ onMounted(() => {
     // margin-top: 16px;
     box-sizing: border-box;
     flex: 1;
-    overflow-y: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
     &::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-      background-color: #f2f3f5;
+      width: 0;
+      height: 0;
     }
-    &::-webkit-scrollbar-thumb {
-      background-color: #c9cdd4;
-      border-radius: 3px;
-    }
+    /* 隐藏滚动条但保持滚动功能 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
     .odos-ImageClassifyViewer-content-item {
       .odos-ImageClassifyViewer-content-item-title {
         height: 22px;

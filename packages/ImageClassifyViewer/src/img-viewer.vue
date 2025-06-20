@@ -65,6 +65,7 @@ const imageViewHandle = () => {
       max-width: 146px;
       max-height: 97px;
       border-radius: 12px;
+      object-fit: contain;
     }
     p {
       font-family: Alibaba PuHuiTi 3;

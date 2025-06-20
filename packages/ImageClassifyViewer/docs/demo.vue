@@ -1,6 +1,6 @@
 <template>
   <odos-ImageClassifyViewer
-    style="width: 502px; height: 512px"
+    style="width: 510px; height: 512px"
     title="患者影像"
     show-sync
     show-upload
