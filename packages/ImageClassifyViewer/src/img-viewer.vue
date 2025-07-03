@@ -64,7 +64,7 @@ const imageViewHandle = () => {
       //   width: 100%;
       max-width: 146px;
       max-height: 97px;
-      border-radius: 12px;
+      // border-radius: 12px;
       object-fit: contain;
     }
     p {
