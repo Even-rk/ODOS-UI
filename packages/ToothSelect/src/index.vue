@@ -98,14 +98,9 @@ const toothValChange = () => {
       newValue = []
     }
     
-    // 只有当值真的发生变化时才触发事件
-    const hasValueChanged = JSON.stringify(originalValue.sort()) !== JSON.stringify(newValue.sort())
-    
-    if (hasValueChanged) {
-      toothVal.value = newValue
-      emit('update:value', toothVal.value)
-      emit('change', toothVal.value)
-    }
+    toothVal.value = newValue
+    emit('update:value', toothVal.value)
+    emit('change', toothVal.value)
   })
 }
 

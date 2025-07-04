@@ -17,9 +17,13 @@ const multipleToothList = ref([
   }
 ])
 
-watch(value, () => {
-  console.log(value.value)
-})
+watch(
+  () => value.value,
+  () => {
+    console.log(value.value)
+  },
+  { deep: true }
+)
 </script>
 
 <style scoped lang="scss"></style>
