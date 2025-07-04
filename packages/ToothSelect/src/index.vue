@@ -81,26 +81,30 @@ const emit = defineEmits<{
 const toothValChange = () => {
   // 使用nextTick确保在DOM更新之后再执行后续代码
   nextTick(() => {
+    // 记录原始值用于比较
+    const originalValue = [...toothVal.value]
+    let newValue = [...toothVal.value]
+    
     // 检查牙齿值数组是否为空
     if (toothVal.value.length > 0) {
       // 如果数组最后一个元素是'-1'，则将数组设置为只包含'-1'
       if (toothVal.value[toothVal.value.length - 1] == '-1') {
-        // 触发更新事件和变化事件
-        toothVal.value = ['-1']
-        emit('update:value', toothVal.value)
-        emit('change', toothVal.value)
+        newValue = ['-1']
       } else {
         // 如果数组中包含'-1'但不是最后一个元素，则移除所有'-1'
-        toothVal.value = toothVal.value.filter((i) => i != '-1')
-        // 触发更新事件和变化事件
-        emit('update:value', toothVal.value)
-        emit('change', toothVal.value)
+        newValue = toothVal.value.filter((i) => i != '-1')
       }
     } else {
-      toothVal.value = []
-      // 如果数组为空，触发更新事件和变化事件
-      emit('update:value', [])
-      emit('change', [])
+      newValue = []
+    }
+    
+    // 只有当值真的发生变化时才触发事件
+    const hasValueChanged = JSON.stringify(originalValue.sort()) !== JSON.stringify(newValue.sort())
+    
+    if (hasValueChanged) {
+      toothVal.value = newValue
+      emit('update:value', toothVal.value)
+      emit('change', toothVal.value)
     }
   })
 }

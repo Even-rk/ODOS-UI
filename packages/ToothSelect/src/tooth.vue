@@ -183,6 +183,10 @@ const permanentTeeth = ['1', '2', '3', '4', '5', '6', '7', '8']
 const reversePermanentTeeth = JSON.parse(JSON.stringify(permanentTeeth)).reverse()
 // 是否开启框选
 const isBoxSelect = ref(false)
+// 是否真正进行了拖动操作
+const hasActuallyDragged = ref(false)
+// 拖动的最小距离阈值
+const dragThreshold = 5
 const regionConfig = ref({
   top: '0px',
   left: '0px',
@@ -249,12 +253,21 @@ const isElementInRegion = (elementList: Element[], e?: MouseEvent) => {
 const onMousemove = (e: MouseEvent) => {
   e.stopPropagation()
   if (!isBoxSelect.value) return false
+  
   officeEnd.value = {
     x: e.pageX,
     y: e.pageY
   }
+  
   const x = e.pageX - officeStart.value.x
   const y = e.pageY - officeStart.value.y
+  
+  // 检查是否达到拖动阈值
+  const dragDistance = Math.sqrt(x * x + y * y)
+  if (dragDistance >= dragThreshold) {
+    hasActuallyDragged.value = true
+  }
+  
   regionConfig.value.width = Math.abs(x) + 'px'
   regionConfig.value.height = Math.abs(y) + 'px'
 
@@ -266,41 +279,62 @@ const onMousemove = (e: MouseEvent) => {
     regionConfig.value.top = e.clientY + 'px'
   }
 
-  // 判断框选区域包含的元素
-  if (props.name) {
-    const elementList = Array.from(document.querySelectorAll(`.${props.name} .odos-check-box-item`))
-    // 拖拽时，是否有按住shift键
-    isElementInRegion(elementList, e)
-  } else {
-    const elementList = Array.from(document.querySelectorAll('.odos-check-box-item'))
-    // 拖拽时，是否有按住shift键
-    isElementInRegion(elementList, e)
+  // 只有在真正拖动时才进行元素选择判断
+  if (hasActuallyDragged.value) {
+    // 判断框选区域包含的元素
+    if (props.name) {
+      const elementList = Array.from(document.querySelectorAll(`.${props.name} .odos-check-box-item`))
+      // 拖拽时，是否有按住shift键
+      isElementInRegion(elementList, e)
+    } else {
+      const elementList = Array.from(document.querySelectorAll('.odos-check-box-item'))
+      // 拖拽时，是否有按住shift键
+      isElementInRegion(elementList, e)
+    }
   }
 }
 // 鼠标框选结束函数
 const onMouseup = () => {
-  let elementList = [] as Element[]
-  if (props.name) {
-    elementList = Array.from(document.querySelectorAll(`.${props.name} .odos-check_box-item-content`))
-  } else {
-    elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
+  // 只有在真正拖动时才处理选择逻辑
+  if (hasActuallyDragged.value) {
+    let elementList = [] as Element[]
+    if (props.name) {
+      elementList = Array.from(document.querySelectorAll(`.${props.name} .odos-check_box-item-content`))
+    } else {
+      elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
+    }
+    
+    // 记录原始值用于比较
+    const originalValue = [...toothVal.value]
+    
+    // 选中的
+    const filterList = elementList.filter((item) => {
+      // 判断元素是否在框选区域内
+      const active = item.parentElement?.classList.contains('active')
+      // 判断元素是否禁用
+      const disabled = item.parentElement?.classList.contains('disabled')
+      // 删除选中的元素
+      const error = !item.parentElement?.classList.contains('error')
+      // 删除删除的元素
+      item.parentElement?.classList.remove('error')
+      return active && error && !disabled
+    })
+    
+    const newValue = filterList.map((item) => item.id)
+    
+    // 只有当值真的发生变化时才触发事件
+    const hasValueChanged = JSON.stringify(originalValue.sort()) !== JSON.stringify(newValue.sort())
+    
+    if (hasValueChanged) {
+      toothVal.value = newValue
+      emit('update:value', toothVal.value)
+      emit('change', toothVal.value)
+    }
   }
-  // 选中的
-  const filterList = elementList.filter((item) => {
-    // 判断元素是否在框选区域内
-    const active = item.parentElement?.classList.contains('active')
-    // 判断元素是否禁用
-    const disabled = item.parentElement?.classList.contains('disabled')
-    // 删除选中的元素
-    const error = !item.parentElement?.classList.contains('error')
-    // 删除删除的元素
-    item.parentElement?.classList.remove('error')
-    return active && error && !disabled
-  })
-  toothVal.value = filterList.map((item) => item.id)
-  emit('update:value', toothVal.value)
-  emit('change', toothVal.value)
+  
+  // 重置状态
   isBoxSelect.value = false
+  hasActuallyDragged.value = false
   officeStart.value = {
     x: 0,
     y: 0
@@ -324,6 +358,8 @@ const selectRegion = (e: MouseEvent) => {
   }
   regionConfig.value.top = e.clientY + 'px'
   regionConfig.value.left = e.clientX + 'px'
+  // 重置拖动状态
+  hasActuallyDragged.value = false
   // 鼠标移动事件
   isBoxSelect.value = true
 
@@ -374,6 +410,8 @@ onUnmounted(() => {
   document.removeEventListener('mouseup', onMouseup)
   // 清空数据
   toothVal.value = []
+  // 重置拖动状态
+  hasActuallyDragged.value = false
 })
 </script>
 
