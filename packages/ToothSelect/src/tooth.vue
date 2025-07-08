@@ -253,21 +253,21 @@ const isElementInRegion = (elementList: Element[], e?: MouseEvent) => {
 const onMousemove = (e: MouseEvent) => {
   e.stopPropagation()
   if (!isBoxSelect.value) return false
-  
+
   officeEnd.value = {
     x: e.pageX,
     y: e.pageY
   }
-  
+
   const x = e.pageX - officeStart.value.x
   const y = e.pageY - officeStart.value.y
-  
+
   // 检查是否达到拖动阈值
   const dragDistance = Math.sqrt(x * x + y * y)
   if (dragDistance >= dragThreshold) {
     hasActuallyDragged.value = true
   }
-  
+
   regionConfig.value.width = Math.abs(x) + 'px'
   regionConfig.value.height = Math.abs(y) + 'px'
 
@@ -303,10 +303,10 @@ const onMouseup = () => {
     } else {
       elementList = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
     }
-    
+
     // 记录原始值用于比较
     const originalValue = [...toothVal.value]
-    
+
     // 选中的
     const filterList = elementList.filter((item) => {
       // 判断元素是否在框选区域内
@@ -319,19 +319,19 @@ const onMouseup = () => {
       item.parentElement?.classList.remove('error')
       return active && error && !disabled
     })
-    
+
     const newValue = filterList.map((item) => item.id)
-    
+
     // 只有当值真的发生变化时才触发事件
     const hasValueChanged = JSON.stringify(originalValue.sort()) !== JSON.stringify(newValue.sort())
-    
-    if (hasValueChanged) {
+
+    if (hasValueChanged && newValue.length) {
       toothVal.value = newValue
       emit('update:value', toothVal.value)
       emit('change', toothVal.value)
     }
   }
-  
+
   // 重置状态
   isBoxSelect.value = false
   hasActuallyDragged.value = false
