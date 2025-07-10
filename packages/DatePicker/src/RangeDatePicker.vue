@@ -370,8 +370,8 @@ const selectYear = (side: 'left' | 'right', year: number) => {
       rightCalendarDate.value = newLeftDate.add(1, 'month')
     }
     
-    // 不自动关闭年份选择器，让用户可以继续选择
-    leftYearPicker.value = false
+    // 不自动关闭年份选择器，让用户可以继续操作
+    // leftYearPicker.value = false
   } else {
     const newRightDate = dayjs(rightCalendarDate.value).year(year)
     
@@ -382,8 +382,9 @@ const selectYear = (side: 'left' | 'right', year: number) => {
     } else {
       rightCalendarDate.value = newRightDate
     }
-    // 不自动关闭年份选择器，让用户可以继续选择
-    rightYearPicker.value = false
+    
+    // 不自动关闭年份选择器，让用户可以继续操作
+    // rightYearPicker.value = false
   }
 }
 
@@ -398,7 +399,7 @@ const selectMonth = (side: 'left' | 'right', month: number) => {
       rightCalendarDate.value = newLeftDate.add(1, 'month')
     }
     
-    // 不自动关闭月份选择器，让用户可以继续选择
+    // 不自动关闭月份选择器，让用户可以继续操作
     // leftMonthPicker.value = false
   } else {
     const newRightDate = dayjs(rightCalendarDate.value).month(month - 1)
@@ -411,7 +412,7 @@ const selectMonth = (side: 'left' | 'right', month: number) => {
       rightCalendarDate.value = newRightDate
     }
     
-    // 不自动关闭月份选择器，让用户可以继续选择
+    // 不自动关闭月份选择器，让用户可以继续操作
     // rightMonthPicker.value = false
   }
 }
@@ -421,7 +422,6 @@ const isCurrentMonth = (month: number, year: number) => {
   const now = dayjs()
   return now.month() === month - 1 && now.year() === year
 }
-
 // 选择快捷选项
 const selectShortcut = (shortcut: { text: string; value: () => string[] }) => {
   const selectedRange = shortcut.value()
