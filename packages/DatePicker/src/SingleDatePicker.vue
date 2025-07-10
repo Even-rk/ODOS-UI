@@ -38,6 +38,9 @@
                 <div class="odos-date-picker-header-pre" @click="updateYear('pre')">
                   <Icon name="ArowLeft" size="25px" />
                 </div>
+                <div class="odos-date-picker-header-today" @click="goToToday">
+                  今年
+                </div>
                 <div class="odos-date-picker-header-next" @click="updateYear('next')">
                   <Icon name="ArowRight" size="25px" />
                 </div>
@@ -68,6 +71,9 @@
               <div class="odos-date-picker-btn">
                 <div class="odos-date-picker-header-pre" @click="updateMouth('pre')">
                   <Icon name="ArowLeft" size="25px" />
+                </div>
+                <div class="odos-date-picker-header-today" @click="goToToday">
+                  今天
                 </div>
                 <div class="odos-date-picker-header-next" @click="updateMouth('next')">
                   <Icon name="ArowRight" size="25px" />
@@ -220,18 +226,24 @@ const emit = defineEmits<{
 
 // 基础状态
 const datePicker = ref('')
+// 当前显示日期
 const showDate = ref(dayjs(new Date()))
+// 是否显示日期选择器
 const isShowPicker = ref(false)
+// 是否显示月份选择器
 const isShowMonthPicker = ref(false)
 
 // 时间选择相关
 const selectedTime = ref({
+  // 当前选择时间
   hour: 0,
+  // 当前选择分钟
   minute: 0,
+  // 当前选择秒
   second: 0
 })
 
-// 计算宽度
+// 计算宽度 
 const WidthSize = computed(() => {
   if (typeof width?.value === 'number') {
     return `${width.value}px`
@@ -292,7 +304,9 @@ const displayValue = computed(() => {
         return dayjs(datePicker.value).format(getFormat())
     }
   }
+  // 如果datePicker.value为空，则返回空字符串
   if (!datePicker.value) return ''
+  // 根据模式返回不同的格式化字符串
   switch (mode.value) {
     case 'month':
       return dayjs(datePicker.value).format(getFormat())
@@ -305,16 +319,19 @@ const displayValue = computed(() => {
 
 // 是否是今天
 const isToday = (day: number) => {
-  return (
-    dayjs(new Date()).date() === day &&
-    dayjs(new Date()).month() === dayjs(showDate.value).month() &&
-    dayjs(new Date()).year() === dayjs(showDate.value).year()
-  )
+  // 如果当前日期、月份、年份都与showDate.value相同，则返回true
+  const isDay = dayjs(new Date()).date() === day
+  const isMonth = dayjs(new Date()).month() === dayjs(showDate.value).month()
+  const isYear = dayjs(new Date()).year() === dayjs(showDate.value).year()
+  // 如果当前日期、月份、年份都与showDate.value相同，则返回true
+  return isDay && isMonth && isYear
 }
 
 // 是否被选中
 const isSelect = (day: number) => {
+  // 如果datePicker.value为空，则返回false
   if (!datePicker.value) return false
+  // 如果datePicker.value的日期、月份、年份都与showDate.value相同，则返回true
   const isDay = dayjs(datePicker.value).date() === day
   const isMonth = dayjs(datePicker.value).month() === dayjs(showDate.value).month()
   const isYear = dayjs(datePicker.value).year() === dayjs(showDate.value).year()
@@ -323,14 +340,19 @@ const isSelect = (day: number) => {
 
 // 是否是当前月份
 const isCurrentMonth = (month: number) => {
+  // 获取当前时间
   const now = dayjs()
+  // 如果当前月份与showDate.value的月份相同，且当前年份与showDate.value的年份相同，则返回true
   return now.month() === month - 1 && now.year() === dayjs(showDate.value).year()
 }
 
 // 是否是选中的月份
 const isSelectedMonth = (month: number) => {
+  // 如果datePicker.value为空，则返回false
   if (!datePicker.value) return false
+  // 如果datePicker.value的月份与showDate.value的月份相同，且datePicker.value的年份与showDate.value的年份相同，则返回true
   const selected = dayjs(datePicker.value)
+  // 如果datePicker.value的月份与showDate.value的月份相同，且datePicker.value的年份与showDate.value的年份相同，则返回true
   return selected.month() === month - 1 && selected.year() === dayjs(showDate.value).year()
 }
 
@@ -371,6 +393,32 @@ const updateYear = (type: 'pre' | 'next') => {
     showDate.value = dayjs(showDate.value).add(1, 'year')
   } else {
     showDate.value = dayjs(showDate.value).subtract(1, 'year')
+  }
+}
+
+// 跳转到今天
+const goToToday = () => {
+  const today = dayjs()
+  showDate.value = today
+  
+  if (mode.value === 'datetime') {
+    // 如果是日期时间模式，设置当前时间
+    selectedTime.value = {
+      hour: today.hour(),
+      minute: today.minute(),
+      second: today.second()
+    }
+    const dateTime = today.format('YYYY-MM-DD HH:mm:ss')
+    datePicker.value = dateTime
+    emit('update:value', dateTime)
+  } else if (mode.value === 'date') {
+    // 如果是日期模式，选择今天
+    const todayStr = today.format('YYYY-MM-DD')
+    datePicker.value = todayStr
+    emit('update:value', todayStr)
+  } else if (mode.value === 'month') {
+    // 如果是月份模式，跳转到当前年份
+    showDate.value = today
   }
 }
 
@@ -804,6 +852,7 @@ const selectMonthInDateMode = (month: number, event?: Event) => {
     .odos-date-picker-btn {
       width: 130px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
 
       .odos-date-picker-header-next,
@@ -822,6 +871,29 @@ const selectMonthInDateMode = (month: number, event?: Event) => {
 
         &:active {
           background: #86909c;
+        }
+      }
+      
+      .odos-date-picker-header-today {
+        padding: 0 8px;
+        border-radius: 4px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 10px;
+        color: #2e6ce4;
+        border: 1px solid #2e6ce4;
+        background: #fff;
+        white-space: nowrap;
+
+        &:hover {
+          background: #e8f3ff;
+        }
+
+        &:active {
+          background: #cce7ff;
         }
       }
     }
