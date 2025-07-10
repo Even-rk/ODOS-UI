@@ -82,8 +82,13 @@
           <!-- 日期选择模式 -->
           <div v-else-if="mode === 'date' || mode === 'datetime'" class="odos-date-picker-date-panel">
             <div class="odos-date-picker-header">
-              <div class="odos-date-picker-header-year clickable" @click="toggleMonthPicker">
-                {{ dayjs(showDate).format('YYYY年MM月') }}
+              <div class="odos-date-picker-header-time">
+                <div class="odos-date-picker-header-year clickable" @click="toggleYearPicker">
+                  {{ dayjs(showDate).format('YYYY年') }}
+                </div>
+                <div class="odos-date-picker-header-month clickable" @click="toggleMonthPicker">
+                  {{ dayjs(showDate).format('MM月') }}
+                </div>
               </div>
               <div class="odos-date-picker-btn">
                 <div class="odos-date-picker-header-pre" @click="updateMouth('pre')">
@@ -94,6 +99,23 @@
                 </div>
                 <div class="odos-date-picker-header-next" @click="updateMouth('next')">
                   <Icon name="ArowRight" size="25px" />
+                </div>
+              </div>
+            </div>
+
+            <!-- 年份选择面板 -->
+            <div v-if="isShowYearPicker" class="odos-date-picker-year-selector">
+              <div class="odos-date-picker-year-grid">
+                <div
+                  v-for="year in yearRange"
+                  :key="year"
+                  class="odos-date-picker-year-item"
+                  :class="{
+                    'odos-date-picker-selected': isSelectedYearInDateMode(year)
+                  }"
+                  @click="selectYearInDateMode(year, $event)"
+                >
+                  {{ year }}
                 </div>
               </div>
             </div>
@@ -117,7 +139,7 @@
             </div>
 
             <!-- 日期选择面板 -->
-            <div v-else class="odos-date-picker-body">
+            <div v-else-if="!isShowYearPicker && !isShowMonthPicker" class="odos-date-picker-body">
               <div class="odos-date-picker-week-title">
                 <div class="odos-date-picker-week-item" v-for="(week, i) in titleDayList" :key="i">
                   {{ week }}
@@ -254,6 +276,8 @@ const showDate = ref(dayjs(new Date()))
 const isShowPicker = ref(false)
 // 是否显示月份选择器
 const isShowMonthPicker = ref(false)
+// 是否显示年份选择器
+const isShowYearPicker = ref(false)
 
 // 时间选择相关
 const selectedTime = ref({
@@ -398,6 +422,16 @@ const days = computed(() => {
   const year = dayjs(showDate.value).year()
   const month = dayjs(showDate.value).month()
   return new Date(year, month + 1, 0).getDate()
+})
+
+// 年份范围（当前年份前后各10年）
+const yearRange = computed(() => {
+  const currentYear = dayjs(showDate.value).year()
+  const years = []
+  for (let i = currentYear - 10; i <= currentYear + 10; i++) {
+    years.push(i)
+  }
+  return years
 })
 
 // 变换月份
@@ -612,6 +646,17 @@ document.addEventListener('click', (e) => {
 // 月份选择器切换
 const toggleMonthPicker = () => {
   isShowMonthPicker.value = !isShowMonthPicker.value
+  if (isShowMonthPicker.value) {
+    isShowYearPicker.value = false
+  }
+}
+
+// 年份选择器切换
+const toggleYearPicker = () => {
+  isShowYearPicker.value = !isShowYearPicker.value
+  if (isShowYearPicker.value) {
+    isShowMonthPicker.value = false
+  }
 }
 
 const isSelectedMonthInDateMode = (month: number) => {
@@ -626,6 +671,19 @@ const selectMonthInDateMode = (month: number, event?: Event) => {
   }
   showDate.value = dayjs(showDate.value).month(month - 1)
   isShowMonthPicker.value = false
+}
+
+// 年份选择相关方法
+const isSelectedYearInDateMode = (year: number) => {
+  return dayjs(showDate.value).year() === year
+}
+
+const selectYearInDateMode = (year: number, event?: Event) => {
+  if (event) {
+    event.stopPropagation()
+  }
+  showDate.value = dayjs(showDate.value).year(year)
+  isShowYearPicker.value = false
 }
 </script>
 
@@ -836,6 +894,58 @@ const selectMonthInDateMode = (month: number, event?: Event) => {
     }
   }
 
+  // 日期模式下的年份选择器
+  .odos-date-picker-year-selector {
+    .odos-date-picker-year-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 16px;
+      max-height: 200px;
+      overflow-y: auto;
+      
+      // 隐藏滚动条
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+      
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: transparent;
+      }
+      
+      // Firefox
+      scrollbar-width: none;
+      
+      // IE
+      -ms-overflow-style: none;
+
+      .odos-date-picker-year-item {
+        @include DateItem;
+        width: 60px;
+        height: 32px;
+        font-size: 12px;
+
+        &:hover {
+          background: #e5e6eb;
+        }
+
+        &.odos-date-picker-selected {
+          background-color: #2e6ce4;
+          color: #fff;
+
+          &:hover {
+            background-color: #2e6ce4;
+          }
+        }
+      }
+    }
+  }
+
   // 日期模式下的月份选择器
   .odos-date-picker-month-selector {
     .odos-date-picker-month-grid {
@@ -943,6 +1053,30 @@ const selectMonthInDateMode = (month: number, event?: Event) => {
     border-bottom: 1px solid #f4f4f5;
     padding-left: 14px;
     padding-right: 4px;
+
+    .odos-date-picker-header-time {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      .odos-date-picker-header-year,
+      .odos-date-picker-header-month {
+        font-size: 16px;
+        font-weight: 500;
+        width: fit-content;
+
+        &.clickable {
+          cursor: pointer;
+          border-radius: 4px;
+          padding: 4px 6px;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: #f2f3f5;
+          }
+        }
+      }
+    }
 
     .odos-date-picker-header-year {
       font-size: 18px;
