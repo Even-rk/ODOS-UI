@@ -29,7 +29,7 @@
     <Teleport to="body">
       <div v-if="isShowPicker" ref="floatingRef" class="odos-date-picker-container" :style="floatingStyles">
         <!-- 日期选择面板 -->
-        <div class="odos-date-picker-content">
+        <div class="odos-date-picker-content" :class="{ 'has-shortcuts': shortcuts && shortcuts.length > 0 }">
           <!-- 快捷选择区域 -->
           <div v-if="shortcuts && shortcuts.length > 0" class="odos-date-picker-shortcuts">
             <div class="odos-date-picker-shortcuts-title">快捷选择</div>
@@ -44,6 +44,9 @@
               </div>
             </div>
           </div>
+          
+          <!-- 主要日期选择区域 -->
+          <div class="odos-date-picker-main">
           <!-- 月份选择模式 -->
           <div v-if="mode === 'month'" class="odos-date-picker-month-panel">
             <div class="odos-date-picker-header">
@@ -207,6 +210,7 @@
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -733,39 +737,56 @@ const selectMonthInDateMode = (month: number, event?: Event) => {
   border-radius: 8px;
   box-sizing: border-box;
   background-color: #fff;
-  width: 312px;
-  padding: 0 16px;
+  
+  // 默认布局（无快捷选择）
+  &:not(.has-shortcuts) {
+    width: 312px;
+    padding: 0 16px;
+  }
+  
+  // 当有快捷选择时，调整布局
+  &.has-shortcuts {
+    display: flex;
+    width: 420px; // 减少宽度
+    padding: 0;
+  }
 
   // 快捷选择区域
   .odos-date-picker-shortcuts {
-    padding: 12px 0;
-    border-bottom: 1px solid #f4f4f5;
+    width: 108px; // 减少宽度
+    padding: 12px 8px; // 减少内边距
+    border-right: 1px solid #f4f4f5;
+    background: #fafbfc;
+    border-radius: 8px 0 0 8px;
 
     .odos-date-picker-shortcuts-title {
-      font-size: 12px;
+      font-size: 11px; // 减少字体大小
       color: #86909c;
-      margin-bottom: 8px;
+      margin-bottom: 8px; // 减少间距
       font-weight: 500;
     }
 
     .odos-date-picker-shortcuts-list {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      flex-direction: column;
+      gap: 4px; // 减少间距
 
       .odos-date-picker-shortcut-item {
-        padding: 4px 8px;
-        border-radius: 4px;
-        background: #f2f3f5;
+        padding: 4px 6px; // 减少内边距
+        border-radius: 3px; // 减少圆角
+        background: #fff;
         color: #1d2129;
-        font-size: 12px;
+        font-size: 11px; // 减少字体大小
         cursor: pointer;
         transition: all 0.2s;
         white-space: nowrap;
+        text-align: center;
+        border: 1px solid #e5e6eb;
 
         &:hover {
           background: #e8f3ff;
           color: #2e6ce4;
+          border-color: #2e6ce4;
         }
 
         &:active {
@@ -773,6 +794,12 @@ const selectMonthInDateMode = (month: number, event?: Event) => {
         }
       }
     }
+  }
+  
+  // 主要日期选择区域
+  &.has-shortcuts .odos-date-picker-main {
+    flex: 1;
+    padding: 0 16px;
   }
 
   // 月份选择面板
