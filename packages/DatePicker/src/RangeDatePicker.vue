@@ -43,75 +43,183 @@
     <Teleport to="body">
       <div v-if="isShowPicker" ref="floatingRef" class="odos-date-picker-container" :style="floatingStyles">
         <!-- 日期选择面板 -->
-        <div class="odos-date-picker-content range-panel">
-          <!-- 日期区间选择模式 -->
-          <div class="odos-date-picker-range-panel">
-            <div class="odos-date-picker-range-calendars">
-              <!-- 左侧日历 -->
-              <div class="odos-date-picker-calendar">
-                <div class="odos-date-picker-header">
-                  <div class="odos-date-picker-header-year">
-                    {{ dayjs(leftCalendarDate).format('YYYY年MM月') }}
-                  </div>
-                  <div class="odos-date-picker-btn">
-                    <div class="odos-date-picker-header-pre" @click="updateRangeMonth('left', 'pre')">
-                      <Icon name="ArowLeft" size="25px" />
-                    </div>
-                    <div class="odos-date-picker-header-next" @click="updateRangeMonth('left', 'next')">
-                      <Icon name="ArowRight" size="25px" />
-                    </div>
-                  </div>
-                </div>
-                <div class="odos-date-picker-body">
-                  <div class="odos-date-picker-week-title">
-                    <div class="odos-date-picker-week-item" v-for="(week, i) in titleDayList" :key="i">
-                      {{ week }}
-                    </div>
-                  </div>
-                  <div class="odos-date-picker-day-content">
-                    <div
-                      v-for="date in getCalendarDates(leftCalendarDate)"
-                      :key="date.key"
-                      :class="getRangeDateClass(date)"
-                      class="odos-date-picker-day-item"
-                      @click="selectRangeDate(date)"
-                    >
-                      {{ date.day }}
-                    </div>
-                  </div>
-                </div>
+        <div class="odos-date-picker-content range-panel" :class="{ 'has-shortcuts': shortcuts && shortcuts.length > 0 }">
+          <!-- 快捷选择区域 -->
+          <div v-if="shortcuts && shortcuts.length > 0" class="odos-date-picker-shortcuts">
+            <div class="odos-date-picker-shortcuts-title">快捷选择</div>
+            <div class="odos-date-picker-shortcuts-list">
+              <div
+                v-for="(shortcut, index) in shortcuts"
+                :key="index"
+                class="odos-date-picker-shortcut-item"
+                @click="selectShortcut(shortcut)"
+              >
+                {{ shortcut.text }}
               </div>
+            </div>
+          </div>
 
-              <!-- 右侧日历 -->
-              <div class="odos-date-picker-calendar">
-                <div class="odos-date-picker-header">
-                  <div class="odos-date-picker-header-year">
-                    {{ dayjs(rightCalendarDate).format('YYYY年MM月') }}
-                  </div>
-                  <div class="odos-date-picker-btn">
-                    <div class="odos-date-picker-header-pre" @click="updateRangeMonth('right', 'pre')">
-                      <Icon name="ArowLeft" size="25px" />
+          <!-- 主要日期选择区域 -->
+          <div class="odos-date-picker-main">
+            <!-- 日期区间选择模式 -->
+            <div class="odos-date-picker-range-panel">
+              <div class="odos-date-picker-range-calendars">
+                <!-- 左侧日历 -->
+                <div class="odos-date-picker-calendar">
+                  <div class="odos-date-picker-header">
+                    <div class="odos-date-picker-header-time">
+                      <div class="odos-date-picker-header-year clickable" @click="toggleYearPicker('left')">
+                        {{ dayjs(leftCalendarDate).format('YYYY年') }}
+                      </div>
+                      <div class="odos-date-picker-header-month clickable" @click="toggleMonthPicker('left')">
+                        {{ dayjs(leftCalendarDate).format('MM月') }}
+                      </div>
                     </div>
-                    <div class="odos-date-picker-header-next" @click="updateRangeMonth('right', 'next')">
-                      <Icon name="ArowRight" size="25px" />
+                    <div class="odos-date-picker-btn">
+                      <div class="odos-date-picker-header-pre" @click="updateRangeMonth('left', 'pre')">
+                        <Icon name="ArowLeft" size="25px" />
+                      </div>
+                      <div class="odos-date-picker-header-today" @click="goToToday">
+                        今天
+                      </div>
+                      <div class="odos-date-picker-header-next" @click="updateRangeMonth('left', 'next')">
+                        <Icon name="ArowRight" size="25px" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 年份选择面板 -->
+                  <div v-if="leftYearPicker" class="odos-date-picker-year-selector">
+                    <div class="odos-date-picker-year-grid">
+                      <div
+                        v-for="year in leftYearRange"
+                        :key="year"
+                        class="odos-date-picker-year-item"
+                        :class="{
+                          'odos-date-picker-selected': dayjs(leftCalendarDate).year() === year
+                        }"
+                        @click="selectYear('left', year)"
+                      >
+                        {{ year }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 月份选择面板 -->
+                  <div v-if="leftMonthPicker" class="odos-date-picker-month-selector">
+                    <div class="odos-date-picker-month-grid">
+                      <div
+                        v-for="month in 12"
+                        :key="month"
+                        class="odos-date-picker-month-item"
+                        :class="{
+                          'odos-date-picker-selected': dayjs(leftCalendarDate).month() === month - 1,
+                          'odos-date-picker-today': isCurrentMonth(month, dayjs(leftCalendarDate).year())
+                        }"
+                        @click="selectMonth('left', month)"
+                      >
+                        {{ month }}月
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 日期面板 -->
+                  <div v-if="!leftYearPicker && !leftMonthPicker" class="odos-date-picker-body">
+                    <div class="odos-date-picker-week-title">
+                      <div class="odos-date-picker-week-item" v-for="(week, i) in titleDayList" :key="i">
+                        {{ week }}
+                      </div>
+                    </div>
+                    <div class="odos-date-picker-day-content">
+                      <div
+                        v-for="date in getCalendarDates(leftCalendarDate)"
+                        :key="date.key"
+                        :class="getRangeDateClass(date)"
+                        class="odos-date-picker-day-item"
+                        @click="selectRangeDate(date)"
+                      >
+                        {{ date.day }}
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="odos-date-picker-body">
-                  <div class="odos-date-picker-week-title">
-                    <div class="odos-date-picker-week-item" v-for="(week, i) in titleDayList" :key="i">
-                      {{ week }}
+
+                <!-- 右侧日历 -->
+                <div class="odos-date-picker-calendar">
+                  <div class="odos-date-picker-header">
+                    <div class="odos-date-picker-header-time">
+                      <div class="odos-date-picker-header-year clickable" @click="toggleYearPicker('right')">
+                        {{ dayjs(rightCalendarDate).format('YYYY年') }}
+                      </div>
+                      <div class="odos-date-picker-header-month clickable" @click="toggleMonthPicker('right')">
+                        {{ dayjs(rightCalendarDate).format('MM月') }}
+                      </div>
+                    </div>
+                    <div class="odos-date-picker-btn">
+                      <div class="odos-date-picker-header-pre" @click="updateRangeMonth('right', 'pre')">
+                        <Icon name="ArowLeft" size="25px" />
+                      </div>
+                      <div class="odos-date-picker-header-today" @click="goToToday">
+                        今天
+                      </div>
+                      <div class="odos-date-picker-header-next" @click="updateRangeMonth('right', 'next')">
+                        <Icon name="ArowRight" size="25px" />
+                      </div>
                     </div>
                   </div>
-                  <div class="odos-date-picker-day-content">
-                    <div
-                      v-for="date in getCalendarDates(rightCalendarDate)"
-                      :key="date.key"
-                      :class="getRangeDateClass(date)"
-                      class="odos-date-picker-day-item"
-                      @click="selectRangeDate(date)"
-                    >
-                      {{ date.day }}
+
+                  <!-- 年份选择面板 -->
+                  <div v-if="rightYearPicker" class="odos-date-picker-year-selector">
+                    <div class="odos-date-picker-year-grid">
+                      <div
+                        v-for="year in rightYearRange"
+                        :key="year"
+                        class="odos-date-picker-year-item"
+                        :class="{
+                          'odos-date-picker-selected': dayjs(rightCalendarDate).year() === year
+                        }"
+                        @click="selectYear('right', year)"
+                      >
+                        {{ year }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 月份选择面板 -->
+                  <div v-if="rightMonthPicker" class="odos-date-picker-month-selector">
+                    <div class="odos-date-picker-month-grid">
+                      <div
+                        v-for="month in 12"
+                        :key="month"
+                        class="odos-date-picker-month-item"
+                        :class="{
+                          'odos-date-picker-selected': dayjs(rightCalendarDate).month() === month - 1,
+                          'odos-date-picker-today': isCurrentMonth(month, dayjs(rightCalendarDate).year())
+                        }"
+                        @click="selectMonth('right', month)"
+                      >
+                        {{ month }}月
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 日期面板 -->
+                  <div v-if="!rightYearPicker && !rightMonthPicker" class="odos-date-picker-body">
+                    <div class="odos-date-picker-week-title">
+                      <div class="odos-date-picker-week-item" v-for="(week, i) in titleDayList" :key="i">
+                        {{ week }}
+                      </div>
+                    </div>
+                    <div class="odos-date-picker-day-content">
+                      <div
+                        v-for="date in getCalendarDates(rightCalendarDate)"
+                        :key="date.key"
+                        :class="getRangeDateClass(date)"
+                        class="odos-date-picker-day-item"
+                        @click="selectRangeDate(date)"
+                      >
+                        {{ date.day }}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -145,9 +253,13 @@ const props = defineProps<{
   disabledDate?: (date: Date) => boolean
   placeholder?: string
   format?: string
+  shortcuts?: Array<{
+    text: string
+    value: () => string[]
+  }>
 }>()
 
-const { value, title, width, disabled, disabledDate, format } = toRefs(props)
+const { value, title, width, disabled, disabledDate, format, shortcuts } = toRefs(props)
 
 const emit = defineEmits<{
   (e: 'update:value', data: string[]): void
@@ -162,6 +274,12 @@ const leftCalendarDate = ref(dayjs(new Date()))
 const rightCalendarDate = ref(dayjs(new Date()).add(1, 'month'))
 const rangeSelectState = ref<'start' | 'end' | null>(null)
 
+// 年份和月份选择器状态
+const leftYearPicker = ref(false)
+const leftMonthPicker = ref(false)
+const rightYearPicker = ref(false)
+const rightMonthPicker = ref(false)
+
 // 计算宽度
 const WidthSize = computed(() => {
   if (typeof width?.value === 'number') {
@@ -170,6 +288,25 @@ const WidthSize = computed(() => {
     return width.value
   }
   return '350px'
+})
+
+// 年份范围（当前年份前后各10年）
+const leftYearRange = computed(() => {
+  const currentYear = dayjs(leftCalendarDate.value).year()
+  const years = []
+  for (let i = currentYear - 10; i <= currentYear + 10; i++) {
+    years.push(i)
+  }
+  return years
+})
+
+const rightYearRange = computed(() => {
+  const currentYear = dayjs(rightCalendarDate.value).year()
+  const years = []
+  for (let i = currentYear - 10; i <= currentYear + 10; i++) {
+    years.push(i)
+  }
+  return years
 })
 
 // 监听value变化
@@ -191,6 +328,93 @@ watch(
 
 // 日期显示title
 const titleDayList = ['日', '一', '二', '三', '四', '五', '六']
+
+// 年份和月份选择器切换
+const toggleYearPicker = (side: 'left' | 'right') => {
+  if (side === 'left') {
+    leftYearPicker.value = !leftYearPicker.value
+    if (leftYearPicker.value) {
+      leftMonthPicker.value = false
+    }
+  } else {
+    rightYearPicker.value = !rightYearPicker.value
+    if (rightYearPicker.value) {
+      rightMonthPicker.value = false
+    }
+  }
+}
+
+const toggleMonthPicker = (side: 'left' | 'right') => {
+  if (side === 'left') {
+    leftMonthPicker.value = !leftMonthPicker.value
+    if (leftMonthPicker.value) {
+      leftYearPicker.value = false
+    }
+  } else {
+    rightMonthPicker.value = !rightMonthPicker.value
+    if (rightMonthPicker.value) {
+      rightYearPicker.value = false
+    }
+  }
+}
+
+// 选择年份
+const selectYear = (side: 'left' | 'right', year: number) => {
+  if (side === 'left') {
+    leftCalendarDate.value = dayjs(leftCalendarDate.value).year(year)
+    leftYearPicker.value = false
+  } else {
+    rightCalendarDate.value = dayjs(rightCalendarDate.value).year(year)
+    rightYearPicker.value = false
+  }
+}
+
+// 选择月份
+const selectMonth = (side: 'left' | 'right', month: number) => {
+  if (side === 'left') {
+    leftCalendarDate.value = dayjs(leftCalendarDate.value).month(month - 1)
+    leftMonthPicker.value = false
+  } else {
+    rightCalendarDate.value = dayjs(rightCalendarDate.value).month(month - 1)
+    rightMonthPicker.value = false
+  }
+}
+
+// 是否是当前月份
+const isCurrentMonth = (month: number, year: number) => {
+  const now = dayjs()
+  return now.month() === month - 1 && now.year() === year
+}
+
+// 跳转到今天
+const goToToday = () => {
+  const today = dayjs()
+  leftCalendarDate.value = today
+  rightCalendarDate.value = today.add(1, 'month')
+  
+  // 关闭所有选择器
+  leftYearPicker.value = false
+  leftMonthPicker.value = false
+  rightYearPicker.value = false
+  rightMonthPicker.value = false
+}
+
+// 选择快捷选项
+const selectShortcut = (shortcut: { text: string; value: () => string[] }) => {
+  const selectedRange = shortcut.value()
+  if (selectedRange && selectedRange.length === 2) {
+    rangeValue.value = selectedRange
+    emit('update:value', [...selectedRange])
+    
+    // 更新日历显示
+    if (selectedRange[0]) {
+      leftCalendarDate.value = dayjs(selectedRange[0])
+      rightCalendarDate.value = dayjs(selectedRange[0]).add(1, 'month')
+    }
+    
+    isShowPicker.value = false
+  }
+}
 
 // 区间选择相关方法
 const updateRangeMonth = (calendar: 'left' | 'right', type: 'pre' | 'next') => {
@@ -498,20 +722,172 @@ const formattedRangeValue = computed(() => {
   background-color: #fff;
 
   &.range-panel {
-    width: 624px;
+    // 默认布局（无快捷选择）
+    &:not(.has-shortcuts) {
+      width: 624px;
+      
+      .odos-date-picker-range-calendars {
+        display: flex;
+
+        .odos-date-picker-calendar {
+          width: 312px;
+          padding: 0 16px;
+
+          &:first-child {
+            border-right: 1px solid #f4f4f5;
+          }
+        }
+      }
+    }
+    
+    // 当有快捷选择时，调整布局
+    &.has-shortcuts {
+      display: flex;
+      width: 732px; // 624 + 108
+      padding: 0;
+      
+      .odos-date-picker-range-calendars {
+        display: flex;
+        flex: 1;
+
+        .odos-date-picker-calendar {
+          width: 312px;
+          padding: 0 16px;
+
+          &:first-child {
+            border-right: 1px solid #f4f4f5;
+          }
+        }
+      }
+    }
   }
 
-  // 区间选择面板
-  .odos-date-picker-range-panel {
-    .odos-date-picker-range-calendars {
+  // 快捷选择区域
+  .odos-date-picker-shortcuts {
+    width: 108px;
+    padding: 12px 8px;
+    border-right: 1px solid #f4f4f5;
+    background: #fafbfc;
+    border-radius: 8px 0 0 8px;
+
+    .odos-date-picker-shortcuts-title {
+      font-size: 11px;
+      color: #86909c;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .odos-date-picker-shortcuts-list {
       display: flex;
+      flex-direction: column;
+      gap: 4px;
 
-      .odos-date-picker-calendar {
-        width: 312px;
-        padding: 0 16px;
+      .odos-date-picker-shortcut-item {
+        padding: 4px 6px;
+        border-radius: 3px;
+        background: #fff;
+        color: #1d2129;
+        font-size: 11px;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+        text-align: center;
+        border: 1px solid #e5e6eb;
 
-        &:first-child {
-          border-right: 1px solid #f4f4f5;
+        &:hover {
+          background: #e8f3ff;
+          color: #2e6ce4;
+          border-color: #2e6ce4;
+        }
+
+        &:active {
+          background: #cce7ff;
+        }
+      }
+    }
+  }
+
+  // 年份选择器
+  .odos-date-picker-year-selector {
+    .odos-date-picker-year-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 16px;
+      max-height: 200px;
+      overflow-y: auto;
+      
+      // 隐藏滚动条
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+      
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: transparent;
+      }
+      
+      // Firefox
+      scrollbar-width: none;
+      
+      // IE
+      -ms-overflow-style: none;
+
+      .odos-date-picker-year-item {
+        @include DateItem;
+        width: 60px;
+        height: 32px;
+        font-size: 12px;
+
+        &:hover {
+          background: #e5e6eb;
+        }
+
+        &.odos-date-picker-selected {
+          background-color: #2e6ce4;
+          color: #fff;
+
+          &:hover {
+            background-color: #2e6ce4;
+          }
+        }
+      }
+    }
+  }
+
+  // 月份选择器
+  .odos-date-picker-month-selector {
+    .odos-date-picker-month-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 16px;
+
+      .odos-date-picker-month-item {
+        @include DateItem;
+        width: 60px;
+        height: 40px;
+
+        &:hover {
+          background: #e5e6eb;
+        }
+
+        &.odos-date-picker-today {
+          border: 1px dashed #2e6ce4;
+          color: #2e6ce4;
+        }
+
+        &.odos-date-picker-selected {
+          background-color: #2e6ce4;
+          color: #fff;
+
+          &:hover {
+            background-color: #2e6ce4;
+          }
         }
       }
     }
@@ -529,15 +905,34 @@ const formattedRangeValue = computed(() => {
     padding-left: 14px;
     padding-right: 4px;
 
-    .odos-date-picker-header-year {
-      font-size: 18px;
-      font-weight: 500;
-      width: fit-content;
+    .odos-date-picker-header-time {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      .odos-date-picker-header-year,
+      .odos-date-picker-header-month {
+        font-size: 16px;
+        font-weight: 500;
+        width: fit-content;
+
+        &.clickable {
+          cursor: pointer;
+          border-radius: 4px;
+          padding: 4px 6px;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: #f2f3f5;
+          }
+        }
+      }
     }
 
     .odos-date-picker-btn {
       width: 130px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
 
       .odos-date-picker-header-next,
@@ -556,6 +951,29 @@ const formattedRangeValue = computed(() => {
 
         &:active {
           background: #86909c;
+        }
+      }
+      
+      .odos-date-picker-header-today {
+        padding: 0 8px;
+        border-radius: 4px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 10px;
+        color: #2e6ce4;
+        border: 1px solid #2e6ce4;
+        background: #fff;
+        white-space: nowrap;
+
+        &:hover {
+          background: #e8f3ff;
+        }
+
+        &:active {
+          background: #cce7ff;
         }
       }
     }

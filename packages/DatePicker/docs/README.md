@@ -9,6 +9,7 @@ import CustomFormat from './custom-format.vue'
 import DisabledState from './disabled-state.vue'
 import CompleteDemo from './complete-demo.vue'
 import ShortcutsDemo from './shortcuts-demo.vue'
+import RangeShortcutsDemo from './range-shortcuts-demo.vue'
 </script>
 
 # DatePicker 日期选择器
@@ -99,6 +100,72 @@ import ShortcutsDemo from './shortcuts-demo.vue'
   <ShortcutsDemo />
 </Preview>
 
+### 区间选择快捷选择
+
+区间选择模式同样支持快捷选择功能，可以快速选择常用的日期区间，如"近7天"、"本月"、"上季度"等。区间选择的快捷选择返回值为数组格式 `[startDate, endDate]`：
+
+<Preview comp-name="DatePicker" demo-name="range-shortcuts-demo">
+  <RangeShortcutsDemo />
+</Preview>
+
+**区间快捷选择配置说明：**
+
+- `text`: 快捷选择按钮显示的文本
+- `value`: 返回包含两个日期的数组的函数，格式为 `[startDate, endDate]`
+- 支持动态计算，如相对日期、本周/上周等
+- 常用配置场景：基础区间（今天、昨天、近N天）、业务场景（本周、本月、本季度）、相对日期（N周前、N月前）
+
+**快速上手示例：**
+
+```vue
+<template>
+  <DatePicker
+    v-model:value="selectedRange"
+    mode="range"
+    :shortcuts="rangeShortcuts"
+    placeholder="请选择日期区间"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import dayjs from 'dayjs'
+
+const selectedRange = ref([])
+
+const rangeShortcuts = [
+  {
+    text: '近7天',
+    value: () => [
+      dayjs().subtract(6, 'day').format('YYYY-MM-DD'),
+      dayjs().format('YYYY-MM-DD')
+    ]
+  },
+  {
+    text: '近30天',
+    value: () => [
+      dayjs().subtract(29, 'day').format('YYYY-MM-DD'),
+      dayjs().format('YYYY-MM-DD')
+    ]
+  },
+  {
+    text: '本月',
+    value: () => [
+      dayjs().startOf('month').format('YYYY-MM-DD'),
+      dayjs().endOf('month').format('YYYY-MM-DD')
+    ]
+  },
+  {
+    text: '上月',
+    value: () => [
+      dayjs().subtract(1, 'month').startOf('month').format('YYYY-MM-DD'),
+      dayjs().subtract(1, 'month').endOf('month').format('YYYY-MM-DD')
+    ]
+  }
+]
+</script>
+```
+
 **快捷选择配置说明：**
 
 - `text`: 快捷选择按钮显示的文本
@@ -158,7 +225,7 @@ const shortcuts = [
 | disabled | 是否禁用 | `boolean` | `false` | - |
 | disabledDate | 禁用日期函数 | `(date: Date) => boolean` | - | - |
 | placeholder | 占位符 | `string` | 根据mode自动设置 | - |
-| shortcuts | 快捷选择配置 | `Array<{text: string, value: () => string}>` | - | - |
+| shortcuts | 快捷选择配置 | `Array<{text: string, value: () => string \| string[]}>` | - | - |
 | format | 自定义日期格式 | `string` | 根据mode自动设置 | - |
 
 
@@ -175,7 +242,7 @@ const shortcuts = [
 | date | `YYYY-MM-DD` | 2024-12-25 | 需返回 `YYYY-MM-DD` 格式 |
 | month | `YYYY-MM` | 2024-12 | 需返回 `YYYY-MM` 格式 |
 | datetime | `YYYY-MM-DD HH:mm:ss` | 2024-12-25 14:30:00 | 需返回 `YYYY-MM-DD HH:mm:ss` 格式 |
-| range | `YYYY-MM-DD` | ["2024-12-01", "2024-12-31"] | 暂不支持快捷选择 |
+| range | `YYYY-MM-DD` | ["2024-12-01", "2024-12-31"] | 需返回 `[YYYY-MM-DD, YYYY-MM-DD]` 格式 |
 
 ## 样式定制
 
@@ -234,7 +301,8 @@ const shortcuts = [
 5. **响应式设计**：组件会根据不同模式自动调整宽度，也可通过 `width` 属性手动设置
 6. **事件处理**：组件使用 `v-model` 双向绑定，值变化时会自动触发 `update:value` 事件
 7. **快捷选择**：`shortcuts` 配置中的 `value` 函数会在每次点击时执行，确保返回的日期格式与当前模式匹配
-8. **性能考虑**：快捷选择按钮数量建议控制在 10 个以内，避免界面过于拥挤
+8. **区间快捷选择**：区间模式下的快捷选择需要返回数组格式，且数组包含两个日期字符串
+9. **性能考虑**：快捷选择按钮数量建议控制在 10 个以内，避免界面过于拥挤
 
 ## 常见问题
 
@@ -313,6 +381,29 @@ const shortcuts = [
 ]
 ```
 
+### Q: 区间选择如何配置快捷选择？
+
+A: 区间选择的快捷选择需要返回数组格式：
+
+```javascript
+const rangeShortcuts = [
+  {
+    text: '近7天',
+    value: () => [
+      dayjs().subtract(6, 'day').format('YYYY-MM-DD'),
+      dayjs().format('YYYY-MM-DD')
+    ]
+  },
+  {
+    text: '本月',
+    value: () => [
+      dayjs().startOf('month').format('YYYY-MM-DD'),
+      dayjs().endOf('month').format('YYYY-MM-DD')
+    ]
+  }
+]
+```
+
 ### Q: 快捷选择如何适配不同的模式？
 
 A: 确保 `value` 函数返回的格式与对应模式匹配：
@@ -332,6 +423,11 @@ const monthShortcuts = [
 const datetimeShortcuts = [
   { text: '现在', value: () => dayjs().format('YYYY-MM-DD HH:mm:ss') }
 ]
+
+// 区间模式
+const rangeShortcuts = [
+  { text: '近7天', value: () => [dayjs().subtract(6, 'day').format('YYYY-MM-DD'), dayjs().format('YYYY-MM-DD')] }
+]
 ```
 
 ### Q: 快捷选择的日期计算是否是动态的？
@@ -350,3 +446,22 @@ const shortcuts = [
   }
 ]
 ```
+
+### Q: 如何实现年月分离选择？
+
+A: 在日期选择模式下，年份和月份是可以分别点击的：
+
+- 点击年份可以打开年份选择面板，支持快速选择年份
+- 点击月份可以打开月份选择面板，支持快速选择月份
+- 两个面板互斥，只能同时打开一个
+- 选择完成后自动关闭面板并更新日历显示
+
+### Q: 如何隐藏年份选择面板的滚动条？
+
+A: 组件已经自动处理了滚动条的隐藏，支持跨浏览器兼容：
+
+- Webkit浏览器：通过 `::-webkit-scrollbar` 隐藏
+- Firefox浏览器：通过 `scrollbar-width: none` 隐藏
+- IE浏览器：通过 `-ms-overflow-style: none` 隐藏
+
+滚动功能仍然可用，只是视觉上隐藏了滚动条。

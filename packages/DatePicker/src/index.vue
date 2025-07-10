@@ -10,7 +10,7 @@
     :disabledDate="disabledDate"
     :placeholder="placeholder"
     :format="format"
-    :shortcuts="shortcuts"
+    :shortcuts="shortcuts as Array<{text: string, value: () => string}>"
     @update:value="handleSingleUpdate"
   />
   
@@ -23,6 +23,7 @@
     :disabledDate="disabledDate"
     :placeholder="placeholder"
     :format="format"
+    :shortcuts="shortcuts as Array<{text: string, value: () => string[]}>"
     @update:value="handleRangeUpdate"
   />
 </template>
@@ -43,7 +44,7 @@ const props = defineProps<{
   format?: string
   shortcuts?: Array<{
     text: string
-    value: () => string
+    value: () => string | string[]
   }>
 }>()
 
