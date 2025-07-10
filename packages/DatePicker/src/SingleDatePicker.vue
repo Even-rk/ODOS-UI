@@ -188,7 +188,7 @@
             <div v-if="mode === 'datetime'" class="odos-date-picker-time-panel">
               <div class="odos-date-picker-time-title">选择时间</div>
               <div class="odos-date-picker-time-content">
-                <div class="odos-date-picker-time-column">
+                <div v-if="timeComponents.hasHour" class="odos-date-picker-time-column">
                   <div class="odos-date-picker-time-label">时</div>
                   <div class="odos-date-picker-time-list" ref="hourListRef">
                     <div
@@ -202,7 +202,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="odos-date-picker-time-column">
+                <div v-if="timeComponents.hasMinute" class="odos-date-picker-time-column">
                   <div class="odos-date-picker-time-label">分</div>
                   <div class="odos-date-picker-time-list" ref="minuteListRef">
                     <div
@@ -216,7 +216,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="odos-date-picker-time-column">
+                <div v-if="timeComponents.hasSecond" class="odos-date-picker-time-column">
                   <div class="odos-date-picker-time-label">秒</div>
                   <div class="odos-date-picker-time-list" ref="secondListRef">
                     <div
@@ -329,6 +329,16 @@ const getFormat = () => {
       return 'YYYY-MM-DD'
   }
 }
+
+// 根据格式字符串检测需要显示的时间组件
+const timeComponents = computed(() => {
+  const formatStr = getFormat()
+  return {
+    hasHour: formatStr.includes('HH') || formatStr.includes('H') || formatStr.includes('hh') || formatStr.includes('h'),
+    hasMinute: formatStr.includes('mm') || formatStr.includes('m'),
+    hasSecond: formatStr.includes('ss') || formatStr.includes('s')
+  }
+})
 
 // 显示值
 const displayValue = computed(() => {
@@ -458,15 +468,22 @@ const goToToday = () => {
   showDate.value = today
   
   if (mode.value === 'datetime') {
-    // 如果是日期时间模式，设置当前时间
+    // 如果是日期时间模式，根据格式设置时间
+    const components = timeComponents.value
     selectedTime.value = {
-      hour: today.hour(),
-      minute: today.minute(),
-      second: today.second()
+      hour: components.hasHour ? today.hour() : 0,
+      minute: components.hasMinute ? today.minute() : 0,
+      second: components.hasSecond ? today.second() : 0
     }
-    const dateTime = today.format('YYYY-MM-DD HH:mm:ss')
-    datePicker.value = dateTime
-    emit('update:value', dateTime)
+    
+    let dateTime = today
+    if (!components.hasHour) dateTime = dateTime.hour(0)
+    if (!components.hasMinute) dateTime = dateTime.minute(0)
+    if (!components.hasSecond) dateTime = dateTime.second(0)
+    
+    const formatStr = getFormat()
+    datePicker.value = dateTime.format(formatStr)
+    emit('update:value', dateTime.format(formatStr))
   } else if (mode.value === 'date') {
     // 如果是日期模式，选择今天
     const todayStr = today.format('YYYY-MM-DD')
@@ -484,12 +501,31 @@ const selectShortcut = (shortcut: { text: string; value: () => string }) => {
   const selectedDate = dayjs(selectedValue)
   
   if (mode.value === 'datetime') {
-    // 如果是日期时间模式，保持当前时间
-    const hour = selectedDate.hour(selectedTime.value.hour)
-    const minute = hour.minute(selectedTime.value.minute)
-    const dateTime = minute.second(selectedTime.value.second)
-    datePicker.value = dateTime.format('YYYY-MM-DD HH:mm:ss')
-    emit('update:value', dateTime.format('YYYY-MM-DD HH:mm:ss'))
+    // 如果是日期时间模式，根据格式设置时间
+    const components = timeComponents.value
+    let dateTime = selectedDate
+    
+    if (components.hasHour) {
+      dateTime = dateTime.hour(selectedTime.value.hour)
+    } else {
+      dateTime = dateTime.hour(0)
+    }
+    
+    if (components.hasMinute) {
+      dateTime = dateTime.minute(selectedTime.value.minute)
+    } else {
+      dateTime = dateTime.minute(0)
+    }
+    
+    if (components.hasSecond) {
+      dateTime = dateTime.second(selectedTime.value.second)
+    } else {
+      dateTime = dateTime.second(0)
+    }
+    
+    const formatStr = getFormat()
+    datePicker.value = dateTime.format(formatStr)
+    emit('update:value', dateTime.format(formatStr))
   } else if (mode.value === 'date') {
     // 如果是日期模式，直接设置日期
     datePicker.value = selectedDate.format('YYYY-MM-DD')
@@ -526,13 +562,31 @@ const selectTime = (type: 'hour' | 'minute' | 'second', value: number) => {
 // 更新日期时间
 const updateDateTime = () => {
   if (datePicker.value) {
-    const date = dayjs(datePicker.value)
-      .hour(selectedTime.value.hour)
-      .minute(selectedTime.value.minute)
-      .second(selectedTime.value.second)
+    const components = timeComponents.value
+    let date = dayjs(datePicker.value)
+    
+    // 根据格式字符串设置时间组件
+    if (components.hasHour) {
+      date = date.hour(selectedTime.value.hour)
+    } else {
+      date = date.hour(0) // 如果不显示小时，设置为0
+    }
+    
+    if (components.hasMinute) {
+      date = date.minute(selectedTime.value.minute)
+    } else {
+      date = date.minute(0) // 如果不显示分钟，设置为0
+    }
+    
+    if (components.hasSecond) {
+      date = date.second(selectedTime.value.second)
+    } else {
+      date = date.second(0) // 如果不显示秒，设置为0
+    }
 
-    datePicker.value = date.format('YYYY-MM-DD HH:mm:ss')
-    emit('update:value', date.format('YYYY-MM-DD HH:mm:ss'))
+    const formatStr = getFormat()
+    datePicker.value = date.format(formatStr)
+    emit('update:value', date.format(formatStr))
   }
 }
 
@@ -548,12 +602,31 @@ const datePickerClick = (day: number, type?: 'next' | 'pre') => {
   showDate.value = dayjs(data)
 
   if (mode.value === 'datetime') {
-    const dateTime = dayjs(data)
-      .hour(selectedTime.value.hour)
-      .minute(selectedTime.value.minute)
-      .second(selectedTime.value.second)
-    datePicker.value = dateTime.format('YYYY-MM-DD HH:mm:ss')
-    emit('update:value', dateTime.format('YYYY-MM-DD HH:mm:ss'))
+    const components = timeComponents.value
+    let dateTime = dayjs(data)
+    
+    // 根据格式字符串设置时间组件
+    if (components.hasHour) {
+      dateTime = dateTime.hour(selectedTime.value.hour)
+    } else {
+      dateTime = dateTime.hour(0)
+    }
+    
+    if (components.hasMinute) {
+      dateTime = dateTime.minute(selectedTime.value.minute)
+    } else {
+      dateTime = dateTime.minute(0)
+    }
+    
+    if (components.hasSecond) {
+      dateTime = dateTime.second(selectedTime.value.second)
+    } else {
+      dateTime = dateTime.second(0)
+    }
+    
+    const formatStr = getFormat()
+    datePicker.value = dateTime.format(formatStr)
+    emit('update:value', dateTime.format(formatStr))
   } else {
     datePicker.value = data
     emit('update:value', data)
@@ -621,12 +694,14 @@ watch(
       datePicker.value = newVal as string
       showDate.value = dayjs(newVal as string)
       
-      // 如果是datetime模式，解析时间部分
+      // 如果是datetime模式，根据格式解析时间部分
       if (mode.value === 'datetime') {
+        const components = timeComponents.value
+        const date = dayjs(newVal as string)
         selectedTime.value = {
-          hour: dayjs(newVal as string).hour(),
-          minute: dayjs(newVal as string).minute(),
-          second: dayjs(newVal as string).second()
+          hour: components.hasHour ? date.hour() : 0,
+          minute: components.hasMinute ? date.minute() : 0,
+          second: components.hasSecond ? date.second() : 0
         }
       }
     }
