@@ -8,6 +8,7 @@ import DisabledDates from './disabled-dates.vue'
 import CustomFormat from './custom-format.vue'
 import DisabledState from './disabled-state.vue'
 import CompleteDemo from './complete-demo.vue'
+import ShortcutsDemo from './shortcuts-demo.vue'
 </script>
 
 # DatePicker 日期选择器
@@ -20,6 +21,7 @@ import CompleteDemo from './complete-demo.vue'
 - ⏰ **时间选择**：精确到时、分、秒的时间选择
 - 🚫 **禁用日期**：灵活的日期禁用规则
 - 🎨 **自定义格式**：支持自定义日期显示格式
+- ⚡ **快捷选择**：可配置的快捷选择按钮，提升用户体验
 - 📱 **响应式设计**：适配不同屏幕尺寸
 - 🎯 **TypeScript支持**：完整的类型定义
 
@@ -89,6 +91,60 @@ import CompleteDemo from './complete-demo.vue'
   <DisabledState />
 </Preview>
 
+### 快捷选择
+
+通过 `shortcuts` 属性可以配置快捷选择按钮，方便用户快速选择常用的日期。快捷选择功能支持日期、月份、日期时间三种模式，可以根据不同的业务场景配置相应的快捷选项：
+
+<Preview comp-name="DatePicker" demo-name="shortcuts-demo">
+  <ShortcutsDemo />
+</Preview>
+
+**快捷选择配置说明：**
+
+- `text`: 快捷选择按钮显示的文本
+- `value`: 返回对应日期字符串的函数，支持动态计算
+- 支持的格式：日期模式(`YYYY-MM-DD`)、月份模式(`YYYY-MM`)、日期时间模式(`YYYY-MM-DD HH:mm:ss`)
+- 建议控制快捷选择项数量在 10 个以内，保持良好的用户体验
+
+**快速上手示例：**
+
+```vue
+<template>
+  <DatePicker
+    v-model:value="selectedDate"
+    :shortcuts="shortcuts"
+    mode="date"
+    placeholder="请选择日期"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import dayjs from 'dayjs'
+
+const selectedDate = ref('')
+
+const shortcuts = [
+  {
+    text: '今天',
+    value: () => dayjs().format('YYYY-MM-DD')
+  },
+  {
+    text: '一周后',
+    value: () => dayjs().add(1, 'week').format('YYYY-MM-DD')
+  },
+  {
+    text: '一个月后',
+    value: () => dayjs().add(1, 'month').format('YYYY-MM-DD')
+  },
+  {
+    text: '三个月后',
+    value: () => dayjs().add(3, 'month').format('YYYY-MM-DD')
+  }
+]
+</script>
+```
+
 ## API 参考
 
 ### Props
@@ -102,6 +158,8 @@ import CompleteDemo from './complete-demo.vue'
 | disabled | 是否禁用 | `boolean` | `false` | - |
 | disabledDate | 禁用日期函数 | `(date: Date) => boolean` | - | - |
 | placeholder | 占位符 | `string` | 根据mode自动设置 | - |
+| shortcuts | 快捷选择配置 | `Array<{text: string, value: () => string}>` | - | - |
+| format | 自定义日期格式 | `string` | 根据mode自动设置 | - |
 
 
 ### Events
@@ -112,12 +170,12 @@ import CompleteDemo from './complete-demo.vue'
 
 ### 默认格式
 
-| 模式 | 默认格式 | 示例 |
-|------|----------|------|
-| date | `YYYY-MM-DD` | 2024-12-25 |
-| month | `YYYY-MM` | 2024-12 |
-| datetime | `YYYY-MM-DD HH:mm:ss` | 2024-12-25 14:30:00 |
-| range | `YYYY-MM-DD` | ["2024-12-01", "2024-12-31"] |
+| 模式 | 默认格式 | 示例 | 快捷选择格式 |
+|------|----------|------|-------------|
+| date | `YYYY-MM-DD` | 2024-12-25 | 需返回 `YYYY-MM-DD` 格式 |
+| month | `YYYY-MM` | 2024-12 | 需返回 `YYYY-MM` 格式 |
+| datetime | `YYYY-MM-DD HH:mm:ss` | 2024-12-25 14:30:00 | 需返回 `YYYY-MM-DD HH:mm:ss` 格式 |
+| range | `YYYY-MM-DD` | ["2024-12-01", "2024-12-31"] | 暂不支持快捷选择 |
 
 ## 样式定制
 
@@ -146,12 +204,22 @@ import CompleteDemo from './complete-demo.vue'
   
   /* 阴影 */
   --odos-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+  
+  /* 快捷选择样式 */
+  --odos-shortcut-bg: #f2f3f5;
+  --odos-shortcut-bg-hover: #e8f3ff;
+  --odos-shortcut-bg-active: #cce7ff;
+  --odos-shortcut-text: #1d2129;
+  --odos-shortcut-text-hover: #2e6ce4;
+  --odos-shortcut-border-radius: 4px;
 }
 ```
 
 ## 使用示例
 
 ### 完整示例
+
+包含所有功能的完整示例，展示了各种模式和高级功能的使用方法：
 
 <Preview comp-name="DatePicker" demo-name="complete-demo">
   <CompleteDemo />
@@ -165,6 +233,8 @@ import CompleteDemo from './complete-demo.vue'
 4. **格式化规则**：自定义格式请参考 [dayjs 格式化文档](https://dayjs.gitee.io/docs/zh-CN/display/format)
 5. **响应式设计**：组件会根据不同模式自动调整宽度，也可通过 `width` 属性手动设置
 6. **事件处理**：组件使用 `v-model` 双向绑定，值变化时会自动触发 `update:value` 事件
+7. **快捷选择**：`shortcuts` 配置中的 `value` 函数会在每次点击时执行，确保返回的日期格式与当前模式匹配
+8. **性能考虑**：快捷选择按钮数量建议控制在 10 个以内，避免界面过于拥挤
 
 ## 常见问题
 
@@ -220,4 +290,63 @@ watch(rangeValue, (newValue) => {
     }
   }
 })
+```
+
+### Q: 如何配置快捷选择？
+
+A: 使用 `shortcuts` 属性配置快捷选择按钮：
+
+```javascript
+const shortcuts = [
+  {
+    text: '今天',
+    value: () => dayjs().format('YYYY-MM-DD')
+  },
+  {
+    text: '一周后',
+    value: () => dayjs().add(1, 'week').format('YYYY-MM-DD')
+  },
+  {
+    text: '一个月后',
+    value: () => dayjs().add(1, 'month').format('YYYY-MM-DD')
+  }
+]
+```
+
+### Q: 快捷选择如何适配不同的模式？
+
+A: 确保 `value` 函数返回的格式与对应模式匹配：
+
+```javascript
+// 日期模式
+const dateShortcuts = [
+  { text: '今天', value: () => dayjs().format('YYYY-MM-DD') }
+]
+
+// 月份模式
+const monthShortcuts = [
+  { text: '本月', value: () => dayjs().format('YYYY-MM') }
+]
+
+// 日期时间模式
+const datetimeShortcuts = [
+  { text: '现在', value: () => dayjs().format('YYYY-MM-DD HH:mm:ss') }
+]
+```
+
+### Q: 快捷选择的日期计算是否是动态的？
+
+A: 是的，`value` 函数会在每次点击时重新执行，因此可以实现动态日期计算：
+
+```javascript
+const shortcuts = [
+  {
+    text: '今天',
+    value: () => dayjs().format('YYYY-MM-DD') // 每次点击都会计算当前日期
+  },
+  {
+    text: '本月最后一天',
+    value: () => dayjs().endOf('month').format('YYYY-MM-DD') // 动态计算月末
+  }
+]
 ```

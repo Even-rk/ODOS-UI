@@ -30,6 +30,20 @@
       <div v-if="isShowPicker" ref="floatingRef" class="odos-date-picker-container" :style="floatingStyles">
         <!-- 日期选择面板 -->
         <div class="odos-date-picker-content">
+          <!-- 快捷选择区域 -->
+          <div v-if="shortcuts && shortcuts.length > 0" class="odos-date-picker-shortcuts">
+            <div class="odos-date-picker-shortcuts-title">快捷选择</div>
+            <div class="odos-date-picker-shortcuts-list">
+              <div
+                v-for="(shortcut, index) in shortcuts"
+                :key="index"
+                class="odos-date-picker-shortcut-item"
+                @click="selectShortcut(shortcut)"
+              >
+                {{ shortcut.text }}
+              </div>
+            </div>
+          </div>
           <!-- 月份选择模式 -->
           <div v-if="mode === 'month'" class="odos-date-picker-month-panel">
             <div class="odos-date-picker-header">
@@ -215,9 +229,13 @@ const props = defineProps<{
   disabledDate?: (date: Date) => boolean
   placeholder?: string
   format?: string
+  shortcuts?: Array<{
+    text: string
+    value: () => string
+  }>
 }>()
 
-const { value, title, width, disabled, disabledDate, format } = toRefs(props)
+const { value, title, width, disabled, disabledDate, format, shortcuts } = toRefs(props)
 const mode = computed(() => props.mode || 'date')
 
 const emit = defineEmits<{
@@ -420,6 +438,34 @@ const goToToday = () => {
     // 如果是月份模式，跳转到当前年份
     showDate.value = today
   }
+}
+
+// 选择快捷选项
+const selectShortcut = (shortcut: { text: string; value: () => string }) => {
+  const selectedValue = shortcut.value()
+  const selectedDate = dayjs(selectedValue)
+  
+  if (mode.value === 'datetime') {
+    // 如果是日期时间模式，保持当前时间
+    const hour = selectedDate.hour(selectedTime.value.hour)
+    const minute = hour.minute(selectedTime.value.minute)
+    const dateTime = minute.second(selectedTime.value.second)
+    datePicker.value = dateTime.format('YYYY-MM-DD HH:mm:ss')
+    emit('update:value', dateTime.format('YYYY-MM-DD HH:mm:ss'))
+  } else if (mode.value === 'date') {
+    // 如果是日期模式，直接设置日期
+    datePicker.value = selectedDate.format('YYYY-MM-DD')
+    emit('update:value', selectedDate.format('YYYY-MM-DD'))
+    isShowPicker.value = false
+  } else if (mode.value === 'month') {
+    // 如果是月份模式，设置月份
+    datePicker.value = selectedDate.format('YYYY-MM-01')
+    emit('update:value', selectedDate.format('YYYY-MM'))
+    isShowPicker.value = false
+  }
+  
+  // 更新显示的日期
+  showDate.value = selectedDate
 }
 
 // 选择月份
@@ -689,6 +735,45 @@ const selectMonthInDateMode = (month: number, event?: Event) => {
   background-color: #fff;
   width: 312px;
   padding: 0 16px;
+
+  // 快捷选择区域
+  .odos-date-picker-shortcuts {
+    padding: 12px 0;
+    border-bottom: 1px solid #f4f4f5;
+
+    .odos-date-picker-shortcuts-title {
+      font-size: 12px;
+      color: #86909c;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .odos-date-picker-shortcuts-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      .odos-date-picker-shortcut-item {
+        padding: 4px 8px;
+        border-radius: 4px;
+        background: #f2f3f5;
+        color: #1d2129;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+
+        &:hover {
+          background: #e8f3ff;
+          color: #2e6ce4;
+        }
+
+        &:active {
+          background: #cce7ff;
+        }
+      }
+    }
+  }
 
   // 月份选择面板
   .odos-date-picker-month-panel {

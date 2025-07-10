@@ -10,6 +10,7 @@
     :disabledDate="disabledDate"
     :placeholder="placeholder"
     :format="format"
+    :shortcuts="shortcuts"
     @update:value="handleSingleUpdate"
   />
   
@@ -40,9 +41,13 @@ const props = defineProps<{
   disabledDate?: (date: Date) => boolean
   placeholder?: string
   format?: string
+  shortcuts?: Array<{
+    text: string
+    value: () => string
+  }>
 }>()
 
-const { value, title, width, disabled, disabledDate, placeholder, format } = toRefs(props)
+const { value, title, width, disabled, disabledDate, placeholder, format, shortcuts } = toRefs(props)
 const mode = computed(() => props.mode || 'date')
 
 const emit = defineEmits<{
