@@ -885,7 +885,7 @@ const selectYearInDateMode = (year: number, event?: Event) => {
 
   // 快捷选择区域
   .odos-date-picker-shortcuts {
-    width: 108px;
+    width: fit-content;
     padding: 12px 8px;
     border-right: 1px solid #f4f4f5;
     background: #fafbfc;
@@ -897,11 +897,11 @@ const selectYearInDateMode = (year: number, event?: Event) => {
       gap: 4px;
 
       .odos-date-picker-shortcut-item {
-        padding: 4px 6px;
+        padding: 2px 10px;
         border-radius: 3px;
         background: #fff;
         color: #1d2129;
-        font-size: 11px;
+        font-size: 12px;
         cursor: pointer;
         transition: all 0.2s;
         white-space: nowrap;
