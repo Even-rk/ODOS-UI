@@ -900,7 +900,7 @@ const selectYearInDateMode = (year: number, event?: Event) => {
         padding: 0px 10px;
         border-radius: 3px;
         background: #fff;
-        color: #1d2129;
+        color: #4e5969;
         font-size: 12px;
         cursor: pointer;
         transition: all 0.2s;
