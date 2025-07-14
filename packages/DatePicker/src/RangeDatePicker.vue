@@ -848,7 +848,7 @@ const isRightMonthDisabled = (month: number) => {
       gap: 4px;
 
       .odos-date-picker-shortcut-item {
-        padding: 2px 10px;
+        padding: 0px 10px;
         border-radius: 3px;
         background: #fff;
         color: #1d2129;
@@ -857,6 +857,7 @@ const isRightMonthDisabled = (month: number) => {
         transition: all 0.2s;
         white-space: nowrap;
         text-align: center;
+        line-height: 24px;
         border: 1px solid #e5e6eb;
 
         &:hover {
