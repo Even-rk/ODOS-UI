@@ -46,7 +46,6 @@
         <div class="odos-date-picker-content range-panel" :class="{ 'has-shortcuts': shortcuts && shortcuts.length > 0 }">
           <!-- 快捷选择区域 -->
           <div v-if="shortcuts && shortcuts.length > 0" class="odos-date-picker-shortcuts">
-            <div class="odos-date-picker-shortcuts-title">快捷选择</div>
             <div class="odos-date-picker-shortcuts-list">
               <div
                 v-for="(shortcut, index) in shortcuts"
@@ -842,13 +841,6 @@ const isRightMonthDisabled = (month: number) => {
     border-right: 1px solid #f4f4f5;
     background: #fafbfc;
     border-radius: 8px 0 0 8px;
-
-    .odos-date-picker-shortcuts-title {
-      font-size: 11px;
-      color: #86909c;
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
 
     .odos-date-picker-shortcuts-list {
       display: flex;

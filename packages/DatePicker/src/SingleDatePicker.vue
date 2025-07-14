@@ -32,7 +32,6 @@
         <div class="odos-date-picker-content" :class="{ 'has-shortcuts': shortcuts && shortcuts.length > 0 }">
           <!-- 快捷选择区域 -->
           <div v-if="shortcuts && shortcuts.length > 0" class="odos-date-picker-shortcuts">
-            <div class="odos-date-picker-shortcuts-title">快捷选择</div>
             <div class="odos-date-picker-shortcuts-list">
               <div
                 v-for="(shortcut, index) in shortcuts"
@@ -886,30 +885,23 @@ const selectYearInDateMode = (year: number, event?: Event) => {
 
   // 快捷选择区域
   .odos-date-picker-shortcuts {
-    width: 108px; // 减少宽度
-    padding: 12px 8px; // 减少内边距
+    width: 108px;
+    padding: 12px 8px;
     border-right: 1px solid #f4f4f5;
     background: #fafbfc;
     border-radius: 8px 0 0 8px;
 
-    .odos-date-picker-shortcuts-title {
-      font-size: 11px; // 减少字体大小
-      color: #86909c;
-      margin-bottom: 8px; // 减少间距
-      font-weight: 500;
-    }
-
     .odos-date-picker-shortcuts-list {
       display: flex;
       flex-direction: column;
-      gap: 4px; // 减少间距
+      gap: 4px;
 
       .odos-date-picker-shortcut-item {
-        padding: 4px 6px; // 减少内边距
-        border-radius: 3px; // 减少圆角
+        padding: 4px 6px;
+        border-radius: 3px;
         background: #fff;
         color: #1d2129;
-        font-size: 11px; // 减少字体大小
+        font-size: 11px;
         cursor: pointer;
         transition: all 0.2s;
         white-space: nowrap;
