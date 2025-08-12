@@ -300,7 +300,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .odos-ImageClassifyViewer {
   // 样式定义
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 8px;
   padding: 20px 16px 16px 16px;
   box-sizing: border-box;
@@ -314,7 +314,7 @@ onMounted(() => {
     align-items: center;
     justify-content: space-between;
     height: 32px;
-    background-color: #fff;
+    background-color: transparent;
     box-sizing: border-box;
     .odos-ImageClassifyViewer-header-left {
       box-sizing: border-box;
@@ -428,7 +428,7 @@ onMounted(() => {
         position: sticky;
         top: 0;
         z-index: 5;
-        background-color: #fff;
+        background-color: transparent;
       }
       .odos-ImageClassifyViewer-content-item-list {
         min-width: 463px;
