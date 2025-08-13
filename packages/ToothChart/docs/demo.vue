@@ -1,5 +1,5 @@
 <template>
-  <OdosPopover position="bottomRight" trigger="click">
+  <OdosPopover position="bottomLeft" trigger="click">
     <template #content>
       <OdosToothSelect v-model:value="toothList" />
     </template>
