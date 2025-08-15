@@ -317,7 +317,7 @@ defineExpose({
   position: fixed;
   z-index: 1050;
   background: #fff;
-  border-radius: 6px;
+  border-radius: 16px;
   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 
               0 6px 16px 0 rgba(0, 0, 0, 0.08), 
               0 9px 28px 8px rgba(0, 0, 0, 0.05);
