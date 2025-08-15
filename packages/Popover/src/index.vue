@@ -40,6 +40,7 @@ import { ref, computed, nextTick, watch, onMounted, onUnmounted } from 'vue'
 import { useFloating, autoUpdate, offset, flip, shift, type Placement } from '@floating-ui/vue'
 
 const props = withDefaults(defineProps<{
+  modelValue?: boolean
   position?:
     | 'top'
     | 'left'
@@ -60,6 +61,7 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
   (e: 'openChange', data: boolean): void
+  (e: 'update:modelValue', value: boolean): void
 }>()
 
 // 引用
@@ -67,7 +69,14 @@ const referenceRef = ref<HTMLElement>()
 const floatingRef = ref<HTMLElement>()
 
 // 状态
-const isVisible = ref(false)
+const _isVisible = ref(false)
+const isVisible = computed({
+  get: () => (props.modelValue !== undefined ? props.modelValue : _isVisible.value),
+  set: (val) => {
+    _isVisible.value = val
+    emit('update:modelValue', val)
+  }
+})
 const hoverTimer = ref<NodeJS.Timeout>()
 const cleanupAutoUpdate = ref<(() => void) | null>(null)
 
