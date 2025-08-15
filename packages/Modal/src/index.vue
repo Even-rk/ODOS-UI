@@ -21,7 +21,7 @@
       <!-- 底部按钮 -->
       <div class="drawer-footer">
         <slot name="footer">
-          <Button type="line" @click="cancel">取消</Button>
+          <Button @click="cancel">取消</Button>
           <Button type="primary" @click="ok">确认</Button>
         </slot>
       </div>
