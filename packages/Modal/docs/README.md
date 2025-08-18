@@ -19,6 +19,7 @@ import ModalDefault from './default.vue'
 | v-model:open | 是否显示对话框    | boolean | false |
 | title        | 对话框标题      | string  | -     |
 | maskClosable | 是否允许点击遮罩关闭 | boolean | false |
+| closeIcon    | 是否显示关闭图标 | boolean | false |
 
 ### Modal 事件
 

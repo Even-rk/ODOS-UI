@@ -11,6 +11,26 @@
         <slot name="header">
           <div class="header-title">{{ title }}</div>
         </slot>
+        <template v-if="closeIcon">
+          <div class="header-close-icon" @click="cancel">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M18 6L6 18"
+                stroke="#ffffff"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6 6L18 18"
+                stroke="#ffffff"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </template>
       </div>
 
       <!-- 内容区域 -->
@@ -36,6 +56,7 @@ const props = defineProps<{
   open: boolean
   title: string
   maskClosable?: boolean
+  closeIcon?: boolean
 }>()
 
 // 事件函数
@@ -113,13 +134,24 @@ const ok = () => {
       border-bottom: 1px solid #e5e6eb;
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
 
       .header-title {
         font-family: 'PingFang SC';
         font-size: 16px;
         font-weight: 500;
         color: #1d2129;
+      }
+
+      .header-close-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        background-color: #4e5969;
+        border-radius: 50%;
       }
     }
 
