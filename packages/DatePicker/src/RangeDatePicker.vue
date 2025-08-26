@@ -75,10 +75,13 @@
                       </div>
                     </div>
                     <div class="odos-date-picker-btn">
-                      <div class="odos-date-picker-header-pre" @click="updateRangeMonth('left', 'pre', $event)">
+                      <div class="odos-date-picker-header-pre" @click="handleNavigation('left', 'pre', $event)">
                         <Icon name="ArowLeft" size="25px" />
                       </div>
-                      <div class="odos-date-picker-header-next" @click="updateRangeMonth('left', 'next', $event)">
+                      <div class="odos-date-picker-header-today" @click="handleTodayClick('left', $event)">
+                        {{ leftYearPicker ? '今年' : (leftMonthPicker ? '本月' : '今天') }}
+                      </div>
+                      <div class="odos-date-picker-header-next" @click="handleNavigation('left', 'next', $event)">
                         <Icon name="ArowRight" size="25px" />
                       </div>
                     </div>
@@ -455,15 +458,15 @@ const selectShortcut = (shortcut: { text: string; value: () => string[] }, event
 }
 
 // 区间选择相关方法
-const updateRangeMonth = (calendar: 'left' | 'right', type: 'pre' | 'next', event?: Event) => {
+const updateRangeMonth = (side: 'left' | 'right', type: 'pre' | 'next', event?: Event) => {
   if (event) {
     event.stopPropagation()
   }
-  if (calendar === 'left') {
+  if (side === 'left') {
     if (type === 'next') {
       const newLeftDate = dayjs(leftCalendarDate.value).add(1, 'month')
       leftCalendarDate.value = newLeftDate
-      
+
       // 确保右侧日历不早于左侧日历
       if (rightCalendarDate.value.isBefore(newLeftDate, 'month') || rightCalendarDate.value.isSame(newLeftDate, 'month')) {
         rightCalendarDate.value = newLeftDate.add(1, 'month')
@@ -476,13 +479,90 @@ const updateRangeMonth = (calendar: 'left' | 'right', type: 'pre' | 'next', even
       rightCalendarDate.value = dayjs(rightCalendarDate.value).add(1, 'month')
     } else {
       const newRightDate = dayjs(rightCalendarDate.value).subtract(1, 'month')
-      
+
       // 确保右侧日历不早于左侧日历
       if (newRightDate.isBefore(leftCalendarDate.value, 'month') || newRightDate.isSame(leftCalendarDate.value, 'month')) {
         rightCalendarDate.value = leftCalendarDate.value.add(1, 'month')
       } else {
         rightCalendarDate.value = newRightDate
       }
+    }
+  }
+}
+
+const updateRangeYear = (side: 'left' | 'right', type: 'pre' | 'next', event?: Event) => {
+  if (event) event.stopPropagation()
+  const amount = type === 'pre' ? -1 : 1
+  if (side === 'left') {
+    const newLeftDate = dayjs(leftCalendarDate.value).add(amount, 'year')
+    leftCalendarDate.value = newLeftDate
+
+    if (rightCalendarDate.value.isBefore(newLeftDate, 'month')) {
+      rightCalendarDate.value = newLeftDate.add(1, 'month')
+    }
+  } else {
+    // side === 'right'
+    const newRightDate = dayjs(rightCalendarDate.value).add(amount, 'year')
+
+    if (newRightDate.isAfter(leftCalendarDate.value, 'month')) {
+      rightCalendarDate.value = newRightDate
+    }
+  }
+}
+
+const handleNavigation = (side: 'left' | 'right', type: 'pre' | 'next', event?: Event) => {
+  if (event) event.stopPropagation()
+  const picker = side === 'left' ? leftYearPicker : rightYearPicker
+  if (picker.value) {
+    updateRangeYear(side, type, event)
+  } else {
+    updateRangeMonth(side, type, event)
+  }
+}
+
+const goToToday = (side: 'left' | 'right') => {
+  const today = dayjs()
+  if (side === 'left') {
+    leftCalendarDate.value = today
+    rightCalendarDate.value = today.add(1, 'month')
+  }
+}
+
+const handleTodayClick = (side: 'left' | 'right', event?: Event) => {
+  if (event) event.stopPropagation()
+  const today = dayjs()
+  if (side === 'left') {
+    if (leftYearPicker.value) {
+      const newLeftDate = dayjs(leftCalendarDate.value).year(today.year())
+      leftCalendarDate.value = newLeftDate
+      if (rightCalendarDate.value.isBefore(newLeftDate, 'month')) {
+        rightCalendarDate.value = newLeftDate.add(1, 'month')
+      }
+    } else if (leftMonthPicker.value) {
+      const newLeftDate = dayjs(leftCalendarDate.value).year(today.year()).month(today.month())
+      leftCalendarDate.value = newLeftDate
+      if (rightCalendarDate.value.isBefore(newLeftDate, 'month') || rightCalendarDate.value.isSame(newLeftDate, 'month')) {
+        rightCalendarDate.value = newLeftDate.add(1, 'month')
+      }
+    } else {
+      goToToday(side)
+    }
+  } else {
+    // side === 'right'
+    if (rightYearPicker.value) {
+      const newRightDate = dayjs(rightCalendarDate.value).year(today.year())
+      rightCalendarDate.value = newRightDate
+      if (leftCalendarDate.value.isAfter(newRightDate, 'month')) {
+        leftCalendarDate.value = newRightDate.subtract(1, 'month')
+      }
+    } else if (rightMonthPicker.value) {
+      const newRightDate = dayjs(rightCalendarDate.value).year(today.year()).month(today.month())
+      rightCalendarDate.value = newRightDate
+      if (leftCalendarDate.value.isAfter(newRightDate, 'month') || leftCalendarDate.value.isSame(newRightDate, 'month')) {
+        leftCalendarDate.value = newRightDate.subtract(1, 'month')
+      }
+    } else {
+      goToToday(side)
     }
   }
 }

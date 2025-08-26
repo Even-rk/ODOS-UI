@@ -90,13 +90,13 @@
                 </div>
               </div>
               <div class="odos-date-picker-btn">
-                <div class="odos-date-picker-header-pre" @click="updateMouth('pre')">
+                <div class="odos-date-picker-header-pre" @click="handleNavigation('pre')">
                   <Icon name="ArowLeft" size="25px" />
                 </div>
-                <div class="odos-date-picker-header-today" @click="goToToday">
-                  今天
+                <div class="odos-date-picker-header-today" @click="handleTodayClick">
+                  {{ isShowYearPicker ? '今年' : (isShowMonthPicker ? '本月' : '今天') }}
                 </div>
-                <div class="odos-date-picker-header-next" @click="updateMouth('next')">
+                <div class="odos-date-picker-header-next" @click="handleNavigation('next')">
                   <Icon name="ArowRight" size="25px" />
                 </div>
               </div>
@@ -465,6 +465,14 @@ const updateYear = (type: 'pre' | 'next') => {
   }
 }
 
+const handleNavigation = (type: 'pre' | 'next') => {
+  if (isShowYearPicker.value) {
+    updateYear(type)
+  } else {
+    updateMouth(type)
+  }
+}
+
 // 跳转到今天
 const goToToday = () => {
   const today = dayjs()
@@ -495,6 +503,17 @@ const goToToday = () => {
   } else if (mode.value === 'month') {
     // 如果是月份模式，跳转到当前年份
     showDate.value = today
+  }
+}
+
+const handleTodayClick = () => {
+  const today = dayjs()
+  if (isShowYearPicker.value) {
+    showDate.value = dayjs(showDate.value).year(today.year())
+  } else if (isShowMonthPicker.value) {
+    showDate.value = dayjs(showDate.value).month(today.month())
+  } else {
+    goToToday()
   }
 }
 

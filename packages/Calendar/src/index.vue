@@ -10,11 +10,13 @@
         </div>
       </div>
       <div class="odos-date-picker-btn">
-        <div class="odos-date-picker-header-pre" @click="updateMouth('pre')">
+        <div class="odos-date-picker-header-pre" @click="handleNavigation('pre')">
           <Icon name="ArowLeft" size="25px" />
         </div>
-        <div class="odos-date-picker-header-today" @click="goToToday">今天</div>
-        <div class="odos-date-picker-header-next" @click="updateMouth('next')">
+        <div class="odos-date-picker-header-today" @click="handleTodayClick">
+          {{ isShowYearPicker ? '今年' : isShowMonthPicker ? '本月' : '今天' }}
+        </div>
+        <div class="odos-date-picker-header-next" @click="handleNavigation('next')">
           <Icon name="ArowRight" size="25px" />
         </div>
       </div>
@@ -185,11 +187,40 @@ const updateMouth = (type: 'pre' | 'next') => {
   emit('update:showDate', dayjs(newDate).format('YYYY-MM-DD'))
 }
 
+const updateYear = (type: 'pre' | 'next') => {
+  const newDate = dayjs(localShowDate.value)[type === 'pre' ? 'subtract' : 'add'](1, 'year').toDate()
+  localShowDate.value = newDate
+  emit('update:showDate', dayjs(newDate).format('YYYY-MM-DD'))
+}
+
+const handleNavigation = (type: 'pre' | 'next') => {
+  if (isShowYearPicker.value) {
+    updateYear(type)
+  } else {
+    updateMouth(type)
+  }
+}
+
 const goToToday = () => {
   const today = new Date()
   localShowDate.value = today
   emit('update:showDate', dayjs(today).format('YYYY-MM-DD'))
   emit('update:value', dayjs(today).format('YYYY-MM-DD'))
+}
+
+const handleTodayClick = () => {
+  const today = dayjs()
+  if (isShowYearPicker.value) {
+    const newDate = dayjs(localShowDate.value).year(today.year()).toDate()
+    localShowDate.value = newDate
+    emit('update:showDate', dayjs(newDate).format('YYYY-MM-DD'))
+  } else if (isShowMonthPicker.value) {
+    const newDate = dayjs(localShowDate.value).month(today.month()).toDate()
+    localShowDate.value = newDate
+    emit('update:showDate', dayjs(newDate).format('YYYY-MM-DD'))
+  } else {
+    goToToday()
+  }
 }
 
 const datePickerClick = (day: number, type?: 'pre' | 'next') => {
