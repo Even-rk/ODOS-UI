@@ -149,11 +149,11 @@
                 <div
                   class="odos-date-picker-day-pre-item"
                   v-for="(day, i) in Array.from(
-                    { length: preDay.day() + 1 },
+                    { length: startDayOfWeek },
                     (_, index) => index + 1
                   ).reverse()"
                   :key="i"
-                  @click="datePickerClick(day === 1 ? preDay.date() - day : preDay.date(), 'pre')"
+                  @click="datePickerClick(preDay.date() + 1 - day, 'pre')"
                 >
                   {{ preDay.date() + 1 - day }}
                 </div>
@@ -174,7 +174,7 @@
                 <!-- 下个月 -->
                 <div
                   class="odos-date-picker-day-next-item"
-                  v-for="(day, i) in 42 - (preDay.day() + 1 + days)"
+                  v-for="(day, i) in 42 - (startDayOfWeek + days)"
                   :key="i"
                   @click="datePickerClick(day, 'next')"
                 >
@@ -423,8 +423,12 @@ const preDay = computed(() => {
   return dayjs(showDate.value).startOf('month').subtract(1, 'month').endOf('month')
 })
 
+const startDayOfWeek = computed(() => {
+  return (dayjs(showDate.value).startOf('month').day() + 6) % 7
+})
+
 // 日期显示title
-const titleDayList = ['日', '一', '二', '三', '四', '五', '六']
+const titleDayList = ['一', '二', '三', '四', '五', '六', '日']
 
 // 当月天数
 const days = computed(() => {
@@ -1274,4 +1278,4 @@ const selectYearInDateMode = (year: number, event?: Event) => {
     }
   }
 }
-</style> 
+</style>

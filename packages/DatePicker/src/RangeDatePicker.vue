@@ -327,7 +327,7 @@ watch(
 )
 
 // 日期显示title
-const titleDayList = ['日', '一', '二', '三', '四', '五', '六']
+const titleDayList = ['一', '二', '三', '四', '五', '六', '日']
 
 // 年份和月份选择器切换
 const toggleYearPicker = (side: 'left' | 'right', event?: Event) => {
@@ -1140,4 +1140,4 @@ const isRightMonthDisabled = (month: number) => {
     }
   }
 }
-</style> 
+</style>
