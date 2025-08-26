@@ -10,6 +10,7 @@ import type { Plugin } from 'vue'
 import { AudioPlugin } from './Audio'
 import { ButtonPlugin } from './Button'
 import { CheckBoxPlugin } from './CheckBox'
+import { CalendarPlugin } from './Calendar'
 import { DatePickerPlugin } from './DatePicker'
 import { EmptyPlugin } from './Empty'
 import { IconPlugin } from './Icon'
@@ -39,6 +40,7 @@ const Packages: Plugin[] = [
   AudioPlugin,
   ButtonPlugin,
   CheckBoxPlugin,
+  CalendarPlugin,
   DatePickerPlugin,
   EmptyPlugin,
   IconPlugin,
@@ -77,6 +79,7 @@ export default OdosPlugin
 export * from './Audio'
 export * from './Button'
 export * from './CheckBox'
+export * from './Calendar'
 export * from './DatePicker'
 export * from './ToothSelect'
 export * from './ToothChart'

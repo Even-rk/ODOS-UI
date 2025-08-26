@@ -15,6 +15,11 @@
     "compClassName": "button"
   },
   {
+    "compName": "Calendar",
+    "compZhName": "Calendar日历",
+    "compClassName": "calendar"
+  },
+  {
     "compName": "CheckBox",
     "compZhName": "CheckBox多选框",
     "compClassName": "checkBox"
