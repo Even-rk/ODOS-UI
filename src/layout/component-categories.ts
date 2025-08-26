@@ -1,6 +1,17 @@
 // 组件分类配置
 export const componentGroups = {
-  basic: ['Button', 'Input', 'InputNumber', 'Textarea', 'Select', 'CheckBox', 'Radio', 'DatePicker', 'Buttons'],
+  basic: [
+    'Button',
+    'Input',
+    'InputNumber',
+    'Textarea',
+    'Select',
+    'CheckBox',
+    'Radio',
+    'DatePicker',
+    'Buttons',
+    'Calendar'
+  ],
   display: ['Table', 'Pagination', 'Tag', 'TextDisplay', 'Empty', 'Icon', 'ImageClassifyViewer'],
   feedback: ['Modal', 'Message', 'Loading', 'Drawer', 'Popover', 'Popconfirm', 'Tooltip'],
   navigation: ['Tabs'],
@@ -16,4 +27,4 @@ export const categoryNames = {
   navigation: '导航组件',
   special: '特殊组件',
   other: '其他组件'
-} 
+}

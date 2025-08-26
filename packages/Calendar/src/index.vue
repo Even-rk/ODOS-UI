@@ -230,107 +230,251 @@ const selectMonth = (month: number, event: MouseEvent) => {
 </script>
 
 <style lang="scss" scoped>
+@mixin DateItem {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 5px;
+  box-sizing: border-box;
+}
+
 .clickable {
   cursor: pointer;
 }
 .odos-calendar {
-  width: 300px;
-  border: 1px solid #dcdfe6;
+  width: 285px;
   border-radius: 4px;
   padding: 10px;
 }
-.odos-date-picker-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+
+.odos-date-picker-year-selector {
+  .odos-date-picker-year-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 16px;
+
+    .odos-date-picker-year-item {
+      @include DateItem;
+      width: 60px;
+      height: 40px;
+      border-radius: 4px;
+
+      &:hover {
+        background: #e5e6eb;
+      }
+
+      &.odos-date-picker-selected {
+        background-color: #2e6ce4;
+        color: #fff;
+
+        &:hover {
+          background-color: #2e6ce4;
+        }
+      }
+    }
+  }
 }
-.odos-date-picker-header-time {
-  display: flex;
-  gap: 10px;
-  font-size: 16px;
-  font-weight: 500;
-}
-.odos-date-picker-btn {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.odos-date-picker-header-pre,
-.odos-date-picker-header-next {
-  cursor: pointer;
-}
-.odos-date-picker-header-today {
-  cursor: pointer;
-  font-size: 14px;
-  color: #409eff;
-}
-.odos-date-picker-year-selector,
+
+// 日期模式下的月份选择器
 .odos-date-picker-month-selector {
-  .odos-date-picker-year-grid,
   .odos-date-picker-month-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-    .odos-date-picker-year-item,
+    gap: 8px;
+    padding: 16px;
+
     .odos-date-picker-month-item {
-      text-align: center;
-      padding: 10px 0;
-      cursor: pointer;
+      @include DateItem;
+      width: 60px;
+      height: 40px;
       border-radius: 4px;
+
       &:hover {
-        background-color: #f5f7fa;
+        background: #e5e6eb;
       }
-      &.odos-date-picker-selected {
-        background-color: #409eff;
-        color: #fff;
-      }
+
       &.odos-date-picker-today {
-        color: #409eff;
-        font-weight: bold;
+        border: 1px dashed #2e6ce4;
+        color: #2e6ce4;
+      }
+
+      &.odos-date-picker-selected {
+        background-color: #2e6ce4;
+        color: #fff;
+
+        &:hover {
+          background-color: #2e6ce4;
+        }
       }
     }
   }
 }
-.odos-date-picker-body {
-  .odos-date-picker-week-title {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    margin-bottom: 5px;
-    color: #606266;
-  }
-  .odos-date-picker-day-content {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    .odos-date-picker-day-item,
-    .odos-date-picker-day-pre-item,
-    .odos-date-picker-day-next-item {
-      text-align: center;
-      padding: 10px 0;
-      cursor: pointer;
-      border-radius: 4px;
-      &:hover {
-        background-color: #f5f7fa;
-      }
-      &.odos-date-picker-selected {
-        background-color: #409eff;
-        color: #fff;
-      }
-      &.odos-date-picker-today {
-        color: #409eff;
-        font-weight: bold;
-      }
-      &.odos-date-picker-disabled {
-        cursor: not-allowed;
-        color: #c0c4cc;
-        background-color: #f5f7fa;
+
+.odos-date-picker-header {
+  width: 280px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f4f4f5;
+  padding-left: 14px;
+  padding-right: 4px;
+
+  .odos-date-picker-header-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .odos-date-picker-header-year,
+    .odos-date-picker-header-month {
+      font-size: 16px;
+      font-weight: 500;
+      width: fit-content;
+
+      &.clickable {
+        cursor: pointer;
+        border-radius: 4px;
+        padding: 4px 6px;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #f2f3f5;
+        }
       }
     }
+  }
+
+  .odos-date-picker-header-year {
+    font-size: 18px;
+    font-weight: 500;
+    width: fit-content;
+
+    &.clickable {
+      cursor: pointer;
+      border-radius: 4px;
+      padding: 4px 8px;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #f2f3f5;
+      }
+    }
+  }
+
+  .odos-date-picker-btn {
+    width: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .odos-date-picker-header-next,
+    .odos-date-picker-header-pre {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        background: #e5e6eb;
+      }
+
+      &:active {
+        background: #86909c;
+      }
+    }
+
+    .odos-date-picker-header-today {
+      padding: 0 8px;
+      border-radius: 4px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 10px;
+      color: #2e6ce4;
+      border: 1px solid #2e6ce4;
+      background: #fff;
+      white-space: nowrap;
+
+      &:hover {
+        background: #e8f3ff;
+      }
+
+      &:active {
+        background: #cce7ff;
+      }
+    }
+  }
+}
+
+.odos-date-picker-body {
+  width: 285px;
+  height: 285px;
+  box-sizing: border-box;
+
+  .odos-date-picker-week-title {
+    display: flex;
+
+    .odos-date-picker-week-item {
+      @include DateItem;
+      cursor: default;
+      color: #86909c;
+      font-weight: 500;
+    }
+  }
+
+  .odos-date-picker-day-content {
+    display: flex;
+    flex-wrap: wrap;
+
     .odos-date-picker-day-pre-item,
     .odos-date-picker-day-next-item {
-      color: #c0c4cc;
+      @include DateItem;
+      color: #bfbfbf;
+    }
+
+    .odos-date-picker-day-item {
+      @include DateItem;
+
+      &:hover:not(.odos-date-picker-disabled) {
+        background: #e5e6eb;
+      }
+
+      &:active:not(.odos-date-picker-disabled) {
+        background: #86909c;
+      }
+
+      &.odos-date-picker-today {
+        border: 1px dashed #2e6ce4;
+        color: #2e6ce4;
+      }
+
+      &.odos-date-picker-selected {
+        background-color: #2e6ce4;
+        color: #fff;
+
+        &:hover,
+        &:active {
+          background-color: #2e6ce4;
+        }
+      }
+
+      &.odos-date-picker-disabled {
+        color: #c9cdd4;
+        cursor: not-allowed;
+        background: #f7f8fa;
+      }
     }
   }
 }
