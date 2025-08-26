@@ -737,10 +737,9 @@ const toggleYearPicker = () => {
   }
 }
 
+// 在日期模式下是否是选中的月份
 const isSelectedMonthInDateMode = (month: number) => {
-  if (!datePicker.value) return false
-  const selected = dayjs(datePicker.value)
-  return selected.month() === month - 1 && selected.year() === dayjs(showDate.value).year()
+  return dayjs(showDate.value).month() === month - 1
 }
 
 const selectMonthInDateMode = (month: number, event?: Event) => {
