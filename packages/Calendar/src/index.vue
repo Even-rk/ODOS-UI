@@ -282,7 +282,6 @@ const selectMonth = (month: number, event: MouseEvent) => {
   cursor: pointer;
 }
 .odos-calendar {
-  width: 285px;
   border-radius: 4px;
   padding: 10px;
 }
