@@ -103,27 +103,31 @@ import Icon from '../../Icon/src/index.vue'
 
 const props = defineProps<{
   value?: string | Date
-  showDate?: string | Date
   disabledDate?: (date: Date) => boolean
 }>()
 
 const emit = defineEmits<{
   (e: 'update:value', value: string): void
-  (e: 'update:showDate', value: string): void
 }>()
 
 const titleDayList = ['一', '二', '三', '四', '五', '六', '日']
-const localShowDate = ref(props.showDate ? dayjs(props.showDate).toDate() : new Date())
+const localShowDate = ref(dayjs())
 const isShowYearPicker = ref(false)
 const isShowMonthPicker = ref(false)
 
 watch(
-  () => props.showDate,
-  (newVal) => {
-    localShowDate.value = newVal ? dayjs(newVal).toDate() : new Date()
-  }
+  () => props.value,
+  (newValue) => {
+    if (newValue) {
+      localShowDate.value = dayjs(newValue)
+    } else {
+      localShowDate.value = dayjs()
+    }
+  },
+  { immediate: true },
 )
 
+const showDate = computed(() => localShowDate.value)
 const days = computed(() => {
   const date = dayjs(localShowDate.value)
   return date.daysInMonth()
@@ -182,15 +186,13 @@ const isCurrentMonth = (month: number) => {
 }
 
 const updateMouth = (type: 'pre' | 'next') => {
-  const newDate = dayjs(localShowDate.value)[type === 'pre' ? 'subtract' : 'add'](1, 'month').toDate()
+  const newDate = dayjs(localShowDate.value)[type === 'pre' ? 'subtract' : 'add'](1, 'month')
   localShowDate.value = newDate
-  emit('update:showDate', dayjs(newDate).format('YYYY-MM-DD'))
 }
 
 const updateYear = (type: 'pre' | 'next') => {
-  const newDate = dayjs(localShowDate.value)[type === 'pre' ? 'subtract' : 'add'](1, 'year').toDate()
+  const newDate = dayjs(localShowDate.value)[type === 'pre' ? 'subtract' : 'add'](1, 'year')
   localShowDate.value = newDate
-  emit('update:showDate', dayjs(newDate).format('YYYY-MM-DD'))
 }
 
 const handleNavigation = (type: 'pre' | 'next') => {
@@ -202,22 +204,19 @@ const handleNavigation = (type: 'pre' | 'next') => {
 }
 
 const goToToday = () => {
-  const today = new Date()
+  const today = dayjs()
   localShowDate.value = today
-  emit('update:showDate', dayjs(today).format('YYYY-MM-DD'))
-  emit('update:value', dayjs(today).format('YYYY-MM-DD'))
+  emit('update:value', today.format('YYYY-MM-DD'))
 }
 
 const handleTodayClick = () => {
   const today = dayjs()
   if (isShowYearPicker.value) {
-    const newDate = dayjs(localShowDate.value).year(today.year()).toDate()
+    const newDate = dayjs(localShowDate.value).year(today.year())
     localShowDate.value = newDate
-    emit('update:showDate', dayjs(newDate).format('YYYY-MM-DD'))
   } else if (isShowMonthPicker.value) {
-    const newDate = dayjs(localShowDate.value).month(today.month()).toDate()
+    const newDate = dayjs(localShowDate.value).month(today.month())
     localShowDate.value = newDate
-    emit('update:showDate', dayjs(newDate).format('YYYY-MM-DD'))
   } else {
     goToToday()
   }
@@ -230,8 +229,7 @@ const datePickerClick = (day: number, type?: 'pre' | 'next') => {
   } else if (type === 'next') {
     newDate = dayjs(localShowDate.value).add(1, 'month').date(day)
   }
-  localShowDate.value = newDate.toDate()
-  emit('update:showDate', newDate.format('YYYY-MM-DD'))
+  localShowDate.value = newDate
   emit('update:value', newDate.format('YYYY-MM-DD'))
 }
 
@@ -247,19 +245,15 @@ const toggleMonthPicker = () => {
 
 const selectYear = (year: number, event: MouseEvent) => {
   event.stopPropagation()
-  const newDate = dayjs(localShowDate.value).year(year).toDate()
+  const newDate = dayjs(localShowDate.value).year(year)
   localShowDate.value = newDate
-  emit('update:showDate', dayjs(newDate).format('YYYY-MM-DD'))
   isShowYearPicker.value = false
 }
 
 const selectMonth = (month: number, event: MouseEvent) => {
   event.stopPropagation()
-  const newDate = dayjs(localShowDate.value)
-    .month(month - 1)
-    .toDate()
+  const newDate = dayjs(localShowDate.value).month(month - 1)
   localShowDate.value = newDate
-  emit('update:showDate', dayjs(newDate).format('YYYY-MM-DD'))
   isShowMonthPicker.value = false
 }
 </script>

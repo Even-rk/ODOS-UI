@@ -5,5 +5,5 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-const date = ref('2024-07-15')
+const date = ref('2024-09-15')
 </script>
