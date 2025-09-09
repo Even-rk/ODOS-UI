@@ -23,7 +23,7 @@
       :max-tag-count="maxTagCount"
       :show-search="showSearch"
       :default-active-first-option="false"
-      :get-popup-container="getPopupContainer"
+      :get-popup-container="getPopupContainer || GetPopupContainer"
     >
       <template #suffixIcon>
         <Icon name="ArowDown" size="20px" />
@@ -73,6 +73,7 @@ const {
   filterProp?: string
   mutex?: boolean
   mutexOptionValue?: string[] | number[]
+  getPopupContainer?: (triggerNode: Element) => HTMLElement
 }>()
 
 const slots = useSlots() as SetupContext['slots']
@@ -104,7 +105,7 @@ const mode = computed(() => {
   return multiple ? 'multiple' : undefined
 })
 
-const getPopupContainer = (triggerNode: Element) => {
+const GetPopupContainer = (triggerNode: Element) => {
   return triggerNode.parentElement || document.body
 }
 </script>
