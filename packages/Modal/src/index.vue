@@ -125,7 +125,6 @@ const ok = () => {
     flex-direction: column;
     z-index: 1002;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
 
     .drawer-header {
       flex-shrink: 0;
