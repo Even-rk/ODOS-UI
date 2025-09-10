@@ -164,7 +164,7 @@ const ok = () => {
 
       /* 自定义滚动条样式 */
       &::-webkit-scrollbar {
-        width: 6px;
+        width: 2px;
       }
 
       &::-webkit-scrollbar-track {
