@@ -34,7 +34,11 @@
       </div>
 
       <!-- 内容区域 -->
-      <div class="drawer-body" :style="bodyStyle as unknown as Record<string, string | number>">
+      <div
+        class="drawer-body"
+        :class="bodyClass"
+        :style="bodyStyle as unknown as Record<string, string | number>"
+      >
         <slot />
       </div>
 
@@ -58,6 +62,7 @@ const props = defineProps<{
   title: string
   maskClosable?: boolean
   closeIcon?: boolean
+  bodyClass?: string
   bodyStyle?: HTMLAttributes & ReservedProps & Record<string, unknown>
 }>()
 
