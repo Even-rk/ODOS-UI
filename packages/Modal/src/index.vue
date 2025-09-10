@@ -158,9 +158,8 @@ const ok = () => {
 
     .drawer-body {
       min-width: 300px;
-      max-height: 400px;
       padding: 16px;
-      overflow-y: auto;
+      overflow-y: scroll;
 
       /* 自定义滚动条样式 */
       &::-webkit-scrollbar {
