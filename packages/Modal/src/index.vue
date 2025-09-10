@@ -34,7 +34,7 @@
       </div>
 
       <!-- 内容区域 -->
-      <div class="drawer-body">
+      <div class="drawer-body" :style="bodyStyle as unknown as Record<string, string | number>">
         <slot />
       </div>
 
@@ -51,12 +51,14 @@
 
 <script setup lang="ts">
 import Button from 'packages/Button/src/index.vue'
+import type { HTMLAttributes, ReservedProps } from 'vue'
 
 const props = defineProps<{
   open: boolean
   title: string
   maskClosable?: boolean
   closeIcon?: boolean
+  bodyStyle?: HTMLAttributes & ReservedProps & Record<string, unknown>
 }>()
 
 // 事件函数
@@ -156,7 +158,28 @@ const ok = () => {
 
     .drawer-body {
       min-width: 300px;
+      max-height: 400px;
       padding: 16px;
+      overflow-y: auto;
+
+      /* 自定义滚动条样式 */
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 3px;
+
+        &:hover {
+          background: #a8a8a8;
+        }
+      }
     }
 
     .drawer-footer {
