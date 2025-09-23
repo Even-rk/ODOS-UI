@@ -43,195 +43,193 @@
               </div>
             </div>
           </div>
-          
+
           <!-- 主要日期选择区域 -->
           <div class="odos-date-picker-main">
-          <!-- 月份选择模式 -->
-          <div v-if="mode === 'month'" class="odos-date-picker-month-panel">
-            <div class="odos-date-picker-header">
-              <div class="odos-date-picker-header-year">{{ dayjs(showDate).format('YYYY年') }}</div>
-              <div class="odos-date-picker-btn">
-                <div class="odos-date-picker-header-pre" @click="updateYear('pre')">
-                  <Icon name="ArowLeft" size="25px" />
-                </div>
-                <div class="odos-date-picker-header-today" @click="goToToday">
-                  今年
-                </div>
-                <div class="odos-date-picker-header-next" @click="updateYear('next')">
-                  <Icon name="ArowRight" size="25px" />
-                </div>
-              </div>
-            </div>
-            <div class="odos-date-picker-month-grid">
-              <div
-                v-for="month in 12"
-                :key="month"
-                class="odos-date-picker-month-item"
-                :class="{
-                  'odos-date-picker-selected': isSelectedMonth(month),
-                  'odos-date-picker-today': isCurrentMonth(month)
-                }"
-                @click="selectMonth(month, $event)"
-              >
-                {{ month }}月
-              </div>
-            </div>
-          </div>
-
-          <!-- 日期选择模式 -->
-          <div v-else-if="mode === 'date' || mode === 'datetime'" class="odos-date-picker-date-panel">
-            <div class="odos-date-picker-header">
-              <div class="odos-date-picker-header-time">
-                <div class="odos-date-picker-header-year clickable" @click="toggleYearPicker">
-                  {{ dayjs(showDate).format('YYYY年') }}
-                </div>
-                <div class="odos-date-picker-header-month clickable" @click="toggleMonthPicker">
-                  {{ dayjs(showDate).format('MM月') }}
+            <!-- 月份选择模式 -->
+            <div v-if="mode === 'month'" class="odos-date-picker-month-panel">
+              <div class="odos-date-picker-header">
+                <div class="odos-date-picker-header-year">{{ dayjs(showDate).format('YYYY年') }}</div>
+                <div class="odos-date-picker-btn">
+                  <div class="odos-date-picker-header-pre" @click="updateYear('pre')">
+                    <Icon name="ArowLeft" size="25px" />
+                  </div>
+                  <div class="odos-date-picker-header-today" @click="goToToday">今年</div>
+                  <div class="odos-date-picker-header-next" @click="updateYear('next')">
+                    <Icon name="ArowRight" size="25px" />
+                  </div>
                 </div>
               </div>
-              <div class="odos-date-picker-btn">
-                <div class="odos-date-picker-header-pre" @click="handleNavigation('pre')">
-                  <Icon name="ArowLeft" size="25px" />
-                </div>
-                <div class="odos-date-picker-header-today" @click="handleTodayClick">
-                  {{ isShowYearPicker ? '今年' : (isShowMonthPicker ? '本月' : '今天') }}
-                </div>
-                <div class="odos-date-picker-header-next" @click="handleNavigation('next')">
-                  <Icon name="ArowRight" size="25px" />
-                </div>
-              </div>
-            </div>
-
-            <!-- 年份选择面板 -->
-            <div v-if="isShowYearPicker" class="odos-date-picker-year-selector">
-              <div class="odos-date-picker-year-grid">
-                <div
-                  v-for="year in yearRange"
-                  :key="year"
-                  class="odos-date-picker-year-item"
-                  :class="{
-                    'odos-date-picker-selected': isSelectedYearInDateMode(year)
-                  }"
-                  @click="selectYearInDateMode(year, $event)"
-                >
-                  {{ year }}
-                </div>
-              </div>
-            </div>
-
-            <!-- 月份选择面板 -->
-            <div v-if="isShowMonthPicker" class="odos-date-picker-month-selector">
               <div class="odos-date-picker-month-grid">
                 <div
                   v-for="month in 12"
                   :key="month"
                   class="odos-date-picker-month-item"
                   :class="{
-                    'odos-date-picker-selected': isSelectedMonthInDateMode(month),
+                    'odos-date-picker-selected': isSelectedMonth(month),
                     'odos-date-picker-today': isCurrentMonth(month)
                   }"
-                  @click="selectMonthInDateMode(month, $event)"
+                  @click="selectMonth(month, $event)"
                 >
                   {{ month }}月
                 </div>
               </div>
             </div>
 
-            <!-- 日期选择面板 -->
-            <div v-else-if="!isShowYearPicker && !isShowMonthPicker" class="odos-date-picker-body">
-              <div class="odos-date-picker-week-title">
-                <div class="odos-date-picker-week-item" v-for="(week, i) in titleDayList" :key="i">
-                  {{ week }}
+            <!-- 日期选择模式 -->
+            <div v-else-if="mode === 'date' || mode === 'datetime'" class="odos-date-picker-date-panel">
+              <div class="odos-date-picker-header">
+                <div class="odos-date-picker-header-time">
+                  <div class="odos-date-picker-header-year clickable" @click="toggleYearPicker">
+                    {{ dayjs(showDate).format('YYYY年') }}
+                  </div>
+                  <div class="odos-date-picker-header-month clickable" @click="toggleMonthPicker">
+                    {{ dayjs(showDate).format('MM月') }}
+                  </div>
+                </div>
+                <div class="odos-date-picker-btn">
+                  <div class="odos-date-picker-header-pre" @click="handleNavigation('pre')">
+                    <Icon name="ArowLeft" size="25px" />
+                  </div>
+                  <div class="odos-date-picker-header-today" @click="handleTodayClick">
+                    {{ isShowYearPicker ? '今年' : isShowMonthPicker ? '本月' : '今天' }}
+                  </div>
+                  <div class="odos-date-picker-header-next" @click="handleNavigation('next')">
+                    <Icon name="ArowRight" size="25px" />
+                  </div>
                 </div>
               </div>
-              <div class="odos-date-picker-day-content">
-                <!-- 上个月 -->
-                <div
-                  class="odos-date-picker-day-pre-item"
-                  v-for="(day, i) in Array.from(
-                    { length: startDayOfWeek },
-                    (_, index) => index + 1
-                  ).reverse()"
-                  :key="i"
-                  @click="datePickerClick(preDay.date() + 1 - day, 'pre')"
-                >
-                  {{ preDay.date() + 1 - day }}
-                </div>
-                <!-- 本月 -->
-                <div
-                  :class="{
-                    'odos-date-picker-today': isToday(day),
-                    'odos-date-picker-selected': isSelect(day),
-                    'odos-date-picker-disabled': isDisabledDate(day)
-                  }"
-                  class="odos-date-picker-day-item"
-                  v-for="(day, i) in days"
-                  :key="i"
-                  @click="!isDisabledDate(day) && datePickerClick(day)"
-                >
-                  {{ day }}
-                </div>
-                <!-- 下个月 -->
-                <div
-                  class="odos-date-picker-day-next-item"
-                  v-for="(day, i) in 42 - (startDayOfWeek + days)"
-                  :key="i"
-                  @click="datePickerClick(day, 'next')"
-                >
-                  {{ day }}
-                </div>
-              </div>
-            </div>
 
-            <!-- 时间选择器 -->
-            <div v-if="mode === 'datetime'" class="odos-date-picker-time-panel">
-              <div class="odos-date-picker-time-title">选择时间</div>
-              <div class="odos-date-picker-time-content">
-                <div v-if="timeComponents.hasHour" class="odos-date-picker-time-column">
-                  <div class="odos-date-picker-time-label">时</div>
-                  <div class="odos-date-picker-time-list" ref="hourListRef">
-                    <div
-                      v-for="hour in 24"
-                      :key="hour - 1"
-                      class="odos-date-picker-time-item"
-                      :class="{ selected: selectedTime.hour === hour - 1 }"
-                      @click="selectTime('hour', hour - 1)"
-                    >
-                      {{ String(hour - 1).padStart(2, '0') }}
-                    </div>
+              <!-- 年份选择面板 -->
+              <div v-if="isShowYearPicker" class="odos-date-picker-year-selector">
+                <div class="odos-date-picker-year-grid">
+                  <div
+                    v-for="year in yearRange"
+                    :key="year"
+                    class="odos-date-picker-year-item"
+                    :class="{
+                      'odos-date-picker-selected': isSelectedYearInDateMode(year)
+                    }"
+                    @click="selectYearInDateMode(year, $event)"
+                  >
+                    {{ year }}
                   </div>
                 </div>
-                <div v-if="timeComponents.hasMinute" class="odos-date-picker-time-column">
-                  <div class="odos-date-picker-time-label">分</div>
-                  <div class="odos-date-picker-time-list" ref="minuteListRef">
-                    <div
-                      v-for="minute in 60"
-                      :key="minute - 1"
-                      class="odos-date-picker-time-item"
-                      :class="{ selected: selectedTime.minute === minute - 1 }"
-                      @click="selectTime('minute', minute - 1)"
-                    >
-                      {{ String(minute - 1).padStart(2, '0') }}
-                    </div>
+              </div>
+
+              <!-- 月份选择面板 -->
+              <div v-if="isShowMonthPicker" class="odos-date-picker-month-selector">
+                <div class="odos-date-picker-month-grid">
+                  <div
+                    v-for="month in 12"
+                    :key="month"
+                    class="odos-date-picker-month-item"
+                    :class="{
+                      'odos-date-picker-selected': isSelectedMonthInDateMode(month),
+                      'odos-date-picker-today': isCurrentMonth(month)
+                    }"
+                    @click="selectMonthInDateMode(month, $event)"
+                  >
+                    {{ month }}月
                   </div>
                 </div>
-                <div v-if="timeComponents.hasSecond" class="odos-date-picker-time-column">
-                  <div class="odos-date-picker-time-label">秒</div>
-                  <div class="odos-date-picker-time-list" ref="secondListRef">
-                    <div
-                      v-for="second in 60"
-                      :key="second - 1"
-                      class="odos-date-picker-time-item"
-                      :class="{ selected: selectedTime.second === second - 1 }"
-                      @click="selectTime('second', second - 1)"
-                    >
-                      {{ String(second - 1).padStart(2, '0') }}
+              </div>
+
+              <!-- 日期选择面板 -->
+              <div v-else-if="!isShowYearPicker && !isShowMonthPicker" class="odos-date-picker-body">
+                <div class="odos-date-picker-week-title">
+                  <div class="odos-date-picker-week-item" v-for="(week, i) in titleDayList" :key="i">
+                    {{ week }}
+                  </div>
+                </div>
+                <div class="odos-date-picker-day-content">
+                  <!-- 上个月 -->
+                  <div
+                    class="odos-date-picker-day-pre-item"
+                    v-for="(day, i) in Array.from(
+                      { length: startDayOfWeek },
+                      (_, index) => index + 1
+                    ).reverse()"
+                    :key="i"
+                    @click="datePickerClick(preDay.date() + 1 - day, 'pre')"
+                  >
+                    {{ preDay.date() + 1 - day }}
+                  </div>
+                  <!-- 本月 -->
+                  <div
+                    :class="{
+                      'odos-date-picker-today': isToday(day),
+                      'odos-date-picker-selected': isSelect(day),
+                      'odos-date-picker-disabled': isDisabledDate(day)
+                    }"
+                    class="odos-date-picker-day-item"
+                    v-for="(day, i) in days"
+                    :key="i"
+                    @click="!isDisabledDate(day) && datePickerClick(day)"
+                  >
+                    {{ day }}
+                  </div>
+                  <!-- 下个月 -->
+                  <div
+                    class="odos-date-picker-day-next-item"
+                    v-for="(day, i) in 42 - (startDayOfWeek + days)"
+                    :key="i"
+                    @click="datePickerClick(day, 'next')"
+                  >
+                    {{ day }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- 时间选择器 -->
+              <div v-if="mode === 'datetime'" class="odos-date-picker-time-panel">
+                <div class="odos-date-picker-time-title">选择时间</div>
+                <div class="odos-date-picker-time-content">
+                  <div v-if="timeComponents.hasHour" class="odos-date-picker-time-column">
+                    <div class="odos-date-picker-time-label">时</div>
+                    <div class="odos-date-picker-time-list" ref="hourListRef">
+                      <div
+                        v-for="hour in 24"
+                        :key="hour - 1"
+                        class="odos-date-picker-time-item"
+                        :class="{ selected: selectedTime.hour === hour - 1 }"
+                        @click="selectTime('hour', hour - 1)"
+                      >
+                        {{ String(hour - 1).padStart(2, '0') }}
+                      </div>
+                    </div>
+                  </div>
+                  <div v-if="timeComponents.hasMinute" class="odos-date-picker-time-column">
+                    <div class="odos-date-picker-time-label">分</div>
+                    <div class="odos-date-picker-time-list" ref="minuteListRef">
+                      <div
+                        v-for="minute in 60"
+                        :key="minute - 1"
+                        class="odos-date-picker-time-item"
+                        :class="{ selected: selectedTime.minute === minute - 1 }"
+                        @click="selectTime('minute', minute - 1)"
+                      >
+                        {{ String(minute - 1).padStart(2, '0') }}
+                      </div>
+                    </div>
+                  </div>
+                  <div v-if="timeComponents.hasSecond" class="odos-date-picker-time-column">
+                    <div class="odos-date-picker-time-label">秒</div>
+                    <div class="odos-date-picker-time-list" ref="secondListRef">
+                      <div
+                        v-for="second in 60"
+                        :key="second - 1"
+                        class="odos-date-picker-time-item"
+                        :class="{ selected: selectedTime.second === second - 1 }"
+                        @click="selectTime('second', second - 1)"
+                      >
+                        {{ String(second - 1).padStart(2, '0') }}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </div>
       </div>
@@ -288,7 +286,7 @@ const selectedTime = ref({
   second: 0
 })
 
-// 计算宽度 
+// 计算宽度
 const WidthSize = computed(() => {
   if (typeof width?.value === 'number') {
     return `${width.value}px`
@@ -318,7 +316,7 @@ const getFormat = () => {
   if (format?.value) {
     return format.value
   }
-  
+
   switch (mode.value) {
     case 'month':
       return 'YYYY-MM'
@@ -333,7 +331,11 @@ const getFormat = () => {
 const timeComponents = computed(() => {
   const formatStr = getFormat()
   return {
-    hasHour: formatStr.includes('HH') || formatStr.includes('H') || formatStr.includes('hh') || formatStr.includes('h'),
+    hasHour:
+      formatStr.includes('HH') ||
+      formatStr.includes('H') ||
+      formatStr.includes('hh') ||
+      formatStr.includes('h'),
     hasMinute: formatStr.includes('mm') || formatStr.includes('m'),
     hasSecond: formatStr.includes('ss') || formatStr.includes('s')
   }
@@ -477,7 +479,7 @@ const handleNavigation = (type: 'pre' | 'next') => {
 const goToToday = () => {
   const today = dayjs()
   showDate.value = today
-  
+
   if (mode.value === 'datetime') {
     // 如果是日期时间模式，根据格式设置时间
     const components = timeComponents.value
@@ -486,12 +488,12 @@ const goToToday = () => {
       minute: components.hasMinute ? today.minute() : 0,
       second: components.hasSecond ? today.second() : 0
     }
-    
+
     let dateTime = today
     if (!components.hasHour) dateTime = dateTime.hour(0)
     if (!components.hasMinute) dateTime = dateTime.minute(0)
     if (!components.hasSecond) dateTime = dateTime.second(0)
-    
+
     const formatStr = getFormat()
     datePicker.value = dateTime.format(formatStr)
     emit('update:value', dateTime.format(formatStr))
@@ -521,30 +523,30 @@ const handleTodayClick = () => {
 const selectShortcut = (shortcut: { text: string; value: () => string }) => {
   const selectedValue = shortcut.value()
   const selectedDate = dayjs(selectedValue)
-  
+
   if (mode.value === 'datetime') {
     // 如果是日期时间模式，根据格式设置时间
     const components = timeComponents.value
     let dateTime = selectedDate
-    
+
     if (components.hasHour) {
       dateTime = dateTime.hour(selectedTime.value.hour)
     } else {
       dateTime = dateTime.hour(0)
     }
-    
+
     if (components.hasMinute) {
       dateTime = dateTime.minute(selectedTime.value.minute)
     } else {
       dateTime = dateTime.minute(0)
     }
-    
+
     if (components.hasSecond) {
       dateTime = dateTime.second(selectedTime.value.second)
     } else {
       dateTime = dateTime.second(0)
     }
-    
+
     const formatStr = getFormat()
     datePicker.value = dateTime.format(formatStr)
     emit('update:value', dateTime.format(formatStr))
@@ -559,7 +561,7 @@ const selectShortcut = (shortcut: { text: string; value: () => string }) => {
     emit('update:value', selectedDate.format('YYYY-MM'))
     isShowPicker.value = false
   }
-  
+
   // 更新显示的日期
   showDate.value = selectedDate
 }
@@ -586,20 +588,20 @@ const updateDateTime = () => {
   if (datePicker.value) {
     const components = timeComponents.value
     let date = dayjs(datePicker.value)
-    
+
     // 根据格式字符串设置时间组件
     if (components.hasHour) {
       date = date.hour(selectedTime.value.hour)
     } else {
       date = date.hour(0) // 如果不显示小时，设置为0
     }
-    
+
     if (components.hasMinute) {
       date = date.minute(selectedTime.value.minute)
     } else {
       date = date.minute(0) // 如果不显示分钟，设置为0
     }
-    
+
     if (components.hasSecond) {
       date = date.second(selectedTime.value.second)
     } else {
@@ -626,26 +628,26 @@ const datePickerClick = (day: number, type?: 'next' | 'pre') => {
   if (mode.value === 'datetime') {
     const components = timeComponents.value
     let dateTime = dayjs(data)
-    
+
     // 根据格式字符串设置时间组件
     if (components.hasHour) {
       dateTime = dateTime.hour(selectedTime.value.hour)
     } else {
       dateTime = dateTime.hour(0)
     }
-    
+
     if (components.hasMinute) {
       dateTime = dateTime.minute(selectedTime.value.minute)
     } else {
       dateTime = dateTime.minute(0)
     }
-    
+
     if (components.hasSecond) {
       dateTime = dateTime.second(selectedTime.value.second)
     } else {
       dateTime = dateTime.second(0)
     }
-    
+
     const formatStr = getFormat()
     datePicker.value = dateTime.format(formatStr)
     emit('update:value', dateTime.format(formatStr))
@@ -715,7 +717,7 @@ watch(
     if (newVal) {
       datePicker.value = newVal as string
       showDate.value = dayjs(newVal as string)
-      
+
       // 如果是datetime模式，根据格式解析时间部分
       if (mode.value === 'datetime') {
         const components = timeComponents.value
@@ -838,6 +840,7 @@ const selectYearInDateMode = (year: number, event?: Event) => {
     padding: 10px 30px 10px 16px;
     background: #f2f3f5;
     width: 100%;
+    font-size: 14px;
     height: 100%;
     border: 1px solid #f2f3f5;
     outline: none;
@@ -858,6 +861,7 @@ const selectYearInDateMode = (year: number, event?: Event) => {
     &::placeholder {
       position: relative;
       top: 1px;
+      font-size: 14px;
       color: #86909c;
     }
   }
@@ -891,13 +895,13 @@ const selectYearInDateMode = (year: number, event?: Event) => {
   border-radius: 8px;
   box-sizing: border-box;
   background-color: #fff;
-  
+
   // 默认布局（无快捷选择）
   &:not(.has-shortcuts) {
     width: 312px;
     padding: 0 16px;
   }
-  
+
   // 当有快捷选择时，调整布局
   &.has-shortcuts {
     display: flex;
@@ -943,7 +947,7 @@ const selectYearInDateMode = (year: number, event?: Event) => {
       }
     }
   }
-  
+
   // 主要日期选择区域
   &.has-shortcuts .odos-date-picker-main {
     flex: 1;
@@ -993,24 +997,24 @@ const selectYearInDateMode = (year: number, event?: Event) => {
       padding: 16px;
       max-height: 200px;
       overflow-y: auto;
-      
+
       // 隐藏滚动条
       &::-webkit-scrollbar {
         width: 0;
         height: 0;
       }
-      
+
       &::-webkit-scrollbar-track {
         background: transparent;
       }
-      
+
       &::-webkit-scrollbar-thumb {
         background: transparent;
       }
-      
+
       // Firefox
       scrollbar-width: none;
-      
+
       // IE
       -ms-overflow-style: none;
 
@@ -1101,11 +1105,11 @@ const selectYearInDateMode = (year: number, event?: Event) => {
           overflow-y: auto;
           border: 1px solid #e5e6eb;
           border-radius: 4px;
-          
+
           &::-webkit-scrollbar {
             width: 2px;
           }
-          
+
           &::-webkit-scrollbar-thumb {
             background-color: #e5e6eb;
             border-radius: 2px;
@@ -1209,7 +1213,7 @@ const selectYearInDateMode = (year: number, event?: Event) => {
           background: #86909c;
         }
       }
-      
+
       .odos-date-picker-header-today {
         padding: 0 8px;
         border-radius: 4px;

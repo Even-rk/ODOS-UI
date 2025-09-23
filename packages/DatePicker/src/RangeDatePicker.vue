@@ -43,7 +43,10 @@
     <Teleport to="body">
       <div v-if="isShowPicker" ref="floatingRef" class="odos-date-picker-container" :style="floatingStyles">
         <!-- 日期选择面板 -->
-        <div class="odos-date-picker-content range-panel" :class="{ 'has-shortcuts': shortcuts && shortcuts.length > 0 }">
+        <div
+          class="odos-date-picker-content range-panel"
+          :class="{ 'has-shortcuts': shortcuts && shortcuts.length > 0 }"
+        >
           <!-- 快捷选择区域 -->
           <div v-if="shortcuts && shortcuts.length > 0" class="odos-date-picker-shortcuts">
             <div class="odos-date-picker-shortcuts-list">
@@ -67,21 +70,33 @@
                 <div class="odos-date-picker-calendar">
                   <div class="odos-date-picker-header">
                     <div class="odos-date-picker-header-time">
-                      <div class="odos-date-picker-header-year clickable" @click="toggleYearPicker('left', $event)">
+                      <div
+                        class="odos-date-picker-header-year clickable"
+                        @click="toggleYearPicker('left', $event)"
+                      >
                         {{ dayjs(leftCalendarDate).format('YYYY年') }}
                       </div>
-                      <div class="odos-date-picker-header-month clickable" @click="toggleMonthPicker('left', $event)">
+                      <div
+                        class="odos-date-picker-header-month clickable"
+                        @click="toggleMonthPicker('left', $event)"
+                      >
                         {{ dayjs(leftCalendarDate).format('MM月') }}
                       </div>
                     </div>
                     <div class="odos-date-picker-btn">
-                      <div class="odos-date-picker-header-pre" @click="handleNavigation('left', 'pre', $event)">
+                      <div
+                        class="odos-date-picker-header-pre"
+                        @click="handleNavigation('left', 'pre', $event)"
+                      >
                         <Icon name="ArowLeft" size="25px" />
                       </div>
                       <div class="odos-date-picker-header-today" @click="handleTodayClick('left', $event)">
-                        {{ leftYearPicker ? '今年' : (leftMonthPicker ? '本月' : '今天') }}
+                        {{ leftYearPicker ? '今年' : leftMonthPicker ? '本月' : '今天' }}
                       </div>
-                      <div class="odos-date-picker-header-next" @click="handleNavigation('left', 'next', $event)">
+                      <div
+                        class="odos-date-picker-header-next"
+                        @click="handleNavigation('left', 'next', $event)"
+                      >
                         <Icon name="ArowRight" size="25px" />
                       </div>
                     </div>
@@ -147,18 +162,30 @@
                 <div class="odos-date-picker-calendar">
                   <div class="odos-date-picker-header">
                     <div class="odos-date-picker-header-time">
-                      <div class="odos-date-picker-header-year clickable" @click="toggleYearPicker('right', $event)">
+                      <div
+                        class="odos-date-picker-header-year clickable"
+                        @click="toggleYearPicker('right', $event)"
+                      >
                         {{ dayjs(rightCalendarDate).format('YYYY年') }}
                       </div>
-                      <div class="odos-date-picker-header-month clickable" @click="toggleMonthPicker('right', $event)">
+                      <div
+                        class="odos-date-picker-header-month clickable"
+                        @click="toggleMonthPicker('right', $event)"
+                      >
                         {{ dayjs(rightCalendarDate).format('MM月') }}
                       </div>
                     </div>
                     <div class="odos-date-picker-btn">
-                      <div class="odos-date-picker-header-pre" @click="updateRangeMonth('right', 'pre', $event)">
+                      <div
+                        class="odos-date-picker-header-pre"
+                        @click="updateRangeMonth('right', 'pre', $event)"
+                      >
                         <Icon name="ArowLeft" size="25px" />
                       </div>
-                      <div class="odos-date-picker-header-next" @click="updateRangeMonth('right', 'next', $event)">
+                      <div
+                        class="odos-date-picker-header-next"
+                        @click="updateRangeMonth('right', 'next', $event)"
+                      >
                         <Icon name="ArowRight" size="25px" />
                       </div>
                     </div>
@@ -301,11 +328,11 @@ const rightYearRange = computed(() => {
   const leftYear = dayjs(leftCalendarDate.value).year()
   const currentYear = dayjs(rightCalendarDate.value).year()
   const years = []
-  
+
   // 右侧日历的年份范围从左侧日历的年份开始，到当前年份+10年
   const startYear = Math.max(leftYear, currentYear - 10)
   const endYear = currentYear + 10
-  
+
   for (let i = startYear; i <= endYear; i++) {
     years.push(i)
   }
@@ -318,7 +345,7 @@ watch(
   (newVal) => {
     if (newVal && Array.isArray(newVal)) {
       rangeValue.value = newVal as string[]
-      
+
       // 如果有起始日期，设置左侧日历显示
       if (newVal[0]) {
         leftCalendarDate.value = dayjs(newVal[0])
@@ -373,20 +400,20 @@ const selectYear = (side: 'left' | 'right', year: number, event?: Event) => {
   if (event) {
     event.stopPropagation()
   }
-  
+
   if (side === 'left') {
     const newLeftDate = dayjs(leftCalendarDate.value).year(year)
     leftCalendarDate.value = newLeftDate
-    
+
     // 确保右侧日历不早于左侧日历
     if (rightCalendarDate.value.isBefore(newLeftDate, 'month')) {
       rightCalendarDate.value = newLeftDate.add(1, 'month')
     }
-    
+
     leftYearPicker.value = false
   } else {
     const newRightDate = dayjs(rightCalendarDate.value).year(year)
-    
+
     // 确保右侧日历不早于左侧日历
     if (newRightDate.isBefore(leftCalendarDate.value, 'month')) {
       // 如果选择的年份会导致右侧早于左侧，则调整为左侧日历的下一个月
@@ -394,7 +421,7 @@ const selectYear = (side: 'left' | 'right', year: number, event?: Event) => {
     } else {
       rightCalendarDate.value = newRightDate
     }
-    
+
     rightYearPicker.value = false
   }
 }
@@ -405,28 +432,34 @@ const selectMonth = (side: 'left' | 'right', month: number, event?: Event) => {
   if (event) {
     event.stopPropagation()
   }
-  
+
   if (side === 'left') {
     const newLeftDate = dayjs(leftCalendarDate.value).month(month - 1)
     leftCalendarDate.value = newLeftDate
-    
+
     // 确保右侧日历不早于左侧日历
-    if (rightCalendarDate.value.isBefore(newLeftDate, 'month') || rightCalendarDate.value.isSame(newLeftDate, 'month')) {
+    if (
+      rightCalendarDate.value.isBefore(newLeftDate, 'month') ||
+      rightCalendarDate.value.isSame(newLeftDate, 'month')
+    ) {
       rightCalendarDate.value = newLeftDate.add(1, 'month')
     }
-    
+
     leftMonthPicker.value = false
   } else {
     const newRightDate = dayjs(rightCalendarDate.value).month(month - 1)
-    
+
     // 确保右侧日历不早于左侧日历
-    if (newRightDate.isBefore(leftCalendarDate.value, 'month') || newRightDate.isSame(leftCalendarDate.value, 'month')) {
+    if (
+      newRightDate.isBefore(leftCalendarDate.value, 'month') ||
+      newRightDate.isSame(leftCalendarDate.value, 'month')
+    ) {
       // 如果选择的月份会导致右侧早于或等于左侧，则调整为左侧日历的下一个月
       rightCalendarDate.value = leftCalendarDate.value.add(1, 'month')
     } else {
       rightCalendarDate.value = newRightDate
     }
-    
+
     rightMonthPicker.value = false
   }
 }
@@ -446,13 +479,13 @@ const selectShortcut = (shortcut: { text: string; value: () => string[] }, event
   if (selectedRange && selectedRange.length === 2) {
     rangeValue.value = selectedRange
     emit('update:value', [...selectedRange])
-    
+
     // 更新日历显示
     if (selectedRange[0]) {
       leftCalendarDate.value = dayjs(selectedRange[0])
       rightCalendarDate.value = dayjs(selectedRange[0]).add(1, 'month')
     }
-    
+
     isShowPicker.value = false
   }
 }
@@ -468,7 +501,10 @@ const updateRangeMonth = (side: 'left' | 'right', type: 'pre' | 'next', event?: 
       leftCalendarDate.value = newLeftDate
 
       // 确保右侧日历不早于左侧日历
-      if (rightCalendarDate.value.isBefore(newLeftDate, 'month') || rightCalendarDate.value.isSame(newLeftDate, 'month')) {
+      if (
+        rightCalendarDate.value.isBefore(newLeftDate, 'month') ||
+        rightCalendarDate.value.isSame(newLeftDate, 'month')
+      ) {
         rightCalendarDate.value = newLeftDate.add(1, 'month')
       }
     } else {
@@ -481,7 +517,10 @@ const updateRangeMonth = (side: 'left' | 'right', type: 'pre' | 'next', event?: 
       const newRightDate = dayjs(rightCalendarDate.value).subtract(1, 'month')
 
       // 确保右侧日历不早于左侧日历
-      if (newRightDate.isBefore(leftCalendarDate.value, 'month') || newRightDate.isSame(leftCalendarDate.value, 'month')) {
+      if (
+        newRightDate.isBefore(leftCalendarDate.value, 'month') ||
+        newRightDate.isSame(leftCalendarDate.value, 'month')
+      ) {
         rightCalendarDate.value = leftCalendarDate.value.add(1, 'month')
       } else {
         rightCalendarDate.value = newRightDate
@@ -541,7 +580,10 @@ const handleTodayClick = (side: 'left' | 'right', event?: Event) => {
     } else if (leftMonthPicker.value) {
       const newLeftDate = dayjs(leftCalendarDate.value).year(today.year()).month(today.month())
       leftCalendarDate.value = newLeftDate
-      if (rightCalendarDate.value.isBefore(newLeftDate, 'month') || rightCalendarDate.value.isSame(newLeftDate, 'month')) {
+      if (
+        rightCalendarDate.value.isBefore(newLeftDate, 'month') ||
+        rightCalendarDate.value.isSame(newLeftDate, 'month')
+      ) {
         rightCalendarDate.value = newLeftDate.add(1, 'month')
       }
     } else {
@@ -558,7 +600,10 @@ const handleTodayClick = (side: 'left' | 'right', event?: Event) => {
     } else if (rightMonthPicker.value) {
       const newRightDate = dayjs(rightCalendarDate.value).year(today.year()).month(today.month())
       rightCalendarDate.value = newRightDate
-      if (leftCalendarDate.value.isAfter(newRightDate, 'month') || leftCalendarDate.value.isSame(newRightDate, 'month')) {
+      if (
+        leftCalendarDate.value.isAfter(newRightDate, 'month') ||
+        leftCalendarDate.value.isSame(newRightDate, 'month')
+      ) {
         leftCalendarDate.value = newRightDate.subtract(1, 'month')
       }
     } else {
@@ -625,17 +670,17 @@ const getRangeDateClass = (date: DateItem) => {
 // 检查日期范围内是否有禁用日期
 const hasDisabledDateInRange = (startDate: string, endDate: string) => {
   if (!disabledDate?.value) return false
-  
+
   let current = dayjs(startDate).add(1, 'day')
   const end = dayjs(endDate)
-  
+
   while (current.isBefore(end)) {
     if (disabledDate.value(current.toDate())) {
       return true
     }
     current = current.add(1, 'day')
   }
-  
+
   return false
 }
 
@@ -661,7 +706,7 @@ const selectRangeDate = (date: DateItem, event?: Event) => {
     // 选择结束日期
     let newStart: string
     let newEnd: string
-    
+
     if (dayjs(date.date).isBefore(start)) {
       newStart = date.date
       newEnd = start
@@ -669,7 +714,7 @@ const selectRangeDate = (date: DateItem, event?: Event) => {
       newStart = start
       newEnd = date.date
     }
-    
+
     // 检查范围内是否有禁用日期
     if (hasDisabledDateInRange(newStart, newEnd)) {
       // 如果范围内有禁用日期，不允许选择，重新开始选择
@@ -677,7 +722,7 @@ const selectRangeDate = (date: DateItem, event?: Event) => {
       rangeSelectState.value = 'end'
       return
     }
-    
+
     rangeValue.value = [newStart, newEnd]
     rangeSelectState.value = null
     emit('update:value', [...rangeValue.value])
@@ -727,10 +772,7 @@ const getFormat = () => {
 // 格式化显示的区间值
 const formattedRangeValue = computed(() => {
   const [start, end] = rangeValue.value
-  return [
-    start ? dayjs(start).format(getFormat()) : '',
-    end ? dayjs(end).format(getFormat()) : ''
-  ]
+  return [start ? dayjs(start).format(getFormat()) : '', end ? dayjs(end).format(getFormat()) : '']
 })
 
 // 判断右侧月份是否禁用
@@ -738,7 +780,7 @@ const isRightMonthDisabled = (month: number) => {
   const leftYear = dayjs(leftCalendarDate.value).year()
   const leftMonth = dayjs(leftCalendarDate.value).month() + 1 // dayjs月份从0开始，转换为1-12
   const rightYear = dayjs(rightCalendarDate.value).year()
-  
+
   // 如果左右日历是同一年，那么右侧日历的月份不能早于或等于左侧日历的月份
   if (rightYear === leftYear && month <= leftMonth) {
     return true
@@ -826,10 +868,12 @@ const isRightMonthDisabled = (month: number) => {
       outline: none;
       background: transparent;
       flex: 1;
+      font-size: 14px;
       height: 100%;
 
       &::placeholder {
         color: #86909c;
+        font-size: 14px;
       }
     }
 
@@ -877,7 +921,7 @@ const isRightMonthDisabled = (month: number) => {
     // 默认布局（无快捷选择）
     &:not(.has-shortcuts) {
       width: 624px;
-      
+
       .odos-date-picker-range-calendars {
         display: flex;
 
@@ -891,13 +935,13 @@ const isRightMonthDisabled = (month: number) => {
         }
       }
     }
-    
+
     // 当有快捷选择时，调整布局
     &.has-shortcuts {
       display: flex;
       width: 732px; // 624 + 108
       padding: 0;
-      
+
       .odos-date-picker-range-calendars {
         display: flex;
         flex: 1;
@@ -962,24 +1006,24 @@ const isRightMonthDisabled = (month: number) => {
       padding: 16px;
       max-height: 200px;
       overflow-y: auto;
-      
+
       // 隐藏滚动条
       &::-webkit-scrollbar {
         width: 0;
         height: 0;
       }
-      
+
       &::-webkit-scrollbar-track {
         background: transparent;
       }
-      
+
       &::-webkit-scrollbar-thumb {
         background: transparent;
       }
-      
+
       // Firefox
       scrollbar-width: none;
-      
+
       // IE
       -ms-overflow-style: none;
 
@@ -1113,7 +1157,7 @@ const isRightMonthDisabled = (month: number) => {
           background: #86909c;
         }
       }
-      
+
       .odos-date-picker-header-today {
         padding: 0 8px;
         border-radius: 4px;
