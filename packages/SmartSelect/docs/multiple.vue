@@ -6,7 +6,6 @@
       placeholder="多选模式"
       :multiple="true"
       :allow-clear="true"
-      style="width: 300px"
     />
     <p class="result">选中值: {{ multipleValue }}</p>
   </div>
@@ -31,7 +30,7 @@ const multipleValue = ref([])
 <style scoped lang="scss">
 .demo-container {
   padding: 20px;
-  
+
   .result {
     margin-top: 10px;
     color: #86909c;

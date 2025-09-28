@@ -295,7 +295,8 @@ const removeTag = (value: string | number) => {
 
 // 是否应该隐藏标签
 const shouldHideTag = (index: number) => {
-  return props.maxTagCount && index >= props.maxTagCount
+  if (!props.maxTagCount) return false
+  return index >= props.maxTagCount
 }
 
 // 是否有更多标签
@@ -591,7 +592,7 @@ defineExpose({
   width: 100%;
   min-height: 40px;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* 改为顶部对齐，支持多行 */
   background: #f2f3f5;
   border: 1px solid #f2f3f5;
   border-radius: 8px;
@@ -626,7 +627,7 @@ defineExpose({
     outline: none;
     background: transparent;
     width: 100%;
-    height: 100%;
+    min-height: 40px; /* 改为最小高度 */
     padding: 10px 16px;
     font-size: 14px;
     color: #1d2129;
@@ -676,7 +677,10 @@ defineExpose({
 
   .odos-arrow-icon {
     position: absolute;
+    display: flex;
+    align-items: center;
     right: 12px;
+    height: 100%;
     cursor: pointer;
     transition: transform 0.2s ease;
 
@@ -692,12 +696,13 @@ defineExpose({
     right: 0;
     bottom: 0;
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 4px;
+    align-items: flex-start; /* 改为顶部对齐 */
+    flex-wrap: wrap; /* 允许换行 */
+    gap: 4px 6px; /* 水平和垂直间距 */
     padding: 6px 50px 6px 16px;
-    overflow: hidden;
+    overflow: visible; /* 允许内容显示 */
     pointer-events: none;
+    min-height: 24px; /* 最小高度 */
 
     &.odos-smart-select-isTitle {
       padding-left: 88px;
@@ -714,6 +719,7 @@ defineExpose({
     color: #1d2129;
     border-radius: 6px;
     font-size: 12px;
+    margin: 2px 0; /* 添加垂直间距 */
     max-width: 120px;
     pointer-events: auto;
     transition: all 0.2s ease;
@@ -728,15 +734,18 @@ defineExpose({
     }
 
     &.tag-more {
-      background: #f2f3f5;
-      border-color: #e5e6eb;
-      color: #86909c;
-      cursor: default;
-
-      &:hover {
-        background: #f2f3f5;
-        border-color: #e5e6eb;
-      }
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      height: 22px;
+      padding: 0 8px;
+      background: #fff;
+      border: 1px solid #c9cdd4;
+      color: #1d2129;
+      border-radius: 6px;
+      font-size: 12px;
+      max-width: 120px;
+      pointer-events: auto;
     }
 
     .tag-label {
