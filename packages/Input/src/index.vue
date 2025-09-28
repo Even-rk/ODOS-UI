@@ -1,6 +1,9 @@
 <template>
   <div class="odos-input" :class="{ 'odos-input-disabled': disabled }" :style="{ width: WidthSize }">
     <div class="odos-input-title" v-if="!$slots.prefix && title">{{ title }}</div>
+    <div v-if="type == 'search'" class="odos-search-icon" @click="iconClick">
+      <Icon :name="iconName" color="#86909c" />
+    </div>
     <!-- fix slots -->
     <div v-if="$slots.prefix" ref="prefixRef" class="odos-input-prefix">
       <slot name="prefix">prefix</slot>
@@ -11,7 +14,7 @@
 
     <input
       :style="inputStyle"
-      :class="{ 'odos-input-isTitle': title }"
+      :class="{ 'odos-input-isTitle': title, 'odos-input-search': type == 'search' }"
       :type="typeName || 'text'"
       :value="value"
       :disabled="disabled"
@@ -24,7 +27,7 @@
       @compositionend="handleCompositionEnd"
       :placeholder="placeholder || '请输入'"
     />
-    <div v-if="type" class="odos-icon" :class="{ 'odos-search-icon': type == 'search' }" @click="iconClick">
+    <div v-if="type !== 'search'" class="odos-icon" @click="iconClick">
       <Icon :name="iconName" color="#86909c" />
     </div>
     <div class="odos-unit" v-if="!$slots.suffix && unit">
@@ -191,6 +194,10 @@ const handelBlur = ($event: Event) => {
     &.odos-input-isTitle {
       padding-left: 88px;
     }
+
+    &.odos-input-search {
+      padding-left: 35px;
+    }
   }
 
   .odos-input-prefix {
@@ -209,10 +216,12 @@ const handelBlur = ($event: Event) => {
     position: absolute;
     right: 12px;
     cursor: pointer;
+  }
 
-    &.odos-search-icon {
-      cursor: auto;
-    }
+  .odos-search-icon {
+    position: absolute;
+    left: 12px;
+    cursor: auto;
   }
 
   .odos-unit {
