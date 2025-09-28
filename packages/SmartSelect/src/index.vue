@@ -106,7 +106,6 @@
             @mouseenter="highlightedIndex = index"
           >
             <span class="option-label">{{ option.label }}</span>
-            <Icon v-if="isSelected(option.value)" name="Check" color="#2e6ce4" />
           </div>
         </div>
       </div>
@@ -115,8 +114,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick, watch, onMounted, onUnmounted, type CSSProperties } from 'vue'
-import { useFloating, autoUpdate, offset, flip, shift, type Placement } from '@floating-ui/vue'
+import { ref, computed, nextTick, onMounted, onUnmounted, type CSSProperties } from 'vue'
+import { useFloating, autoUpdate, offset, flip, shift } from '@floating-ui/vue'
 import Icon from '../../Icon/src/index.vue'
 import { Empty } from 'ant-design-vue'
 
@@ -886,7 +885,7 @@ defineExpose({
 
     &.option-selected {
       color: #2e6ce4;
-      background: #f0f5ff;
+      font-weight: 500;
     }
 
     .option-label {
