@@ -100,15 +100,15 @@
         </template>
       </CheckBox>
     </div>
-    <!-- 滑动控制覆层 -->
-    <Teleport to="body">
-      <template v-if="isBoxSelect">
-        <div class="module">
-          <div class="rectangle" :style="regionConfig" />
-        </div>
-      </template>
-    </Teleport>
   </div>
+  <!-- 滑动控制覆层 -->
+  <Teleport to="body">
+    <template v-if="isBoxSelect">
+      <div class="module">
+        <div class="rectangle" :style="regionConfig" />
+      </div>
+    </template>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -215,6 +215,7 @@ const isElementInRegion = (elementList: Element[], e?: MouseEvent) => {
   } else {
     children = Array.from(document.querySelectorAll('.odos-check_box-item-content'))
   }
+  // 框选区域内的元素
   elementList.forEach((item, index) => {
     const target = children[index]
     const itemRect = target.getBoundingClientRect()
@@ -309,7 +310,7 @@ const onMouseup = () => {
     // 记录原始值用于比较
     const originalValue = [...toothVal.value]
 
-    // 选中的
+    // 选中的元素
     const filterList = elementList.filter((item) => {
       // 判断元素是否在框选区域内
       const active = item.parentElement?.classList.contains('active')
@@ -327,7 +328,7 @@ const onMouseup = () => {
     // 只有当值真的发生变化时才触发事件
     const hasValueChanged = JSON.stringify(originalValue.sort()) !== JSON.stringify(newValue.sort())
 
-    if (hasValueChanged && newValue.length) {
+    if (hasValueChanged && newValue.length >= 0) {
       toothVal.value = newValue
       emit('update:value', toothVal.value)
       emit('change', toothVal.value)
