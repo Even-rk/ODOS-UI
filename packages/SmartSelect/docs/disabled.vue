@@ -7,10 +7,9 @@
         :options="disabledOptions"
         placeholder="禁用状态"
         :disabled="true"
-        style="width: 200px"
       />
     </div>
-    
+
     <div class="demo-item">
       <h4>部分选项禁用</h4>
       <SmartSelect
@@ -20,7 +19,7 @@
         style="width: 200px"
       />
     </div>
-    
+
     <p class="result">禁用状态选中值: {{ disabledValue }}</p>
     <p class="result">部分禁用选中值: {{ partialDisabledValue }}</p>
   </div>
@@ -50,18 +49,19 @@ const partialDisabledValue = ref('')
 
 <style scoped lang="scss">
 .demo-container {
+  width: 100%;
   padding: 20px;
-  
+
   .demo-item {
     margin-bottom: 20px;
-    
+
     h4 {
       margin: 0 0 10px 0;
       font-size: 14px;
       color: #1d2129;
     }
   }
-  
+
   .result {
     margin-top: 10px;
     color: #86909c;

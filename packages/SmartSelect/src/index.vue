@@ -99,7 +99,8 @@
             class="odos-select-option"
             :class="{
               'option-selected': isSelected(option.value),
-              'option-highlighted': highlightedIndex === index
+              'option-highlighted': highlightedIndex === index,
+              'option-disabled': option.disabled
             }"
             @click="handleOptionClick(option)"
             @mouseenter="highlightedIndex = index"
@@ -624,19 +625,6 @@ defineExpose({
     background: #fff;
   }
 
-  &.odos-smart-select-disabled {
-    background: #f2f3f5;
-    cursor: not-allowed;
-
-    &:hover {
-      background: #f2f3f5;
-    }
-
-    input {
-      cursor: not-allowed;
-    }
-  }
-
   input {
     display: flex;
     box-sizing: border-box;
@@ -832,6 +820,21 @@ defineExpose({
       color: #1d2129;
     }
   }
+
+  &.odos-smart-select-disabled {
+    background: #f2f3f5;
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      cursor: not-allowed;
+      background: #f2f3f5;
+    }
+
+    input {
+      cursor: not-allowed;
+    }
+  }
 }
 
 .odos-smart-select-dropdown {
@@ -886,16 +889,16 @@ defineExpose({
       background: #f0f5ff;
     }
 
-    &.option-disabled {
-      color: #c9cdd4;
-      cursor: not-allowed;
-    }
-
     .option-label {
       flex: 1;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    &.option-disabled {
+      color: #c9cdd4;
+      cursor: not-allowed;
     }
   }
 }

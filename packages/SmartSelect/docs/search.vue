@@ -7,11 +7,10 @@
         :options="searchOptions"
         placeholder="可搜索选择"
         :show-search="true"
-        style="width: 200px"
       />
       <p class="result">选中值: {{ searchValue }}</p>
     </div>
-    
+
     <div class="demo-item">
       <h4>多选搜索</h4>
       <SmartSelect
@@ -21,7 +20,6 @@
         :show-search="true"
         :multiple="true"
         :max-tag-count="3"
-        style="width: 300px"
       />
       <p class="result">选中值: {{ multipleSearchValue }}</p>
     </div>
@@ -51,18 +49,19 @@ const multipleSearchValue = ref([])
 
 <style scoped lang="scss">
 .demo-container {
+  width: 100%;
   padding: 20px;
-  
+
   .demo-item {
     margin-bottom: 30px;
-    
+
     h4 {
       margin-bottom: 10px;
       color: #1d2129;
       font-size: 16px;
     }
   }
-  
+
   .result {
     margin-top: 10px;
     color: #86909c;

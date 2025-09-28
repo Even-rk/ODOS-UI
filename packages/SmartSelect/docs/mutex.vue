@@ -8,11 +8,10 @@
         placeholder="互斥选择"
         :mutex="true"
         :multiple="true"
-        style="width: 300px"
       />
       <p class="description">在多选模式下，启用互斥选择，某些选项之间不能同时选择</p>
     </div>
-    
+
     <p class="result">选中值: {{ mutexValue }}</p>
   </div>
 </template>
@@ -35,17 +34,18 @@ const mutexValue = ref([])
 
 <style scoped lang="scss">
 .demo-container {
+  width: 100%;
   padding: 20px;
-  
+
   .demo-item {
     margin-bottom: 20px;
-    
+
     h4 {
       margin: 0 0 10px 0;
       font-size: 14px;
       color: #1d2129;
     }
-    
+
     .description {
       margin-top: 10px;
       color: #86909c;
@@ -53,7 +53,7 @@ const mutexValue = ref([])
       line-height: 1.5;
     }
   }
-  
+
   .result {
     margin-top: 10px;
     color: #86909c;

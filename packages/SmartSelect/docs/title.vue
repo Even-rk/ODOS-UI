@@ -4,8 +4,8 @@
       v-model:value="titleValue"
       :options="titleOptions"
       title="类型"
+      multiple
       placeholder="请选择类型"
-      style="width: 200px"
     />
     <p class="result">选中值: {{ titleValue }}</p>
   </div>
@@ -27,8 +27,9 @@ const titleValue = ref('')
 
 <style scoped lang="scss">
 .demo-container {
+  width: 100%;
   padding: 20px;
-  
+
   .result {
     margin-top: 10px;
     color: #86909c;

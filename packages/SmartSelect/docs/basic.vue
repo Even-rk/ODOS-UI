@@ -1,11 +1,6 @@
 <template>
   <div class="demo-container">
-    <SmartSelect
-      v-model:value="basicValue"
-      :options="basicOptions"
-      placeholder="请选择一个选项"
-      style="width: 200px"
-    />
+    <SmartSelect v-model:value="basicValue" :options="basicOptions" placeholder="请选择一个选项" />
     <p class="result">选中值: {{ basicValue }}</p>
   </div>
 </template>
@@ -26,8 +21,9 @@ const basicValue = ref('')
 
 <style scoped lang="scss">
 .demo-container {
+  width: 100%;
   padding: 20px;
-  
+
   .result {
     margin-top: 10px;
     color: #86909c;
