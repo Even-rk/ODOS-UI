@@ -101,11 +101,13 @@
       </CheckBox>
     </div>
     <!-- 滑动控制覆层 -->
-    <template v-if="isBoxSelect">
-      <div class="module">
-        <div class="rectangle" :style="regionConfig" />
-      </div>
-    </template>
+    <Teleport to="body">
+      <template v-if="isBoxSelect">
+        <div class="module">
+          <div class="rectangle" :style="regionConfig" />
+        </div>
+      </template>
+    </Teleport>
   </div>
 </template>
 
@@ -527,20 +529,20 @@ onUnmounted(() => {
       }
     }
   }
+}
 
-  .module {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
+.module {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
 
-    .rectangle {
-      position: absolute;
-      background-color: #2e6ce410;
-      border: 1px dashed #2e6ce4;
-    }
+  .rectangle {
+    position: absolute;
+    background-color: #2e6ce410;
+    border: 1px dashed #2e6ce4;
   }
 }
 </style>
