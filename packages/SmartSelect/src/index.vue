@@ -4,17 +4,7 @@
     :class="{ 'odos-smart-select-disabled': disabled }"
     :style="{ width: WidthSize }"
   >
-    <div class="odos-smart-select-title" v-if="!$slots.prefix && title">{{ title }}</div>
-
-    <!-- 前缀插槽 -->
-    <div v-if="$slots.prefix" ref="prefixRef" class="odos-smart-select-prefix">
-      <slot name="prefix">prefix</slot>
-    </div>
-
-    <!-- 后缀插槽 -->
-    <div v-if="$slots.suffix" ref="suffixRef" class="odos-smart-select-suffix">
-      <slot name="suffix">suffix</slot>
-    </div>
+    <div class="odos-smart-select-title" v-if="title">{{ title }}</div>
 
     <!-- 多选标签容器 -->
     <div v-if="multiple && hasValue" class="odos-smart-select-tags" :style="tagsStyle">
@@ -102,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick, watch, onMounted, onUnmounted, useSlots, type CSSProperties } from 'vue'
+import { ref, computed, nextTick, watch, onMounted, onUnmounted, type CSSProperties } from 'vue'
 import { useFloating, autoUpdate, offset, flip, shift, type Placement } from '@floating-ui/vue'
 import Icon from '../../Icon/src/index.vue'
 import { Empty } from 'ant-design-vue'
@@ -175,13 +165,9 @@ const emit = defineEmits<{
   (e: 'ime-status', status: boolean): void
 }>()
 
-const slots = useSlots()
-
 // 引用
 const inputRef = ref<HTMLInputElement>()
 const dropdownRef = ref<HTMLElement>()
-const prefixRef = ref<HTMLElement | null>(null)
-const suffixRef = ref<HTMLElement | null>(null)
 
 // 状态
 const dropdownVisible = ref(false)
@@ -330,10 +316,8 @@ const hiddenTagsCount = computed(() => {
 const tagsStyle = computed((): StyleObject => {
   const style: StyleObject = {}
 
-  // 处理前缀
-  if (slots.prefix && prefixRef.value) {
-    style.paddingLeft = prefixRef.value.clientWidth + 'px'
-  } else if (props.title) {
+  // 处理标题
+  if (props.title) {
     style.paddingLeft = '88px'
   }
 
@@ -365,25 +349,18 @@ const WidthSize = computed(() => {
 const inputStyle = computed((): StyleObject => {
   const style: StyleObject = {}
 
-  // 处理前缀
-  if (slots.prefix && prefixRef.value) {
-    style.paddingLeft = prefixRef.value.clientWidth + 'px'
-  } else if (props.title) {
+  // 处理标题
+  if (props.title) {
     style.paddingLeft = '88px'
   }
 
-  // 处理后缀
-  if (slots.suffix && suffixRef.value) {
-    style.paddingRight = suffixRef.value.clientWidth + 'px'
-  } else {
-    // 计算右侧图标占用的空间
-    let rightPadding = 16 // 基础右边距
-    if (props.allowClear && hasValue.value) {
-      rightPadding += 24 // 清空按钮
-    }
-    rightPadding += 24 // 下拉箭头
-    style.paddingRight = rightPadding + 'px'
+  // 计算右侧图标占用的空间
+  let rightPadding = 16 // 基础右边距
+  if (props.allowClear && hasValue.value) {
+    rightPadding += 24 // 清空按钮
   }
+  rightPadding += 24 // 下拉箭头
+  style.paddingRight = rightPadding + 'px'
 
   return style
 })
@@ -496,7 +473,9 @@ const handleOptionClick = (option: Option) => {
         // 添加选择
         if (props.mutex) {
           // 移除互斥选项
-          const filteredValues = currentValues.filter((val) => !props.mutexOptionValue?.includes(val as never))
+          const filteredValues = currentValues.filter(
+            (val) => !props.mutexOptionValue?.includes(val as never)
+          )
           newValue = [...filteredValues, option.value]
         } else {
           newValue = [...currentValues, option.value]
@@ -677,18 +656,6 @@ defineExpose({
     color: #4e5969;
     border-right: 1px solid #c9cdd4;
     z-index: 1;
-  }
-
-  .odos-smart-select-prefix {
-    position: absolute;
-    padding: 0px 10px;
-    left: 2px;
-  }
-
-  .odos-smart-select-suffix {
-    position: absolute;
-    padding: 0px 10px;
-    right: 2px;
   }
 
   .odos-clear-icon {
