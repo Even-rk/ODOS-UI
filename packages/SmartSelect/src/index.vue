@@ -1,9 +1,15 @@
 <template>
-  <div class="odos-smart-select" :class="{ 'odos-smart-select-disabled': disabled }" :style="rootStyle">
+  <div
+    ref="containerRef"
+    class="odos-smart-select"
+    :class="{ 'odos-smart-select-disabled': disabled }"
+    :style="rootStyle"
+  >
     <div class="odos-smart-select-title" v-if="title">{{ title }}</div>
 
-    <!-- 多选标签容器 -->
-    <div v-if="multiple && hasValue" ref="tagsRef" class="odos-smart-select-tags" :style="tagsStyle">
+    <!-- 多选模式：标签容器包含输入框 -->
+    <div v-if="multiple" ref="tagsRef" class="odos-smart-select-tags" :style="tagsStyle">
+      <!-- 已选择的标签 -->
       <div
         v-for="(value, index) in selectedValues as (string | number)[]"
         :key="String(value)"
@@ -15,16 +21,34 @@
       </div>
       <!-- 显示更多标签 -->
       <div v-if="hasMoreTags" class="odos-smart-select-tag tag-more">+{{ hiddenTagsCount }}</div>
+
+      <!-- 多选输入框 -->
+      <input
+        ref="inputRef"
+        class="odos-smart-select-input-inline"
+        :class="{ 'odos-smart-select-isTitle': title }"
+        type="text"
+        :value="inputDisplayValue"
+        :placeholder="selectedValues.length > 0 ? '' : inputPlaceholder"
+        :disabled="disabled"
+        :readonly="!showSearch"
+        @click="handleInputClick"
+        @input="handleInput"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @keydown="handleKeydown"
+        @compositionstart="handleCompositionStart"
+        @compositionupdate="handleCompositionUpdate"
+        @compositionend="handleCompositionEnd"
+      />
     </div>
 
-    <!-- 输入框 -->
+    <!-- 单选模式：独立输入框 -->
     <input
+      v-else
       ref="inputRef"
       :style="inputStyle"
-      :class="{
-        'odos-smart-select-isTitle': title,
-        'odos-smart-select-with-tags': multiple && hasValue
-      }"
+      :class="{ 'odos-smart-select-isTitle': title }"
       type="text"
       :value="inputDisplayValue"
       :disabled="disabled"
@@ -160,6 +184,7 @@ const emit = defineEmits<{
 // 引用
 const inputRef = ref<HTMLInputElement>()
 const dropdownRef = ref<HTMLElement>()
+const containerRef = ref<HTMLElement>()
 
 // 状态
 const dropdownVisible = ref(false)
@@ -184,7 +209,7 @@ const placement = computed((): Placement => {
 })
 
 // 使用 floating-ui
-const { floatingStyles, update } = useFloating(inputRef, dropdownRef, {
+const { floatingStyles, update } = useFloating(containerRef, dropdownRef, {
   placement: placement.value,
   middleware: [
     offset(4),
@@ -200,8 +225,8 @@ const { floatingStyles, update } = useFloating(inputRef, dropdownRef, {
 // 下拉框样式
 const dropdownStyles = computed((): StyleObject => {
   const styles: StyleObject = { ...floatingStyles.value }
-  if (inputRef.value) {
-    styles.minWidth = inputRef.value.offsetWidth + 'px'
+  if (containerRef.value) {
+    styles.minWidth = containerRef.value.offsetWidth + 'px'
   }
   return styles
 })
@@ -254,8 +279,14 @@ const inputDisplayValue = computed(() => {
 
 // 输入框占位符
 const inputPlaceholder = computed(() => {
-  if (props.multiple && hasValue.value) {
-    return props.showSearch ? '搜索...' : ''
+  if (props.multiple) {
+    // 多选模式下，如果有搜索功能则显示搜索占位符，否则显示选择占位符
+    if (props.showSearch) {
+      return '搜索...'
+    } else if (!hasValue.value) {
+      return placeholder.value || '请选择'
+    }
+    return ''
   }
   return placeholder.value || '请选择'
 })
@@ -566,9 +597,9 @@ const handleClickOutside = (event: MouseEvent) => {
 
   const target = event.target as Node
   if (
-    inputRef.value &&
+    containerRef.value &&
     dropdownRef.value &&
-    !inputRef.value.contains(target) &&
+    !containerRef.value.contains(target) &&
     !dropdownRef.value.contains(target)
   ) {
     hideDropdown()
@@ -708,11 +739,6 @@ defineExpose({
   }
 
   .odos-smart-select-tags {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     display: flex;
     align-items: flex-start; /* 改为顶部对齐 */
     flex-wrap: wrap; /* 允许换行 */
@@ -721,9 +747,38 @@ defineExpose({
     overflow: visible; /* 允许内容显示 */
     pointer-events: none;
     min-height: 24px; /* 最小高度 */
+    width: 100%; /* 占满宽度 */
 
     &.odos-smart-select-isTitle {
       padding-left: 88px;
+    }
+  }
+
+  .odos-smart-select-input-inline {
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1; /* 占据剩余空间 */
+    min-height: 24px; /* 与tags高度一致 */
+    padding: 4px 8px;
+    font-size: 14px;
+    color: #1d2129;
+    pointer-events: auto; /* 允许交互 */
+    margin: 2px 0; /* 与tag保持一致的垂直间距 */
+
+    &::placeholder {
+      color: #86909c;
+    }
+
+    &[readonly] {
+      cursor: pointer;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
     }
   }
 
