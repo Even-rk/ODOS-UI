@@ -859,6 +859,8 @@ defineExpose({
   }
 
   .odos-select-options {
+    display: flex;
+    flex-direction: column;
     padding: 4px 0;
   }
 
@@ -866,7 +868,9 @@ defineExpose({
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 16px;
+    padding: 0 16px;
+    min-height: 40px;
+    flex-shrink: 0;
     cursor: pointer;
     font-size: 14px;
     color: #1d2129;
