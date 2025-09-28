@@ -763,7 +763,7 @@ defineExpose({
     background: transparent;
     flex: 1; /* 占据剩余空间 */
     min-height: 24px; /* 与tags高度一致 */
-    padding: 4px 8px;
+    padding: 4px 0;
     font-size: 14px;
     color: #1d2129;
     pointer-events: auto; /* 允许交互 */
