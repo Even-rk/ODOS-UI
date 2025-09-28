@@ -45,9 +45,6 @@
               <span>{{ option.label }}</span>
             </div>
           </div>
-          <div class="dropdown-footer">
-            <button class="add-btn" @click="addNewItem">+ 添加新项</button>
-          </div>
         </div>
       </template>
     </SmartSelect>
@@ -192,28 +189,6 @@ const addNewItem = () => {
     span {
       font-size: 14px;
       color: #1d2129;
-    }
-  }
-
-  .dropdown-footer {
-    padding: 8px 16px 12px;
-    border-top: 1px solid #f2f3f5;
-
-    .add-btn {
-      width: 100%;
-      padding: 6px 12px;
-      border: 1px dashed #c9cdd4;
-      background: transparent;
-      color: #86909c;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 12px;
-      transition: all 0.2s ease;
-
-      &:hover {
-        border-color: #2e6ce4;
-        color: #2e6ce4;
-      }
     }
   }
 }
