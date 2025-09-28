@@ -589,7 +589,7 @@ defineExpose({
 .odos-smart-select {
   position: relative;
   width: 100%;
-  height: 40px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   background: #f2f3f5;

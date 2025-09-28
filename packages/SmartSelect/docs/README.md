@@ -1,16 +1,56 @@
 <script setup>
-import demo from './demo.vue'
-import API from './api.vue'
+import basic from './basic.vue'
+import search from './search.vue'
+import multiple from './multiple.vue'
+import title from './title.vue'
+import disabled from './disabled.vue'
+import position from './position.vue'
+import mutex from './mutex.vue'
+import api from './api.vue'
 </script>
 
 # SmartSelect 智能选择器
 
-## 基本使用
+## 基础使用
 
-<Preview comp-name="SmartSelect" demo-name="demo">
-  <demo />
+<Preview comp-name="SmartSelect" demo-name="basic">
+  <basic />
 </Preview>
 
-## SmartSelect 属性
+## 带搜索功能
 
-<API />
+<Preview comp-name="SmartSelect" demo-name="search">
+  <search />
+</Preview>
+
+## 多选模式
+
+<Preview comp-name="SmartSelect" demo-name="multiple">
+  <multiple />
+</Preview>
+
+## 带标题
+
+<Preview comp-name="SmartSelect" demo-name="title">
+  <title />
+</Preview>
+
+## 禁用状态
+
+<Preview comp-name="SmartSelect" demo-name="disabled">
+  <disabled />
+</Preview>
+
+## 不同位置
+
+<Preview comp-name="SmartSelect" demo-name="position">
+  <position />
+</Preview>
+
+## 互斥选择
+
+<Preview comp-name="SmartSelect" demo-name="mutex">
+  <mutex />
+</Preview>
+
+<api />
