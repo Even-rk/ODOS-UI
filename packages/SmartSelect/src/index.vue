@@ -73,7 +73,10 @@
 
     <!-- 下拉箭头 -->
     <div class="odos-arrow-icon" :class="{ 'odos-arrow-open': dropdownVisible }">
-      <Icon name="ArowDown" color="#86909c" />
+      <!-- suffixIcon插槽：支持自定义后缀图标 -->
+      <slot name="suffixIcon" :visible="dropdownVisible">
+        <Icon name="ArowDown" color="#86909c" />
+      </slot>
     </div>
 
     <!-- 下拉选项 - 使用 Popover 方式 -->
@@ -86,28 +89,34 @@
         :style="dropdownStyles"
         @mousedown.prevent
       >
-        <!-- 搜索结果为空 -->
-        <div v-if="filteredOptions.length === 0" class="odos-select-empty">
-          <Empty />
-        </div>
-
-        <!-- 选项列表 -->
-        <div v-else class="odos-select-options">
-          <div
-            v-for="(option, index) in filteredOptions"
-            :key="option.value"
-            class="odos-select-option"
-            :class="{
-              'option-selected': isSelected(option.value),
-              'option-highlighted': highlightedIndex === index,
-              'option-disabled': option.disabled
-            }"
-            @click="handleOptionClick(option)"
-            @mouseenter="highlightedIndex = index"
-          >
-            <span class="option-label">{{ option.label }}</span>
+        <!-- dropdownRender插槽：支持自定义下拉框内容 -->
+        <slot name="dropdownRender" :options="filteredOptions" :empty="filteredOptions.length === 0">
+          <!-- 搜索结果为空 -->
+          <div v-if="filteredOptions.length === 0" class="odos-select-empty">
+            <Empty />
           </div>
-        </div>
+
+          <!-- 选项列表 -->
+          <div v-else class="odos-select-options">
+            <div
+              v-for="(option, index) in filteredOptions"
+              :key="option.value"
+              class="odos-select-option"
+              :class="{
+                'option-selected': isSelected(option.value),
+                'option-highlighted': highlightedIndex === index,
+                'option-disabled': option.disabled
+              }"
+              @click="handleOptionClick(option)"
+              @mouseenter="highlightedIndex = index"
+            >
+              <!-- option插槽：支持自定义选项内容 -->
+              <slot name="option" :option="option" :index="index" :selected="isSelected(option.value)">
+                <span class="option-label">{{ option.label }}</span>
+              </slot>
+            </div>
+          </div>
+        </slot>
       </div>
     </Teleport>
   </div>

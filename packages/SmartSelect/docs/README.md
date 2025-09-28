@@ -5,6 +5,7 @@ import multiple from './multiple.vue'
 import title from './title.vue'
 import disabled from './disabled.vue'
 import mutex from './mutex.vue'
+import slots from './slots.vue'
 import TitleView from './title.vue'
 import api from './api.vue'
 </script>
@@ -45,6 +46,12 @@ import api from './api.vue'
 
 <Preview comp-name="SmartSelect" demo-name="mutex">
   <mutex />
+</Preview>
+
+## 插槽使用
+
+<Preview comp-name="SmartSelect" demo-name="slots">
+  <slots />
 </Preview>
 
 <api />

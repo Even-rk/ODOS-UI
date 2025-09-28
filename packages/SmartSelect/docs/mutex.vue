@@ -8,6 +8,7 @@
         placeholder="互斥选择"
         :mutex="true"
         :multiple="true"
+        :mutexOptionValue="mutexOptionValue"
       />
       <p class="description">在多选模式下，启用互斥选择，某些选项之间不能同时选择</p>
     </div>
@@ -28,6 +29,8 @@ const mutexOptions = [
   { label: '现场工作', value: 'onsite' },
   { label: '混合工作', value: 'hybrid' }
 ]
+
+const mutexOptionValue = ['fulltime', 'parttime', 'intern']
 
 const mutexValue = ref([])
 </script>
