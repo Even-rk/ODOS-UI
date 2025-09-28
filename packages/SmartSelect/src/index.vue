@@ -5,7 +5,9 @@
     :class="{ 'odos-smart-select-disabled': disabled }"
     :style="rootStyle"
   >
-    <div class="odos-smart-select-title" v-if="title">{{ title }}</div>
+    <div v-if="title" class="odos-smart-select-title-container">
+      <div class="odos-smart-select-title">{{ title }}</div>
+    </div>
 
     <!-- 多选模式：标签容器包含输入框 -->
     <div v-if="multiple" ref="tagsRef" class="odos-smart-select-tags" :style="tagsStyle">
@@ -660,19 +662,23 @@ defineExpose({
       cursor: pointer;
     }
   }
-
-  .odos-smart-select-title {
+  .odos-smart-select-title-container {
     position: absolute;
-    width: 80px;
-    height: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    font-size: 14px;
-    color: #4e5969;
-    border-right: 1px solid #c9cdd4;
-    z-index: 1;
+    height: 100%;
+    .odos-smart-select-title {
+      width: 80px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      font-size: 14px;
+      color: #4e5969;
+      border-right: 1px solid #c9cdd4;
+      z-index: 1;
+    }
   }
 
   .odos-clear-icon {
