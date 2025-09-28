@@ -235,21 +235,6 @@ const selectedValues = computed(() => {
   return props.value !== undefined && props.value !== null ? [props.value] : []
 })
 
-const displayValue = computed(() => {
-  if (props.showSearch && dropdownVisible.value) {
-    return searchQuery.value
-  }
-
-  if (props.multiple) {
-    // 多选模式下，输入框不显示选中值，由tag显示
-    return ''
-  } else {
-    if (!hasValue.value) return ''
-    const option = props.options.find((opt) => opt.value === props.value)
-    return option ? option.label : String(props.value)
-  }
-})
-
 // 输入框显示值（用于多选tag模式）
 const inputDisplayValue = computed(() => {
   if (props.showSearch && dropdownVisible.value) {
