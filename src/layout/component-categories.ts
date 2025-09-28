@@ -15,7 +15,7 @@ export const componentGroups = {
   display: ['Table', 'Pagination', 'Tag', 'TextDisplay', 'Empty', 'Icon', 'ImageClassifyViewer'],
   feedback: ['Modal', 'Message', 'Loading', 'Drawer', 'Popover', 'Popconfirm', 'Tooltip'],
   navigation: ['Tabs'],
-  special: ['ToothSelect', 'ToothChart', 'Audio', 'ImageUpload'],
+  special: ['ToothSelect', 'ToothChart', 'Audio', 'ImageUpload', 'SmartSelect'],
   other: []
 }
 

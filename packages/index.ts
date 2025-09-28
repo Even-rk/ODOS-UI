@@ -34,8 +34,10 @@ import { TooltipPlugin } from './Tooltip'
 import { DrawerPlugin } from './Drawer'
 import { ImageUploadPlugin } from './ImageUpload'
 import { ImageClassifyViewerPlugin } from './ImageClassifyViewer'
+import { SmartSelectPlugin } from './SmartSelect'
 
 const Packages: Plugin[] = [
+  SmartSelectPlugin,
   ImageClassifyViewerPlugin,
   AudioPlugin,
   ButtonPlugin,
@@ -104,3 +106,4 @@ export * from './Tooltip'
 export * from './Drawer'
 export * from './ImageUpload'
 export * from './ImageClassifyViewer'
+export * from './SmartSelect'

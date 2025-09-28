@@ -144,5 +144,11 @@
     "compZhName": "ImageClassifyViewer图片分类预览",
     "compClassName": "image-classify-viewer",
     "category": "display"
+  },
+  {
+    "compName": "SmartSelect",
+    "compZhName": "智能选择器",
+    "compClassName": "smart-select",
+    "category": "special"
   }
 ]
