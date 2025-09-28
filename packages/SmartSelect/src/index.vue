@@ -157,16 +157,12 @@ const props = withDefaults(
     // 互斥选择
     mutex?: boolean
     mutexOptionValue?: string[] | number[]
-
-    // 下拉框位置
-    position?: 'top' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'
   }>(),
   {
     options: () => [],
     showSearch: false,
     allowClear: false,
-    multiple: false,
-    position: 'bottom'
+    multiple: false
   }
 )
 
@@ -193,29 +189,11 @@ const highlightedIndex = ref(-1)
 const isComposing = ref(false)
 const cleanupAutoUpdate = ref<(() => void) | null>(null)
 
-// 位置映射
-const placementMap: Record<string, Placement> = {
-  top: 'top-start',
-  bottom: 'bottom-start',
-  topLeft: 'top-start',
-  topRight: 'top-end',
-  bottomLeft: 'bottom-start',
-  bottomRight: 'bottom-end'
-}
-
-// 获取 placement
-const placement = computed((): Placement => {
-  return placementMap[props.position] || 'bottom-start'
-})
-
 // 使用 floating-ui
 const { floatingStyles, update } = useFloating(containerRef, dropdownRef, {
-  placement: placement.value,
   middleware: [
     offset(4),
-    flip({
-      fallbackPlacements: ['top-start', 'bottom-start', 'top-end', 'bottom-end']
-    }),
+    flip(),
     shift({
       padding: 8
     })
@@ -605,17 +583,6 @@ const handleClickOutside = (event: MouseEvent) => {
     hideDropdown()
   }
 }
-
-// 监听器
-watch(
-  () => props.position,
-  async () => {
-    if (dropdownVisible.value) {
-      await nextTick()
-      update()
-    }
-  }
-)
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
