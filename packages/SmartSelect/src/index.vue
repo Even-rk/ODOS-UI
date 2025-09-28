@@ -1,13 +1,9 @@
 <template>
-  <div
-    class="odos-smart-select"
-    :class="{ 'odos-smart-select-disabled': disabled }"
-    :style="{ width: WidthSize }"
-  >
+  <div class="odos-smart-select" :class="{ 'odos-smart-select-disabled': disabled }" :style="rootStyle">
     <div class="odos-smart-select-title" v-if="title">{{ title }}</div>
 
     <!-- 多选标签容器 -->
-    <div v-if="multiple && hasValue" class="odos-smart-select-tags" :style="tagsStyle">
+    <div v-if="multiple && hasValue" ref="tagsRef" class="odos-smart-select-tags" :style="tagsStyle">
       <div
         v-for="(value, index) in selectedValues as (string | number)[]"
         :key="String(value)"
@@ -107,11 +103,6 @@ interface Option {
 type StyleObject = CSSProperties & Record<string, string | number>
 
 // 定义事件数据类型
-interface SelectEventData {
-  option: Option
-  value: string | number | string[] | number[]
-}
-
 interface FocusBlurEventData {
   event: Event
   value?: string | number | string[] | number[]
@@ -128,6 +119,7 @@ const props = withDefaults(
     // 尺寸和样式
     width?: string | number
     title?: string
+    style?: string | CSSProperties
 
     // 功能属性
     multiple?: boolean
@@ -338,13 +330,39 @@ const filteredOptions = computed(() => {
   })
 })
 
-const WidthSize = computed(() => {
+// 计算组件根元素的样式
+const rootStyle = computed((): StyleObject => {
+  const style: StyleObject = {}
+
+  // 处理宽度
   if (typeof props.width === 'number') {
-    return `${props.width}px`
+    style.width = `${props.width}px`
   } else if (typeof props.width === 'string') {
-    return props.width
+    style.width = props.width
   }
-  return ''
+
+  // 合并外部传入的样式
+  if (props.style) {
+    if (typeof props.style === 'string') {
+      // 如果是字符串样式，需要解析
+      const styleObj = props.style.split(';').reduce(
+        (acc, rule) => {
+          const [property, value] = rule.split(':').map((s) => s.trim())
+          if (property && value) {
+            acc[property] = value
+          }
+          return acc
+        },
+        {} as Record<string, string>
+      )
+      Object.assign(style, styleObj)
+    } else {
+      // 如果是对象样式，直接合并
+      Object.assign(style, props.style)
+    }
+  }
+
+  return style
 })
 
 const inputStyle = computed((): StyleObject => {
