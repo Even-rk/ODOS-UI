@@ -184,6 +184,7 @@ const handelBlur = ($event: Event) => {
     }
 
     &::placeholder {
+      font-size: 14px;
       color: #86909c;
     }
 

@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import Icon from 'packages/Icon/src/index.vue'
-import { computed, ref, useSlots, watchEffect, type SetupContext, watch } from 'vue'
+import { computed, ref, useSlots, watchEffect, type SetupContext } from 'vue'
 
 const { type, size, disabled, icon } = defineProps<{
   type?: 'primary' | 'default' | 'line' | 'text'
@@ -233,6 +233,9 @@ const Click = (e: Event) => {
     &:active .odos-icon--line .icon {
       fill: #0042c1 !important;
     }
+  }
+
+  .odos-btn-text {
   }
 }
 </style>
