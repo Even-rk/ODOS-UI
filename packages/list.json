@@ -147,7 +147,7 @@
   },
   {
     "compName": "SmartSelect",
-    "compZhName": "智能选择器",
+    "compZhName": "SmartSelect 智能选择器",
     "compClassName": "smart-select",
     "category": "special"
   }

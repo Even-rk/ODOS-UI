@@ -4,7 +4,6 @@ import search from './search.vue'
 import multiple from './multiple.vue'
 import title from './title.vue'
 import disabled from './disabled.vue'
-import position from './position.vue'
 import mutex from './mutex.vue'
 import api from './api.vue'
 </script>
@@ -39,12 +38,6 @@ import api from './api.vue'
 
 <Preview comp-name="SmartSelect" demo-name="disabled">
   <disabled />
-</Preview>
-
-## 不同位置
-
-<Preview comp-name="SmartSelect" demo-name="position">
-  <position />
 </Preview>
 
 ## 互斥选择
