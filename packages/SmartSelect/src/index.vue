@@ -841,11 +841,22 @@ defineExpose({
     0 9px 28px 8px rgba(0, 0, 0, 0.05);
   opacity: 0;
   transform: scale(0.9);
-  transition:
-    opacity 0.15s ease,
-    transform 0.15s ease;
   max-height: 256px;
   overflow-y: auto;
+
+  &::webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+
+  &::webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::webkit-scrollbar-thumb {
+    background-color: #c9cdd4;
+    border-radius: 4px;
+  }
 
   &.dropdown-show {
     opacity: 1;
