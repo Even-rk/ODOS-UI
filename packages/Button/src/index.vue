@@ -74,6 +74,7 @@ const Click = (e: Event) => {
 }
 
 .odos-btn {
+  font-size: 14px;
   cursor: pointer;
 }
 
