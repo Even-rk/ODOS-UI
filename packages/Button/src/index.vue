@@ -235,8 +235,5 @@ const Click = (e: Event) => {
       fill: #0042c1 !important;
     }
   }
-
-  .odos-btn-text {
-  }
 }
 </style>
