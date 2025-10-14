@@ -27,7 +27,7 @@
       @compositionend="handleCompositionEnd"
       :placeholder="placeholder || '请输入'"
     />
-    <div v-if="type !== 'search'" class="odos-icon" @click="iconClick">
+    <div v-if="type == 'password'" class="odos-icon" @click="iconClick">
       <Icon :name="iconName" color="#86909c" />
     </div>
     <div class="odos-unit" v-if="!$slots.suffix && unit">
