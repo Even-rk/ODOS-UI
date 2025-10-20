@@ -176,6 +176,7 @@ const handelBlur = ($event: Event) => {
     height: 100%;
     border: 1px solid #f2f3f5;
     outline: none;
+    font-size: 14px;
 
     &:hover {
       background: #e5e6eb;
