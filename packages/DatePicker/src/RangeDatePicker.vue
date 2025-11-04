@@ -150,7 +150,7 @@
                         :key="date.key"
                         :class="getRangeDateClass(date)"
                         class="odos-date-picker-day-item"
-                        @click="selectRangeDate(date, $event)"
+                        @click="!isDateDisabled(date) && selectRangeDate(date, $event)"
                       >
                         {{ date.day }}
                       </div>
@@ -240,7 +240,7 @@
                         :key="date.key"
                         :class="getRangeDateClass(date)"
                         class="odos-date-picker-day-item"
-                        @click="selectRangeDate(date, $event)"
+                        @click="!isDateDisabled(date) && selectRangeDate(date, $event)"
                       >
                         {{ date.day }}
                       </div>
@@ -665,6 +665,11 @@ const getRangeDateClass = (date: DateItem) => {
   }
 
   return classes
+}
+
+// 统一判断某个日期是否被禁用
+const isDateDisabled = (date: DateItem) => {
+  return !!(disabledDate?.value && disabledDate.value(new Date(date.date)))
 }
 
 // 检查日期范围内是否有禁用日期

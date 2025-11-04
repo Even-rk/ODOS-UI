@@ -151,7 +151,8 @@
                       (_, index) => index + 1
                     ).reverse()"
                     :key="i"
-                    @click="datePickerClick(preDay.date() + 1 - day, 'pre')"
+                    :class="{ 'odos-date-picker-disabled': isDisabledPreDate(preDay.date() + 1 - day) }"
+                    @click="!isDisabledPreDate(preDay.date() + 1 - day) && datePickerClick(preDay.date() + 1 - day, 'pre')"
                   >
                     {{ preDay.date() + 1 - day }}
                   </div>
@@ -174,7 +175,8 @@
                     class="odos-date-picker-day-next-item"
                     v-for="(day, i) in 42 - (startDayOfWeek + days)"
                     :key="i"
-                    @click="datePickerClick(day, 'next')"
+                    :class="{ 'odos-date-picker-disabled': isDisabledNextDate(day) }"
+                    @click="!isDisabledNextDate(day) && datePickerClick(day, 'next')"
                   >
                     {{ day }}
                   </div>
@@ -420,6 +422,20 @@ const isDisabledDate = (day: number) => {
   return disabledDate.value(date)
 }
 
+// 前一个月的禁用日期判断
+const isDisabledPreDate = (day: number) => {
+  if (!disabledDate?.value) return false
+  const date = dayjs(showDate.value).subtract(1, 'month').date(day).toDate()
+  return disabledDate.value(date)
+}
+
+// 下一个月的禁用日期判断
+const isDisabledNextDate = (day: number) => {
+  if (!disabledDate?.value) return false
+  const date = dayjs(showDate.value).add(1, 'month').date(day).toDate()
+  return disabledDate.value(date)
+}
+
 // 上个月最后一天
 const preDay = computed(() => {
   return dayjs(showDate.value).startOf('month').subtract(1, 'month').endOf('month')
@@ -614,20 +630,29 @@ const updateDateTime = () => {
   }
 }
 
-// 变换日期
+// 变换日期（含禁用检查）
 const datePickerClick = (day: number, type?: 'next' | 'pre') => {
-  if (type == 'pre') {
-    showDate.value = dayjs(showDate.value).subtract(1, 'month')
+  // 计算目标日期
+  let target = dayjs(showDate.value)
+  if (type === 'pre') {
+    target = target.subtract(1, 'month').date(day)
   } else if (type === 'next') {
-    showDate.value = dayjs(showDate.value).add(1, 'month')
+    target = target.add(1, 'month').date(day)
+  } else {
+    target = target.date(day)
   }
 
-  const data = dayjs(showDate.value).format('YYYY-MM') + '-' + (day >= 10 ? day : '0' + day)
-  showDate.value = dayjs(data)
+  // 禁用日期拦截
+  if (disabledDate?.value && disabledDate.value(target.toDate())) {
+    return
+  }
+
+  showDate.value = target
+  const data = target.format('YYYY-MM-DD')
 
   if (mode.value === 'datetime') {
     const components = timeComponents.value
-    let dateTime = dayjs(data)
+    let dateTime = target
 
     // 根据格式字符串设置时间组件
     if (components.hasHour) {
@@ -1263,6 +1288,12 @@ const selectYearInDateMode = (year: number, event?: Event) => {
       .odos-date-picker-day-next-item {
         @include DateItem;
         color: #bfbfbf;
+
+        &.odos-date-picker-disabled {
+          color: #c9cdd4;
+          cursor: not-allowed;
+          background: #f7f8fa;
+        }
       }
 
       .odos-date-picker-day-item {
