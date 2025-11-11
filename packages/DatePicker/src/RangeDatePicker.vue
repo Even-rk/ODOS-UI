@@ -612,13 +612,22 @@ const handleTodayClick = (side: 'left' | 'right', event?: Event) => {
   }
 }
 
-// 获取日历日期数据
+// 获取日历日期数据（以周一为一周的起始）
 const getCalendarDates = (baseDate: dayjs.Dayjs): DateItem[] => {
   const dates: DateItem[] = []
   const startOfMonth = baseDate.startOf('month')
   const endOfMonth = baseDate.endOf('month')
-  const startOfCalendar = startOfMonth.startOf('week')
-  const endOfCalendar = endOfMonth.endOf('week')
+
+  // dayjs().day() 返回：周日=0 ... 周六=6
+  // 我们的周标题为「一到日」，即以周一为起始，需要将网格边界改为周一开头、周日结尾
+  const firstDayWeek = startOfMonth.day()
+  const daysBefore = (firstDayWeek + 6) % 7 // 回退到周一的天数
+
+  const lastDayWeek = endOfMonth.day()
+  const daysAfter = 6 - ((lastDayWeek + 6) % 7) // 前进到周日的天数
+
+  const startOfCalendar = startOfMonth.subtract(daysBefore, 'day')
+  const endOfCalendar = endOfMonth.add(daysAfter, 'day')
 
   let current = startOfCalendar
   while (current.isBefore(endOfCalendar) || current.isSame(endOfCalendar, 'day')) {
