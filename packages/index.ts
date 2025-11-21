@@ -35,8 +35,10 @@ import { DrawerPlugin } from './Drawer'
 import { ImageUploadPlugin } from './ImageUpload'
 import { ImageClassifyViewerPlugin } from './ImageClassifyViewer'
 import { SmartSelectPlugin } from './SmartSelect'
+import { MedicalRecordTermsPlugin } from './MedicalRecordTerms'
 
 const Packages: Plugin[] = [
+  MedicalRecordTermsPlugin,
   SmartSelectPlugin,
   ImageClassifyViewerPlugin,
   AudioPlugin,
@@ -107,3 +109,4 @@ export * from './Drawer'
 export * from './ImageUpload'
 export * from './ImageClassifyViewer'
 export * from './SmartSelect'
+export * from './MedicalRecordTerms'

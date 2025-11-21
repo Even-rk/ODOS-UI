@@ -1,0 +1,2127 @@
+{
+	"msg": "操作成功",
+	"code": 200,
+	"data": [
+		{
+			"itemTypes": [
+				{
+					"itemType": "由来",
+					"items": [
+						{
+							"fromLj": false,
+							"itemName": "外院见患儿",
+							"itemOrder": 5,
+							"id": 5
+						},
+						{
+							"fromLj": false,
+							"itemName": "患儿自述",
+							"itemOrder": 6,
+							"id": 6
+						},
+						{
+							"fromLj": false,
+							"itemName": "定期检查",
+							"itemOrder": 1,
+							"id": 1
+						},
+						{
+							"fromLj": false,
+							"itemName": "接正畸转诊，",
+							"itemOrder": 3,
+							"id": 3
+						},
+						{
+							"fromLj": false,
+							"itemName": "接儿牙转诊，",
+							"itemOrder": 2,
+							"id": 2
+						},
+						{
+							"fromLj": false,
+							"itemName": "家长代诉，患儿",
+							"itemOrder": 4,
+							"id": 4
+						},
+						{
+							"fromLj": false,
+							"itemName": "矫正复诊。",
+							"itemOrder": 7,
+							"id": 7
+						}
+					]
+				},
+				{
+					"itemType": "部位",
+					"items": [
+						{
+							"fromLj": false,
+							"itemName": "右上后牙",
+							"itemOrder": 1,
+							"id": 8
+						},
+						{
+							"fromLj": false,
+							"itemName": "上前牙",
+							"itemOrder": 2,
+							"id": 9
+						},
+						{
+							"fromLj": false,
+							"itemName": "左上后牙",
+							"itemOrder": 3,
+							"id": 10
+						},
+						{
+							"fromLj": false,
+							"itemName": "左下后牙",
+							"itemOrder": 4,
+							"id": 11
+						},
+						{
+							"fromLj": false,
+							"itemName": "下前牙",
+							"itemOrder": 5,
+							"id": 12
+						},
+						{
+							"fromLj": false,
+							"itemName": "右下后牙",
+							"itemOrder": 6,
+							"id": 13
+						},
+						{
+							"fromLj": false,
+							"itemName": "全口",
+							"itemOrder": 7,
+							"id": 14
+						},
+						{
+							"fromLj": false,
+							"itemName": "上唇",
+							"itemOrder": 8,
+							"id": 15
+						},
+						{
+							"fromLj": false,
+							"itemName": "下唇",
+							"itemOrder": 9,
+							"id": 16
+						},
+						{
+							"fromLj": false,
+							"itemName": "粘膜",
+							"itemOrder": 10,
+							"id": 17
+						},
+						{
+							"fromLj": false,
+							"itemName": "牙龈",
+							"itemOrder": 11,
+							"id": 18
+						}
+					]
+				},
+				{
+					"itemType": "儿牙",
+					"items": [
+						{
+							"fromLj": false,
+							"itemName": "黑点",
+							"itemOrder": 4,
+							"id": 22
+						},
+						{
+							"fromLj": false,
+							"itemName": "发黑",
+							"itemOrder": 1,
+							"id": 19
+						},
+						{
+							"fromLj": false,
+							"itemName": "发黄",
+							"itemOrder": 2,
+							"id": 20
+						},
+						{
+							"fromLj": false,
+							"itemName": "发灰",
+							"itemOrder": 3,
+							"id": 21
+						},
+						{
+							"fromLj": false,
+							"itemName": "黑斑",
+							"itemOrder": 5,
+							"id": 23
+						},
+						{
+							"fromLj": false,
+							"itemName": "黄斑",
+							"itemOrder": 6,
+							"id": 24
+						},
+						{
+							"fromLj": false,
+							"itemName": "白斑",
+							"itemOrder": 7,
+							"id": 25
+						},
+						{
+							"fromLj": false,
+							"itemName": "松动",
+							"itemOrder": 8,
+							"id": 26
+						},
+						{
+							"fromLj": false,
+							"itemName": "双排牙",
+							"itemOrder": 9,
+							"id": 27
+						},
+						{
+							"fromLj": false,
+							"itemName": "牙齿数目异常",
+							"itemOrder": 10,
+							"id": 28
+						},
+						{
+							"fromLj": false,
+							"itemName": "不适",
+							"itemOrder": 11,
+							"id": 29
+						},
+						{
+							"fromLj": false,
+							"itemName": "疼痛",
+							"itemOrder": 12,
+							"id": 30
+						},
+						{
+							"fromLj": false,
+							"itemName": "夜间痛",
+							"itemOrder": 13,
+							"id": 31
+						},
+						{
+							"fromLj": false,
+							"itemName": "冷热刺激痛",
+							"itemOrder": 14,
+							"id": 32
+						},
+						{
+							"fromLj": false,
+							"itemName": "咀嚼痛",
+							"itemOrder": 15,
+							"id": 33
+						},
+						{
+							"fromLj": false,
+							"itemName": "食物嵌塞痛",
+							"itemOrder": 16,
+							"id": 34
+						},
+						{
+							"fromLj": false,
+							"itemName": "牙龈肿",
+							"itemOrder": 17,
+							"id": 35
+						},
+						{
+							"fromLj": false,
+							"itemName": "牙龈脓包",
+							"itemOrder": 18,
+							"id": 36
+						},
+						{
+							"fromLj": false,
+							"itemName": "牙龈出血",
+							"itemOrder": 19,
+							"id": 37
+						},
+						{
+							"fromLj": false,
+							"itemName": "修复体脱落",
+							"itemOrder": 20,
+							"id": 38
+						},
+						{
+							"fromLj": false,
+							"itemName": "修复体破损",
+							"itemOrder": 21,
+							"id": 39
+						},
+						{
+							"fromLj": false,
+							"itemName": "间隙保持器脱落",
+							"itemOrder": 22,
+							"id": 40
+						},
+						{
+							"fromLj": false,
+							"itemName": "间隙保持器破损",
+							"itemOrder": 23,
+							"id": 41
+						},
+						{
+							"fromLj": false,
+							"itemName": "牙结石",
+							"itemOrder": 24,
+							"id": 42
+						},
+						{
+							"fromLj": false,
+							"itemName": "溃疡",
+							"itemOrder": 25,
+							"id": 43
+						},
+						{
+							"fromLj": false,
+							"itemName": "口臭",
+							"itemOrder": 26,
+							"id": 44
+						},
+						{
+							"fromLj": false,
+							"itemName": "自上次治疗后疼痛缓解，继续治疗。",
+							"itemOrder": 27,
+							"id": 45
+						},
+						{
+							"fromLj": false,
+							"itemName": "自上次治疗后疼痛未缓解，继续治疗。",
+							"itemOrder": 28,
+							"id": 46
+						}
+					]
+				},
+				{
+					"itemType": "正畸",
+					"items": [
+						{
+							"fromLj": false,
+							"itemName": "地包天",
+							"itemOrder": 3,
+							"id": 49
+						},
+						{
+							"fromLj": false,
+							"itemName": "龅牙",
+							"itemOrder": 2,
+							"id": 48
+						},
+						{
+							"fromLj": false,
+							"itemName": "牙缝大",
+							"itemOrder": 6,
+							"id": 52
+						},
+						{
+							"fromLj": false,
+							"itemName": "不齐",
+							"itemOrder": 1,
+							"id": 47
+						},
+						{
+							"fromLj": false,
+							"itemName": "口呼吸",
+							"itemOrder": 4,
+							"id": 50
+						},
+						{
+							"fromLj": false,
+							"itemName": "嘴突",
+							"itemOrder": 5,
+							"id": 51
+						},
+						{
+							"fromLj": false,
+							"itemName": "露龈笑",
+							"itemOrder": 7,
+							"id": 53
+						},
+						{
+							"fromLj": false,
+							"itemName": "下巴小",
+							"itemOrder": 8,
+							"id": 54
+						},
+						{
+							"fromLj": false,
+							"itemName": "下巴长",
+							"itemOrder": 9,
+							"id": 55
+						},
+						{
+							"fromLj": false,
+							"itemName": "下巴歪",
+							"itemOrder": 10,
+							"id": 56
+						},
+						{
+							"fromLj": false,
+							"itemName": "咬嘴唇",
+							"itemOrder": 11,
+							"id": 57
+						},
+						{
+							"fromLj": false,
+							"itemName": "咬手指",
+							"itemOrder": 12,
+							"id": 58
+						},
+						{
+							"fromLj": false,
+							"itemName": "发音不清/大舌头",
+							"itemOrder": 13,
+							"id": 59
+						},
+						{
+							"fromLj": false,
+							"itemName": "门牙咬不住",
+							"itemOrder": 14,
+							"id": 60
+						},
+						{
+							"fromLj": false,
+							"itemName": "门牙咬太紧",
+							"itemOrder": 15,
+							"id": 61
+						},
+						{
+							"fromLj": false,
+							"itemName": "牙齿咬歪",
+							"itemOrder": 16,
+							"id": 62
+						},
+						{
+							"fromLj": false,
+							"itemName": "嘴唇上翘",
+							"itemOrder": 17,
+							"id": 63
+						},
+						{
+							"fromLj": false,
+							"itemName": "大小脸",
+							"itemOrder": 18,
+							"id": 64
+						},
+						{
+							"fromLj": false,
+							"itemName": "掉托槽/掉附件",
+							"itemOrder": 19,
+							"id": 65
+						},
+						{
+							"fromLj": false,
+							"itemName": "矫治器破损/丢失",
+							"itemOrder": 20,
+							"id": 66
+						},
+						{
+							"fromLj": false,
+							"itemName": "矫治器划伤",
+							"itemOrder": 21,
+							"id": 67
+						}
+					]
+				},
+				{
+					"itemType": "时间",
+					"items": [
+						{
+							"fromLj": false,
+							"itemName": "1小时余。",
+							"itemOrder": 1,
+							"id": 68
+						},
+						{
+							"fromLj": false,
+							"itemName": "2小时余。",
+							"itemOrder": 2,
+							"id": 69
+						},
+						{
+							"fromLj": false,
+							"itemName": "4小时余。",
+							"itemOrder": 3,
+							"id": 70
+						},
+						{
+							"fromLj": false,
+							"itemName": "1天。",
+							"itemOrder": 4,
+							"id": 71
+						},
+						{
+							"fromLj": false,
+							"itemName": "2天。",
+							"itemOrder": 5,
+							"id": 72
+						},
+						{
+							"fromLj": false,
+							"itemName": "1周余。",
+							"itemOrder": 6,
+							"id": 73
+						},
+						{
+							"fromLj": false,
+							"itemName": "2周余。",
+							"itemOrder": 7,
+							"id": 74
+						},
+						{
+							"fromLj": false,
+							"itemName": "1月余。",
+							"itemOrder": 8,
+							"id": 75
+						},
+						{
+							"fromLj": false,
+							"itemName": "数月余。",
+							"itemOrder": 9,
+							"id": 76
+						}
+					]
+				}
+			],
+			"mainType": "主诉"
+		},
+		{
+			"itemTypes": [
+				{
+					"itemType": "时间",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "1小时前",
+							"itemOrder": 0,
+							"id": 106154
+						},
+						{
+							"fromLj": true,
+							"itemName": "1天前",
+							"itemOrder": 1,
+							"id": 106155
+						},
+						{
+							"fromLj": true,
+							"itemName": "1周前",
+							"itemOrder": 2,
+							"id": 106156
+						},
+						{
+							"fromLj": true,
+							"itemName": "1月来",
+							"itemOrder": 3,
+							"id": 106157
+						},
+						{
+							"fromLj": true,
+							"itemName": "1年来",
+							"itemOrder": 4,
+							"id": 106158
+						}
+					]
+				},
+				{
+					"itemType": "部位",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "左上",
+							"itemOrder": 0,
+							"id": 106159
+						},
+						{
+							"fromLj": true,
+							"itemName": "左下",
+							"itemOrder": 1,
+							"id": 106160
+						},
+						{
+							"fromLj": true,
+							"itemName": "右上",
+							"itemOrder": 2,
+							"id": 106161
+						},
+						{
+							"fromLj": true,
+							"itemName": "右下",
+							"itemOrder": 3,
+							"id": 106162
+						},
+						{
+							"fromLj": true,
+							"itemName": "左",
+							"itemOrder": 4,
+							"id": 106163
+						},
+						{
+							"fromLj": true,
+							"itemName": "右",
+							"itemOrder": 5,
+							"id": 106164
+						},
+						{
+							"fromLj": true,
+							"itemName": "上",
+							"itemOrder": 6,
+							"id": 106165
+						},
+						{
+							"fromLj": true,
+							"itemName": "下",
+							"itemOrder": 7,
+							"id": 106166
+						},
+						{
+							"fromLj": true,
+							"itemName": "前牙",
+							"itemOrder": 8,
+							"id": 106167
+						},
+						{
+							"fromLj": true,
+							"itemName": "后牙",
+							"itemOrder": 9,
+							"id": 106179
+						},
+						{
+							"fromLj": true,
+							"itemName": "前后牙",
+							"itemOrder": 10,
+							"id": 106180
+						},
+						{
+							"fromLj": true,
+							"itemName": "半口牙",
+							"itemOrder": 11,
+							"id": 106358
+						},
+						{
+							"fromLj": true,
+							"itemName": "全口牙",
+							"itemOrder": 12,
+							"id": 106359
+						},
+						{
+							"fromLj": true,
+							"itemName": "患者自觉",
+							"itemOrder": 13,
+							"id": 106360
+						},
+						{
+							"fromLj": true,
+							"itemName": "体检发现",
+							"itemOrder": 14,
+							"id": 106361
+						}
+					]
+				},
+				{
+					"itemType": "症状",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "有洞",
+							"itemOrder": 0,
+							"id": 106169
+						},
+						{
+							"fromLj": true,
+							"itemName": "折断",
+							"itemOrder": 1,
+							"id": 106170
+						},
+						{
+							"fromLj": true,
+							"itemName": "缺失",
+							"itemOrder": 2,
+							"id": 106171
+						},
+						{
+							"fromLj": true,
+							"itemName": "咬合不适",
+							"itemOrder": 3,
+							"id": 106172
+						},
+						{
+							"fromLj": true,
+							"itemName": "食物嵌塞",
+							"itemOrder": 4,
+							"id": 106173
+						},
+						{
+							"fromLj": true,
+							"itemName": "刷牙出血",
+							"itemOrder": 5,
+							"id": 106174
+						},
+						{
+							"fromLj": true,
+							"itemName": "牙冠变色",
+							"itemOrder": 6,
+							"id": 106175
+						},
+						{
+							"fromLj": true,
+							"itemName": "牙列不齐",
+							"itemOrder": 7,
+							"id": 106176
+						},
+						{
+							"fromLj": true,
+							"itemName": "充填物脱落",
+							"itemOrder": 8,
+							"id": 106177
+						},
+						{
+							"fromLj": true,
+							"itemName": "冷热刺激痛",
+							"itemOrder": 9,
+							"id": 106178
+						},
+						{
+							"fromLj": true,
+							"itemName": "冷热酸甜敏感",
+							"itemOrder": 10,
+							"id": 106362
+						}
+					]
+				},
+				{
+					"itemType": "治疗情况",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "未治疗。",
+							"itemOrder": 0,
+							"id": 106181
+						},
+						{
+							"fromLj": true,
+							"itemName": "本院治疗，",
+							"itemOrder": 1,
+							"id": 106182
+						},
+						{
+							"fromLj": true,
+							"itemName": "外院治疗，",
+							"itemOrder": 2,
+							"id": 106183
+						},
+						{
+							"fromLj": true,
+							"itemName": "牙髓治疗，",
+							"itemOrder": 3,
+							"id": 106184
+						},
+						{
+							"fromLj": true,
+							"itemName": "充填治疗，",
+							"itemOrder": 4,
+							"id": 106185
+						},
+						{
+							"fromLj": true,
+							"itemName": "牙周治疗，",
+							"itemOrder": 5,
+							"id": 106186
+						},
+						{
+							"fromLj": true,
+							"itemName": "治疗，具体不详，",
+							"itemOrder": 6,
+							"id": 106187
+						}
+					]
+				},
+				{
+					"itemType": "症状变化",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "缓解，",
+							"itemOrder": 0,
+							"id": 106188
+						},
+						{
+							"fromLj": true,
+							"itemName": "稍缓解，",
+							"itemOrder": 1,
+							"id": 106189
+						},
+						{
+							"fromLj": true,
+							"itemName": "未缓解，",
+							"itemOrder": 2,
+							"id": 106190
+						}
+					]
+				},
+				{
+					"itemType": "口腔习惯",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "刷牙 2次/日，2min/次，不使用牙线，不使用间隙刷。",
+							"itemOrder": 0,
+							"id": 106191
+						},
+						{
+							"fromLj": true,
+							"itemName": "使用电动牙刷。",
+							"itemOrder": 1,
+							"id": 106192
+						}
+					]
+				}
+			],
+			"mainType": "病历词条-现病史"
+		},
+		{
+			"itemTypes": [
+				{
+					"itemType": "常规",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "体健。",
+							"itemOrder": 0,
+							"id": 106193
+						},
+						{
+							"fromLj": true,
+							"itemName": "无特殊。",
+							"itemOrder": 1,
+							"id": 106194
+						},
+						{
+							"fromLj": true,
+							"itemName": "否认系统性病史。",
+							"itemOrder": 2,
+							"id": 106197
+						}
+					]
+				},
+				{
+					"itemType": "高血压",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "否认高血压。",
+							"itemOrder": 0,
+							"id": 106195
+						},
+						{
+							"fromLj": true,
+							"itemName": "高血压史  10年，服药控制，高压/低压  140/80mmHg。",
+							"itemOrder": 1,
+							"id": 106196
+						},
+						{
+							"fromLj": true,
+							"itemName": "每日服用抗高血压药物",
+							"itemOrder": 2,
+							"id": 106198
+						}
+					]
+				},
+				{
+					"itemType": "心脏病",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "否认心脏病。",
+							"itemOrder": 0,
+							"id": 106199
+						},
+						{
+							"fromLj": true,
+							"itemName": "心脏病史  5年，",
+							"itemOrder": 1,
+							"id": 106200
+						},
+						{
+							"fromLj": true,
+							"itemName": "每日服用阿司匹林。",
+							"itemOrder": 2,
+							"id": 106201
+						},
+						{
+							"fromLj": true,
+							"itemName": "每日服用华法令。",
+							"itemOrder": 3,
+							"id": 106202
+						},
+						{
+							"fromLj": true,
+							"itemName": "未服抗凝药。",
+							"itemOrder": 4,
+							"id": 106203
+						}
+					]
+				},
+				{
+					"itemType": "糖尿病",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "否认糖尿病。",
+							"itemOrder": 0,
+							"id": 106204
+						},
+						{
+							"fromLj": true,
+							"itemName": "糖尿病史 5年，维持血糖   mmol/L。",
+							"itemOrder": 1,
+							"id": 106205
+						},
+						{
+							"fromLj": true,
+							"itemName": "每日服用抗糖尿病药物",
+							"itemOrder": 2,
+							"id": 106206
+						}
+					]
+				},
+				{
+					"itemType": "药物过敏",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "不详。",
+							"itemOrder": 0,
+							"id": 106207
+						},
+						{
+							"fromLj": true,
+							"itemName": "否认药物过敏。",
+							"itemOrder": 1,
+							"id": 106208
+						},
+						{
+							"fromLj": true,
+							"itemName": "青霉素类过敏。",
+							"itemOrder": 2,
+							"id": 106209
+						},
+						{
+							"fromLj": true,
+							"itemName": "磺胺类过敏。",
+							"itemOrder": 3,
+							"id": 106210
+						}
+					]
+				},
+				{
+					"itemType": "传染病史",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "乙型肝炎病史。",
+							"itemOrder": 0,
+							"id": 106211
+						},
+						{
+							"fromLj": true,
+							"itemName": "AIDS病史。",
+							"itemOrder": 1,
+							"id": 106212
+						},
+						{
+							"fromLj": true,
+							"itemName": "结核病史。",
+							"itemOrder": 2,
+							"id": 106213
+						},
+						{
+							"fromLj": true,
+							"itemName": "甲型肝炎病史。",
+							"itemOrder": 3,
+							"id": 106214
+						}
+					]
+				},
+				{
+					"itemType": "家族病史",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "无特殊家族病史。",
+							"itemOrder": 0,
+							"id": 106215
+						}
+					]
+				}
+			],
+			"mainType": "病历词条-既往史"
+		},
+		{
+			"itemTypes": [
+				{
+					"itemType": "常规检查",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "探",
+							"itemOrder": 0,
+							"id": 106216
+						},
+						{
+							"fromLj": true,
+							"itemName": "叩",
+							"itemOrder": 1,
+							"id": 106217
+						},
+						{
+							"fromLj": true,
+							"itemName": "松动",
+							"itemOrder": 2,
+							"id": 106218
+						},
+						{
+							"fromLj": true,
+							"itemName": "牙龈",
+							"itemOrder": 3,
+							"id": 106219
+						},
+						{
+							"fromLj": true,
+							"itemName": "-，",
+							"itemOrder": 4,
+							"id": 106220
+						},
+						{
+							"fromLj": true,
+							"itemName": "±，",
+							"itemOrder": 5,
+							"id": 106221
+						},
+						{
+							"fromLj": true,
+							"itemName": "＋，",
+							"itemOrder": 6,
+							"id": 106222
+						},
+						{
+							"fromLj": true,
+							"itemName": "++，",
+							"itemOrder": 7,
+							"id": 106223
+						},
+						{
+							"fromLj": true,
+							"itemName": "＋＋＋,",
+							"itemOrder": 8,
+							"id": 106352
+						}
+					]
+				},
+				{
+					"itemType": "特殊检查",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "冷测试",
+							"itemOrder": 0,
+							"id": 106224
+						},
+						{
+							"fromLj": true,
+							"itemName": "热测试",
+							"itemOrder": 1,
+							"id": 106225
+						},
+						{
+							"fromLj": true,
+							"itemName": "电活力测试",
+							"itemOrder": 2,
+							"id": 106226
+						},
+						{
+							"fromLj": true,
+							"itemName": "敏感，",
+							"itemOrder": 3,
+							"id": 106227
+						},
+						{
+							"fromLj": true,
+							"itemName": "疼痛，",
+							"itemOrder": 4,
+							"id": 106228
+						},
+						{
+							"fromLj": true,
+							"itemName": "迟钝，",
+							"itemOrder": 5,
+							"id": 106229
+						},
+						{
+							"fromLj": true,
+							"itemName": "无反应，",
+							"itemOrder": 6,
+							"id": 106230
+						},
+						{
+							"fromLj": true,
+							"itemName": "正常，",
+							"itemOrder": 7,
+							"id": 106231
+						}
+					]
+				},
+				{
+					"itemType": "龋坏",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "浅龋坏，",
+							"itemOrder": 0,
+							"id": 106232
+						},
+						{
+							"fromLj": true,
+							"itemName": "龋坏，",
+							"itemOrder": 1,
+							"id": 106233
+						},
+						{
+							"fromLj": true,
+							"itemName": "深大龋坏，",
+							"itemOrder": 2,
+							"id": 106234
+						},
+						{
+							"fromLj": true,
+							"itemName": "白垩色，",
+							"itemOrder": 3,
+							"id": 106235
+						},
+						{
+							"fromLj": true,
+							"itemName": "墨浸样改变，",
+							"itemOrder": 4,
+							"id": 106236
+						},
+						{
+							"fromLj": true,
+							"itemName": "质软，",
+							"itemOrder": 5,
+							"id": 106237
+						},
+						{
+							"fromLj": true,
+							"itemName": "质硬，",
+							"itemOrder": 6,
+							"id": 106238
+						}
+					]
+				},
+				{
+					"itemType": "非龋性",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "畸形尖，",
+							"itemOrder": 0,
+							"id": 106239
+						},
+						{
+							"fromLj": true,
+							"itemName": "畸形沟，",
+							"itemOrder": 1,
+							"id": 106240
+						},
+						{
+							"fromLj": true,
+							"itemName": "冠根折，",
+							"itemOrder": 2,
+							"id": 106241
+						},
+						{
+							"fromLj": true,
+							"itemName": "微裂纹，",
+							"itemOrder": 3,
+							"id": 106242
+						},
+						{
+							"fromLj": true,
+							"itemName": "氟斑牙，",
+							"itemOrder": 4,
+							"id": 106243
+						},
+						{
+							"fromLj": true,
+							"itemName": "楔形缺损，",
+							"itemOrder": 5,
+							"id": 106244
+						},
+						{
+							"fromLj": true,
+							"itemName": "重度磨耗，",
+							"itemOrder": 6,
+							"id": 106283
+						},
+						{
+							"fromLj": true,
+							"itemName": "釉质发育不全，",
+							"itemOrder": 7,
+							"id": 106284
+						}
+					]
+				},
+				{
+					"itemType": "旧充填",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "牙色充填体，",
+							"itemOrder": 0,
+							"id": 106245
+						},
+						{
+							"fromLj": true,
+							"itemName": "银汞充填体，",
+							"itemOrder": 1,
+							"id": 106246
+						},
+						{
+							"fromLj": true,
+							"itemName": "暂封材料，",
+							"itemOrder": 2,
+							"id": 106247
+						},
+						{
+							"fromLj": true,
+							"itemName": "边缘可，",
+							"itemOrder": 3,
+							"id": 106248
+						},
+						{
+							"fromLj": true,
+							"itemName": "边缘密合，",
+							"itemOrder": 4,
+							"id": 106249
+						},
+						{
+							"fromLj": true,
+							"itemName": "边缘不密合，",
+							"itemOrder": 5,
+							"id": 106250
+						},
+						{
+							"fromLj": true,
+							"itemName": "继发龋坏，",
+							"itemOrder": 6,
+							"id": 106251
+						},
+						{
+							"fromLj": true,
+							"itemName": "悬突，",
+							"itemOrder": 7,
+							"id": 106252
+						},
+						{
+							"fromLj": true,
+							"itemName": "充填体部分脱落，",
+							"itemOrder": 8,
+							"id": 106253
+						},
+						{
+							"fromLj": true,
+							"itemName": "充填体折断，",
+							"itemOrder": 9,
+							"id": 106254
+						}
+					]
+				},
+				{
+					"itemType": "牙周",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "口腔卫生状况不良，牙龈红肿，",
+							"itemOrder": 0,
+							"id": 106255
+						},
+						{
+							"fromLj": true,
+							"itemName": "牙石",
+							"itemOrder": 1,
+							"id": 106256
+						},
+						{
+							"fromLj": true,
+							"itemName": "软垢",
+							"itemOrder": 2,
+							"id": 106257
+						},
+						{
+							"fromLj": true,
+							"itemName": "色素",
+							"itemOrder": 3,
+							"id": 106258
+						},
+						{
+							"fromLj": true,
+							"itemName": "BI=",
+							"itemOrder": 4,
+							"id": 106259
+						},
+						{
+							"fromLj": true,
+							"itemName": "PD=",
+							"itemOrder": 5,
+							"id": 106260
+						},
+						{
+							"fromLj": true,
+							"itemName": "AL=",
+							"itemOrder": 6,
+							"id": 106261
+						}
+					]
+				},
+				{
+					"itemType": "修复",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "缺失，未修复，",
+							"itemOrder": 0,
+							"id": 106262
+						},
+						{
+							"fromLj": true,
+							"itemName": "缺失，活动义齿修复，",
+							"itemOrder": 1,
+							"id": 106263
+						},
+						{
+							"fromLj": true,
+							"itemName": "缺失，种植体修复，",
+							"itemOrder": 2,
+							"id": 106264
+						},
+						{
+							"fromLj": true,
+							"itemName": "缺失，固定修复，",
+							"itemOrder": 3,
+							"id": 106265
+						},
+						{
+							"fromLj": true,
+							"itemName": "缺隙近远中距离      mm，",
+							"itemOrder": 4,
+							"id": 106266
+						},
+						{
+							"fromLj": true,
+							"itemName": "颌龈距       mm，",
+							"itemOrder": 5,
+							"id": 106267
+						},
+						{
+							"fromLj": true,
+							"itemName": "无对牙合牙，",
+							"itemOrder": 6,
+							"id": 106268
+						},
+						{
+							"fromLj": true,
+							"itemName": "牙槽嵴丰满，",
+							"itemOrder": 7,
+							"id": 106269
+						}
+					]
+				},
+				{
+					"itemType": "咬合",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "前牙",
+							"itemOrder": 0,
+							"id": 106270
+						},
+						{
+							"fromLj": true,
+							"itemName": "后牙",
+							"itemOrder": 1,
+							"id": 106271
+						},
+						{
+							"fromLj": true,
+							"itemName": "深覆合，",
+							"itemOrder": 2,
+							"id": 106272
+						},
+						{
+							"fromLj": true,
+							"itemName": "深覆盖，",
+							"itemOrder": 3,
+							"id": 106273
+						},
+						{
+							"fromLj": true,
+							"itemName": "对刃，",
+							"itemOrder": 4,
+							"id": 106274
+						},
+						{
+							"fromLj": true,
+							"itemName": "开合，",
+							"itemOrder": 5,
+							"id": 106275
+						},
+						{
+							"fromLj": true,
+							"itemName": "反合，",
+							"itemOrder": 6,
+							"id": 106276
+						},
+						{
+							"fromLj": true,
+							"itemName": "锁合，",
+							"itemOrder": 7,
+							"id": 106277
+						},
+						{
+							"fromLj": true,
+							"itemName": "尖牙关系",
+							"itemOrder": 8,
+							"id": 106278
+						},
+						{
+							"fromLj": true,
+							"itemName": "磨牙关系",
+							"itemOrder": 9,
+							"id": 106279
+						},
+						{
+							"fromLj": true,
+							"itemName": "近中，",
+							"itemOrder": 10,
+							"id": 106280
+						},
+						{
+							"fromLj": true,
+							"itemName": "远中，",
+							"itemOrder": 11,
+							"id": 106281
+						},
+						{
+							"fromLj": true,
+							"itemName": "正常，",
+							"itemOrder": 12,
+							"id": 106282
+						}
+					]
+				},
+				{
+					"itemType": "关节",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "左侧关节",
+							"itemOrder": 0,
+							"id": 106285
+						},
+						{
+							"fromLj": true,
+							"itemName": "右侧关节",
+							"itemOrder": 1,
+							"id": 106286
+						},
+						{
+							"fromLj": true,
+							"itemName": "两侧关节",
+							"itemOrder": 2,
+							"id": 106287
+						},
+						{
+							"fromLj": true,
+							"itemName": "疼痛",
+							"itemOrder": 3,
+							"id": 106288
+						},
+						{
+							"fromLj": true,
+							"itemName": "弹响",
+							"itemOrder": 4,
+							"id": 106289
+						},
+						{
+							"fromLj": true,
+							"itemName": "压痛",
+							"itemOrder": 5,
+							"id": 106290
+						}
+					]
+				}
+			],
+			"mainType": "病历词条-检查"
+		},
+		{
+			"itemTypes": [
+				{
+					"itemType": "口腔宣教",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "OHI口腔卫生宣教，刷牙、牙线、间隙刷使用宣教。",
+							"itemOrder": 0,
+							"id": 106291
+						}
+					]
+				},
+				{
+					"itemType": "知情同意",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "向患者交代病情、治疗计划、费用、预后等，患者知情并同意治疗。",
+							"itemOrder": 0,
+							"id": 106292
+						},
+						{
+							"fromLj": true,
+							"itemName": "解释病情，患者及家属知情，要求考虑，择日治疗。",
+							"itemOrder": 1,
+							"id": 106293
+						},
+						{
+							"fromLj": true,
+							"itemName": "告知病情，治疗方案，费用，风险，患者要求拔牙，知情同意",
+							"itemOrder": 2,
+							"id": 106315
+						}
+					]
+				},
+				{
+					"itemType": "麻醉",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "4%阿替卡因局部浸润麻醉，",
+							"itemOrder": 0,
+							"id": 106294
+						},
+						{
+							"fromLj": true,
+							"itemName": "4%阿替卡因阻滞麻醉，",
+							"itemOrder": 1,
+							"id": 106295
+						},
+						{
+							"fromLj": true,
+							"itemName": "2%利多卡因局部浸润麻醉，",
+							"itemOrder": 2,
+							"id": 106296
+						},
+						{
+							"fromLj": true,
+							"itemName": "2%利多卡因阻滞麻醉，",
+							"itemOrder": 3,
+							"id": 106297
+						}
+					]
+				},
+				{
+					"itemType": "充填",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "去尽腐质，达牙本质深层，未及露髓点,比色,排龈,上领面修复系统,护髓,垫底，树脂充填，调磨充填体高点，抛光",
+							"itemOrder": 0,
+							"id": 106298
+						},
+						{
+							"fromLj": true,
+							"itemName": "去旧充填体，",
+							"itemOrder": 1,
+							"id": 106299
+						},
+						{
+							"fromLj": true,
+							"itemName": "dycal护髓，",
+							"itemOrder": 2,
+							"id": 106300
+						},
+						{
+							"fromLj": true,
+							"itemName": "玻璃离子垫底，",
+							"itemOrder": 3,
+							"id": 106301
+						}
+					]
+				},
+				{
+					"itemType": "根管",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "去腐质未尽露髓，出血大量，扩大穿髓孔，封无砷失活剂，Cervitron暂封。",
+							"itemOrder": 0,
+							"id": 106302
+						},
+						{
+							"fromLj": true,
+							"itemName": "去暂封，取封药，揭顶，探及3根管，拔髓不成形，少量出血，手用锉疏通根管至15#，测根长。",
+							"itemOrder": 1,
+							"id": 106303
+						},
+						{
+							"fromLj": true,
+							"itemName": "Glyde辅助下，机用镍钛，根管预备。",
+							"itemOrder": 2,
+							"id": 106304
+						},
+						{
+							"fromLj": true,
+							"itemName": "冲洗，荡洗，干燥，根管封药，暂封。",
+							"itemOrder": 3,
+							"id": 106305
+						},
+						{
+							"fromLj": true,
+							"itemName": "试主尖片，达根长，荡洗，拭净，热牙胶根充，垫底，GIC暂封。",
+							"itemOrder": 4,
+							"id": 106306
+						},
+						{
+							"fromLj": true,
+							"itemName": "拍片，恰填。",
+							"itemOrder": 5,
+							"id": 106307
+						},
+						{
+							"fromLj": true,
+							"itemName": "根管不通畅，疏通根管，超声尖去除髓腔钙化物。",
+							"itemOrder": 6,
+							"id": 106308
+						},
+						{
+							"fromLj": true,
+							"itemName": "橡皮障，",
+							"itemOrder": 7,
+							"id": 106309
+						},
+						{
+							"fromLj": true,
+							"itemName": "显微镜，",
+							"itemOrder": 8,
+							"id": 106310
+						},
+						{
+							"fromLj": true,
+							"itemName": "5.25%NaClO冲洗，",
+							"itemOrder": 9,
+							"id": 106311
+						},
+						{
+							"fromLj": true,
+							"itemName": "封药Ca(OH)2，",
+							"itemOrder": 10,
+							"id": 106312
+						}
+					]
+				},
+				{
+					"itemType": "牙周",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "3%双氧水含漱，超声洁治、抛光，3%双氧水冲洗，上药。",
+							"itemOrder": 0,
+							"id": 106313
+						},
+						{
+							"fromLj": true,
+							"itemName": "刮治，根面平整。",
+							"itemOrder": 1,
+							"id": 106314
+						}
+					]
+				},
+				{
+					"itemType": "拔牙",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "分龈，增隙、挺松，钳拔除，搔刮，生理盐水冲洗，置明胶海绵，压迫止血。",
+							"itemOrder": 0,
+							"id": 106316
+						},
+						{
+							"fromLj": true,
+							"itemName": "切开翻瓣，",
+							"itemOrder": 1,
+							"id": 106317
+						},
+						{
+							"fromLj": true,
+							"itemName": "缝合，1针。",
+							"itemOrder": 2,
+							"id": 106318
+						},
+						{
+							"fromLj": true,
+							"itemName": "消毒，拆线，生理盐水冲洗。",
+							"itemOrder": 3,
+							"id": 106363
+						}
+					]
+				},
+				{
+					"itemType": "修复",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "基牙预备，精修。",
+							"itemOrder": 0,
+							"id": 106319
+						},
+						{
+							"fromLj": true,
+							"itemName": "制取硅橡胶印模，硅橡胶咬合记录，",
+							"itemOrder": 1,
+							"id": 106320
+						},
+						{
+							"fromLj": true,
+							"itemName": "临时冠修复。",
+							"itemOrder": 2,
+							"id": 106321
+						},
+						{
+							"fromLj": true,
+							"itemName": "去除临时冠及暂封材料，清洁基牙和修复体，",
+							"itemOrder": 3,
+							"id": 106322
+						},
+						{
+							"fromLj": true,
+							"itemName": "试戴修复体边缘密合，邻接良好。",
+							"itemOrder": 4,
+							"id": 106323
+						},
+						{
+							"fromLj": true,
+							"itemName": "调合、抛光，永久粘固。",
+							"itemOrder": 5,
+							"id": 106324
+						},
+						{
+							"fromLj": true,
+							"itemName": "灌制石膏模型，口外制作个别托盘。",
+							"itemOrder": 6,
+							"id": 106325
+						},
+						{
+							"fromLj": true,
+							"itemName": "试支架，就位顺利，基托密合，固位良好，无翘动。",
+							"itemOrder": 7,
+							"id": 106326
+						},
+						{
+							"fromLj": true,
+							"itemName": "戴义齿，就位顺利，固位良好，基托密合，无翘动。",
+							"itemOrder": 8,
+							"id": 106327
+						}
+					]
+				},
+				{
+					"itemType": "种植",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "常规消毒铺巾，4%阿替卡因1.7mlX1支/碧兰麻局部浸润麻醉，在牙槽嵴顶做水平切口，全层切开粘骨膜，翻瓣，定位，备洞至预定深度，置入植体，旋入覆盖螺丝，减张缝合，拍片位置可。",
+							"itemOrder": 0,
+							"id": 106328
+						},
+						{
+							"fromLj": true,
+							"itemName": "植入骨粉，",
+							"itemOrder": 1,
+							"id": 106329
+						},
+						{
+							"fromLj": true,
+							"itemName": "种植术区消毒，拆除缝合线，局部上药。",
+							"itemOrder": 2,
+							"id": 106330
+						},
+						{
+							"fromLj": true,
+							"itemName": "切开翻瓣，暴露覆盖螺丝。拆下覆盖螺丝，局部冲洗，旋入愈合帽，加扭力15Ncm。",
+							"itemOrder": 3,
+							"id": 106331
+						},
+						{
+							"fromLj": true,
+							"itemName": "旋出愈合帽，局部冲洗吹干。旋入取模柱，拍片确认取模柱到位，制取硅橡胶印模。重新旋入愈合帽。咬合记录。",
+							"itemOrder": 4,
+							"id": 106332
+						},
+						{
+							"fromLj": true,
+							"itemName": "旋出愈合帽，局部冲洗吹干。 在就位导板的引导下旋入种植基台，拍片确认基台到位。试戴，冠边缘密合性良好，邻接良好。 调合、抛光。患者对修复体形态颜色满意，确认后，基台加扭力35Ncm。封闭螺丝孔。",
+							"itemOrder": 5,
+							"id": 106333
+						}
+					]
+				},
+				{
+					"itemType": "正畸",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "取模型，照相，正、侧位片。",
+							"itemOrder": 0,
+							"id": 106334
+						},
+						{
+							"fromLj": true,
+							"itemName": "粘托槽、带环。",
+							"itemOrder": 1,
+							"id": 106335
+						},
+						{
+							"fromLj": true,
+							"itemName": "去除托槽、带环。",
+							"itemOrder": 2,
+							"id": 106336
+						},
+						{
+							"fromLj": true,
+							"itemName": "加力，",
+							"itemOrder": 3,
+							"id": 106337
+						},
+						{
+							"fromLj": true,
+							"itemName": "片切，",
+							"itemOrder": 4,
+							"id": 106338
+						},
+						{
+							"fromLj": true,
+							"itemName": "调合，",
+							"itemOrder": 5,
+							"id": 106339
+						},
+						{
+							"fromLj": true,
+							"itemName": "弓丝： 尺寸    ，材质    ，弯曲    。",
+							"itemOrder": 6,
+							"id": 106340
+						},
+						{
+							"fromLj": true,
+							"itemName": "牵引：类型     ，型号    ，时间    。",
+							"itemOrder": 7,
+							"id": 106341
+						},
+						{
+							"fromLj": true,
+							"itemName": "牵引：类型     ，型号    ，时间    。",
+							"itemOrder": 8,
+							"id": 106342
+						},
+						{
+							"fromLj": true,
+							"itemName": "活动矫治器： 类型   ，处置   。",
+							"itemOrder": 9,
+							"id": 106364
+						}
+					]
+				},
+				{
+					"itemType": "test",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "test",
+							"itemOrder": 0,
+							"id": 141386
+						}
+					]
+				}
+			],
+			"mainType": "病历词条-处置"
+		},
+		{
+			"itemTypes": [
+				{
+					"itemType": "充填医嘱",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "忌咬硬物，若出现牙髓症状行根管治疗。",
+							"itemOrder": 0,
+							"id": 106343
+						}
+					]
+				},
+				{
+					"itemType": "根管医嘱",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "不随随诊，约两周后复诊取出失活剂。",
+							"itemOrder": 0,
+							"id": 106344
+						},
+						{
+							"fromLj": true,
+							"itemName": "勿咬硬物，一周后复诊。",
+							"itemOrder": 1,
+							"id": 106345
+						}
+					]
+				},
+				{
+					"itemType": "拔牙医嘱",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "嘱不适随诊，咬棉卷40min，24h不刷牙漱口，2h后可饮食，建议饮食不要太热。",
+							"itemOrder": 0,
+							"id": 106346
+						},
+						{
+							"fromLj": true,
+							"itemName": "一周复诊拆线。",
+							"itemOrder": 1,
+							"id": 106347
+						}
+					]
+				},
+				{
+					"itemType": "常规医嘱",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "不适随诊。",
+							"itemOrder": 0,
+							"id": 106348
+						}
+					]
+				}
+			],
+			"mainType": "病历词条-医嘱"
+		},
+		{
+			"itemTypes": [
+				{
+					"itemType": "牙体牙髓",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "充填治疗",
+							"itemOrder": 0,
+							"id": 113646
+						},
+						{
+							"fromLj": true,
+							"itemName": "根管治疗",
+							"itemOrder": 1,
+							"id": 113136
+						},
+						{
+							"fromLj": true,
+							"itemName": "根管再治疗",
+							"itemOrder": 2,
+							"id": 112881
+						},
+						{
+							"fromLj": true,
+							"itemName": "根管治疗+冠修复",
+							"itemOrder": 3,
+							"id": 113391
+						}
+					]
+				},
+				{
+					"itemType": "正畸",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "隐形矫治",
+							"itemOrder": 0,
+							"id": 114156
+						},
+						{
+							"fromLj": true,
+							"itemName": "固定矫治",
+							"itemOrder": 1,
+							"id": 113901
+						}
+					]
+				},
+				{
+					"itemType": "儿牙",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "窝沟封闭",
+							"itemOrder": 0,
+							"id": 115176
+						},
+						{
+							"fromLj": true,
+							"itemName": "充填治疗",
+							"itemOrder": 1,
+							"id": 114921
+						},
+						{
+							"fromLj": true,
+							"itemName": "根管治疗",
+							"itemOrder": 2,
+							"id": 114666
+						},
+						{
+							"fromLj": true,
+							"itemName": "乳牙拔除",
+							"itemOrder": 3,
+							"id": 114411
+						}
+					]
+				},
+				{
+					"itemType": "外科",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "拔除",
+							"itemOrder": 0,
+							"id": 115686
+						},
+						{
+							"fromLj": true,
+							"itemName": "手术切除",
+							"itemOrder": 1,
+							"id": 115431
+						}
+					]
+				},
+				{
+					"itemType": "修复",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "冠修复",
+							"itemOrder": 0,
+							"id": 117726
+						},
+						{
+							"fromLj": true,
+							"itemName": "桩冠修复",
+							"itemOrder": 1,
+							"id": 117471
+						},
+						{
+							"fromLj": true,
+							"itemName": "固定桥修复",
+							"itemOrder": 2,
+							"id": 117216
+						},
+						{
+							"fromLj": true,
+							"itemName": "活动义齿修复",
+							"itemOrder": 3,
+							"id": 116961
+						},
+						{
+							"fromLj": true,
+							"itemName": "全口活动义齿修复",
+							"itemOrder": 4,
+							"id": 116706
+						},
+						{
+							"fromLj": true,
+							"itemName": "种植修复",
+							"itemOrder": 5,
+							"id": 116451
+						},
+						{
+							"fromLj": true,
+							"itemName": "贴面修复",
+							"itemOrder": 6,
+							"id": 116196
+						},
+						{
+							"fromLj": true,
+							"itemName": "美白",
+							"itemOrder": 7,
+							"id": 115941
+						}
+					]
+				},
+				{
+					"itemType": "牙周",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "OHI",
+							"itemOrder": 0,
+							"id": 119001
+						},
+						{
+							"fromLj": true,
+							"itemName": "洁治",
+							"itemOrder": 1,
+							"id": 118746
+						},
+						{
+							"fromLj": true,
+							"itemName": "刮治、根面平整",
+							"itemOrder": 2,
+							"id": 118491
+						},
+						{
+							"fromLj": true,
+							"itemName": "冠延长手术",
+							"itemOrder": 3,
+							"id": 118236
+						},
+						{
+							"fromLj": true,
+							"itemName": "牙周手术",
+							"itemOrder": 4,
+							"id": 117981
+						}
+					]
+				}
+			],
+			"mainType": "病历词条-治疗计划"
+		},
+		{
+			"itemTypes": [
+				{
+					"itemType": "常规",
+					"items": [
+						{
+							"fromLj": true,
+							"itemName": "已完成流行病学调查和体温筛查。",
+							"itemOrder": 0,
+							"id": 180738
+						},
+						{
+							"fromLj": true,
+							"itemName": "否认新冠肺炎史和接触史，否认近期发热史和疫区往返史。",
+							"itemOrder": 1,
+							"id": 180739
+						}
+					]
+				}
+			],
+			"mainType": "病历词条-流行病学史"
+		}
+	]
+}

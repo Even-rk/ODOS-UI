@@ -19,6 +19,7 @@ export interface GlobalComponents {
   OdosIcon: (typeof import('../packages/Icon/src/index.vue'))['default']
   OdosInput: (typeof import('../packages/Input/src/index.vue'))['default']
   OdosInputNumber: (typeof import('../packages/InputNumber/src/index.vue'))['default']
+  OdosMedicalRecordTerms: (typeof import('../packages/MedicalRecordTerms/src/index.vue'))['default']
   OdosModal: (typeof import('../packages/Modal/src/index.vue'))['default']
   OdosPopover: (typeof import('../packages/Popover/src/index.vue'))['default']
   OdosPopconfirm: (typeof import('../packages/Popconfirm/src/index.vue'))['default']

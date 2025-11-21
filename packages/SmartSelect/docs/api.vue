@@ -6,9 +6,6 @@
     <h3>SmartSelect 事件</h3>
     <odos-table :columns="eventsColumns" :data="eventsData"></odos-table>
     
-    <h3>SmartSelect 插槽</h3>
-    <odos-table :columns="slotsColumns" :data="slotsData"></odos-table>
-    
     <h3>Option 数据结构</h3>
     <odos-table :columns="optionColumns" :data="optionData"></odos-table>
   </div>
@@ -145,24 +142,6 @@ const eventsData = [
   }
 ]
 
-const slotsData = [
-  {
-    attribute: 'option',
-    params: '{ option: Option, index: number, selected: boolean }',
-    describe: '自定义选项内容，可以自定义每个选项的显示方式'
-  },
-  {
-    attribute: 'dropdownRender',
-    params: '{ options: Option[], empty: boolean }',
-    describe: '自定义下拉框内容，可以完全自定义下拉框的渲染内容'
-  },
-  {
-    attribute: 'suffixIcon',
-    params: '{ visible: boolean }',
-    describe: '自定义后缀图标，可以替换默认的下拉箭头图标'
-  }
-]
-
 const optionData = [
   {
     attribute: 'label',
@@ -203,21 +182,6 @@ const propsColumns = [
 const eventsColumns = [
   {
     title: '事件名',
-    dataIndex: 'attribute'
-  },
-  {
-    title: '描述',
-    dataIndex: 'describe'
-  },
-  {
-    title: '参数',
-    dataIndex: 'params'
-  }
-]
-
-const slotsColumns = [
-  {
-    title: '插槽名',
     dataIndex: 'attribute'
   },
   {

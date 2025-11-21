@@ -150,5 +150,11 @@
     "compZhName": "SmartSelect 智能选择器",
     "compClassName": "smart-select",
     "category": "special"
+  },
+  {
+    "compName": "MedicalRecordTerms",
+    "compZhName": "medical-record-terms病历词条",
+    "compClassName": "medical-record-terms",
+    "category": "display"
   }
 ]
