@@ -1,5 +1,5 @@
 <template>
-  <odos-MedicalRecordTerms :entryData="entryData" />
+  <odos-MedicalRecordTerms :HorizontalEntryData="entryData" type="horizontal" />
 </template>
 
 <script setup lang="ts">
