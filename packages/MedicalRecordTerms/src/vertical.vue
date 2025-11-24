@@ -152,8 +152,9 @@ const insertAtCursor = (text: string, maxLength: number = 500) => {
   return false
 }
 
-const addWordToDescHandle = (item: string) => {
-  emit('add-word', item)
+const addWordToDescHandle = (sub: { itemName: string }) => {
+  // 点击词条添加到描述
+  emit('add-word', sub)
 }
 
 // 暴露方法给父组件使用
@@ -192,8 +193,8 @@ defineExpose({
           {{ item.itemType }}
         </div>
         <div class="entries-part-right-item-right">
-          <div v-for="item1 in item.items" :key="item1" @click="addWordToDescHandle(item1.itemName)">
-            {{ item1.itemName }}
+          <div v-for="ele in item.items" :key="ele" @click="addWordToDescHandle(ele)">
+            {{ ele.itemName }}
           </div>
         </div>
       </div>

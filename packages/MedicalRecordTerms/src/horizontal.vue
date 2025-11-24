@@ -32,12 +32,12 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   // 事件定义
-  (e: 'addWordToDesc', sub: { itemName: string }): void
+  (e: 'add-word', sub: { itemName: string }): void
 }>()
 
 const addWordToDescHandle = (sub: { itemName: string }) => {
   // 点击词条添加到描述
-  emit('addWordToDesc', sub)
+  emit('add-word', sub)
 }
 </script>
 
