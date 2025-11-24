@@ -97,6 +97,11 @@ const addWordToDescHandle = (sub: { itemName: string }) => {
         overflow-y: scroll;
         flex-direction: column;
         gap: 12px;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
         .entries-part-item-select {
           width: 120px;
           border-radius: 4px;
