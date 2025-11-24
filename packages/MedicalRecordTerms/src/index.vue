@@ -20,14 +20,18 @@ type VerticalEntryData = {
 }[]
 
 defineProps<{
+  // 水平方向的词条数据
   HorizontalEntryData?: {
     itemType: string
     items: {
       itemName: string
     }[]
   }[]
+  // 垂直方向的词条数据
   verticalEntryData?: VerticalEntryData
+  // 水平方向还是垂直方向
   type?: string
+  // 项目类型（垂直方向才有）
   projectType?: string
 }>()
 </script>
