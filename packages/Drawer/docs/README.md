@@ -49,7 +49,7 @@ import DemoFooter from './demo-footer.vue'
 | width | 抽屉宽度 | string \| number | -- |
 | height | 抽屉高度，在 placement 为 top 或 bottom 时使用 | string \| number | -- |
 | placement | 抽屉的方向 | -- | -- |
-| closable | 是否显示右上角的关闭按钮 | boolean | true |
+| closable | 是否显示左上角的关闭按钮 | boolean | true |
 | keyboard | 是否支持键盘 esc 关闭 | boolean | true |
 | mask | 是否显示遮罩 | boolean | true |
 | maskClosable | 点击遮罩是否允许关闭 | boolean | true |
