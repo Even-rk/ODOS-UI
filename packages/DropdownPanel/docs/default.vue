@@ -2,7 +2,7 @@
   <div>
     <odos-button ref="trigger" type="primary" @click="visible = !visible">打开下拉面板</odos-button>
 
-    <odos-auto-popup v-model="visible" :triggerEl="trigger" placement="bottom-start">
+    <odos-dropdown-panel v-model="visible" :triggerEl="trigger" placement="bottom-start">
       <template #close>
         <span style="font-size: 14px">关闭</span>
       </template>
@@ -19,7 +19,7 @@
           约束内自动扩展，且宽度默认适配触发元素。
         </p>
       </div>
-    </odos-auto-popup>
+    </odos-dropdown-panel>
   </div>
 </template>
 
