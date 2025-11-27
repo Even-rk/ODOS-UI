@@ -11,6 +11,7 @@ const props = defineProps<{
   size?: 'small' | 'medium' | 'large'
   value?: string | number
   itemWidth?: string
+  circle?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -43,6 +44,7 @@ const RadioItem = (list: Item[]) => {
         <div
           class={{
             'odos-radio-item': true,
+            'odos-radio-item--circle': props.circle,
             'active-alarm': it.props.alarm,
             active: it.props.value == props.value,
             disabled: it.props.disabled
@@ -108,6 +110,10 @@ const styleClass = computed(() => {
     &:last-child {
       border-radius: 0px 6px 6px 0px;
       margin-right: 0;
+    }
+
+    &.odos-radio-item--circle {
+      border-radius: 6px;
     }
 
     &:hover {
