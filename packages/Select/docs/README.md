@@ -1,9 +1,7 @@
 <script setup>
 import demo from './demo.vue'
 import Disabled from './disabled.vue'
-
-
-
+import SuffixIcon from './suffixIcon.vue'
 import Multiple from './multiple.vue'
 import FilterDemo from './filter.vue'  
 import TitleDemo from './title.vue'
@@ -40,6 +38,14 @@ import TitleDemo from './title.vue'
 <Preview comp-name="Select" demo-name="filter">
   <FilterDemo />
 </Preview>
+
+## 后缀图标
+
+<Preview comp-name="Select" demo-name="suffixIcon">
+  <SuffixIcon />
+</Preview>
+
+
 
 ## Select Api
 

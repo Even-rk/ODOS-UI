@@ -26,13 +26,19 @@
       :get-popup-container="GetPopupContainer"
     >
       <template #suffixIcon>
-        <Icon name="ArowDown" size="20px" />
+        <slot name="suffixIcon">
+          <Icon name="ArowDown" size="20px" />
+        </slot>
       </template>
       <template #notFoundContent>
-        <Empty />
+        <slot name="notFoundContent">
+          <Empty />
+        </slot>
       </template>
-      <template v-for="(_, name) in slots" #[name]="SlotProps">
-        <slot :name="name" v-bind="SlotProps"></slot>
+      <template v-for="(_, name) in slots" #[name]="SlotProps" :key="name">
+        <template v-if="name !== 'suffixIcon' && name !== 'notFoundContent'">
+          <slot :name="name" v-bind="SlotProps"></slot>
+        </template>
       </template>
     </Select>
   </div>
