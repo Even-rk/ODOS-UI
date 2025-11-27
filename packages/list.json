@@ -157,4 +157,11 @@
     "compClassName": "medical-record-terms",
     "category": "display"
   }
+  ,
+  {
+    "compName": "DropdownPanel",
+    "compZhName": "DropdownPanel下拉面板",
+    "compClassName": "dropdown-panel",
+    "category": "modal"
+  }
 ]

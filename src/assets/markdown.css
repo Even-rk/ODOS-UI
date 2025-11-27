@@ -68,6 +68,9 @@ h6 .header-anchor {
   padding-right: 4px;
   color: #3f6bdc;
   font-weight: normal;
+  /* 禁止点击#触发跳转 */
+  pointer-events: none;
+  cursor: default;
 }
 
 h1:hover .header-anchor,
